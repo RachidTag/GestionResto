@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Calendar {
 	/**
-	 * The map who contains the weeks indentified by their numbers for the current year
+	 * The list who contains the weeks indentified by their numbers for the current year
 	 */
 	List<Week> weeks = new ArrayList<Week>();
 
