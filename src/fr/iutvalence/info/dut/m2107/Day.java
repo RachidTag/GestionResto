@@ -28,8 +28,8 @@ public class Day {
 	public Day()
 	{
 		this.isClosed = false;
-		this.services.add(1, new Service());
-		this.services.add(2, new Service());
+		this.services.add(1, new Service(ServiceType.MIDDAY));
+		this.services.add(2, new Service(ServiceType.EVENING));
 	}
 
 	/**
