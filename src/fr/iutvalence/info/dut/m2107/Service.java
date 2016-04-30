@@ -1,6 +1,7 @@
 package fr.iutvalence.info.dut.m2107;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -42,5 +43,56 @@ public class Service {
 		this.waiter.remove(waiter);
 	}
 	
-	// TODO add/remove method for cleaner waiter list
+	/**
+	 * Add a waiter to the list of cleaner waiter
+	 * @param waiter the waiter we want to add to the list
+	 */
+	public void addCleanerWaiter(Waiter waiter) {
+		this.cleanerWaiter.add(waiter);
+	}
+	
+	/**
+	 * Remove a waiter from the list of cleaner waiter
+	 * @param waiter the wiater we want to remove from the list of waiter
+	 */
+	public void removeCleanerWaiter(Waiter waiter) {
+		this.cleanerWaiter.remove(waiter);
+	}
+	
+	/**
+	 * Get the Set of all the waiters
+	 * @return the set
+	 */
+	public Set<Waiter> getAllWaiters() {
+		Set<Waiter> allWaiters = new HashSet<Waiter>();
+
+		Iterator<Waiter> waitersIterator = this.waiter.iterator();
+		while(waitersIterator.hasNext())
+		{
+			allWaiters.add(waitersIterator.next());
+		}
+		Iterator<Waiter> cleanersIterator = this.cleanerWaiter.iterator();
+		while(cleanersIterator.hasNext())
+		{
+			allWaiters.add(cleanersIterator.next());
+		}
+		
+		return allWaiters;
+	}
+	
+	/**
+	 * Return the list of the waiters
+	 * @return a set of waiters
+	 */
+	public Set<Waiter> getWaiters() {
+		return this.waiter;
+	}
+	
+	/**
+	 * Return the list of the cleaner waiters
+	 * @return a set of waiters
+	 */
+	public Set<Waiter> getCleanerWaiters() {
+		return this.cleanerWaiter;
+	}
 }
