@@ -28,6 +28,30 @@ public class Service {
 	private ServiceType serviceType;
 	
 	/**
+	 * Generates a Service with a type
+	 * @param serviceType (ServiceType.MIDI or SOIR)
+	 */
+	public Service(ServiceType serviceType) {
+		this.serviceType = serviceType;
+	}
+	
+	/**
+	 * Returns the type of the service
+	 * @return ServiceType
+	 */
+	public ServiceType getServiceType() {
+		return serviceType;
+	}
+	
+	/**
+	 * Set the type of the service
+	 * @param serviceType
+	 */
+	public void setServiceType(ServiceType serviceType) {
+		this.serviceType = serviceType;
+	}
+
+	/**
 	 * Add a waiter to the list of waiter
 	 * @param waiter the waiter we want to add to the list
 	 */
