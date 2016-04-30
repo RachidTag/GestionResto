@@ -49,6 +49,7 @@ public class Day {
 	
 	/**
 	 * Give the list of services
+	 * @param numService the number of the service (1/2)
 	 * @return List<Services> a list of services 
 	 * @throws ServiceNotExistsException 
 	 */
