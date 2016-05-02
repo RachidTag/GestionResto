@@ -1,8 +1,5 @@
 package fr.iutvalence.info.dut.m2107.calendar;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Represents a week from the calendar
  * @author Projet Resto
