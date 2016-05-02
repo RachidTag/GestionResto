@@ -1,8 +1,5 @@
 package fr.iutvalence.info.dut.m2107;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Represents a day in a week
  * @author Projet Resto
