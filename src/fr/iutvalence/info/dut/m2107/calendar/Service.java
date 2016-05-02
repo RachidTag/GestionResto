@@ -12,15 +12,13 @@ import fr.iutvalence.info.dut.m2107.Waiter;
  */
 
 public class Service {
-
-	
 	/**
-	 * A list of waiter
+	 * A set of waiters
 	 */
 	private Set<Waiter> waiter = new HashSet<Waiter>();
 	
 	/**
-	 * A list of cleaner waiter
+	 * A set of cleaner waiters
 	 */
 	private Set<Waiter> cleanerWaiter = new HashSet<Waiter>();
 	
@@ -42,7 +40,7 @@ public class Service {
 	 * @return ServiceType
 	 */
 	public ServiceType getServiceType() {
-		return serviceType;
+		return this.serviceType;
 	}
 	
 	/**

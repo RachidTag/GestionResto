@@ -13,14 +13,14 @@ public class Week {
 	/**
 	 * List of the days identified from 1 to 7
 	 */
-	private List<Day> days = new ArrayList<Day>();
+	private Day days[] = new Day[7];
 	
 	/**
 	 * Generates a week with 7 days
 	 */
 	public Week() {
 		for(int i = 1; i <= 7; i++)
-			days.set(i, new Day());
+			days[i] = new Day();
 	}
 	
 	/**
@@ -28,10 +28,9 @@ public class Week {
 	 * @return the selected day
 	 * @throws DayNotExistsException
 	 */
-	public Day getDay(int dayNum) throws DayNotExistsException
+	public Day getDay(int dayNum)
 	{
-		if(this.days.get(dayNum) == null) throw new DayNotExistsException();
-		return this.days.get(dayNum);
+		return this.days[dayNum];
 	}
 	
 	/**
@@ -39,9 +38,8 @@ public class Week {
 	 * @param Day a Day
 	 * @throws DayNotExistsException
 	 */
-	public void editDayCalendar(int dayNum, Day Day) throws DayNotExistsException
+	public void editDayCalendar(int dayNum, Day Day)
 	{
-		if(this.days.get(dayNum) == null) throw new DayNotExistsException();
-		this.days.set(dayNum, Day);
+		this.days[dayNum] = Day;
 	}
 }
