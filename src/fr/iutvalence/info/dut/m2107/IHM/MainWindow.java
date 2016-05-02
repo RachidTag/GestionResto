@@ -2,8 +2,17 @@ package fr.iutvalence.info.dut.m2107.IHM;
 import javax.swing.*;
 import java.awt.GridLayout;
 
+/**
+ * TODO
+ * @author Projet Resto
+ *
+ */
+@SuppressWarnings("serial")
 public class MainWindow extends JFrame {
 	
+	/**
+	 * TODO
+	 */
 	public MainWindow()
 	{
 		this.setTitle("Gestion Resto");
