@@ -1,7 +1,9 @@
-package fr.iutvalence.info.dut.m2107;
+package fr.iutvalence.info.dut.m2107.room;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.iutvalence.info.dut.m2107.Waiter;
 
 /**
  * Represent the Sector

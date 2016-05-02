@@ -1,8 +1,10 @@
-package fr.iutvalence.info.dut.m2107;
+package fr.iutvalence.info.dut.m2107.calendar;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
+import fr.iutvalence.info.dut.m2107.Waiter;
 
 /**
  * This class describe a service

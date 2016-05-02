@@ -1,5 +1,7 @@
 package fr.iutvalence.info.dut.m2107;
 
+import fr.iutvalence.info.dut.m2107.room.Rank;
+
 /**
  * Represents a waiter
  * @author Projet Resto

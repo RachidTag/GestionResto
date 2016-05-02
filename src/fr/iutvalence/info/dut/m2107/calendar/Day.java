@@ -1,4 +1,4 @@
-package fr.iutvalence.info.dut.m2107;
+package fr.iutvalence.info.dut.m2107.calendar;
 
 /**
  * Represents a day in a week
