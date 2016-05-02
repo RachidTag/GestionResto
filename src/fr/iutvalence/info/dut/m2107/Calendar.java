@@ -10,11 +10,12 @@ import java.util.List;
  */
 public class Calendar {
 	/**
-	 * The list who contains the weeks indentified by their numbers for the current year
+	 * The list who contains the weeks identified by their numbers for the current year
 	 */
 	List<Week> weeks = new ArrayList<Week>();
 
 	/**
+	 * Get a week from the calendar
 	 * @param weekNum the number of the week from the year
 	 * @return a Week
 	 * @throws WeekNotExistsException
@@ -26,6 +27,7 @@ public class Calendar {
 	}
 
 	/**
+	 * Add an empty week to the calendar
 	 * @param weekNum the number of the week from the year
 	 * @throws WeekAlreadyExistsException 
 	 */
@@ -36,6 +38,7 @@ public class Calendar {
 	}
 	
 	/**
+	 * Add a pre-defined week to the calendar
 	 * @param weekNum the number of the week from the year
 	 * @param aWeek a Week
 	 * @throws WeekAlreadyExistsException 
@@ -44,16 +47,5 @@ public class Calendar {
 	{
 		if(this.weeks.get(weekNum) != null) throw new WeekAlreadyExistsException();
 		this.weeks.add(weekNum, aWeek);
-	}
-	
-	/**
-	 * @param weekNum weekNum the number of the week from the year
-	 * @param newWeek a Week
-	 * @throws WeekNotExistsException
-	 */
-	public void editWeekCalendar(int weekNum, Week newWeek) throws WeekNotExistsException
-	{
-		if(this.weeks.get(weekNum) == null) throw new WeekNotExistsException();
-		this.weeks.set(weekNum, newWeek);
 	}
 }
