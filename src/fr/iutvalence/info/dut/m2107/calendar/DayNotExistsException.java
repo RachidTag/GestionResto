@@ -5,6 +5,7 @@ package fr.iutvalence.info.dut.m2107.calendar;
  * @author Projet Resto
  *
  */
+@SuppressWarnings("serial")
 public class DayNotExistsException extends Exception {
 
 }

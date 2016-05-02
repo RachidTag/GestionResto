@@ -14,6 +14,7 @@ public class Main {
 	 * Application's main
 	 * @param args command-line arguments (unused)
 	 */
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		Calendar calendar = new Calendar();
 		Room room = new Room();
