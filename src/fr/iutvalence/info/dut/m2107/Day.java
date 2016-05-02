@@ -16,9 +16,9 @@ public class Day {
 	private boolean isClosed;
 	
 	/**
-	 * 
+	 * A table of the two services for the day
 	 */
-	private List<Service> services = new ArrayList<Service>();
+	private Service[] services;
 	
 	
 
@@ -28,11 +28,12 @@ public class Day {
 	public Day()
 	{
 		this.isClosed = false;
-		this.services.add(1, new Service(ServiceType.MIDDAY));
-		this.services.add(2, new Service(ServiceType.EVENING));
+		this.services[0] = new Service(ServiceType.MIDDAY);
+		this.services[1] = new Service(ServiceType.EVENING);
 	}
 
 	/**
+	 * Return true if the restaurant is closed today
 	 * @return true if the restaurant is closed, false if it's not
 	 */
 	public boolean isClosed() {
@@ -48,25 +49,12 @@ public class Day {
 	}
 	
 	/**
-	 * Give the list of services
-	 * @param numService the number of the service (1/2)
-	 * @return List<Services> a list of services 
-	 * @throws ServiceNotExistsException 
+	 * Give the chosen service from the day
+	 * @param serviceType the service's type
+	 * @return Service the service
 	 */
-	public Service getServices(int numService) throws ServiceNotExistsException {
-		if(this.services.get(numService) == null) throw new ServiceNotExistsException();
-		return this.services.get(numService);
-	}
-	
-	/**
-	 * Edit a service
-	 * @param numService the service we want to edit (1 or 2)
-	 * @param service the service we want instead
-	 * @throws ServiceNotExistsException 
-	 */
-	public void editService(int numService, Service service) throws ServiceNotExistsException {
-		if(this.services.get(numService) == null) throw new ServiceNotExistsException();
-		this.services.set(numService, service);
+	public Service getService(ServiceType serviceType) {
+		return this.services[serviceType.getNumService()];
 	}
 
 }
