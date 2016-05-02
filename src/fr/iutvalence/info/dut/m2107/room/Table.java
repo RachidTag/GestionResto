@@ -1,7 +1,7 @@
 package fr.iutvalence.info.dut.m2107.room;
 /**
  * Represent a table
- * @author Prejoet Resto
+ * @author Projet Resto
  */
 public class Table
 {
@@ -26,8 +26,8 @@ public class Table
 	 */
 	private State state;
 	/**
-	 * State of the meal
+	 * Progress of the meal
 	 */
-	// TODO atributes and methodes
+	private Progress progress;
 	
 }
