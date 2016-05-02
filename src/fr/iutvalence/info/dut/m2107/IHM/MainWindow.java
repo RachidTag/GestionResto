@@ -19,7 +19,9 @@ public class MainWindow extends JFrame {
 		JLabel j2 = new JLabel("Left Area");
 		JButton b1 = new JButton("B1");
 		
-		this.setLayout(new GridLayout(6,1,5,5));
+		GridLayout controlGrid = new GridLayout(6,1,5,5);
+		
+		this.setLayout(controlGrid);	
 		
 		this.getContentPane().add(new JButton("Edition de table"));
 		this.getContentPane().add(new JButton("Edition de secteur"));
@@ -27,12 +29,14 @@ public class MainWindow extends JFrame {
 		this.getContentPane().add(new JButton("Consulter emploi du temps"));
 		this.getContentPane().add(new JButton("Mode chef de salle"));
 		this.getContentPane().add(new JButton("Quitter"));
+
 		
 		// TODO: ajouter le layout (grid) dans la splitpane droite 
 		
 		rightArea.add(j1);
 		leftArea.add(j2);
 		rightArea.add(b1);
+		/*rightArea.add(controlGrid);*/
 		
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, rightArea, leftArea);
 		
