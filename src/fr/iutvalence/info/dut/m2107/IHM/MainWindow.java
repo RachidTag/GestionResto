@@ -2,6 +2,10 @@ package fr.iutvalence.info.dut.m2107.IHM;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentListener;
+import java.awt.event.MouseEvent;
 
 /**
  * TODO
@@ -14,6 +18,8 @@ public class MainWindow extends JFrame {
 	/**
 	 * TODO
 	 */
+	public static JPanel leftArea = new JPanel();
+	
 	public MainWindow()
 	{
 	
@@ -52,7 +58,8 @@ public class MainWindow extends JFrame {
 		/**
 		 * Create left panel for left area of the splitpanel
 		 */
-		JPanel leftArea = new JPanel();
+		//TODO: comment for test
+		//JPanel leftArea = new JPanel();
 		
 		/**
 		 * Add label of project
@@ -74,7 +81,7 @@ public class MainWindow extends JFrame {
 		/**
 		 * Create the gridlayout where are contained all buttons and control actions
 		 */
-		GridLayout controlGrid = new GridLayout(7,1);
+		GridLayout controlGrid = new GridLayout(8,1);
 		
 		/**
 		 * Create a horizontal and vertical gap of 5 pixels between panel and gridlayout
@@ -91,36 +98,44 @@ public class MainWindow extends JFrame {
 		 * Add "table edition" button
 		 * TODO: transform into menu
 		 */
-		leftArea.add(new JButton("Table edition"));
+		
+		ButtonCustomTest editTable = new ButtonCustomTest();
+		leftArea.add(editTable);
 		
 		/**
 		 * Add "sector edition" menu
 		 * TODO: transform into menu
 		 */
-		leftArea.add(new JButton("Sector edition"));
+		JButton editSector = new JButton("Sector edition");
+		leftArea.add(editSector);
 		
 		/**
 		 * Add "check a room" button
 		 */
-		leftArea.add(new JButton("Check a room"));
+		JButton checkRoom = new JButton("Check a room");
+		leftArea.add(checkRoom);
 		
 		/**
 		 * Add "check a schedule" button
 		 */
-		leftArea.add(new JButton("Check a schedule"));
+		JButton checkSchedule = new JButton("Check a schedule");
+		leftArea.add(checkSchedule);
 		
 		/**
 		 * Add "room manager mod" button
 		 */
-		leftArea.add(new JButton("Room manager mod"));
+		JButton roomManager = new JButton("Room manager mod");
+		leftArea.add(roomManager);
 		
 		/**
 		 * Add "quit" button
 		 */
-		leftArea.add(new JButton("Quit"));
+		JButton exit = new JButton("Close");
+		leftArea.add(exit);
+		exit.addActionListener(e -> this.dispose());
 		
 		
-
+		
 				/**
 				 * Right Panel informations and settings...
 				 * 
@@ -236,6 +251,11 @@ public class MainWindow extends JFrame {
 		 * Set all components and window visibles on screen
 		 */
 		this.setVisible(true);
+		
+
 	}
+
+	
+
 	
 }
