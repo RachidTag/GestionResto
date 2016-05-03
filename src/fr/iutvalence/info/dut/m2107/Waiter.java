@@ -1,6 +1,5 @@
 package fr.iutvalence.info.dut.m2107;
 
-import fr.iutvalence.info.dut.m2107.room.Rank;
 import fr.iutvalence.info.dut.m2107.room.Sector;
 
 /**
