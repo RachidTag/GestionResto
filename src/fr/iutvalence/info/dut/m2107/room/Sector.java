@@ -12,10 +12,6 @@ import fr.iutvalence.info.dut.m2107.Waiter;
 public class Sector
 {
 	/**
-	 * Auto-Incrementation number
-	 */
-	private static int autoIncrementation = 1;
-	/**
 	 * Number of the sector
 	 */
 	private final int numSector;
@@ -30,23 +26,23 @@ public class Sector
 	
 	/**
 	 * Create a new instance of Sector
+	 * @param numSector int
 	 * @param padder Waiter
 	 * @param tables List<Tables>
 	 */
-	public Sector(Waiter padder, List<Table> tables){
-		this.numSector = autoIncrementation++;
+	public Sector(int numSector, Waiter padder, List<Table> tables){
+		this.numSector = numSector;
 		this.padder = padder;
 		this.tables = tables;
 	}
 	/**
 	 * Add a table to a sector
-	 * @param numTable int
 	 * @param table Table
 	 * @throws TableAlreadyExistsException 
 	 */
-	public void addTable(int numTable, Table table) throws TableAlreadyExistsException{
-		if(this.tables.get(numTable)== null) throw new TableAlreadyExistsException();
-		this.tables.add(numTable, table);
+	public void addTable(Table table) throws TableAlreadyExistsException{
+		if(this.tables.get(table.getNumTable())== null) throw new TableAlreadyExistsException();
+		this.tables.add(table.getNumTable(), table);
 	}
 	/**
 	 * Remove a table from the sector
@@ -74,4 +70,12 @@ public class Sector
 		if(this.tables.get(numTable)== null) throw new TableNotExistsException();
 		return this.tables.get(numTable);
 	}
+	/**
+	 * Get the number of the sector
+	 * @return numSector int
+	 */
+	public int getNumSector() {
+		return numSector;
+	}
+	
 }

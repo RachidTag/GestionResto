@@ -25,8 +25,7 @@ public class Room {
 	
 	/**
 	 * Get an unique sector
-	 * @param numSector 
-	 * @return sector Sector
+	 * @param numSector int
 	 * @throws SectorNotExistsException 
 	 */
 	public Sector getSector(int numSector) throws SectorNotExistsException{
@@ -45,18 +44,16 @@ public class Room {
 	
 	/**
 	 * add an unique sector
-	 * @param numSector int 
 	 * @param sector Sector
 	 * @throws SectorAlreadyExistsException 
 	 */
-	public void addSector(int numSector, Sector sector) throws SectorAlreadyExistsException{
-		if(this.sectors.get(numSector) != null) throw new SectorAlreadyExistsException();
-		this.sectors.add(numSector, sector);
+	public void addSector(Sector sector) throws SectorAlreadyExistsException{
+		if(this.sectors.get(sector.getNumSector()) != null) throw new SectorAlreadyExistsException();
+		this.sectors.add(sector.getNumSector(), sector);
 	}
 	
 	/**
 	 * edit an unique sector
-	 * @param numSector int 
 	 * @param sector Sector
 	 * @throws SectorNotExistsException 
 	 */
@@ -67,7 +64,7 @@ public class Room {
 
 	/**
 	 * delete a sector
-	 * @param numSector int 
+	 * @param numSector int
 	 * @throws SectorNotExistsException 
 	 */
 	public void deleteSector(int numSector) throws SectorNotExistsException{
