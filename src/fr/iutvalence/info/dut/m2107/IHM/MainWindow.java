@@ -188,8 +188,6 @@ public class MainWindow extends JFrame {
 		 * Add sector four to rightArea panel
 		 */
 		rightArea.add(sectorFour);
-
-		
 		
 		
 		
