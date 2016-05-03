@@ -58,12 +58,18 @@ public class MainWindow extends JFrame {
 		 * Add label of project
 		 * TODO: add image, and try/catch if not found, put label instead of image
 		 */
-		JLabel LOGO = new JLabel("GESTION RESTO'");
+		
+		ImageIcon icon = new ImageIcon("img/logo.png");
+		Image img = icon.getImage();
+		img = img.getScaledInstance(143, 90, Image.SCALE_SMOOTH);
+		icon = new ImageIcon(img);
+		
+		JLabel lab = new JLabel(icon);
 		
 		/**
 		 * Add logo label
 		 */
-		leftArea.add(LOGO);
+		leftArea.add(lab);
 
 		/**
 		 * Create the gridlayout where are contained all buttons and control actions
