@@ -1,4 +1,4 @@
-package fr.iutvalence.info.dut.m2107.room;
+package fr.iutvalence.info.dut.m2107;
 
 /**
  * Represents the different waiter's ranks in the restaurant
