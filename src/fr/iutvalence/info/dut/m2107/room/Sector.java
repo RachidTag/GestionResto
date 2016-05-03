@@ -22,7 +22,7 @@ public class Sector
 	/**
 	 * List of tables
 	 */
-	private List<Table> tables= new ArrayList<Table>();
+	private List<Table> tables = new ArrayList<Table>();
 	
 	/**
 	 * Create a new instance of Sector
@@ -41,7 +41,7 @@ public class Sector
 	 * @throws TableAlreadyExistsException 
 	 */
 	public void addTable(Table table) throws TableAlreadyExistsException{
-		if(this.tables.get(table.getNumTable())== null) throw new TableAlreadyExistsException();
+		if(this.tables.get(table.getNumTable())!= null) throw new TableAlreadyExistsException();
 		this.tables.add(table.getNumTable(), table);
 	}
 	/**

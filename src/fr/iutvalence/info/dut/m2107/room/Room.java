@@ -26,6 +26,7 @@ public class Room {
 	/**
 	 * Get an unique sector
 	 * @param numSector int
+	 * @return a Sector
 	 * @throws SectorNotExistsException 
 	 */
 	public Sector getSector(int numSector) throws SectorNotExistsException{
@@ -54,6 +55,7 @@ public class Room {
 	
 	/**
 	 * edit an unique sector
+	 * @param numSector a num of Sector
 	 * @param sector Sector
 	 * @throws SectorNotExistsException 
 	 */
