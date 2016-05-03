@@ -42,12 +42,76 @@ public class Table
 		this.state = state;
 		this.progress = progress;
 	}
+	
 	/**
 	 * Get the number of the table
 	 * @return int
 	 */
 	public int getNumTable() {
-		return numTable;
+		return this.numTable;
 	}
-	
+
+	/**
+	 * Get the number of places
+	 * @return numberPlaces int
+	 */
+	public int getNumberPlaces() {
+		return this.numberPlaces;
+	}
+
+	/**
+	 * Set the number of places
+	 * @param numberPlaces
+	 */
+	public void setNumberPlaces(int numberPlaces) {
+		this.numberPlaces = numberPlaces;
+	}
+
+	/**
+	 * Get the position
+	 * @return position Position
+	 */
+	public Position getPosition() {
+		return this.position;
+	}
+
+	/**
+	 * Set the position
+	 * @param position
+	 */
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
+	/**
+	 * Get the state of the dinner
+	 * @return state State
+	 */
+	public State getState() {
+		return this.state;
+	}
+
+	/**
+	 * Set the state of the table
+	 * @param state
+	 */
+	public void setState(State state) {
+		this.state = state;
+	}
+
+	/**
+	 * Get the progress of the dinner 
+	 * @return progress Progress
+	 */
+	public Progress getProgress() {
+		return this.progress;
+	}
+
+	/**
+	 * Set the progress of the dinner
+	 * @param progress
+	 */
+	public void setProgress(Progress progress) {
+		this.progress = progress;
+	}	
 }
