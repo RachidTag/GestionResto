@@ -6,10 +6,6 @@ package fr.iutvalence.info.dut.m2107.room;
 public class Table
 {
 	/**
-	 * Auto-Incrementation number
-	 */
-	private static int autoIncrementation = 1;
-	/**
 	 * Number of the table
 	 */
 	private final int numTable;
@@ -29,5 +25,29 @@ public class Table
 	 * Progress of the meal
 	 */
 	private Progress progress;
+	
+	/**
+	 * Create an instance of table
+	 * @param numTable
+	 * @param numberPlaces
+	 * @param position
+	 * @param state
+	 * @param progress
+	 */
+	public Table(int numTable, int numberPlaces, Position position,
+			State state, Progress progress) {
+		this.numTable = numTable;
+		this.numberPlaces = numberPlaces;
+		this.position = position;
+		this.state = state;
+		this.progress = progress;
+	}
+	/**
+	 * Get the number of the table
+	 * @return int
+	 */
+	public int getNumTable() {
+		return numTable;
+	}
 	
 }
