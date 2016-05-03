@@ -1,6 +1,7 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 import javax.swing.*;
-import java.awt.GridLayout;
+import javax.swing.border.*;
+import java.awt.*;
 
 /**
  * TODO
@@ -81,36 +82,36 @@ public class MainWindow extends JFrame {
 		leftArea.setLayout(controlGrid);
 		
 		/**
-		 * Add "Edition de table" button
+		 * Add "table edition" button
 		 * TODO: transform into menu
 		 */
-		leftArea.add(new JButton("Edition de table"));
+		leftArea.add(new JButton("Table edition"));
 		
 		/**
-		 * Add "Edition de secteur" menu
+		 * Add "sector edition" menu
 		 * TODO: transform into menu
 		 */
-		leftArea.add(new JButton("Edition de secteur"));
+		leftArea.add(new JButton("Sector edition"));
 		
 		/**
-		 * Add "Consulter salle" button
+		 * Add "check a room" button
 		 */
-		leftArea.add(new JButton("Consulter salle"));
+		leftArea.add(new JButton("Check a room"));
 		
 		/**
-		 * Add "Consulter emploi du temps" button
+		 * Add "check a schedule" button
 		 */
-		leftArea.add(new JButton("Consulter emploi du temps"));
+		leftArea.add(new JButton("Check a schedule"));
 		
 		/**
-		 * Add "Mode chef de salle" button
+		 * Add "room manager mod" button
 		 */
-		leftArea.add(new JButton("Mode chef de salle"));
+		leftArea.add(new JButton("Room manager mod"));
 		
 		/**
-		 * Add quit button
+		 * Add "quit" button
 		 */
-		leftArea.add(new JButton("Quitter"));
+		leftArea.add(new JButton("Quit"));
 		
 		
 
@@ -127,13 +128,67 @@ public class MainWindow extends JFrame {
 		/**
 		 * Grid of right area that contains the 4 panels
 		 */
-		GridLayout leftGrid = new GridLayout(2,2);
+		GridLayout roomGrid = new GridLayout(2,2);
 		
 		/**
-		 * Create a horizontal and vertical gap of 20 pixels between panel and gridlayout
+		 * Create a horizontal and vertical gap of x pixels between panel and gridlayout
 		 */
-		leftGrid.setHgap(20);
-		leftGrid.setVgap(20);
+		roomGrid.setHgap(20);
+		roomGrid.setVgap(10);
+		
+		/**
+		 * Set roomgrid layout on the panel "rightArea"
+		 */
+		rightArea.setLayout(roomGrid);
+		
+		/**
+		 * Add 4 panels that are the 4 sectors that create one room
+		 */
+		JPanel sectorOne = new JPanel();
+		JPanel sectorTwo = new JPanel();
+		JPanel sectorThree = new JPanel();
+		JPanel sectorFour = new JPanel();
+		
+		/**
+		 * Create new border Titled with sector name, 5 black pixel wide
+		 */
+		sectorOne.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 1"));
+		
+		/**
+		 * Add sector one to rightArea panel
+		 */
+		rightArea.add(sectorOne);
+		
+		/**
+		 * Create new border Titled with sector name, 5 black pixel wide
+		 */
+		sectorTwo.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 2"));
+		
+		/**
+		 * Add sector two to rightArea panel
+		 */
+		rightArea.add(sectorTwo);
+		
+		/**
+		 * Create new border Titled with sector name, 5 black pixel wide
+		 */
+		sectorThree.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 3"));
+		
+		/**
+		 * Add sector three to rightArea panel
+		 */
+		rightArea.add(sectorThree);
+		
+		/**
+		 * Create new border Titled with sector name, 5 black pixel wide
+		 */
+		sectorFour.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 4"));
+		
+		/**
+		 * Add sector four to rightArea panel
+		 */
+		rightArea.add(sectorFour);
+
 		
 		
 		
