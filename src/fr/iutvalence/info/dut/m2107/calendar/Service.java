@@ -15,7 +15,7 @@ public class Service {
 	/**
 	 * A set of waiters
 	 */
-	private Set<Waiter> waiter = new HashSet<Waiter>();
+	private Set<Waiter> waiters = new HashSet<Waiter>();
 	
 	/**
 	 * A set of cleaner waiters
@@ -56,7 +56,7 @@ public class Service {
 	 * @param waiter the waiter we want to add to the list
 	 */
 	public void addWaiter(Waiter waiter) {
-		this.waiter.add(waiter);
+		this.waiters.add(waiter);
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class Service {
 	 * @param waiter the wiater we want to remove from the list of waiter
 	 */
 	public void removeWaiter(Waiter waiter) {
-		this.waiter.remove(waiter);
+		this.waiters.remove(waiter);
 	}
 	
 	/**
@@ -90,7 +90,7 @@ public class Service {
 	public Set<Waiter> getAllWaiters() {
 		Set<Waiter> allWaiters = new HashSet<Waiter>();
 
-		Iterator<Waiter> waitersIterator = this.waiter.iterator();
+		Iterator<Waiter> waitersIterator = this.waiters.iterator();
 		while(waitersIterator.hasNext())
 		{
 			allWaiters.add(waitersIterator.next());
@@ -109,7 +109,7 @@ public class Service {
 	 * @return a set of waiters
 	 */
 	public Set<Waiter> getWaiters() {
-		return this.waiter;
+		return this.waiters;
 	}
 	
 	/**
@@ -118,5 +118,26 @@ public class Service {
 	 */
 	public Set<Waiter> getCleanerWaiters() {
 		return this.cleanerWaiter;
+	}
+	
+	/**
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString() {
+		String theString = "";
+		theString += this.getServiceType() + "\n";
+		theString += "Waiters: ";
+		Iterator<Waiter> theIterator = this.waiters.iterator();
+		while(theIterator.hasNext())
+		{
+			theString += theIterator.next() + ", ";
+		}
+		theString += "\nCleaner waiters: ";
+		theIterator = this.cleanerWaiter.iterator();
+		while(theIterator.hasNext())
+		{
+			theString += theIterator.next() + ", ";
+		}
+		return theString;		
 	}
 }

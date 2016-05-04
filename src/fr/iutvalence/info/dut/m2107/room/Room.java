@@ -1,6 +1,7 @@
 package fr.iutvalence.info.dut.m2107.room;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ public class Room {
 	/**
 	 * Set of sectors
 	 */
-	private List<Sector> sectors = new ArrayList<Sector>();
+	private List<Sector> sectors = new LinkedList<Sector>();
 	
 	/**
 	 * Get all the sectors
@@ -30,7 +31,8 @@ public class Room {
 	 * @throws SectorNotExistsException 
 	 */
 	public Sector getSector(int numSector) throws SectorNotExistsException{
-		if(this.sectors.get(numSector) == null) throw new SectorNotExistsException();
+		Sector sector = new Sector(numSector, null);
+		if(!this.sectors.contains(sector)) throw new SectorNotExistsException();
 		return this.sectors.get(numSector);
 	}
 	
@@ -49,8 +51,8 @@ public class Room {
 	 * @throws SectorAlreadyExistsException 
 	 */
 	public void addSector(Sector sector) throws SectorAlreadyExistsException{
-		if(this.sectors.get(sector.getNumSector()) != null) throw new SectorAlreadyExistsException();
-		this.sectors.add(sector.getNumSector(), sector);
+		if(this.sectors.contains(sector)) throw new SectorAlreadyExistsException();
+		this.sectors.add(sector);
 	}
 	
 	/**
@@ -60,7 +62,7 @@ public class Room {
 	 * @throws SectorNotExistsException 
 	 */
 	public void editSector(int numSector, Sector sector) throws SectorNotExistsException{
-		if(this.sectors.get(numSector) == null) throw new SectorNotExistsException();
+		if(!this.sectors.contains(sector)) throw new SectorNotExistsException();
 		this.sectors.set(numSector, sector);
 	}
 
@@ -70,7 +72,8 @@ public class Room {
 	 * @throws SectorNotExistsException 
 	 */
 	public void deleteSector(int numSector) throws SectorNotExistsException{
-		if(this.sectors.get(numSector) == null) throw new SectorNotExistsException();
+		Sector sector = new Sector(numSector, null);
+		if(!this.sectors.contains(sector)) throw new SectorNotExistsException();
 		this.sectors.remove(numSector);
 	}
 }

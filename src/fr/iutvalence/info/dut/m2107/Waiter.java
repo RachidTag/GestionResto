@@ -8,14 +8,7 @@ import fr.iutvalence.info.dut.m2107.room.Sector;
  *
  */
 public class Waiter {
-	/**
-	 * common Auto-incrementing ID
-	 */
-	private static int autoIncrementID = 1;
-	/**
-	 * The ID number of the waiter
-	 */
-	private final int id;
+
 	/**
 	 * The last name of the waiter
 	 */
@@ -40,7 +33,6 @@ public class Waiter {
 	 * @param rank the rank of the waiter
 	 */
 	public Waiter(String lastName, String firstName, Rank rank){
-		this.id = Waiter.autoIncrementID++;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.rank = rank;
@@ -54,7 +46,6 @@ public class Waiter {
 	 * @param sector the padder' sector
 	 */
 	public Waiter(String lastName, String firstName, Rank rank, Sector sector){
-		this.id = Waiter.autoIncrementID++;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.rank = rank;
@@ -134,11 +125,10 @@ public class Waiter {
 	}
 
 	/**
-	 * Get the waiter's ID
-	 * @return id int
+	 * @see java.lang.Object#toString()
 	 */
-	public int getId()
-	{
-		return this.id;
+	public String toString() {
+		return "[lastName=" + lastName + ", firstName=" + firstName + ", rank=" + rank + ", aSector=" + aSector
+				+ "]";
 	}
 }

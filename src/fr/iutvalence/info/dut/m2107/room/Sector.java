@@ -70,6 +70,7 @@ public class Sector
 		if(this.tables.get(numTable)== null) throw new TableNotExistsException();
 		return this.tables.get(numTable);
 	}
+	
 	/**
 	 * Get the number of the sector
 	 * @return numSector int
@@ -78,4 +79,31 @@ public class Sector
 		return this.numSector;
 	}
 	
+	
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + numSector;
+		return result;
+	}
+
+	
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Sector other = (Sector) obj;
+		if (numSector != other.numSector)
+			return false;
+		return true;
+	}	
 }
