@@ -25,6 +25,11 @@ public class Table
 	 * Progress of the meal
 	 */
 	private Progress progress;
+	/**
+	 * Reservation informations
+	 */
+	@SuppressWarnings("unused")
+	private String clientName;
 	
 	/**
 	 * Create an instance of table
@@ -33,14 +38,34 @@ public class Table
 	 * @param position
 	 * @param state
 	 * @param progress
+	 * @throws ClientNameRequiredException 
 	 */
 	public Table(int numTable, int numberPlaces, Position position,
-			State state, Progress progress) {
+			Progress progress, State state) throws ClientNameRequiredException {
 		this.numTable = numTable;
 		this.numberPlaces = numberPlaces;
 		this.position = position;
-		this.state = state;
+		this.setState(state);
 		this.progress = progress;
+		this.clientName = null;
+	}
+	
+	/**
+	 * Create an instance of table reserved
+	 * @param numTable
+	 * @param numberPlaces
+	 * @param position
+	 * @param progress
+	 * @param clientName 
+	 */
+	public Table(int numTable, int numberPlaces, Position position,
+			Progress progress, String clientName){
+		this.numTable = numTable;
+		this.numberPlaces = numberPlaces;
+		this.position = position;
+		this.setState(clientName);
+		this.progress = progress;
+		this.clientName = null;
 	}
 	
 	/**
@@ -94,9 +119,21 @@ public class Table
 	/**
 	 * Set the state of the table
 	 * @param state
+	 * @throws ClientNameRequiredException 
 	 */
-	public void setState(State state) {
+	public void setState(State state) throws ClientNameRequiredException {
+		if(state == State.RESERVED) throw new ClientNameRequiredException();
 		this.state = state;
+		this.clientName = null;
+	}
+
+	/**
+	 * Set the reserved state to the table
+	 * @param clientName 
+	 */
+	public void setState(String clientName) {
+		this.state = State.RESERVED;
+		this.clientName = clientName;
 	}
 
 	/**

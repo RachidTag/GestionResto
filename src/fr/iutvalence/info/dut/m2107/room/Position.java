@@ -33,7 +33,7 @@ public class Position {
 	 * @return x int
 	 */
 	public int getX() {
-		return x;
+		return this.x;
 	}
 	/**
 	 * Set the x value
@@ -47,7 +47,7 @@ public class Position {
 	 * @return y int
 	 */
 	public int getY() {
-		return y;
+		return this.y;
 	}
 	/**
 	 * Set the y value
@@ -61,7 +61,7 @@ public class Position {
 	 * @return rotation int
 	 */
 	public int getRotation() {
-		return rotation;
+		return this.rotation;
 	}
 	/**
 	 * Set the rotation
