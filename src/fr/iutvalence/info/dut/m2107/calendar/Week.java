@@ -17,16 +17,17 @@ public class Week {
 	 */
 	public Week() {
 		for(int i = 1; i <= 7; i++)
-			days[i] = new Day();
+			this.days[i] = new Day();
 	}
 	
 	/**
 	 * @param dayNum the num of the day (between 1 and 7)
 	 * @return the selected day
-	 * @throws DayNotExistsException
+	 * @throws DayNotExistsException 
 	 */
-	public Day getDay(int dayNum)
+	public Day getDay(int dayNum) throws DayNotExistsException
 	{
+		if(dayNum < 1 || dayNum > 7) throw new DayNotExistsException();
 		return this.days[dayNum];
 	}
 	
@@ -35,8 +36,9 @@ public class Week {
 	 * @param Day a Day
 	 * @throws DayNotExistsException
 	 */
-	public void editDayCalendar(int dayNum, Day Day)
+	public void editDayCalendar(int dayNum, Day Day) throws DayNotExistsException
 	{
+		if(dayNum < 1 || dayNum > 7) throw new DayNotExistsException();
 		this.days[dayNum] = Day;
 	}
 }
