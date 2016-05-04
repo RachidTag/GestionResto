@@ -1,11 +1,8 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 import javax.swing.*;
 import javax.swing.border.*;
+
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentListener;
-import java.awt.event.MouseEvent;
 
 /**
  * TODO
@@ -14,10 +11,6 @@ import java.awt.event.MouseEvent;
  */
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
-	
-	/**
-	 * TODO
-	 */
 	
 	/**
 	 * Create left panel for left area of the splitpanel
@@ -30,22 +23,40 @@ public class MainWindow extends JFrame {
 	private GridLayout controlGrid = new GridLayout(8,1);
 	
 
-	private ButtonCustomTest editTable = new ButtonCustomTest();
+	/**
+	 * 
+	 */
+	public static ButtonCustomTest editTable = new ButtonCustomTest("Edit table");
+	
+	
+	/**
+	 * 
+	 */
+	public static JButton editSector = new JButton("Sector edition");
 	
 
-	private JButton editSector = new JButton("Sector edition");
+	/**
+	 * 
+	 */
+	public static JButton checkRoom = new JButton("Check a room");
 	
 
-	private JButton checkRoom = new JButton("Check a room");
+	/**
+	 * 
+	 */
+	public static JButton checkSchedule = new JButton("Check a schedule");
 	
 
-	private JButton checkSchedule = new JButton("Check a schedule");
+	/**
+	 * 
+	 */
+	public static JButton roomManager = new JButton("Room manager mod");
 	
-
-	private JButton roomManager = new JButton("Room manager mod");
-	
-	
-	
+	public static JButton exit = new JButton("Close");
+		
+	/**
+	 * 
+	 */
 	public MainWindow()
 	{
 	
@@ -95,7 +106,7 @@ public class MainWindow extends JFrame {
 		/**
 		 * Add logo label
 		 */
-		this.leftArea.add(lab);
+		MainWindow.leftArea.add(lab);
 
 
 		/**
@@ -107,34 +118,34 @@ public class MainWindow extends JFrame {
 		/**
 		 * Set gridlayout on the panel "leftArea"
 		 */
-		this.leftArea.setLayout(this.controlGrid);
+		MainWindow.leftArea.setLayout(this.controlGrid);
 		
 		/**
 		 * Add "table edition" button
 		 * TODO: transform into menu
 		 */
-		this.leftArea.add(this.editTable);
-		
+		MainWindow.leftArea.add(this.editTable);		
+
 		/**
 		 * Add "sector edition" menu
 		 * TODO: transform into menu
 		 */
-		this.leftArea.add(this.editSector);
+		MainWindow.leftArea.add(this.editSector);
 		
 		/**
 		 * Add "check a room" button
 		 */
-		this.leftArea.add(this.checkRoom);
+		MainWindow.leftArea.add(this.checkRoom);
 		
 		/**
 		 * Add "check a schedule" button
 		 */
-		this.leftArea.add(this.checkSchedule);
+		MainWindow.leftArea.add(this.checkSchedule);
 		
 		/**
 		 * Add "room manager mod" button
 		 */
-		this.leftArea.add(this.roomManager);
+		MainWindow.leftArea.add(this.roomManager);
 		
 		/**
 		 * Add "quit" button
@@ -260,6 +271,8 @@ public class MainWindow extends JFrame {
 		 * Set all components and window visibles on screen
 		 */
 		this.setVisible(true);
+
+		
 		
 
 	}

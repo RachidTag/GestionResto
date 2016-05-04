@@ -6,35 +6,52 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
+/**
+ * @author Projet Resto
+ *
+ */
 public class ButtonCustomTest extends JButton implements MouseListener{
-
+		
+	private String Name;
 	
-	public ButtonCustomTest()
+	/**
+	 * 
+	 */
+	public ButtonCustomTest(String name)
 	{
+		super();
 		this.addMouseListener(this);
+		
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		String[] items = {"item1", "item2"};
-		JComboBox<String> list = new JComboBox<String>();
-		for (String string : items) {
-			list.addItem(string);
-		}
-		MainWindow.leftArea.add(list);
+		EditTableWindow win = new EditTableWindow();
+		MainWindow.editTable.setEnabled(false);
+		MainWindow.editSector.setEnabled(false);
+		MainWindow.checkRoom.setEnabled(false);
+		MainWindow.checkSchedule.setEnabled(false);
+		MainWindow.roomManager.setEnabled(false);
+		MainWindow.exit.setEnabled(false);
+		
+		
+		
+		//MainWindow.leftArea.validate();
 		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+	
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+	
 		
 	}
 
