@@ -28,12 +28,11 @@ public class Sector
 	 * Create a new instance of Sector
 	 * @param numSector int
 	 * @param padder Waiter
-	 * @param tables List<Tables>
 	 */
-	public Sector(int numSector, Waiter padder, List<Table> tables){
+	public Sector(int numSector, Waiter padder){
 		this.numSector = numSector;
 		this.padder = padder;
-		this.tables = tables;
+		this.tables = null;
 	}
 	/**
 	 * Add a table to a sector

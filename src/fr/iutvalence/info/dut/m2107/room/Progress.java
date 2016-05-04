@@ -5,6 +5,10 @@ package fr.iutvalence.info.dut.m2107.room;
  */
 public enum Progress {
 	/**
+	 * No progress
+	 */
+	NO_PROGRESS,
+	/**
 	 * Aperitif
 	 */
 	APERITIF,
