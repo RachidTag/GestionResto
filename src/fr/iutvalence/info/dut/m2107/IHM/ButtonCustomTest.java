@@ -18,8 +18,11 @@ public class ButtonCustomTest extends JButton implements MouseListener{
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		String[] items = {"item1", "item2"};
-		JComboBox List = new JComboBox(items);
-		MainWindow.leftArea.add(List);
+		JComboBox<String> list = new JComboBox<String>();
+		for (String string : items) {
+			list.addItem(string);
+		}
+		MainWindow.leftArea.add(list);
 		
 	}
 

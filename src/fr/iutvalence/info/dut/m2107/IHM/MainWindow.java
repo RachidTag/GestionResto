@@ -18,7 +18,33 @@ public class MainWindow extends JFrame {
 	/**
 	 * TODO
 	 */
+	
+	/**
+	 * Create left panel for left area of the splitpanel
+	 */
 	public static JPanel leftArea = new JPanel();
+	
+	/**
+	 * Create the gridlayout where are contained all buttons and control actions
+	 */
+	private GridLayout controlGrid = new GridLayout(8,1);
+	
+
+	private ButtonCustomTest editTable = new ButtonCustomTest();
+	
+
+	private JButton editSector = new JButton("Sector edition");
+	
+
+	private JButton checkRoom = new JButton("Check a room");
+	
+
+	private JButton checkSchedule = new JButton("Check a schedule");
+	
+
+	private JButton roomManager = new JButton("Room manager mod");
+	
+	
 	
 	public MainWindow()
 	{
@@ -54,13 +80,6 @@ public class MainWindow extends JFrame {
 				 * Left Panel informations and settings...
 				 * 
 				 */
-		
-		/**
-		 * Create left panel for left area of the splitpanel
-		 */
-		//TODO: comment for test
-		//JPanel leftArea = new JPanel();
-		
 		/**
 		 * Add label of project
 		 * TODO: add image, and try/catch if not found, put label instead of image
@@ -76,56 +95,46 @@ public class MainWindow extends JFrame {
 		/**
 		 * Add logo label
 		 */
-		leftArea.add(lab);
+		this.leftArea.add(lab);
 
-		/**
-		 * Create the gridlayout where are contained all buttons and control actions
-		 */
-		GridLayout controlGrid = new GridLayout(8,1);
-		
+
 		/**
 		 * Create a horizontal and vertical gap of 5 pixels between panel and gridlayout
 		 */
-		controlGrid.setHgap(5);
-		controlGrid.setVgap(5);
+		this.controlGrid.setHgap(5);
+		this.controlGrid.setVgap(5);
 		
 		/**
 		 * Set gridlayout on the panel "leftArea"
 		 */
-		leftArea.setLayout(controlGrid);
+		this.leftArea.setLayout(this.controlGrid);
 		
 		/**
 		 * Add "table edition" button
 		 * TODO: transform into menu
 		 */
-		
-		ButtonCustomTest editTable = new ButtonCustomTest();
-		leftArea.add(editTable);
+		this.leftArea.add(this.editTable);
 		
 		/**
 		 * Add "sector edition" menu
 		 * TODO: transform into menu
 		 */
-		JButton editSector = new JButton("Sector edition");
-		leftArea.add(editSector);
+		this.leftArea.add(this.editSector);
 		
 		/**
 		 * Add "check a room" button
 		 */
-		JButton checkRoom = new JButton("Check a room");
-		leftArea.add(checkRoom);
+		this.leftArea.add(this.checkRoom);
 		
 		/**
 		 * Add "check a schedule" button
 		 */
-		JButton checkSchedule = new JButton("Check a schedule");
-		leftArea.add(checkSchedule);
+		this.leftArea.add(this.checkSchedule);
 		
 		/**
 		 * Add "room manager mod" button
 		 */
-		JButton roomManager = new JButton("Room manager mod");
-		leftArea.add(roomManager);
+		this.leftArea.add(this.roomManager);
 		
 		/**
 		 * Add "quit" button
