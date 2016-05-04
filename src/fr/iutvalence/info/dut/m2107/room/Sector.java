@@ -18,6 +18,7 @@ public class Sector
 	/**
 	 * A padder assigned to a sector
 	 */
+	@SuppressWarnings("unused")
 	private Waiter padder;
 	/**
 	 * List of tables
@@ -56,7 +57,7 @@ public class Sector
 	 * Edit the current padder
 	 * @param padder Waiter
 	 */
-	public void editPadder(Waiter padder){
+	public void setPadder(Waiter padder){
 		this.padder = padder;
 	}
 	/**
@@ -74,7 +75,7 @@ public class Sector
 	 * @return numSector int
 	 */
 	public int getNumSector() {
-		return numSector;
+		return this.numSector;
 	}
 	
 }
