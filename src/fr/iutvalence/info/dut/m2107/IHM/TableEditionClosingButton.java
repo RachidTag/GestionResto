@@ -15,6 +15,7 @@ public class TableEditionClosingButton extends JButton implements MouseListener{
 	    MainWindow.checkSchedule.setEnabled(true);
 	    MainWindow.roomManager.setEnabled(true);
 	    MainWindow.win.setVisible(false);
+	    MainWindow.win.R_Area.removeAll();
 	}
 
 	@Override
