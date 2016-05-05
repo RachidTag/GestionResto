@@ -75,6 +75,8 @@ public class MainWindow extends JFrame implements ActionListener {
 		 */
 		this.setTitle("Gestion Resto");
 		
+		this.setResizable(false);
+		
 		/**
 		 * Set size of the window
 		 */

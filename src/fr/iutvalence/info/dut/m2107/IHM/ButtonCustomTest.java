@@ -26,11 +26,7 @@ public class ButtonCustomTest extends JButton implements MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		if(MainWindow.win == null)
-			MainWindow.win = new EditTableWindow();
-		else
-			MainWindow.win.setVisible(true);
+		MainWindow.win = new EditTableWindow();
 		MainWindow.editTable.setEnabled(false);
 		MainWindow.editSector.setEnabled(false);
 		MainWindow.checkRoom.setEnabled(false);
