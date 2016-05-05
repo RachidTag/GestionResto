@@ -1,7 +1,7 @@
 package fr.iutvalence.info.dut.m2107.calendar;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents the common calendar
@@ -12,13 +12,13 @@ public class Calendar {
 	/**
 	 * The list who contains the weeks identified by their numbers for the current year
 	 */
-	List<Week> weeks;
+	Map<Integer, Week> weeks;
 	
 	/**
 	 * Generates an empty calendar
 	 */
 	public Calendar() {
-		this.weeks = new LinkedList<Week>();
+		this.weeks = new HashMap<Integer, Week>();
 	}
 
 	/**
@@ -29,7 +29,7 @@ public class Calendar {
 	 */
 	public Week getWeekCalendar(int weekNum) throws WeekNotExistsException
 	{
-		if(this.weeks.get(weekNum) == null) throw new WeekNotExistsException();
+		if(this.weeks.containsKey(weekNum)) throw new WeekNotExistsException();
 		return this.weeks.get(weekNum);
 	}
 
@@ -40,8 +40,8 @@ public class Calendar {
 	 */
 	public void addWeekCalendar(int weekNum) throws WeekAlreadyExistsException
 	{
-		if(this.weeks.get(weekNum) != null) throw new WeekAlreadyExistsException();
-		this.weeks.add(weekNum, new Week());
+		if(this.weeks.containsKey(weekNum)) throw new WeekAlreadyExistsException();
+		this.weeks.put(weekNum, new Week(weekNum));
 	}
 	
 	/**
@@ -50,9 +50,9 @@ public class Calendar {
 	 * @param aWeek a Week
 	 * @throws WeekAlreadyExistsException 
 	 */
-	public void addWeekCalendar(int weekNum, Week aWeek) throws WeekAlreadyExistsException
+	public void addWeekCalendar(Week aWeek) throws WeekAlreadyExistsException
 	{
-		if(this.weeks.get(weekNum) != null) throw new WeekAlreadyExistsException();
-		this.weeks.add(weekNum, aWeek);
+		if(this.weeks.containsValue(aWeek)) throw new WeekAlreadyExistsException();
+		this.weeks.put(aWeek.getWeekNum(), aWeek);
 	}
 }

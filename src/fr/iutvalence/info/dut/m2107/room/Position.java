@@ -1,9 +1,12 @@
 package fr.iutvalence.info.dut.m2107.room;
+
+import java.io.Serializable;
+
 /**
  * Represent the position of a table in a sector
  * @author Projet Resto
  */
-public class Position {
+public class Position implements Serializable {
 	/**
 	 * abscissa coordinate
 	 */

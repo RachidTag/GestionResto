@@ -1,9 +1,12 @@
 package fr.iutvalence.info.dut.m2107.room;
+
+import java.io.Serializable;
+
 /**
  * Enumeration of the different state of the meal
  * @author Projet Resto
  */
-public enum State {
+public enum State implements Serializable {
 	/**
 	 * A table is busy
 	 */

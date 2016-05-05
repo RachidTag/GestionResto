@@ -1,32 +1,33 @@
 package fr.iutvalence.info.dut.m2107.room;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents a restaurant's room
  * @author Projet Resto
  *
  */
-public class Room {
+public class Room implements Serializable {
 	/**
 	 * Set of sectors
 	 */
-	private List<Sector> sectors;
+	private Map<Integer, Sector> sectors;
 	
 	/**
 	 * Generates an empty room
 	 */
 	public Room()
 	{
-		this.sectors = new LinkedList<Sector>();
+		this.sectors = new HashMap<Integer, Sector>();
 	}
 	
 	/**
 	 * Get all the sectors
-	 * @return sectors List<Sector>
+	 * @return sectors Map<Integer, Sector>
 	 */
-	public List<Sector> getSectors()
+	public Map<Integer, Sector> getSectors()
 	{
 		return this.sectors;
 	}
@@ -38,8 +39,7 @@ public class Room {
 	 * @throws SectorNotExistsException 
 	 */
 	public Sector getSector(int numSector) throws SectorNotExistsException{
-		Sector sector = new Sector(numSector, null);
-		if(!this.sectors.contains(sector)) throw new SectorNotExistsException();
+		if(!this.sectors.containsKey(numSector)) throw new SectorNotExistsException();
 		return this.sectors.get(numSector);
 	}
 	
@@ -47,7 +47,7 @@ public class Room {
 	 * Edit list of sectors 
 	 * @param sectors
 	 */
-	public void setSectors(List<Sector> sectors)
+	public void setSectors(HashMap<Integer, Sector> sectors)
 	{
 		this.sectors = sectors;
 	}
@@ -58,8 +58,8 @@ public class Room {
 	 * @throws SectorAlreadyExistsException 
 	 */
 	public void addSector(Sector sector) throws SectorAlreadyExistsException{
-		if(this.sectors.contains(sector)) throw new SectorAlreadyExistsException();
-		this.sectors.add(sector);
+		if(this.sectors.containsValue(sector)) throw new SectorAlreadyExistsException();
+		this.sectors.put(sector.getNumSector(), sector);
 	}
 	
 	/**
@@ -69,8 +69,8 @@ public class Room {
 	 * @throws SectorNotExistsException 
 	 */
 	public void editSector(int numSector, Sector sector) throws SectorNotExistsException{
-		if(!this.sectors.contains(sector)) throw new SectorNotExistsException();
-		this.sectors.set(numSector, sector);
+		if(!this.sectors.containsKey(numSector)) throw new SectorNotExistsException();
+		this.sectors.put(numSector, sector);
 	}
 
 	/**
@@ -79,8 +79,7 @@ public class Room {
 	 * @throws SectorNotExistsException 
 	 */
 	public void deleteSector(int numSector) throws SectorNotExistsException{
-		Sector sector = new Sector(numSector, null);
-		if(!this.sectors.contains(sector)) throw new SectorNotExistsException();
+		if(!this.sectors.containsKey(numSector)) throw new SectorNotExistsException();
 		this.sectors.remove(numSector);
 	}
 }

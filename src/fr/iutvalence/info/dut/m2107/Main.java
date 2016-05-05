@@ -1,4 +1,13 @@
 package fr.iutvalence.info.dut.m2107;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintStream;
+
 import fr.iutvalence.info.dut.m2107.calendar.*;
 import fr.iutvalence.info.dut.m2107.room.*;
 /**
@@ -30,12 +39,17 @@ public class Main {
 		System.out.println(Didou);
 		
 		//Creation of the tables
+		Table table1 = null;
+		Table table2 = null;
+		Table table3 = null;
+		Table table4 = null;
+		
 		try
 		{
-			Table table1 = new Table(1,4,new Position(5,5,0), Progress.NO_PROGRESS, State.FREE);
-			Table table2 = new Table(2,2,new Position(1,5,0), Progress.NO_PROGRESS, State.FREE);
-			Table table3 = new Table(3,4,new Position(8,10,0), Progress.NO_PROGRESS, State.FREE);
-			Table table4 = new Table(4,6,new Position(8,10,0), Progress.APERITIF, State.BUSY);
+			table1 = new Table(1,4,new Position(5,5,0), Progress.NO_PROGRESS, State.FREE);
+			table2 = new Table(2,2,new Position(1,5,0), Progress.NO_PROGRESS, State.FREE);
+			table3 = new Table(3,4,new Position(8,10,0), Progress.NO_PROGRESS, State.FREE);
+			table4 = new Table(4,6,new Position(8,10,0), Progress.APERITIF, State.BUSY);
 		}
 		catch (ClientNameRequiredException e1)
 		{
@@ -55,9 +69,81 @@ public class Main {
 		//Set the sectors in the room
 		try {
 			room1.addSector(sector1);
+			room1.addSector(sector2);
+			room1.addSector(sector3);
+			room1.addSector(sector4);
 		} catch (SectorAlreadyExistsException e) {
 			System.err.println("A sector is already in the room.");
 			e.printStackTrace();
+		}
+		
+		try {
+			sector1.addTable(table1);
+			sector1.addTable(table2);
+			sector1.addTable(table3);
+			sector1.addTable(table4);
+		} catch (TableAlreadyExistsException e) {
+			System.err.println("Num of the table allready in the sector");
+		}
+		
+		/*
+		 * Système qui va sauvegarder la room en tant qu'objet 
+		 * Suivi du système qui va charger la room
+		 * Pourra être utile pour l'IHM (on fait notre room, ça la save et on la load ensuite)
+		 */
+		File saveFile = new File("savingRoom.save");
+		if(saveFile.exists())
+			saveFile.delete();
+		try {
+			saveFile.createNewFile();
+		} catch (IOException e) {
+			// impossible
+		}
+		
+		FileOutputStream saveStream = null;
+		try {
+			saveStream = new FileOutputStream(saveFile, true);
+		} catch (FileNotFoundException e) {
+			// impossible
+		}
+		
+		ObjectOutputStream oos = null;
+		try {
+			oos = new ObjectOutputStream(saveStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			oos.writeObject(room1);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		FileInputStream loadStream = null;
+		try {
+			loadStream = new FileInputStream(saveFile);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		ObjectInputStream ois = null;
+		try {
+			ois = new ObjectInputStream(loadStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Object readObject = null;
+		try {
+			readObject = ois.readObject();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
+		Room roomReaded = (Room)readObject;
+		try {
+			System.out.println(roomReaded.getSector(1).getNumSector());
+		} catch (SectorNotExistsException e) {
+			System.err.println("Error");
 		}
 		
 		//Creation of services

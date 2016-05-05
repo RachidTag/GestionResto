@@ -6,6 +6,10 @@ package fr.iutvalence.info.dut.m2107.calendar;
  *
  */
 public class Week {
+	/**
+	 * Num of the week in the year
+	 */
+	private final int weekNum;
 	
 	/**
 	 * List of the days identified from 1 to 7
@@ -14,8 +18,10 @@ public class Week {
 	
 	/**
 	 * Generates a week with 7 days
+	 * @param weekNum in the year
 	 */
-	public Week() {
+	public Week(int weekNum) {
+		this.weekNum = weekNum;
 		this.days = new Day[7];
 		for(int i = 1; i <= 7; i++)
 			this.days[i] = new Day();
@@ -41,5 +47,39 @@ public class Week {
 	{
 		if(dayNum < 1 || dayNum > 7) throw new DayNotExistsException();
 		this.days[dayNum] = Day;
+	}
+
+	/**
+	 * Get the num of the week in the year
+	 * @return the weekNum
+	 */
+	public int getWeekNum() {
+		return this.weekNum;
+	}
+
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + this.weekNum;
+		return result;
+	}
+
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (this.getClass() != obj.getClass())
+			return false;
+		Week other = (Week) obj;
+		if (this.weekNum != other.weekNum)
+			return false;
+		return true;
 	}
 }

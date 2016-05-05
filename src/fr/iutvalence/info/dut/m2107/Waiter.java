@@ -1,5 +1,7 @@
 package fr.iutvalence.info.dut.m2107;
 
+import java.io.Serializable;
+
 import fr.iutvalence.info.dut.m2107.room.Sector;
 
 /**
@@ -7,7 +9,7 @@ import fr.iutvalence.info.dut.m2107.room.Sector;
  * @author Projet Resto
  *
  */
-public class Waiter {
+public class Waiter implements Serializable {
 
 	/**
 	 * The last name of the waiter

@@ -1,7 +1,8 @@
 package fr.iutvalence.info.dut.m2107.room;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import fr.iutvalence.info.dut.m2107.Waiter;
 
@@ -9,7 +10,7 @@ import fr.iutvalence.info.dut.m2107.Waiter;
  * Represent the Sector
  * @author Projet Resto
  */
-public class Sector
+public class Sector implements Serializable
 {
 	/**
 	 * Number of the sector
@@ -23,7 +24,7 @@ public class Sector
 	/**
 	 * List of tables
 	 */
-	private List<Table> tables;
+	private Map<Integer, Table> tables;
 	
 	/**
 	 * Create a new instance of Sector
@@ -33,7 +34,7 @@ public class Sector
 	public Sector(int numSector, Waiter padder){
 		this.numSector = numSector;
 		this.padder = padder;
-		this.tables = new LinkedList<Table>();
+		this.tables = new HashMap<Integer, Table>();
 	}
 	/**
 	 * Add a table to a sector
@@ -41,8 +42,8 @@ public class Sector
 	 * @throws TableAlreadyExistsException 
 	 */
 	public void addTable(Table table) throws TableAlreadyExistsException{
-		if(this.tables.get(table.getNumTable())!= null) throw new TableAlreadyExistsException();
-		this.tables.add(table.getNumTable(), table);
+		if(this.tables.containsValue(table)) throw new TableAlreadyExistsException();
+		this.tables.put(table.getNumTable(), table);
 	}
 	/**
 	 * Remove a table from the sector
@@ -50,7 +51,7 @@ public class Sector
 	 * @throws TableNotExistsException 
 	 */
 	public void removeTable(int numTable) throws TableNotExistsException{
-		if(this.tables.get(numTable)== null) throw new TableNotExistsException();
+		if(!this.tables.containsKey(numTable)) throw new TableNotExistsException();
 		this.tables.remove(numTable);
 	}
 	/**
@@ -67,7 +68,7 @@ public class Sector
 	 * @throws TableNotExistsException 
 	 */
 	public Table getTable(int numTable) throws TableNotExistsException{
-		if(this.tables.get(numTable)== null) throw new TableNotExistsException();
+		if(!this.tables.containsKey(numTable)) throw new TableNotExistsException();
 		return this.tables.get(numTable);
 	}
 	
@@ -86,7 +87,7 @@ public class Sector
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + numSector;
+		result = prime * result + this.numSector;
 		return result;
 	}
 
@@ -99,10 +100,10 @@ public class Sector
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (this.getClass() != obj.getClass())
 			return false;
 		Sector other = (Sector) obj;
-		if (numSector != other.numSector)
+		if (this.numSector != other.numSector)
 			return false;
 		return true;
 	}	

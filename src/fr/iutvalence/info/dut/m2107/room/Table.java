@@ -1,9 +1,12 @@
 package fr.iutvalence.info.dut.m2107.room;
+
+import java.io.Serializable;
+
 /**
  * Represent a table
  * @author Projet Resto
  */
-public class Table
+public class Table implements Serializable
 {
 	/**
 	 * Number of the table
@@ -150,5 +153,33 @@ public class Table
 	 */
 	public void setProgress(Progress progress) {
 		this.progress = progress;
-	}	
+	}
+
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + this.numTable;
+		return result;
+	}
+
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (this.getClass() != obj.getClass())
+			return false;
+		Table other = (Table) obj;
+		if (this.numTable != other.numTable)
+			return false;
+		return true;
+	}
+	
+	
 }
