@@ -1,8 +1,6 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -21,7 +19,7 @@ class WindowEventHandler extends WindowAdapter {
 	  }
 }
 
-public class EditTableWindow extends JFrame implements ActionListener {
+public class EditTableWindow extends JFrame {
 	
 	public static JPanel L_Area = new JPanel();
 	public static JPanel R_Area = new JPanel();
@@ -63,16 +61,6 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		
 		EditTableWindow.L_Area.add(close);
 		
-		close.addActionListener(this);	
+		close.addMouseListener(new TableEditionClosingButton());
 	}
-	
-	public void actionPerformed(ActionEvent e)
-    {
-		    MainWindow.editSector.setEnabled(true);
-		    MainWindow.editTable.setEnabled(true);
-		    MainWindow.checkRoom.setEnabled(true);
-		    MainWindow.checkSchedule.setEnabled(true);
-		    MainWindow.roomManager.setEnabled(true);
-		    this.setVisible(false);
-    }
 }

@@ -9,15 +9,12 @@ public class TableEditionClosingButton extends JButton implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	    MainWindow.editSector.setEnabled(true);
+		MainWindow.editSector.setEnabled(true);
 	    MainWindow.editTable.setEnabled(true);
 	    MainWindow.checkRoom.setEnabled(true);
 	    MainWindow.checkSchedule.setEnabled(true);
 	    MainWindow.roomManager.setEnabled(true);
-		
-		
+	    MainWindow.win.setVisible(false);
 	}
 
 	@Override

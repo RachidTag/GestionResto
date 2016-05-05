@@ -55,6 +55,9 @@ public class MainWindow extends JFrame implements ActionListener {
 	public static JButton roomManager = new JButton("Room manager mod");
 	
 	public static JButton exit = new JButton("Close");
+	
+
+	public static EditTableWindow win;
 		
 	/**
 	 * 
