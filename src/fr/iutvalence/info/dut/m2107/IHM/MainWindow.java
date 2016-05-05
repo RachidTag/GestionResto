@@ -3,6 +3,8 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * TODO
@@ -10,7 +12,7 @@ import java.awt.*;
  *
  */
 @SuppressWarnings("serial")
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements ActionListener {
 	
 	/**
 	 * Create left panel for left area of the splitpanel
@@ -152,7 +154,7 @@ public class MainWindow extends JFrame {
 		 */
 		JButton exit = new JButton("Close");
 		leftArea.add(exit);
-		exit.addActionListener(e -> this.dispose());
+		exit.addActionListener(this);
 		
 		
 		
@@ -276,8 +278,9 @@ public class MainWindow extends JFrame {
 		
 
 	}
-
 	
-
-	
+	public void actionPerformed(ActionEvent e)
+    {
+		    System.exit(0);
+    }
 }
