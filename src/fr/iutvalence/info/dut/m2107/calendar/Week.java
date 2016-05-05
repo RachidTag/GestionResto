@@ -10,12 +10,13 @@ public class Week {
 	/**
 	 * List of the days identified from 1 to 7
 	 */
-	private Day days[] = new Day[7];
+	private Day[] days;
 	
 	/**
 	 * Generates a week with 7 days
 	 */
 	public Week() {
+		this.days = new Day[7];
 		for(int i = 1; i <= 7; i++)
 			this.days[i] = new Day();
 	}

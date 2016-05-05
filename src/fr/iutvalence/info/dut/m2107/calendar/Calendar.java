@@ -1,6 +1,6 @@
 package fr.iutvalence.info.dut.m2107.calendar;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -12,7 +12,14 @@ public class Calendar {
 	/**
 	 * The list who contains the weeks identified by their numbers for the current year
 	 */
-	List<Week> weeks = new ArrayList<Week>();
+	List<Week> weeks;
+	
+	/**
+	 * Generates an empty calendar
+	 */
+	public Calendar() {
+		this.weeks = new LinkedList<Week>();
+	}
 
 	/**
 	 * Get a week from the calendar

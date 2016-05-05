@@ -6,7 +6,6 @@ package fr.iutvalence.info.dut.m2107.calendar;
  *
  */
 public class Day {
-	
 	/**
 	 * If the restaurant is closed today
 	 */
@@ -16,8 +15,6 @@ public class Day {
 	 * A table of the two services for the day
 	 */
 	private Service[] services;
-	
-	
 
 	/**
 	 * Generates a day with default value(s)

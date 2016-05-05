@@ -1,6 +1,6 @@
 package fr.iutvalence.info.dut.m2107.room;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import fr.iutvalence.info.dut.m2107.Waiter;
@@ -23,7 +23,7 @@ public class Sector
 	/**
 	 * List of tables
 	 */
-	private List<Table> tables = new ArrayList<Table>();
+	private List<Table> tables;
 	
 	/**
 	 * Create a new instance of Sector
@@ -33,7 +33,7 @@ public class Sector
 	public Sector(int numSector, Waiter padder){
 		this.numSector = numSector;
 		this.padder = padder;
-		this.tables = null;
+		this.tables = new LinkedList<Table>();
 	}
 	/**
 	 * Add a table to a sector

@@ -5,12 +5,8 @@ package fr.iutvalence.info.dut.m2107.room;
  * @author Projet Resto
  *
  */
+@SuppressWarnings("serial")
 public class ClientNameRequiredException extends Exception
 {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+	
 }

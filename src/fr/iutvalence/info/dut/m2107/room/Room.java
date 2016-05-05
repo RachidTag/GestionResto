@@ -1,6 +1,5 @@
 package fr.iutvalence.info.dut.m2107.room;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +12,15 @@ public class Room {
 	/**
 	 * Set of sectors
 	 */
-	private List<Sector> sectors = new LinkedList<Sector>();
+	private List<Sector> sectors;
+	
+	/**
+	 * Generates an empty room
+	 */
+	public Room()
+	{
+		this.sectors = new LinkedList<Sector>();
+	}
 	
 	/**
 	 * Get all the sectors

@@ -15,12 +15,12 @@ public class Service {
 	/**
 	 * A set of waiters
 	 */
-	private Set<Waiter> waiters = new HashSet<Waiter>();
+	private Set<Waiter> waiters;
 	
 	/**
 	 * A set of cleaner waiters
 	 */
-	private Set<Waiter> cleanerWaiter = new HashSet<Waiter>();
+	private Set<Waiter> cleanerWaiter;
 	
 	/**
 	 * The type of service (
@@ -32,6 +32,8 @@ public class Service {
 	 * @param serviceType (ServiceType.MIDI or SOIR)
 	 */
 	public Service(ServiceType serviceType) {
+		this.waiters = new HashSet<Waiter>();
+		this.cleanerWaiter = new HashSet<Waiter>();
 		this.serviceType = serviceType;
 	}
 	

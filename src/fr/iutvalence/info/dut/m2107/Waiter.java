@@ -24,7 +24,7 @@ public class Waiter {
 	/**
 	 * If the waiter is a padder, his sector
 	 */
-	private Sector aSector = null;
+	private Sector aSector;
 	
 	/**
 	 * Create a new waiter
@@ -36,6 +36,7 @@ public class Waiter {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.rank = rank;
+		this.aSector = null;
 	}
 	
 	/**
