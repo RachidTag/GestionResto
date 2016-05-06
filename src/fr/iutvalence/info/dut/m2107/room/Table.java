@@ -61,13 +61,12 @@ public class Table implements Serializable
 	 * @param progress
 	 * @param clientName 
 	 */
-	public Table(int numTable, int numberPlaces, Position position,
-			Progress progress, String clientName){
+	public Table(int numTable, int numberPlaces, Position position, String clientName){
 		this.numTable = numTable;
 		this.numberPlaces = numberPlaces;
 		this.position = position;
 		this.setState(clientName);
-		this.progress = progress;
+		this.progress = Progress.NO_PROGRESS;
 		this.clientName = null;
 	}
 	

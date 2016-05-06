@@ -39,17 +39,41 @@ public class Main {
 		System.out.println(Didou);
 		
 		//Creation of the tables
-		Table table1 = null;
-		Table table2 = null;
-		Table table3 = null;
-		Table table4 = null;
+		Table table11 = null;
+		Table table12 = null;
+		Table table13 = null;
+		Table table14 = null;
+		Table table21 = null;
+		Table table22 = null;
+		Table table23 = null;
+		Table table24 = null;
+		Table table31 = null;
+		Table table32 = null;
+		Table table33 = null;
+		Table table34 = null;
+		Table table41 = null;
+		Table table42 = null;
+		Table table43 = null;
+		Table table44 = null;
 		
 		try
 		{
-			table1 = new Table(1,4,new Position(5,5,0), Progress.NO_PROGRESS, State.FREE);
-			table2 = new Table(2,2,new Position(1,5,0), Progress.NO_PROGRESS, State.FREE);
-			table3 = new Table(3,4,new Position(8,10,0), Progress.NO_PROGRESS, State.FREE);
-			table4 = new Table(4,6,new Position(8,10,0), Progress.APERITIF, State.BUSY);
+			table11 = new Table(11,4,new Position(5,5,0), Progress.NO_PROGRESS, State.FREE);
+			table12 = new Table(12,2,new Position(1,5,0), Progress.NO_PROGRESS, State.FREE);
+			table13 = new Table(13,4,new Position(8,10,0), Progress.NO_PROGRESS, State.FREE);
+			table14 = new Table(14,6,new Position(8,10,0), Progress.APERITIF, State.BUSY);
+			table21 = new Table(21,4,new Position(5,5,0), Progress.NO_PROGRESS, State.FREE);
+			table22 = new Table(22,2,new Position(1,5,0), Progress.NO_PROGRESS, State.FREE);
+			table23 = new Table(23,5, new Position(4, 4, 15), "DUPONT");
+			table24 = new Table(4,6,new Position(8,10,0), Progress.APERITIF, State.BUSY);
+			table31 = new Table(1,4,new Position(5,5,0), Progress.BILL_SETTED, State.BUSY);
+			table32 = new Table(2,2,new Position(1,5,0), Progress.NO_PROGRESS, State.FREE);
+			table33 = new Table(3,4,new Position(8,10,0), Progress.DESSERT, State.BUSY);
+			table34 = new Table(4,6,new Position(8,10,0), Progress.APERITIF, State.BUSY);
+			table41 = new Table(1,4,new Position(5,5,0), Progress.NO_PROGRESS, State.FREE);
+			table42 = new Table(2,2,new Position(1,5,0), "MARC");
+			table43 = new Table(3,4,new Position(8,10,0), Progress.NO_PROGRESS, State.FREE);
+			table44 = new Table(4,6,new Position(8,10,0), Progress.APERITIF, State.BUSY);
 		}
 		catch (ClientNameRequiredException e1)
 		{
@@ -77,11 +101,24 @@ public class Main {
 			e.printStackTrace();
 		}
 		
+		//Set the table in the sector
 		try {
-			sector1.addTable(table1);
-			sector1.addTable(table2);
-			sector1.addTable(table3);
-			sector1.addTable(table4);
+			sector1.addTable(table11);
+			sector1.addTable(table12);
+			sector1.addTable(table13);
+			sector1.addTable(table14);
+			sector2.addTable(table21);
+			sector2.addTable(table22);
+			sector2.addTable(table23);
+			sector2.addTable(table24);
+			sector3.addTable(table31);
+			sector3.addTable(table32);
+			sector3.addTable(table33);
+			sector3.addTable(table34);
+			sector4.addTable(table41);
+			sector4.addTable(table42);
+			sector4.addTable(table43);
+			sector4.addTable(table44);
 		} catch (TableAlreadyExistsException e) {
 			System.err.println("Num of the table allready in the sector");
 		}
