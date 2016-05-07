@@ -6,8 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintStream;
-
 import fr.iutvalence.info.dut.m2107.calendar.*;
 import fr.iutvalence.info.dut.m2107.room.*;
 /**

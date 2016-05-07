@@ -10,6 +10,7 @@ import fr.iutvalence.info.dut.m2107.Waiter;
  * Represent the Sector
  * @author Projet Resto
  */
+@SuppressWarnings("serial")
 public class Sector implements Serializable
 {
 	/**

@@ -9,6 +9,7 @@ import fr.iutvalence.info.dut.m2107.room.Sector;
  * @author Projet Resto
  *
  */
+@SuppressWarnings("serial")
 public class Waiter implements Serializable {
 
 	/**

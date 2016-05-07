@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Represent the position of a table in a sector
  * @author Projet Resto
  */
+@SuppressWarnings("serial")
 public class Position implements Serializable {
 	/**
 	 * abscissa coordinate
