@@ -186,7 +186,7 @@ public class EditTableWindow extends JFrame {
 		}
 		Map<Integer, Sector> sectors = theRoom.getSectors();
 		Set<Integer> keySet = sectors.keySet();
-		JComboBox LeNomDeTaComboBox = new JComboBox(keySet.toArray());
+		JComboBox<?> LeNomDeTaComboBox = new JComboBox<Object>(keySet.toArray());
 		line6.add(LeNomDeTaComboBox);
 
 		JPanel line7 = new JPanel();
@@ -196,7 +196,7 @@ public class EditTableWindow extends JFrame {
 
 		line7.add(new JLabel());
 		line7.add(new JLabel());
-		JButton theButton = new JButton("Send");
+		ButtonAddTable theButton = new ButtonAddTable("Send");
 		line7.add(theButton);
 		
 		SwingUtilities.updateComponentTreeUI(MainWindow.win);
