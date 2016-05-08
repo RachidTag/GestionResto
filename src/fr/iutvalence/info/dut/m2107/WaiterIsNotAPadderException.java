@@ -5,7 +5,11 @@ package fr.iutvalence.info.dut.m2107;
  * @author Projet Resto
  *
  */
-@SuppressWarnings("serial")
 public class WaiterIsNotAPadderException extends Exception {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 }

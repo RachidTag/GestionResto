@@ -5,7 +5,11 @@ package fr.iutvalence.info.dut.m2107.room;
  * @author Projet Resto
  *
  */
-@SuppressWarnings("serial")
 public class ObjectReadedIsNotARoomException extends Exception {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 }

@@ -16,8 +16,11 @@ import java.util.Map;
  * @author Projet Resto
  *
  */
-@SuppressWarnings("serial")
 public class Room implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Set of sectors
 	 */

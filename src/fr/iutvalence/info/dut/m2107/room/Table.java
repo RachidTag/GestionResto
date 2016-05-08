@@ -6,9 +6,12 @@ import java.io.Serializable;
  * Represent a table
  * @author Projet Resto
  */
-@SuppressWarnings("serial")
 public class Table implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Number of the table
 	 */

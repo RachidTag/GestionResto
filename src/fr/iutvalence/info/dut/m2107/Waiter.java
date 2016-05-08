@@ -9,9 +9,12 @@ import fr.iutvalence.info.dut.m2107.room.Sector;
  * @author Projet Resto
  *
  */
-@SuppressWarnings("serial")
 public class Waiter implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The last name of the waiter
 	 */

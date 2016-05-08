@@ -1,20 +1,36 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.JSpinner;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import fr.iutvalence.info.dut.m2107.room.ObjectReadedIsNotARoomException;
+import fr.iutvalence.info.dut.m2107.room.Room;
+import fr.iutvalence.info.dut.m2107.room.Sector;
 
 class WindowEventHandler extends WindowAdapter {
 	public void windowClosing(WindowEvent evt) {
@@ -101,11 +117,77 @@ public class EditTableWindow extends JFrame {
 	 */
 	public static void addTableArea() {
 		EditTableWindow.R_Area.removeAll();
-		GridLayout controlPanel = new GridLayout(7,1);
+		
+		GridLayout controlPanel = new GridLayout(8,1);
 		EditTableWindow.R_Area.setLayout(controlPanel);
-		EditTableWindow.R_Area.add(new JLabel("Table adding:"));
-		EditTableWindow.R_Area.add(new JTextField());
-		EditTableWindow.R_Area.add(new JSlider(2, 4));
+		
+		JLabel title = new JLabel("Table adding", SwingConstants.CENTER);
+		title.setFont(title.getFont().deriveFont(Font.BOLD, 20.f));
+		
+		EditTableWindow.R_Area.add(title);
+		
+		JPanel line = new JPanel();
+		GridLayout lineLayout = new GridLayout(1, 2);
+		line.setLayout(lineLayout);
+		EditTableWindow.R_Area.add(line);
+		
+		line.add(new JLabel("Table num:"));
+		SpinnerModel spinnerModel =	new SpinnerNumberModel(0, 0, 1000, 1);
+		JSpinner spinner = new JSpinner(spinnerModel);
+		line.add(spinner);
+
+		JPanel line2 = new JPanel();
+		line2.setLayout(lineLayout);
+		EditTableWindow.R_Area.add(line2);
+		
+		line2.add(new JLabel("Num of places:"));
+		spinnerModel =	new SpinnerNumberModel(2, 2, 4, 2);
+		spinner = new JSpinner(spinnerModel);
+		line2.add(spinner);
+
+		JPanel line3 = new JPanel();
+		line3.setLayout(lineLayout);
+		EditTableWindow.R_Area.add(line3);
+		
+		line3.add(new JLabel("X position:"));
+		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
+		spinner = new JSpinner(spinnerModel);
+		line3.add(spinner);
+
+		JPanel line4 = new JPanel();
+		line4.setLayout(lineLayout);
+		EditTableWindow.R_Area.add(line4);
+		
+		line4.add(new JLabel("Y position:"));
+		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
+		spinner = new JSpinner(spinnerModel);
+		line4.add(spinner);
+
+		JPanel line5 = new JPanel();
+		line5.setLayout(lineLayout);
+		EditTableWindow.R_Area.add(line5);
+		
+		line5.add(new JLabel("Rotation:"));
+		spinnerModel =	new SpinnerNumberModel(0, 0, 3, 1);
+		spinner = new JSpinner(spinnerModel);
+		line5.add(spinner);
+
+		JPanel line6 = new JPanel();
+		line6.setLayout(lineLayout);
+		EditTableWindow.R_Area.add(line6);
+
+		line6.add(new JLabel("Sector:"));
+		Room theRoom = null;
+		try {
+			theRoom = Room.loadRoom();
+		} catch (ClassNotFoundException | IOException | ObjectReadedIsNotARoomException e) {
+			// TODO the error
+			e.printStackTrace();
+		}
+		Map<Integer, Sector> sectors = theRoom.getSectors();
+		Set<Integer> keySet = sectors.keySet();
+		JComboBox LeNomDeTaComboBox = new JComboBox(keySet.toArray());
+		line6.add(LeNomDeTaComboBox);
 		
 		SwingUtilities.updateComponentTreeUI(MainWindow.win);
 		

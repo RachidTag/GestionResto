@@ -10,8 +10,11 @@ import javax.swing.JComboBox;
  * @author Projet Resto
  *
  */
+@SuppressWarnings("serial")
 public class ButtonCustomTest extends JButton implements MouseListener{
-		
+	/**
+	 * 
+	 */
 	private String Name;
 	
 	/**
