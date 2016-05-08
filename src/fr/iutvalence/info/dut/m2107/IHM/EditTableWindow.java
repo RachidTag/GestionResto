@@ -188,6 +188,16 @@ public class EditTableWindow extends JFrame {
 		Set<Integer> keySet = sectors.keySet();
 		JComboBox LeNomDeTaComboBox = new JComboBox(keySet.toArray());
 		line6.add(LeNomDeTaComboBox);
+
+		JPanel line7 = new JPanel();
+		GridLayout buttonLayout = new GridLayout(1, 2);
+		line7.setLayout(buttonLayout);
+		EditTableWindow.R_Area.add(line7);
+
+		line7.add(new JLabel());
+		line7.add(new JLabel());
+		JButton theButton = new JButton("Send");
+		line7.add(theButton);
 		
 		SwingUtilities.updateComponentTreeUI(MainWindow.win);
 		
