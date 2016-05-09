@@ -12,51 +12,51 @@ import java.awt.event.ActionListener;
  *
  */
 @SuppressWarnings("serial")
-public class MainWindow extends JFrame implements ActionListener {
+public class MainWindow extends JFrame {
 	
 	/**
 	 * Create left panel for left area of the splitpanel
 	 */
-	public static JPanel leftArea = new JPanel();
+	public static JPanel leftArea;
 	
 	/**
-	 * Create the gridlayout where are contained all buttons and control actions
+	 * Create left panel for left area of the splitpanel
 	 */
-	private GridLayout controlGrid = new GridLayout(8,1);
-	
+	public static JPanel rightArea;	
 
 	/**
 	 * 
 	 */
-	public static ButtonCustomTest editTable = new ButtonCustomTest("Edit table");
-	
+	public static MainWindowEditTableButton editTable = new MainWindowEditTableButton("Edit table");
 	
 	/**
 	 * 
 	 */
 	public static JButton editSector = new JButton("Sector edition");
-	
 
 	/**
 	 * 
 	 */
 	public static JButton checkRoom = new JButton("Check a room");
-	
 
 	/**
 	 * 
 	 */
 	public static JButton checkSchedule = new JButton("Check a schedule");
-	
 
 	/**
 	 * 
 	 */
 	public static JButton roomManager = new JButton("Room manager mod");
 	
-	public static JButton exit = new JButton("Close");
+	/**
+	 * 
+	 */
+	public static JButton close = new MainWindowCloseButton("Close");
 	
-
+	/**
+	 * 
+	 */
 	public static EditTableWindow win;
 		
 	/**
@@ -64,11 +64,18 @@ public class MainWindow extends JFrame implements ActionListener {
 	 */
 	public MainWindow()
 	{
+		/**
+		 * Init
+		 */
+		this.leftArea = new JPanel();
+		this.rightArea = new JPanel();
+		
+		GridLayout controlGrid = new GridLayout(8,1);
 	
-				/**
-				 * General informations and settings of the window...
-				 * 
-				 */
+			/**
+			 * General informations and settings of the window...
+			 * 
+			 */
 		
 		/**
 		 * Set the title of the window
@@ -94,14 +101,9 @@ public class MainWindow extends JFrame implements ActionListener {
 		
 		
 		
-				/**
-				 * Left Panel informations and settings...
-				 * 
-				 */
-		/**
-		 * Add label of project
-		 * TODO: add image, and try/catch if not found, put label instead of image
-		 */
+			/**
+			 * Left Panel informations and settings...
+			 */
 		
 		ImageIcon icon = new ImageIcon("img/logo.png");
 		Image img = icon.getImage();
@@ -113,60 +115,55 @@ public class MainWindow extends JFrame implements ActionListener {
 		/**
 		 * Add logo label
 		 */
-		MainWindow.leftArea.add(lab);
-
+		this.leftArea.add(lab);
 
 		/**
-		 * Create a horizontal and vertical gap of 5 pixels between panel and gridlayout
+		 * Create an horizontal and vertical gap of 5 pixels between panel and gridlayout
 		 */
-		this.controlGrid.setHgap(5);
-		this.controlGrid.setVgap(5);
+		controlGrid.setHgap(5);
+		controlGrid.setVgap(5);
 		
 		/**
 		 * Set gridlayout on the panel "leftArea"
 		 */
-		MainWindow.leftArea.setLayout(this.controlGrid);
+		this.leftArea.setLayout(controlGrid);
 		
 		/**
 		 * Add "table edition" button
 		 * TODO: transform into menu
 		 */
-		MainWindow.leftArea.add(this.editTable);		
+		this.leftArea.add(this.editTable);		
 
 		/**
 		 * Add "sector edition" menu
 		 * TODO: transform into menu
 		 */
-		MainWindow.leftArea.add(this.editSector);
+		this.leftArea.add(this.editSector);
 		
 		/**
 		 * Add "check a room" button
 		 */
-		MainWindow.leftArea.add(this.checkRoom);
+		this.leftArea.add(this.checkRoom);
 		
 		/**
 		 * Add "check a schedule" button
 		 */
-		MainWindow.leftArea.add(this.checkSchedule);
+		this.leftArea.add(this.checkSchedule);
 		
 		/**
 		 * Add "room manager mod" button
 		 */
-		MainWindow.leftArea.add(this.roomManager);
+		this.leftArea.add(this.roomManager);
 		
 		/**
 		 * Add "quit" button
 		 */
-		JButton exit = new JButton("Close");
-		leftArea.add(exit);
-		exit.addActionListener(this);
+		this.leftArea.add(this.close);
 		
-		
-		
-				/**
-				 * Right Panel informations and settings...
-				 * 
-				 */
+			/**
+			 * Right Panel informations and settings...
+			 * 
+			 */
 
 		/**
 		 * Create right panel for right area of the splitpanel
@@ -283,9 +280,4 @@ public class MainWindow extends JFrame implements ActionListener {
 		
 
 	}
-	
-	public void actionPerformed(ActionEvent e)
-    {
-		    System.exit(0);
-    }
 }

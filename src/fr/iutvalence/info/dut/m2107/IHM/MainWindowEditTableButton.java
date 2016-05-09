@@ -11,7 +11,7 @@ import javax.swing.JComboBox;
  *
  */
 @SuppressWarnings("serial")
-public class ButtonCustomTest extends JButton implements MouseListener{
+public class MainWindowEditTableButton extends JButton implements MouseListener{
 	/**
 	 * 
 	 */
@@ -20,9 +20,9 @@ public class ButtonCustomTest extends JButton implements MouseListener{
 	/**
 	 * 
 	 */
-	public ButtonCustomTest(String name)
+	public MainWindowEditTableButton(String name)
 	{
-		super();
+		super(name);
 		this.addMouseListener(this);
 		
 	}
@@ -35,12 +35,7 @@ public class ButtonCustomTest extends JButton implements MouseListener{
 		MainWindow.checkRoom.setEnabled(false);
 		MainWindow.checkSchedule.setEnabled(false);
 		MainWindow.roomManager.setEnabled(false);
-		MainWindow.exit.setEnabled(false);
-		
-		
-		
-		//MainWindow.leftArea.validate();
-		
+		MainWindow.close.setEnabled(false);		
 	}
 
 	@Override

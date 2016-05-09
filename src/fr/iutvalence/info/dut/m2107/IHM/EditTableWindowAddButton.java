@@ -9,7 +9,7 @@ import javax.swing.JButton;
  * @author Projet Resto
  *
  */
-public class TableEditionAddButton extends JButton implements MouseListener{
+public class EditTableWindowAddButton extends JButton implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

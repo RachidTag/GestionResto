@@ -20,10 +20,10 @@ import fr.iutvalence.info.dut.m2107.room.TableAlreadyExistsException;
  * @author 
  *
  */
-public class ButtonAddTable extends JButton implements MouseListener{
+public class EditTableWindowPerformAddTableButton extends JButton implements MouseListener{
   private String name;
 
-public ButtonAddTable(String str){
+public EditTableWindowPerformAddTableButton(String str){
     super(str);
     this.name = str;
     this.addMouseListener(this);

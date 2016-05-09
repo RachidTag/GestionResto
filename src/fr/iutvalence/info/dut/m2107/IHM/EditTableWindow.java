@@ -1,6 +1,5 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -8,7 +7,6 @@ import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,17 +15,12 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.JSplitPane;
-import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import fr.iutvalence.info.dut.m2107.room.ObjectReadedIsNotARoomException;
 import fr.iutvalence.info.dut.m2107.room.Room;
 import fr.iutvalence.info.dut.m2107.room.Sector;
@@ -39,6 +32,7 @@ class WindowEventHandler extends WindowAdapter {
 		MainWindow.checkRoom.setEnabled(true);
 		MainWindow.checkSchedule.setEnabled(true);
 		MainWindow.roomManager.setEnabled(true);
+		MainWindow.close.setEnabled(true);
 	    MainWindow.win.setVisible(false);
 	    MainWindow.win.R_Area.removeAll();
 	}
@@ -75,7 +69,7 @@ public class EditTableWindow extends JFrame {
 	private static JLabel defaultText = new JLabel("Menu d'édition des tables");
 	
 	/**
-	 * Add table
+	 * Add table form
 	 */
 	public static JSpinner tableNum; 
 	public static JSpinner numOfPlaces; 
@@ -111,8 +105,8 @@ public class EditTableWindow extends JFrame {
 		EditTableWindow.L_Area.add(add);
 		EditTableWindow.L_Area.add(close);
 		
-		close.addMouseListener(new TableEditionClosingButton());
-		add.addMouseListener(new TableEditionAddButton());
+		close.addMouseListener(new EditTableWindowCloseButton());
+		add.addMouseListener(new EditTableWindowAddButton());
 		
 		EditTableWindow.R_Area.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -191,8 +185,7 @@ public class EditTableWindow extends JFrame {
 		try {
 			theRoom = Room.loadRoom();
 		} catch (ClassNotFoundException | IOException | ObjectReadedIsNotARoomException e) {
-			// TODO the error
-			e.printStackTrace();
+			System.err.println("Error during loading the room from the last save.");
 		}
 		Map<Integer, Sector> sectors = theRoom.getSectors();
 		Set<Integer> keySet = sectors.keySet();
@@ -206,7 +199,7 @@ public class EditTableWindow extends JFrame {
 
 		line7.add(new JLabel());
 		line7.add(new JLabel());
-		ButtonAddTable theButton = new ButtonAddTable("Send");
+		EditTableWindowPerformAddTableButton theButton = new EditTableWindowPerformAddTableButton("Send");
 		line7.add(theButton);
 		
 		SwingUtilities.updateComponentTreeUI(MainWindow.win);
