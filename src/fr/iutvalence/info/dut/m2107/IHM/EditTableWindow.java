@@ -75,6 +75,16 @@ public class EditTableWindow extends JFrame {
 	private static JLabel defaultText = new JLabel("Menu d'édition des tables");
 	
 	/**
+	 * Add table
+	 */
+	public static JSpinner tableNum; 
+	public static JSpinner numOfPlaces; 
+	public static JSpinner posX; 
+	public static JSpinner posY; 
+	public static JSpinner rotation; 
+	public static JComboBox<?> sectorNum;
+	
+	/**
 	 * 
 	 */
 	public EditTableWindow()
@@ -133,8 +143,8 @@ public class EditTableWindow extends JFrame {
 		
 		line.add(new JLabel("Table num:"));
 		SpinnerModel spinnerModel =	new SpinnerNumberModel(0, 0, 1000, 1);
-		JSpinner spinner = new JSpinner(spinnerModel);
-		line.add(spinner);
+		tableNum = new JSpinner(spinnerModel);
+		line.add(tableNum);
 
 		JPanel line2 = new JPanel();
 		line2.setLayout(lineLayout);
@@ -142,8 +152,8 @@ public class EditTableWindow extends JFrame {
 		
 		line2.add(new JLabel("Num of places:"));
 		spinnerModel =	new SpinnerNumberModel(2, 2, 4, 2);
-		spinner = new JSpinner(spinnerModel);
-		line2.add(spinner);
+		numOfPlaces = new JSpinner(spinnerModel);
+		line2.add(numOfPlaces);
 
 		JPanel line3 = new JPanel();
 		line3.setLayout(lineLayout);
@@ -151,8 +161,8 @@ public class EditTableWindow extends JFrame {
 		
 		line3.add(new JLabel("X position:"));
 		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
-		spinner = new JSpinner(spinnerModel);
-		line3.add(spinner);
+		posX = new JSpinner(spinnerModel);
+		line3.add(posX);
 
 		JPanel line4 = new JPanel();
 		line4.setLayout(lineLayout);
@@ -160,8 +170,8 @@ public class EditTableWindow extends JFrame {
 		
 		line4.add(new JLabel("Y position:"));
 		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
-		spinner = new JSpinner(spinnerModel);
-		line4.add(spinner);
+		posY = new JSpinner(spinnerModel);
+		line4.add(posY);
 
 		JPanel line5 = new JPanel();
 		line5.setLayout(lineLayout);
@@ -169,8 +179,8 @@ public class EditTableWindow extends JFrame {
 		
 		line5.add(new JLabel("Rotation:"));
 		spinnerModel =	new SpinnerNumberModel(0, 0, 3, 1);
-		spinner = new JSpinner(spinnerModel);
-		line5.add(spinner);
+		rotation = new JSpinner(spinnerModel);
+		line5.add(rotation);
 
 		JPanel line6 = new JPanel();
 		line6.setLayout(lineLayout);
@@ -186,8 +196,8 @@ public class EditTableWindow extends JFrame {
 		}
 		Map<Integer, Sector> sectors = theRoom.getSectors();
 		Set<Integer> keySet = sectors.keySet();
-		JComboBox<?> LeNomDeTaComboBox = new JComboBox<Object>(keySet.toArray());
-		line6.add(LeNomDeTaComboBox);
+		sectorNum = new JComboBox<Object>(keySet.toArray());
+		line6.add(sectorNum);
 
 		JPanel line7 = new JPanel();
 		GridLayout buttonLayout = new GridLayout(1, 2);
