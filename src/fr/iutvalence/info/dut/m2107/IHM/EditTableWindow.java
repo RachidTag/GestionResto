@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -11,7 +13,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -24,9 +29,11 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import fr.iutvalence.info.dut.m2107.Main;
 import fr.iutvalence.info.dut.m2107.room.ObjectReadedIsNotARoomException;
 import fr.iutvalence.info.dut.m2107.room.Room;
 import fr.iutvalence.info.dut.m2107.room.Sector;
+import fr.iutvalence.info.dut.m2107.room.SectorNotExistsException;
 
 class EditTableWindowEventHandler extends WindowAdapter {
 	public void windowClosing(WindowEvent evt) {
@@ -80,6 +87,8 @@ public class EditTableWindow extends JFrame {
 	public static JSpinner posY; 
 	public static JSpinner rotation; 
 	public static JComboBox<?> sectorNum;
+	
+	public static JComboBox<Object> comboTables;
 	
 	/**
 	 * 
@@ -229,7 +238,7 @@ public class EditTableWindow extends JFrame {
 		line1.setLayout(lineLayout);
 		EditTableWindow.R_Area.add(line1);
 
-		line1.add(new JLabel("Table:"));
+		line1.add(new JLabel("Sector:"));
 		
 		Room theRoom = null;
 		try {
@@ -238,20 +247,51 @@ public class EditTableWindow extends JFrame {
 			System.err.println("Error during loading the room from the last save.");
 		}
 		
-		Map<Integer, Sector> sectors = theRoom.getSectors();
-		Set<Integer> tables = new HashSet<Integer>();
+		Map<Integer, Sector> theSectors = theRoom.getSectors();
+		Set<Integer> sectors = new TreeSet<Integer>(theRoom.getSectors().keySet());
 		
-		// TODO LA LISTE !
-		for (final Iterator iter = sectors.keySet().iterator(); iter.hasNext();) {
-		    final Integer key = (Integer) iter.next();
-		    final Sector value = sectors.get(key);
-		    for(final Iterator iter2 = value.getTables().keySet().iterator(); iter2.hasNext();) {
-			    tables.add(value.getTables().keySet());
-		    }
-		}
-		
-		sectorNum = new JComboBox<Object>(tables.toArray());
+		sectorNum = new JComboBox<Object>(sectors.toArray());
+		/*
+		 * When you select a sector, it updates automatically the tables list
+		 */
+		sectorNum.addActionListener (new ActionListener () {
+			public void actionPerformed(ActionEvent arg0) {
+				Room theRoom = null;
+				try {
+					theRoom = Room.loadRoom();
+				} catch (ClassNotFoundException | IOException | ObjectReadedIsNotARoomException e) {
+					System.err.println("Error during loading the room from the last save.");
+				}
+				Sector theSector = null;
+				try {
+					theSector = theRoom.getSector((int)sectorNum.getSelectedItem());
+				} catch (SectorNotExistsException e) {
+					// ...
+				}
+				Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
+				DefaultComboBoxModel model = new DefaultComboBoxModel(tables.toArray());
+				MainWindow.editTableWindow.comboTables.setModel( model );
+			}
+		});
 		line1.add(sectorNum);
+
+		JPanel line2 = new JPanel();
+		line2.setLayout(lineLayout);
+		EditTableWindow.R_Area.add(line2);
+
+		line2.add(new JLabel("Table:"));
+		
+		Sector theSector = null;
+		try {
+			theSector = theRoom.getSector((int)sectorNum.getSelectedItem());
+		} catch (SectorNotExistsException e) {
+			// ...
+		}
+		Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
+		
+		comboTables = new JComboBox<Object>(tables.toArray());
+		
+		line2.add(comboTables);
 
 		JPanel line7 = new JPanel();
 		GridLayout buttonLayout = new GridLayout(1, 2);
