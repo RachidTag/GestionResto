@@ -50,5 +50,18 @@ public class Day {
 	public Service getService(ServiceType serviceType) {
 		return this.services[serviceType.getNumService()];
 	}
+	
+	/**
+	 * Set a service for the day
+	 * @param serviceType
+	 * @param service
+	 */
+	public void setService(Service service) throws RestaurantIsClosedException{
+		if (this.isClosed) throw new RestaurantIsClosedException();
+		if(service.getServiceType() == ServiceType.MIDDAY)
+			this.services[0] = service;
+		if(service.getServiceType() == ServiceType.EVENING)
+			this.services[1] = service;
+	}
 
 }

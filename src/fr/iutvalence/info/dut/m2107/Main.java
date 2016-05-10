@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
 import fr.iutvalence.info.dut.m2107.calendar.*;
 import fr.iutvalence.info.dut.m2107.room.*;
 /**
@@ -21,11 +22,11 @@ public class Main {
 	 */
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		Calendar calendar = new Calendar();
+
+		//Creation of the Calendar
 		Room room = new Room();
-		// TODO, think about the integration of the IHM
 		
-		//Test of the main
+		// TODO, think about the integration of the IHM
 		
 		//Creation of waiters
 		Waiter Didou = new Waiter("FAYANT", "Dylan", Rank.PADDER);
@@ -181,6 +182,46 @@ public class Main {
 			System.err.println("Error");
 		}
 		
+		//Creation of calendar
+		
+		Calendar calendar = new Calendar();
+		
+		//Creation of weeks
+		
+		Week week20 = new Week(20);
+		Week week21 = new Week(21);
+		Week week22 = new Week(22);
+
+		Day monday = new Day();
+		monday.isClosed();
+		Day tuesday = new Day();
+		Day wednesday = new Day();
+		Day thursday = new Day();
+		Day friday = new Day();
+		Day saturday = new Day();
+		Day sunday = new Day();
+		
+		//Add weeks to calendar
+		try {
+			calendar.addWeekCalendar(week20);
+			calendar.addWeekCalendar(week21);
+			calendar.addWeekCalendar(week22);
+		} catch (WeekAlreadyExistsException e1) {
+			e1.printStackTrace();
+		}
+		//Edit a week with the day
+		try {
+			week20.editDayCalendar(1, monday);
+			week20.editDayCalendar(2, tuesday);
+			week20.editDayCalendar(3, wednesday);
+			week20.editDayCalendar(4, thursday);
+			week20.editDayCalendar(5, friday);
+			week20.editDayCalendar(6, saturday);
+			week20.editDayCalendar(7, sunday);
+		} catch (DayNotExistsException e) {
+			e.printStackTrace();
+		}
+		
 		//Creation of services
 		Service service1 = new Service(ServiceType.EVENING);
 		Service service2 = new Service(ServiceType.MIDDAY);
@@ -188,7 +229,24 @@ public class Main {
 		service1.addCleanerWaiter(Rachou);
 		service1.addCleanerWaiter(Matou);
 		service1.addCleanerWaiter(Benou);
+		service2.addWaiter(Didou);
+		service2.addCleanerWaiter(Matou);
+		service2.addWaiter(Rachou);
 		System.out.println(service1);
+		System.out.println(service2);
+		
+		//Add services for a day
+		try {
+			tuesday.setService(service1);
+			wednesday.setService(service1);
+			thursday.setService(service1);
+			friday.setService(service1);
+			saturday.setService(service2);
+			sunday.setService(service2);
+		} catch (RestaurantIsClosedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
