@@ -1,10 +1,13 @@
 package fr.iutvalence.info.dut.m2107.IHM;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * TODO
@@ -279,10 +282,24 @@ public class MainWindow extends JFrame {
 		/**
 		 * Set all components and window visibles on screen
 		 */
+
+		GridLayout sectorOneGrid = new GridLayout(1,3);
+		
+		sectorOne.setLayout(sectorOneGrid);
+		
+		ImageIcon table = new ImageIcon("img/tableVerteProjet.png");
+		Image img1 = table.getImage();
+		img1 = img1.getScaledInstance(100, 75, Image.SCALE_SMOOTH);
+		table = new ImageIcon(img1);
+		
+		JLabel t = new JLabel(table);
+		t.setSize(10, 10);
+		
+		sectorOne.add(t);
+		
+		
 		this.setVisible(true);
-
-		
-		
-
 	}
+	
+
 }

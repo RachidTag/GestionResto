@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,6 +23,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+
 import fr.iutvalence.info.dut.m2107.room.ObjectReadedIsNotARoomException;
 import fr.iutvalence.info.dut.m2107.room.Room;
 import fr.iutvalence.info.dut.m2107.room.Sector;
@@ -107,6 +110,7 @@ public class EditTableWindow extends JFrame {
 		
 		close.addMouseListener(new EditTableWindowCloseButton());
 		add.addMouseListener(new EditTableWindowAddButton());
+		edit.addMouseListener(new EditTableWindowEditButton());
 		
 		EditTableWindow.R_Area.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -191,6 +195,63 @@ public class EditTableWindow extends JFrame {
 		Set<Integer> keySet = sectors.keySet();
 		sectorNum = new JComboBox<Object>(keySet.toArray());
 		line6.add(sectorNum);
+
+		JPanel line7 = new JPanel();
+		GridLayout buttonLayout = new GridLayout(1, 2);
+		line7.setLayout(buttonLayout);
+		EditTableWindow.R_Area.add(line7);
+
+		line7.add(new JLabel());
+		line7.add(new JLabel());
+		EditTableWindowPerformAddTableButton theButton = new EditTableWindowPerformAddTableButton("Send");
+		line7.add(theButton);
+		
+		SwingUtilities.updateComponentTreeUI(MainWindow.editTableWindow);
+		
+	}
+	
+	/**
+	 * 
+	 */
+	public static void editTableArea() {
+		EditTableWindow.R_Area.removeAll();
+		
+		GridLayout controlPanel = new GridLayout(8,1);
+		EditTableWindow.R_Area.setLayout(controlPanel);
+		
+		JLabel title = new JLabel("Table editing", SwingConstants.CENTER);
+		title.setFont(title.getFont().deriveFont(Font.BOLD, 20.f));
+		
+		EditTableWindow.R_Area.add(title);
+
+		JPanel line1 = new JPanel();
+		GridLayout lineLayout = new GridLayout(1, 2);
+		line1.setLayout(lineLayout);
+		EditTableWindow.R_Area.add(line1);
+
+		line1.add(new JLabel("Table:"));
+		
+		Room theRoom = null;
+		try {
+			theRoom = Room.loadRoom();
+		} catch (ClassNotFoundException | IOException | ObjectReadedIsNotARoomException e) {
+			System.err.println("Error during loading the room from the last save.");
+		}
+		
+		Map<Integer, Sector> sectors = theRoom.getSectors();
+		Set<Integer> tables = new HashSet<Integer>();
+		
+		// TODO LA LISTE !
+		for (final Iterator iter = sectors.keySet().iterator(); iter.hasNext();) {
+		    final Integer key = (Integer) iter.next();
+		    final Sector value = sectors.get(key);
+		    for(final Iterator iter2 = value.getTables().keySet().iterator(); iter2.hasNext();) {
+			    tables.add(value.getTables().keySet());
+		    }
+		}
+		
+		sectorNum = new JComboBox<Object>(tables.toArray());
+		line1.add(sectorNum);
 
 		JPanel line7 = new JPanel();
 		GridLayout buttonLayout = new GridLayout(1, 2);
