@@ -75,6 +75,15 @@ public class Sector implements Serializable
 		if(!this.tables.containsKey(numTable)) throw new TableNotExistsException();
 		return this.tables.get(numTable);
 	}
+	/**
+	 * Get the tables list
+	 * @param numTable int
+	 * @return Table
+	 * @throws TableNotExistsException 
+	 */
+	public Map<Integer, Table> getTables(){
+		return this.tables;
+	}
 	
 	/**
 	 * Get the number of the sector
