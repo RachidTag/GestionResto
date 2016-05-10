@@ -34,7 +34,7 @@ public class Calendar {
 	}
 
 	/**
-	 * Add an empty week to the calendar
+	 * Add an empty week to the calendar 
 	 * @param weekNum the number of the week from the year
 	 * @throws WeekAlreadyExistsException 
 	 */

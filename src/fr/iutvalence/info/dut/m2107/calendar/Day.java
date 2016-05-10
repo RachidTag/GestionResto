@@ -62,6 +62,6 @@ public class Day {
 			this.services[0] = service;
 		if(service.getServiceType() == ServiceType.EVENING)
 			this.services[1] = service;
-	}
+	} 
 
 }

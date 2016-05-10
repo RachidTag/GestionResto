@@ -17,7 +17,7 @@ public class Week {
 	private Day[] days;
 	
 	/**
-	 * Generates a week with 7 days
+	 * Generates a week with 7 days 
 	 * @param weekNum in the year
 	 */
 	public Week(int weekNum) {

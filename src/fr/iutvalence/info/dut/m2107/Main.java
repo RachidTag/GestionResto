@@ -35,7 +35,7 @@ public class Main {
 		Waiter Benou = new Waiter("PALMIER", "Benjamin", Rank.PADDER);
 		Waiter test1 = new Waiter("test1","pretest1", Rank.CHIEF);
 		
-		System.out.println(Didou);
+		System.out.println(Didou); 
 		
 		//Creation of the tables
 		Table table11 = null;

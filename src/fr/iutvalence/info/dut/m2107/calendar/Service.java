@@ -140,6 +140,6 @@ public class Service {
 		{
 			theString += theIterator.next() + ", ";
 		}
-		return theString;		
+		return theString;	
 	}
 }
