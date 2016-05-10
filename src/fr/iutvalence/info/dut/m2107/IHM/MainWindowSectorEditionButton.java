@@ -21,13 +21,16 @@ public class MainWindowSectorEditionButton extends JButton implements MouseListe
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		MainWindow.editSectorWindow = new SectorEditionWindow();
-		MainWindow.editTable.setEnabled(false);
-		MainWindow.editSector.setEnabled(false);
-		MainWindow.checkRoom.setEnabled(false);
-		MainWindow.checkSchedule.setEnabled(false);
-		MainWindow.roomManager.setEnabled(false);
-		MainWindow.close.setEnabled(false);	
+		if(MainWindow.editSector.isEnabled())
+		{
+			MainWindow.editSectorWindow = new SectorEditionWindow();
+			MainWindow.editTable.setEnabled(false);
+			MainWindow.editSector.setEnabled(false);
+			MainWindow.checkRoom.setEnabled(false);
+			MainWindow.checkSchedule.setEnabled(false);
+			MainWindow.roomManager.setEnabled(false);
+			MainWindow.close.setEnabled(false);	
+		}
 		
 	}
 
