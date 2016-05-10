@@ -52,7 +52,7 @@ public class MainWindow extends JFrame {
 	/**
 	 * 
 	 */
-	public static JButton close = new MainWindowCloseButton("Close");
+	public static MainWindowCloseButton close = new MainWindowCloseButton("Close");
 	
 	/**
 	 * 
