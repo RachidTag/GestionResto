@@ -32,7 +32,7 @@ public class MainWindow extends JFrame {
 	/**
 	 * 
 	 */
-	public static JButton editSector = new JButton("Sector edition");
+	public static MainWindowSectorEditionButton editSector = new MainWindowSectorEditionButton("Sector edition");
 
 	/**
 	 * 
@@ -57,7 +57,12 @@ public class MainWindow extends JFrame {
 	/**
 	 * 
 	 */
-	public static EditTableWindow win;
+	public static EditTableWindow editTableWindow;
+	
+	/**
+	 * 
+	 */
+	public static SectorEditionWindow editSectorWindow;
 		
 	/**
 	 * 

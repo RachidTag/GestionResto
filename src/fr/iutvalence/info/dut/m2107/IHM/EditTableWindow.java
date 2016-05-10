@@ -25,7 +25,7 @@ import fr.iutvalence.info.dut.m2107.room.ObjectReadedIsNotARoomException;
 import fr.iutvalence.info.dut.m2107.room.Room;
 import fr.iutvalence.info.dut.m2107.room.Sector;
 
-class WindowEventHandler extends WindowAdapter {
+class EditTableWindowEventHandler extends WindowAdapter {
 	public void windowClosing(WindowEvent evt) {
 		MainWindow.editSector.setEnabled(true);
 		MainWindow.editTable.setEnabled(true);
@@ -33,8 +33,8 @@ class WindowEventHandler extends WindowAdapter {
 		MainWindow.checkSchedule.setEnabled(true);
 		MainWindow.roomManager.setEnabled(true);
 		MainWindow.close.setEnabled(true);
-	    MainWindow.win.setVisible(false);
-	    MainWindow.win.R_Area.removeAll();
+	    MainWindow.editTableWindow.setVisible(false);
+	    MainWindow.editTableWindow.R_Area.removeAll();
 	}
 }
 
@@ -83,7 +83,7 @@ public class EditTableWindow extends JFrame {
 	 */
 	public EditTableWindow()
 	{		
-		this.addWindowListener(new WindowEventHandler());
+		this.addWindowListener(new EditTableWindowEventHandler());
 		this.setTitle("Edit Table");
 		this.setSize(600, 450);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -202,7 +202,7 @@ public class EditTableWindow extends JFrame {
 		EditTableWindowPerformAddTableButton theButton = new EditTableWindowPerformAddTableButton("Send");
 		line7.add(theButton);
 		
-		SwingUtilities.updateComponentTreeUI(MainWindow.win);
+		SwingUtilities.updateComponentTreeUI(MainWindow.editTableWindow);
 		
 	}
 }

@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 
-public class EditTableWindowCloseButton extends JButton implements MouseListener{
+public class SectorEditionWindowCloseButton extends JButton implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -15,8 +15,8 @@ public class EditTableWindowCloseButton extends JButton implements MouseListener
 	    MainWindow.checkSchedule.setEnabled(true);
 	    MainWindow.roomManager.setEnabled(true);
 	    MainWindow.close.setEnabled(true);
-	    MainWindow.editTableWindow.setVisible(false);
-	    MainWindow.editTableWindow.R_Area.removeAll();
+	    MainWindow.editSectorWindow.setVisible(false);
+	    MainWindow.editSectorWindow.R_Area.removeAll();
 	}
 
 	@Override

@@ -21,7 +21,7 @@ public class MainWindowSectorEditionButton extends JButton implements MouseListe
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		MainWindow.win = new EditTableWindow();
+		MainWindow.editSectorWindow = new SectorEditionWindow();
 		MainWindow.editTable.setEnabled(false);
 		MainWindow.editSector.setEnabled(false);
 		MainWindow.checkRoom.setEnabled(false);

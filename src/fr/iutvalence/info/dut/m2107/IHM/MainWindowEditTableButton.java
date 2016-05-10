@@ -29,7 +29,7 @@ public class MainWindowEditTableButton extends JButton implements MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		MainWindow.win = new EditTableWindow();
+		MainWindow.editTableWindow = new EditTableWindow();
 		MainWindow.editTable.setEnabled(false);
 		MainWindow.editSector.setEnabled(false);
 		MainWindow.checkRoom.setEnabled(false);
