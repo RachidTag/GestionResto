@@ -47,7 +47,7 @@ public class SectorEditionWindow extends JFrame implements ActionListener {
 	{	
 		this.defaultText = new JLabel("Menu d'édition des secteurs");
 		this.theMainWindow = theMainWindow;
-		this.addWindowListener(new EditSectorWindowEventHandler());
+		this.addWindowListener(new WindowEventHandler(this.theMainWindow));
 		this.setTitle("Edit Sector");
 		this.setSize(600, 450);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

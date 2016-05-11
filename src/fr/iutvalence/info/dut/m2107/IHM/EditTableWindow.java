@@ -1,56 +1,13 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.JSplitPane;
-import javax.swing.SpinnerModel;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
-import fr.iutvalence.info.dut.m2107.Main;
-import fr.iutvalence.info.dut.m2107.room.ObjectReadedIsNotARoomException;
-import fr.iutvalence.info.dut.m2107.room.Progress;
-import fr.iutvalence.info.dut.m2107.room.Room;
-import fr.iutvalence.info.dut.m2107.room.Sector;
-import fr.iutvalence.info.dut.m2107.room.SectorNotExistsException;
-import fr.iutvalence.info.dut.m2107.room.State;
-import fr.iutvalence.info.dut.m2107.room.Table;
-import fr.iutvalence.info.dut.m2107.room.TableNotExistsException;
-
-class EditTableWindowEventHandler extends WindowAdapter {
-	public void windowClosing(WindowEvent evt) {
-		MainWindow.editSector.setEnabled(true);
-		MainWindow.editTable.setEnabled(true);
-		MainWindow.checkRoom.setEnabled(true);
-		MainWindow.checkSchedule.setEnabled(true);
-		MainWindow.roomManager.setEnabled(true);
-		MainWindow.close.setEnabled(true);
-	    MainWindow.editTableWindow.setVisible(false);
-	    MainWindow.editTableWindow.R_Area.removeAll();
-	}
-}
+import fr.iutvalence.info.dut.m2107.room.*;
 
 /**
  * TODO
@@ -58,57 +15,69 @@ class EditTableWindowEventHandler extends WindowAdapter {
  *
  */
 @SuppressWarnings("serial")
-public class EditTableWindow extends JFrame {
+public class EditTableWindow extends JFrame implements ActionListener {
 	
 	/**
 	 * Left Area
 	 */
-	public static JPanel L_Area = new JPanel();
+	public JPanel L_Area;
 	/**
 	 * Right Area
 	 */
-	public static JPanel R_Area = new JPanel();
+	public JPanel R_Area;
 	
 	/**
 	 * Buttons
 	 */
-	private static JButton edit = new JButton("Edit Table");
-	private static JButton delete = new JButton("Delete Table");
-	private static JButton add = new JButton("Add Table");
-	private static JButton close = new JButton("close");
+	public JButton edit;
+	public JButton delete;
+	public JButton add;
+	public JButton close;
+	
+	public JButton processAddTable;
+	public JButton processEditTable;
 	
 	/**
 	 * Default menu text
 	 */
-	private static JLabel defaultText = new JLabel("Menu d'édition des tables");
+	public JLabel defaultText;
 	
 	/**
-	 * Add table form
+	 * forms
 	 */
-	public static JSpinner tableNum; 
-	public static JSpinner numOfPlaces; 
-	public static JSpinner posX; 
-	public static JSpinner posY; 
-	public static JSpinner rotation; 
-	public static JComboBox<?> sectorNum;
-	
-	public static JComboBox<Object> comboTables;
-	private static JComboBox<Object> state;
-	private static JComboBox<Object> progress;
+	public JSpinner tableNum; 
+	public JSpinner numOfPlaces; 
+	public JSpinner posX; 
+	public JSpinner posY; 
+	public JSpinner rotation; 
+	public JComboBox<?> comboSectors;
+	public JComboBox<Object> comboTables;
+	public JComboBox<?> state;
+	public JComboBox<?> progress;
+
+	public MainWindow mainWindow;
 	
 	/**
+	 * @param mainWindow 
 	 * 
 	 */
-	public EditTableWindow()
+	public EditTableWindow(MainWindow mainWindow)
 	{		
-		this.addWindowListener(new EditTableWindowEventHandler());
+		this.mainWindow = mainWindow;
+		this.addWindowListener(new WindowEventHandler(this.mainWindow));
 		this.setTitle("Edit Table");
 		this.setSize(600, 450);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		
-		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, EditTableWindow.L_Area, EditTableWindow.R_Area);
+
+		this.L_Area = new JPanel();
+		this.R_Area = new JPanel();
+		
+		this.defaultText = new JLabel("Menu d'édition des tables");
+		
+		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, this.L_Area, this.R_Area);
 		split.setOneTouchExpandable(true);
 		getContentPane().add(split);
 		split.setDividerLocation(120);
@@ -116,20 +85,26 @@ public class EditTableWindow extends JFrame {
 		split.setDividerSize(1);
 
 		GridLayout controlPanel = new GridLayout(4,1);
-		EditTableWindow.L_Area.setLayout(controlPanel);
+		this.L_Area.setLayout(controlPanel);
+
+		this.edit = new JButton("Edit");
+		this.delete = new JButton("Delete");
+		this.add = new JButton("Add");
+		this.close = new JButton("Close");
 		
-		EditTableWindow.L_Area.add(edit);
-		EditTableWindow.L_Area.add(delete);
-		EditTableWindow.L_Area.add(add);
-		EditTableWindow.L_Area.add(close);
+		this.edit.addActionListener(this);
+		this.delete.addActionListener(this);
+		this.add.addActionListener(this);
+		this.close.addActionListener(this);
 		
-		close.addMouseListener(new EditTableWindowCloseButton());
-		add.addMouseListener(new EditTableWindowAddButton());
-		edit.addMouseListener(new EditTableWindowEditButton());
+		this.L_Area.add(edit);
+		this.L_Area.add(delete);
+		this.L_Area.add(add);
+		this.L_Area.add(close);
 		
-		EditTableWindow.R_Area.setLayout(new GridBagLayout());
+		this.R_Area.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		EditTableWindow.R_Area.add(defaultText, gbc);
+		this.R_Area.add(defaultText, gbc);
 		defaultText.setFont(defaultText.getFont().deriveFont(Font.ITALIC, 24.f));
 		
 		this.setVisible(true);
@@ -138,21 +113,21 @@ public class EditTableWindow extends JFrame {
 	/**
 	 * 
 	 */
-	public static void addTableArea() {
-		EditTableWindow.R_Area.removeAll();
+	public void addTableArea() {
+		this.R_Area.removeAll();
 		
 		GridLayout controlPanel = new GridLayout(8,1);
-		EditTableWindow.R_Area.setLayout(controlPanel);
+		this.R_Area.setLayout(controlPanel);
 		
 		JLabel title = new JLabel("Table adding", SwingConstants.CENTER);
 		title.setFont(title.getFont().deriveFont(Font.BOLD, 20.f));
 		
-		EditTableWindow.R_Area.add(title);
+		this.R_Area.add(title);
 		
 		JPanel line = new JPanel();
 		GridLayout lineLayout = new GridLayout(1, 2);
 		line.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line);
+		this.R_Area.add(line);
 		
 		line.add(new JLabel("Table num:"));
 		SpinnerModel spinnerModel =	new SpinnerNumberModel(0, 0, 1000, 1);
@@ -161,16 +136,16 @@ public class EditTableWindow extends JFrame {
 
 		JPanel line2 = new JPanel();
 		line2.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line2);
+		this.R_Area.add(line2);
 		
 		line2.add(new JLabel("Num of places:"));
-		spinnerModel =	new SpinnerNumberModel(2, 2, 6, 2);
+		spinnerModel =	new SpinnerNumberModel(2, 2, 4, 2);
 		numOfPlaces = new JSpinner(spinnerModel);
 		line2.add(numOfPlaces);
 
 		JPanel line3 = new JPanel();
 		line3.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line3);
+		this.R_Area.add(line3);
 		
 		line3.add(new JLabel("X position:"));
 		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
@@ -179,7 +154,7 @@ public class EditTableWindow extends JFrame {
 
 		JPanel line4 = new JPanel();
 		line4.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line4);
+		this.R_Area.add(line4);
 		
 		line4.add(new JLabel("Y position:"));
 		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
@@ -188,7 +163,7 @@ public class EditTableWindow extends JFrame {
 
 		JPanel line5 = new JPanel();
 		line5.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line5);
+		this.R_Area.add(line5);
 		
 		line5.add(new JLabel("Rotation:"));
 		spinnerModel =	new SpinnerNumberModel(0, 0, 3, 1);
@@ -197,101 +172,71 @@ public class EditTableWindow extends JFrame {
 
 		JPanel line6 = new JPanel();
 		line6.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line6);
+		this.R_Area.add(line6);
 
 		line6.add(new JLabel("Sector:"));
-		Room theRoom = null;
-		try {
-			theRoom = Room.loadRoom();
-		} catch (ClassNotFoundException | IOException | ObjectReadedIsNotARoomException e) {
-			System.err.println("Error during loading the room from the last save.");
-		}
-		Map<Integer, Sector> sectors = theRoom.getSectors();
+		Map<Integer, Sector> sectors = this.mainWindow.theRoom.getSectors();
 		Set<Integer> keySet = sectors.keySet();
-		sectorNum = new JComboBox<Object>(keySet.toArray());
-		line6.add(sectorNum);
+		comboSectors = new JComboBox<Object>(keySet.toArray());
+		line6.add(comboSectors);
 
 		JPanel line7 = new JPanel();
 		GridLayout buttonLayout = new GridLayout(1, 2);
 		line7.setLayout(buttonLayout);
-		EditTableWindow.R_Area.add(line7);
+		this.R_Area.add(line7);
 
 		line7.add(new JLabel());
 		line7.add(new JLabel());
-		EditTableWindowPerformAddTableButton theButton = new EditTableWindowPerformAddTableButton("Send");
-		line7.add(theButton);
+		processAddTable = new JButton("Send");
+		processAddTable.addActionListener(this);
+		line7.add(processAddTable);
 		
-		SwingUtilities.updateComponentTreeUI(MainWindow.editTableWindow);
+		SwingUtilities.updateComponentTreeUI(this);
 		
 	}
 	
 	/**
 	 * 
 	 */
-	public static void editTableArea() {
-		EditTableWindow.R_Area.removeAll();
+	public void editTableArea() {
+		this.R_Area.removeAll();
 		
 		GridLayout controlPanel = new GridLayout(11,1);
 		controlPanel.setHgap(10);
 		controlPanel.setVgap(5);
-		EditTableWindow.R_Area.setLayout(controlPanel);
+		this.R_Area.setLayout(controlPanel);
 		
 		JLabel title = new JLabel("Table editing", SwingConstants.CENTER);
 		title.setFont(title.getFont().deriveFont(Font.BOLD, 20.f));
 		
-		EditTableWindow.R_Area.add(title);
+		this.R_Area.add(title);
 
 		JPanel line1 = new JPanel();
 		GridLayout lineLayout = new GridLayout(1, 2);
 		line1.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line1);
+		this.R_Area.add(line1);
 
 		line1.add(new JLabel("Sector:"));
 		
-		Room theRoom = null;
-		try {
-			theRoom = Room.loadRoom();
-		} catch (ClassNotFoundException | IOException | ObjectReadedIsNotARoomException e) {
-			System.err.println("Error during loading the room from the last save.");
-		}
+		Map<Integer, Sector> theSectors = this.mainWindow.theRoom.getSectors();
+		Set<Integer> sectors = new TreeSet<Integer>(this.mainWindow.theRoom.getSectors().keySet());
 		
-		Map<Integer, Sector> theSectors = theRoom.getSectors();
-		Set<Integer> sectors = new TreeSet<Integer>(theRoom.getSectors().keySet());
-		
-		sectorNum = new JComboBox<Object>(sectors.toArray());
+		comboSectors = new JComboBox<Object>(sectors.toArray());
 		/*
 		 * When you select a sector, it updates automatically the tables list
 		 */
-		sectorNum.addActionListener (new ActionListener () {
-			public void actionPerformed(ActionEvent arg0) {
-				Room theRoom = null;
-				try {
-					theRoom = Room.loadRoom();
-				} catch (ClassNotFoundException | IOException | ObjectReadedIsNotARoomException e) {
-					System.err.println("Error during loading the room from the last save.");
-				}
-				Sector theSector = null;
-				try {
-					theSector = theRoom.getSector((int)sectorNum.getSelectedItem());
-				} catch (SectorNotExistsException e) {
-					// ...
-				}
-				Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
-				DefaultComboBoxModel model = new DefaultComboBoxModel(tables.toArray());
-				MainWindow.editTableWindow.comboTables.setModel( model );
-			}
-		});
-		line1.add(sectorNum);
+		comboSectors.addActionListener(this); 
+		line1.add(comboSectors);
 
 		JPanel line2 = new JPanel();
 		line2.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line2);
+		this.R_Area.add(line2);
 
 		line2.add(new JLabel("Table:"));
 		
 		Sector theSector = null;
 		try {
-			theSector = theRoom.getSector((int)sectorNum.getSelectedItem());
+			theSector = this.mainWindow.theRoom.getSector((int)comboSectors.getSelectedItem());
 		} catch (SectorNotExistsException e) {
 			// ...
 		}
@@ -299,43 +244,13 @@ public class EditTableWindow extends JFrame {
 		
 		comboTables = new JComboBox<Object>(tables.toArray());
 		
-		comboTables.addActionListener (new ActionListener () {
-			public void actionPerformed(ActionEvent arg0) {
-				Room theRoom = null;
-				try {
-					theRoom = Room.loadRoom();
-				} catch (ClassNotFoundException | IOException | ObjectReadedIsNotARoomException e) {
-					System.err.println("Error during loading the room from the last save.");
-				}
-				Sector theSector = null;
-				try {
-					theSector = theRoom.getSector((int)sectorNum.getSelectedItem());
-				} catch (SectorNotExistsException e) {
-					// ...
-				}
-				Table theTable = null;
-				try
-				{
-					theTable = theSector.getTable((int)comboTables.getSelectedItem());
-				}
-				catch (TableNotExistsException e)
-				{
-					// ... impossible
-				}
-				numOfPlaces.setValue(theTable.getNumberPlaces());
-				posX.setValue(theTable.getPosition().getX());
-				posY.setValue(theTable.getPosition().getY());
-				rotation.setValue(theTable.getPosition().getRotation());
-				state.setSelectedItem(theTable.getState());
-				progress.setSelectedItem(theTable.getProgress());
-			}
-		});
+		comboTables.addActionListener(this);
 		
 		line2.add(comboTables);
 		
 		JPanel line3 = new JPanel();
 		line3.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line3);
+		this.R_Area.add(line3);
 		
 		line3.add(new JLabel("Num of places:"));
 		SpinnerNumberModel spinnerModel =	new SpinnerNumberModel(2, 2, 6, 2);
@@ -344,7 +259,7 @@ public class EditTableWindow extends JFrame {
 
 		JPanel line4 = new JPanel();
 		line4.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line4);
+		this.R_Area.add(line4);
 		
 		line4.add(new JLabel("X position:"));
 		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
@@ -353,7 +268,7 @@ public class EditTableWindow extends JFrame {
 
 		JPanel line5 = new JPanel();
 		line5.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line5);
+		this.R_Area.add(line5);
 		
 		line5.add(new JLabel("Y position:"));
 		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
@@ -362,7 +277,7 @@ public class EditTableWindow extends JFrame {
 
 		JPanel line6 = new JPanel();
 		line6.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line6);
+		this.R_Area.add(line6);
 		
 		line6.add(new JLabel("Rotation:"));
 		spinnerModel =	new SpinnerNumberModel(0, 0, 3, 1);
@@ -371,16 +286,16 @@ public class EditTableWindow extends JFrame {
 
 		JPanel line7 = new JPanel();
 		line7.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line7);
+		this.R_Area.add(line7);
 		
 		line7.add(new JLabel("State"));
 		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
-		state = new JComboBox<Object>(State.values());
+		this.state = new JComboBox<Object>(State.values());
 		line7.add(state);
 
 		JPanel line9 = new JPanel();
 		line9.setLayout(lineLayout);
-		EditTableWindow.R_Area.add(line9);
+		this.R_Area.add(line9);
 		
 		line9.add(new JLabel("Progress"));
 		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
@@ -390,14 +305,111 @@ public class EditTableWindow extends JFrame {
 		JPanel line10 = new JPanel();
 		GridLayout buttonLayout = new GridLayout(1, 2);
 		line10.setLayout(buttonLayout);
-		EditTableWindow.R_Area.add(line10);
+		this.R_Area.add(line10);
 
 		line10.add(new JLabel());
 		line10.add(new JLabel());
-		EditTableWindowPerformAddTableButton theButton = new EditTableWindowPerformAddTableButton("Send");
-		line10.add(theButton);
+		processEditTable = new JButton("Send");
+		line10.add(processEditTable);
 		
-		SwingUtilities.updateComponentTreeUI(MainWindow.editTableWindow);
+		SwingUtilities.updateComponentTreeUI(this);
 		
+	}
+
+	/**
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	public void actionPerformed(ActionEvent e) {
+		JComponent source = (JComponent) e.getSource();
+		if(source == this.close)
+		{
+			this.mainWindow.editSector.setEnabled(true);
+		    this.mainWindow.editTable.setEnabled(true);
+		    this.mainWindow.checkRoom.setEnabled(true);
+		    this.mainWindow.checkSchedule.setEnabled(true);
+		    this.mainWindow.roomManager.setEnabled(true);
+		    this.mainWindow.close.setEnabled(true);
+		    this.setVisible(false);
+		    this.R_Area.removeAll();
+		}
+		else if(source == this.add)
+		{
+			this.addTableArea();
+		}
+		else if(source == this.edit)
+		{
+			this.editTableArea();
+		}
+		else if(source == this.delete)
+		{
+			
+		}
+		else if(source == this.processAddTable)
+		{
+			int tableNum = (int) this.tableNum.getValue();
+			int numOfPlaces = (int) this.numOfPlaces.getValue();
+			int posX = (int) this.posX.getValue();
+			int posY = (int) this.posY.getValue();
+			int rotation = (int) this.rotation.getValue();
+			int sectorNum = (int) this.comboSectors.getSelectedItem();
+			Table theTable = null;
+			try {
+				theTable = new Table(tableNum, numOfPlaces, new Position(posX, posY, rotation), Progress.NO_PROGRESS, State.FREE);
+			} catch (ClientNameRequiredException e1) {
+					// ...
+			}
+			Room theRoom = null;
+			try {
+				theRoom = Room.loadRoom();
+			} catch (ClassNotFoundException | IOException | ObjectReadedIsNotARoomException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				theRoom.getSector(sectorNum).addTable(theTable);
+				theRoom.saveRoom();
+			} catch (TableAlreadyExistsException | SectorNotExistsException e1) {
+				// TODO 
+			}
+		}
+		else if(source == this.comboSectors)
+		{
+			Sector theSector = null;
+			try {
+				theSector = this.mainWindow.theRoom.getSector((int)comboSectors.getSelectedItem());
+			} catch (SectorNotExistsException e1) {
+				// ...
+			}
+			Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
+			DefaultComboBoxModel model = new DefaultComboBoxModel(tables.toArray());
+			this.comboTables.setModel( model );
+		}
+		else if(source == this.comboTables)
+		{
+			Sector theSector = null;
+			try {
+				theSector = this.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
+			} catch (SectorNotExistsException e1) {
+				// ...
+			}
+			Table theTable = null;
+			try
+			{
+				theTable = theSector.getTable((int)this.comboTables.getSelectedItem());
+			}
+			catch (TableNotExistsException e1)
+			{
+				// ... impossible
+			}
+			numOfPlaces.setValue(theTable.getNumberPlaces());
+			posX.setValue(theTable.getPosition().getX());
+			posY.setValue(theTable.getPosition().getY());
+			rotation.setValue(theTable.getPosition().getRotation());
+			state.setSelectedItem(theTable.getState());
+			progress.setSelectedItem(theTable.getProgress());
+		}
+		else
+		{
+			// nothing
+		}		
 	}
 }

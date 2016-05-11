@@ -1,6 +1,10 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import fr.iutvalence.info.dut.m2107.calendar.Calendar;
+import fr.iutvalence.info.dut.m2107.room.ObjectReadedIsNotARoomException;
 import fr.iutvalence.info.dut.m2107.room.Room;
 
 /**
@@ -16,7 +20,21 @@ public class IHM {
 	 */
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		MainWindow window = new MainWindow(new Room(), new Calendar());
+		try {
+			MainWindow window = new MainWindow(Room.loadRoom(), new Calendar());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ObjectReadedIsNotARoomException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
