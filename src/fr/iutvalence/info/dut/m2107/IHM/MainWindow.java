@@ -1,13 +1,13 @@
 package fr.iutvalence.info.dut.m2107.IHM;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.*;
+
+import fr.iutvalence.info.dut.m2107.calendar.Calendar;
+import fr.iutvalence.info.dut.m2107.room.Room;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * TODO
@@ -15,81 +15,86 @@ import java.io.IOException;
  *
  */
 @SuppressWarnings("serial")
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements ActionListener {
 	
 	/**
 	 * Create left panel for left area of the splitpanel
 	 */
-	public static JPanel leftArea;
+	public JPanel leftArea;
 	
 	/**
 	 * Create left panel for left area of the splitpanel
 	 */
-	public static JPanel rightArea;	
+	public JPanel rightArea;	
 
 	/**
 	 * 
 	 */
-	public static MainWindowEditTableButton editTable = new MainWindowEditTableButton("Edit table");
+	public JButton editTable;
 	
 	/**
 	 * 
 	 */
-	public static MainWindowSectorEditionButton editSector = new MainWindowSectorEditionButton("Sector edition");
+	public JButton editSector;
 
 	/**
 	 * 
 	 */
-	public static JButton checkRoom = new JButton("Check a room");
+	public JButton checkRoom;
 
 	/**
 	 * 
 	 */
-	public static JButton checkSchedule = new JButton("Check a schedule");
+	public JButton checkSchedule;
 
 	/**
 	 * 
 	 */
-	public static JButton roomManager = new JButton("Room manager mod");
+	public JButton roomManager;
 	
 	/**
 	 * 
 	 */
-	public static MainWindowCloseButton close = new MainWindowCloseButton("Close");
+	public JButton close;
 	
 	/**
 	 * 
 	 */
-	public static EditTableWindow editTableWindow;
+	public EditTableWindow editTableWindow;
 	
 	/**
 	 * 
 	 */
-	public static SectorEditionWindow editSectorWindow;
+	public SectorEditionWindow editSectorWindow;
+
+	public Room theRoom;
+
+	public Calendar theCalendar;
+
+	public JPanel sectorOne;
+
+	public JPanel sectorTwo;
+
+	public JPanel sectorThree;
+
+	public JPanel sectorFour;
 		
 	/**
 	 * 
 	 */
-	public MainWindow()
-	{
-		/**
-		 * Init
-		 */
-		this.leftArea = new JPanel();
-		this.rightArea = new JPanel();
-		
-		GridLayout controlGrid = new GridLayout(8,1);
-	
-			/**
-			 * General informations and settings of the window...
-			 * 
-			 */
+	public MainWindow(Room theRoom, Calendar theCalendar)
+	{		
+		this.theRoom = theRoom;
+		this.theCalendar = theCalendar;
 		
 		/**
 		 * Set the title of the window
 		 */
 		this.setTitle("Gestion Resto");
 		
+		/**
+		 * The window isn't resizable
+		 */
 		this.setResizable(false);
 		
 		/**
@@ -108,75 +113,95 @@ public class MainWindow extends JFrame {
 		this.setLocationRelativeTo(null);
 		
 		
+
+		/**
+		 * Init 
+		 */
+		this.leftArea = new JPanel();
+		this.rightArea = new JPanel();
 		
-			/**
-			 * Left Panel informations and settings...
-			 */
+		/**
+		 * left panel edit
+		 */
 		
+		/**
+		 * 
+		 */
+		GridLayout leftPanelControlGrid = new GridLayout(8,1);
+
+		/**
+		 * Create an horizontal and vertical gap of 5 pixels between panel and gridlayout
+		 */
+		leftPanelControlGrid.setHgap(5);
+		leftPanelControlGrid.setVgap(5);
+		
+		/**
+		 * Set gridlayout on the panel "leftArea"
+		 */
+		this.leftArea.setLayout(leftPanelControlGrid);
+		
+		/**
+		 * Left Panel informations and settings...
+		 */
+		
+		/**
+		 * Add the logo
+		 */
 		ImageIcon icon = new ImageIcon("img/logo.png");
 		Image img = icon.getImage();
 		img = img.getScaledInstance(143, 90, Image.SCALE_SMOOTH);
 		icon = new ImageIcon(img);
 		
 		JLabel lab = new JLabel(icon);
-		
-		/**
-		 * Add logo label
-		 */
 		this.leftArea.add(lab);
-
-		/**
-		 * Create an horizontal and vertical gap of 5 pixels between panel and gridlayout
-		 */
-		controlGrid.setHgap(5);
-		controlGrid.setVgap(5);
-		
-		/**
-		 * Set gridlayout on the panel "leftArea"
-		 */
-		this.leftArea.setLayout(controlGrid);
 		
 		/**
 		 * Add "table edition" button
-		 * TODO: transform into menu
 		 */
+		this.editTable = new JButton("Edit Table");
+		this.editTable.addActionListener(this);
 		this.leftArea.add(this.editTable);		
 
 		/**
 		 * Add "sector edition" menu
-		 * TODO: transform into menu
 		 */
+		this.editSector = new JButton("Edit Sector");
+		this.editSector.addActionListener(this);
 		this.leftArea.add(this.editSector);
 		
 		/**
 		 * Add "check a room" button
 		 */
+		this.checkRoom = new JButton("Check the room");
+		this.checkRoom.addActionListener(this);
 		this.leftArea.add(this.checkRoom);
 		
 		/**
 		 * Add "check a schedule" button
 		 */
+		this.checkSchedule = new JButton("Check the Schedule");
+		this.checkSchedule.addActionListener(this);
 		this.leftArea.add(this.checkSchedule);
 		
 		/**
 		 * Add "room manager mod" button
 		 */
+		this.roomManager = new JButton("Room Manager mod");
+		this.roomManager.addActionListener(this);
 		this.leftArea.add(this.roomManager);
 		
 		/**
 		 * Add "quit" button
 		 */
+		this.close = new JButton("Close");
+		this.close.addActionListener(this);
 		this.leftArea.add(this.close);
 		
-			/**
-			 * Right Panel informations and settings...
-			 * 
-			 */
-
+		
 		/**
-		 * Create right panel for right area of the splitpanel
+		 * Right Panel informations and settings...
+		 * 
 		 */
-		JPanel rightArea = new JPanel();
 		
 		/**
 		 * Grid of right area that contains the 4 panels
@@ -192,62 +217,61 @@ public class MainWindow extends JFrame {
 		/**
 		 * Set roomgrid layout on the panel "rightArea"
 		 */
-		rightArea.setLayout(roomGrid);
+		this.rightArea.setLayout(roomGrid);
 		
 		/**
 		 * Add 4 panels that are the 4 sectors that create one room
 		 */
-		JPanel sectorOne = new JPanel();
-		JPanel sectorTwo = new JPanel();
-		JPanel sectorThree = new JPanel();
-		JPanel sectorFour = new JPanel();
+		this.sectorOne = new JPanel();
+		this.sectorTwo = new JPanel();
+		this.sectorThree = new JPanel();
+		this.sectorFour = new JPanel();
 		
 		/**
 		 * Create new border Titled with sector name, 5 black pixel wide
 		 */
-		sectorOne.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 1"));
+		this.sectorOne.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 1"));
 		
 		/**
 		 * Add sector one to rightArea panel
 		 */
-		rightArea.add(sectorOne);
+		this.rightArea.add(sectorOne);
 		
 		/**
 		 * Create new border Titled with sector name, 5 black pixel wide
 		 */
-		sectorTwo.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 2"));
+		this.sectorTwo.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 2"));
 		
 		/**
 		 * Add sector two to rightArea panel
 		 */
-		rightArea.add(sectorTwo);
+		this.rightArea.add(sectorTwo);
 		
 		/**
 		 * Create new border Titled with sector name, 5 black pixel wide
 		 */
-		sectorThree.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 3"));
+		this.sectorThree.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 3"));
 		
 		/**
 		 * Add sector three to rightArea panel
 		 */
-		rightArea.add(sectorThree);
+		this.rightArea.add(sectorThree);
 		
 		/**
 		 * Create new border Titled with sector name, 5 black pixel wide
 		 */
-		sectorFour.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 4"));
+		this.sectorFour.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 4"));
 		
 		/**
 		 * Add sector four to rightArea panel
 		 */
-		rightArea.add(sectorFour);
+		this.rightArea.add(sectorFour);
 		
 		
-		
-			/**
-			 * Splitpane informations and settings...
-			 * 
-			 */
+		/**
+		 * Splitpane informations and settings...
+		 * 
+		 */
 	
 		/**
 		 * Create the splitpane with vertical divider
@@ -285,7 +309,7 @@ public class MainWindow extends JFrame {
 
 		GridLayout sectorOneGrid = new GridLayout(1,3);
 		
-		sectorOne.setLayout(sectorOneGrid);
+		this.sectorOne.setLayout(sectorOneGrid);
 		
 		ImageIcon table = new ImageIcon("img/tableVerteProjet.png");
 		Image img1 = table.getImage();
@@ -295,11 +319,49 @@ public class MainWindow extends JFrame {
 		JLabel t = new JLabel(table);
 		t.setSize(10, 10);
 		
-		sectorOne.add(t);
+		this.sectorOne.add(t);
 		
 		
 		this.setVisible(true);
 	}
-	
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JComponent source = (JComponent) e.getSource();
+		if(source == this.close)
+		{
+			System.exit(0);
+		}
+		else if(source == this.editTable)
+		{
+			if(this.editTable.isEnabled())
+			{
+				this.editTableWindow = new EditTableWindow(this);
+				this.editTable.setEnabled(false);
+				this.editSector.setEnabled(false);
+				this.checkRoom.setEnabled(false);
+				this.checkSchedule.setEnabled(false);
+				this.roomManager.setEnabled(false);
+				this.close.setEnabled(false);
+			}	
+		}
+		else if(source == this.editSector)
+		{
+			if(this.editSector.isEnabled())
+			{
+				this.editSectorWindow = new SectorEditionWindow(this);
+				this.editTable.setEnabled(false);
+				this.editSector.setEnabled(false);
+				this.checkRoom.setEnabled(false);
+				this.checkSchedule.setEnabled(false);
+				this.roomManager.setEnabled(false);
+				this.close.setEnabled(false);
+			}				
+		}
+		else
+		{
+			// TODO
+		}
+		
+	}
 }
