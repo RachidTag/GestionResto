@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Represent the position of a table in a sector
  * @author Projet Resto
  */
-public class Position implements Serializable {
+public class Position implements Serializable, Comparable {
 	/**
 	 * 
 	 */
@@ -76,6 +76,45 @@ public class Position implements Serializable {
 	 */
 	public void setRotation(int rotation) {
 		this.rotation = rotation;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + x;
+		result = prime * result + y;
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Position other = (Position) obj;
+		if (x != other.x)
+			return false;
+		if (y != other.y)
+			return false;
+		return true;
+	}
+	
+	@Override
+	public int compareTo(Object o) {
+		if (getClass() != o.getClass())
+			return 1;
+		Position other = (Position) o;
+		
+		if (this.y < other.y) return -1;
+		if (this.y > other.y) return 1;
+		if (this.x < other.x) return -1;
+		if (this.x > other.x) return 1;
+		
+		return 0;
 	}
 	
 }

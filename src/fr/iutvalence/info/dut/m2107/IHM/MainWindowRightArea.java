@@ -3,6 +3,8 @@ package fr.iutvalence.info.dut.m2107.IHM;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -10,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+
+import fr.iutvalence.info.dut.m2107.room.Position;
+import fr.iutvalence.info.dut.m2107.room.Table;
 
 /**
  * @author TODO
@@ -116,7 +121,7 @@ public class MainWindowRightArea extends JPanel{
 	}
 	
 	public void refreshSectors() {
-		GridLayout sectorsGrid = new GridLayout(10,10);
+		GridLayout sectorsGrid = new GridLayout(2,2);
 
 		this.sectorOne.setLayout(sectorsGrid);
 		this.sectorTwo.setLayout(sectorsGrid);
@@ -130,14 +135,33 @@ public class MainWindowRightArea extends JPanel{
 		 * Ensuite on parcours ces tableaux dans l'ordre des coordonnées et si pour les coordonnées données il y a une table on l'ajoute au pannel
 		 * si non on ajoute le vide #le néantBgJtm
 		 */
-		ImageIcon table = new ImageIcon("img/tableVerteProjet.png");
-		Image img1 = table.getImage();
-		img1 = img1.getScaledInstance(100, 75, Image.SCALE_SMOOTH);
-		table = new ImageIcon(img1);
 		
-		JLabel t = new JLabel(table);
-		t.setSize(10, 10);
+		ImageIcon imgT = new ImageIcon("img/tableVerteProjet.png");
+		Image img1 = imgT.getImage();
+		img1 = img1.getScaledInstance(100, 75, Image.SCALE_SMOOTH);
+		imgT= new ImageIcon(img1);
+		
+		JLabel t = new JLabel(imgT);
+		t.setSize(10, 10);	
+		
+		Table t1 = new Table(1 , 4 , new Position(1,1, 2), "Claude");
+		Table t2 = new Table(2 , 4 , new Position(1,2, 2), "Micka");
+		Table t3 = new Table(3 , 4 , new Position(2,1, 2), "Alfred");
+		Table t4 = new Table(4 , 4 , new Position(2,2, 2), "Florent");
+		
+		Set<Position> table = new TreeSet<Position>();
+		 
+		table.add(t1.getPosition());
+		table.add(t2.getPosition());
+		table.add(t3.getPosition());
+		table.add(t4.getPosition());
+		
+		Position[] positions = table.toArray(new Position[1]);
+		
+		Position first = positions[0];
+		
 		
 		this.sectorOne.add(t);
+		
 	}
 }
