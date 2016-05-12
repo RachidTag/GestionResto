@@ -4,8 +4,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
- * 
- * @author TODO
+ * Represents the events in the window
+ * @author Projet Resto
  *
  */
 class WindowEventHandler extends WindowAdapter {
