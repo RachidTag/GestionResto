@@ -56,6 +56,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 	public JComboBox<?> progress;
 
 	public MainWindow mainWindow;
+	private JButton processDeleteTable;
 	
 	/**
 	 * @param mainWindow 
@@ -315,6 +316,70 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		SwingUtilities.updateComponentTreeUI(this);
 		
 	}
+	
+	/**
+	  * Delete a table
+	  * @author Théo
+	  */
+	 public void deleteTable(){
+	  this.R_Area.removeAll();
+	  
+	  GridLayout controlPanel = new GridLayout(4,1);
+	  controlPanel.setHgap(10);
+	  controlPanel.setVgap(5);
+	  this.R_Area.setLayout(controlPanel);
+	  
+	  JLabel title = new JLabel("Table deleting", SwingConstants.CENTER);
+	  title.setFont(title.getFont().deriveFont(Font.BOLD, 20.f));
+	  
+	  this.R_Area.add(title);
+	 
+	  JPanel line1 = new JPanel();
+	  GridLayout lineLayout = new GridLayout(1,2);
+	  line1.setLayout(lineLayout);
+	  this.R_Area.add(line1);
+	  
+	  line1.add(new JLabel("Sector"));
+	  
+	  Map<Integer, Sector> theSectors = this.mainWindow.theRoom.getSectors();
+	  Set<Integer> sectors = new TreeSet<Integer>(this.mainWindow.theRoom.getSectors().keySet());
+	  
+	  comboSectors = new JComboBox<Object>(sectors.toArray());
+	  comboSectors.addActionListener(this);
+	  line1.add(comboSectors);
+	  
+	  JPanel line2 = new JPanel();
+	  line2.setLayout(lineLayout);
+	  this.R_Area.add(line2);
+	  
+	  line2.add(new JLabel("Table"));
+	  
+	  Sector theSector = null;
+	  try {
+	   theSector = this.mainWindow.theRoom.getSector((int)comboSectors.getSelectedItem());
+	  } catch (SectorNotExistsException e) {
+	   // ...
+	  }
+	  Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
+	  
+	  comboTables = new JComboBox<Object>(tables.toArray());
+	  
+	  comboTables.addActionListener(this);
+	  
+	  line2.add(comboTables);
+	  
+	  JPanel line3 = new JPanel();
+	  GridLayout buttonLayout = new GridLayout(1, 2);
+	  line3.setLayout(buttonLayout);
+	  this.R_Area.add(line3);
+
+	  line3.add(new JLabel());
+	  line3.add(new JLabel());
+	  processDeleteTable = new JButton("Delete");
+	  line3.add(processDeleteTable);
+	  
+	  SwingUtilities.updateComponentTreeUI(this);
+	 }
 
 	/**
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
@@ -342,7 +407,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		}
 		else if(source == this.delete)
 		{
-			
+			this.deleteTable();
 		}
 		else if(source == this.processAddTable)
 		{
