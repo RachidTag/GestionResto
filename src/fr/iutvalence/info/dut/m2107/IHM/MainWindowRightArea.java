@@ -42,6 +42,7 @@ public class MainWindowRightArea extends JPanel{
 	public JPanel sectorFour;
 
 	/**
+	 * TODO
 	 * @param mainWindow
 	 */
 	public MainWindowRightArea(MainWindow mainWindow){
@@ -113,11 +114,22 @@ public class MainWindowRightArea extends JPanel{
 		 * Add sector four to rightArea panel
 		 */
 		this.add(sectorFour);
+		
+		this.refreshSectors();
 	}
 	
+	/**
+	 * TODO
+	 */
 	public void refreshSectors() {
+		/*
+		 * Creates the layout of the sectors
+		 */
 		GridLayout sectorsGrid = new GridLayout(10,10);
-
+		
+		/*
+		 * Apply the layout
+		 */
 		this.sectorOne.setLayout(sectorsGrid);
 		this.sectorTwo.setLayout(sectorsGrid);
 		this.sectorThree.setLayout(sectorsGrid);
