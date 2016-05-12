@@ -35,6 +35,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 	public JButton close;
 	
 	public JButton processAddTable;
+	private JButton processDeleteTable;
 	public JButton processEditTable;
 	
 	/**
@@ -51,11 +52,14 @@ public class EditTableWindow extends JFrame implements ActionListener {
 	public JSpinner posY; 
 	public JSpinner rotation; 
 	public JComboBox<?> comboSectors;
+	public JComboBox<?> comboSectorsDelete;
 	public JComboBox<Object> comboTables;
+	public JComboBox<Object> comboTablesDelete;
 	public JComboBox<?> state;
 	public JComboBox<?> progress;
 
 	public MainWindow mainWindow;
+	
 	
 	/**
 	 * @param mainWindow 
@@ -310,11 +314,77 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		line10.add(new JLabel());
 		line10.add(new JLabel());
 		processEditTable = new JButton("Send");
+		 processEditTable.addActionListener(this);
 		line10.add(processEditTable);
 		
 		SwingUtilities.updateComponentTreeUI(this);
 		
 	}
+	
+	/**
+	  * Delete a table
+	  * @author Théo
+	  */
+	 public void deleteTable(){
+	  this.R_Area.removeAll();
+	  
+	  GridLayout controlPanel = new GridLayout(4,1);
+	  controlPanel.setHgap(10);
+	  controlPanel.setVgap(5);
+	  this.R_Area.setLayout(controlPanel);
+	  
+	  JLabel title = new JLabel("Table deleting", SwingConstants.CENTER);
+	  title.setFont(title.getFont().deriveFont(Font.BOLD, 20.f));
+	  
+	  this.R_Area.add(title);
+	 
+	  JPanel line1 = new JPanel();
+	  GridLayout lineLayout = new GridLayout(1,2);
+	  line1.setLayout(lineLayout);
+	  this.R_Area.add(line1);
+	  
+	  line1.add(new JLabel("Sector"));
+	  
+	  Map<Integer, Sector> theSectors = this.mainWindow.theRoom.getSectors();
+	  Set<Integer> sectors = new TreeSet<Integer>(this.mainWindow.theRoom.getSectors().keySet());
+	  
+	  comboSectorsDelete = new JComboBox<Object>(sectors.toArray());
+	  comboSectorsDelete.addActionListener(this);
+	  line1.add(comboSectorsDelete);
+	  
+	  JPanel line2 = new JPanel();
+	  line2.setLayout(lineLayout);
+	  this.R_Area.add(line2);
+	  
+	  line2.add(new JLabel("Table"));
+	  
+	  Sector theSector = null;
+	  try {
+	   theSector = this.mainWindow.theRoom.getSector((int)comboSectorsDelete.getSelectedItem());
+	  } catch (SectorNotExistsException e) {
+	   // ...
+	  }
+	  Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
+	  
+	  comboTablesDelete = new JComboBox<Object>(tables.toArray());
+	  
+	  comboTablesDelete.addActionListener(this);
+	  
+	  line2.add(comboTablesDelete);
+	  
+	  JPanel line3 = new JPanel();
+	  GridLayout buttonLayout = new GridLayout(1, 2);
+	  line3.setLayout(buttonLayout);
+	  this.R_Area.add(line3);
+
+	  line3.add(new JLabel());
+	  line3.add(new JLabel());
+	  processDeleteTable = new JButton("Delete");
+	  processDeleteTable.addActionListener(this);
+	  line3.add(processDeleteTable);
+	  
+	  SwingUtilities.updateComponentTreeUI(this);
+	 }
 
 	/**
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
@@ -342,7 +412,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		}
 		else if(source == this.delete)
 		{
-			
+			this.deleteTable();
 		}
 		else if(source == this.processAddTable)
 		{
@@ -371,6 +441,18 @@ public class EditTableWindow extends JFrame implements ActionListener {
 				// TODO 
 			}
 		}
+		else if(source == this.comboSectorsDelete)
+		{
+			Sector theSector = null;
+			try {
+				theSector = this.mainWindow.theRoom.getSector((int)comboSectorsDelete.getSelectedItem());
+			} catch (SectorNotExistsException e1) {
+				// ...
+			}
+			Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
+			DefaultComboBoxModel model = new DefaultComboBoxModel(tables.toArray());
+			this.comboTablesDelete.setModel( model );
+		}
 		else if(source == this.comboSectors)
 		{
 			Sector theSector = null;
@@ -382,6 +464,24 @@ public class EditTableWindow extends JFrame implements ActionListener {
 			Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
 			DefaultComboBoxModel model = new DefaultComboBoxModel(tables.toArray());
 			this.comboTables.setModel( model );
+		}
+		else if(source == this.comboTablesDelete)
+		{
+			Sector theSector = null;
+			try {
+				theSector = this.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
+			} catch (SectorNotExistsException e1) {
+				// ...
+			}
+			Table theTable = null;
+			try
+			{
+				theTable = theSector.getTable((int)this.comboTables.getSelectedItem());
+			}
+			catch (TableNotExistsException e1)
+			{
+				// ... impossible
+			}
 		}
 		else if(source == this.comboTables)
 		{
@@ -407,9 +507,49 @@ public class EditTableWindow extends JFrame implements ActionListener {
 			state.setSelectedItem(theTable.getState());
 			progress.setSelectedItem(theTable.getProgress());
 		}
+		else if(source == this.processDeleteTable)
+		{
+			// Prevent Message
+			int response = JOptionPane.showConfirmDialog(null, "Do you wish to delete this table?", "Confirm",
+			        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			if (response == JOptionPane.YES_OPTION) {
+			int action =0;
+				// Deleting
+				Sector theSector = null;
+				Table theTable = null;
+				try {
+					theSector = this.mainWindow.theRoom.getSector((int)this.comboSectorsDelete.getSelectedItem());
+					action++;
+				} catch (SectorNotExistsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					theTable = theSector.getTable((int)this.comboTablesDelete.getSelectedItem());
+					action++;
+				} catch (TableNotExistsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					theSector.removeTable(theTable.getNumTable());
+					action++;
+				} catch (TableNotExistsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				if(action == 3) JOptionPane.showMessageDialog(null, "The table has been correctly deleted");
+				else JOptionPane.showMessageDialog(null, "The table has not been correctly deleted!");
+				this.deleteTable();
+			}
+		}
+		else if(source == processEditTable)
+		{
+			//TODO
+		}
 		else
 		{
-			// nothing
-		}		
+			//smth
+		}
 	}
 }

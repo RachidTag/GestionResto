@@ -167,6 +167,7 @@ public class Table implements Serializable
 		result = prime * result + this.numTable;
 		return result;
 	}
+	
 
 	/**
 	 * @see java.lang.Object#equals(java.lang.Object)

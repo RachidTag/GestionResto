@@ -103,8 +103,6 @@ public class MainWindow extends JFrame {
 		 */
 		this.getContentPane().add(splitPane);
 		
-		rightArea.refreshSectors();
-		
 		/*
 		 * Set the result visible
 		 */
