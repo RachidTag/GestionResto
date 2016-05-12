@@ -66,7 +66,11 @@ public class MainWindow extends JFrame implements ActionListener {
 	 * 
 	 */
 	public SectorEditionWindow editSectorWindow;
-
+	
+	/**
+	 * 
+	 */
+	
 	public Room theRoom;
 
 	public Calendar theCalendar;
@@ -330,7 +334,12 @@ public class MainWindow extends JFrame implements ActionListener {
 		JComponent source = (JComponent) e.getSource();
 		if(source == this.close)
 		{
-			System.exit(0);
+			int response = JOptionPane.showConfirmDialog(null, "Do you wish to close the application?", "Confirm",
+			        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (response == JOptionPane.YES_OPTION) {
+			    	System.exit(0);
+			    }
+			
 		}
 		else if(source == this.editTable)
 		{
