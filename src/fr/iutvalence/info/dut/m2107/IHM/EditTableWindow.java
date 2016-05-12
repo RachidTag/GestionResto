@@ -507,6 +507,8 @@ public class EditTableWindow extends JFrame implements ActionListener {
 					e1.printStackTrace();
 				}
 				if(action == 3) JOptionPane.showMessageDialog(null, "The table has been correctly deleted");
+				
+				this.deleteTable();
 			}
 		}
 		else if(source == processEditTable)
