@@ -11,13 +11,22 @@ class WindowEventHandler extends WindowAdapter {
 		this.mainWindow = mainWindow;
 	}
 	public void windowClosing(WindowEvent evt) {
-		this.mainWindow.editSector.setEnabled(true);
-		this.mainWindow.editTable.setEnabled(true);
-		this.mainWindow.checkRoom.setEnabled(true);
-		this.mainWindow.checkSchedule.setEnabled(true);
-		this.mainWindow.roomManager.setEnabled(true);
-		this.mainWindow.close.setEnabled(true);
-		this.mainWindow.editTableWindow.setVisible(false);
-		this.mainWindow.editTableWindow.R_Area.removeAll();
+		this.mainWindow.leftArea.editSector.setEnabled(true);
+		this.mainWindow.leftArea.editTable.setEnabled(true);
+		this.mainWindow.leftArea.checkRoom.setEnabled(true);
+		this.mainWindow.leftArea.checkSchedule.setEnabled(true);
+		this.mainWindow.leftArea.roomManager.setEnabled(true);
+		this.mainWindow.leftArea.close.setEnabled(true);
+		// TODO add all windows
+		if(this.mainWindow.editSectorWindow != null && this.mainWindow.editSectorWindow.isVisible())
+		{
+			this.mainWindow.editSectorWindow.R_Area.removeAll();
+			this.mainWindow.editSectorWindow.setVisible(false);
+		}
+		if(this.mainWindow.editTableWindow != null && this.mainWindow.editTableWindow.isVisible())
+		{
+			this.mainWindow.editTableWindow.R_Area.removeAll();
+			this.mainWindow.editTableWindow.setVisible(false);
+		}
 	}
 }

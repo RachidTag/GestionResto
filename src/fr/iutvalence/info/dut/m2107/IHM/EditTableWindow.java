@@ -323,12 +323,12 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		JComponent source = (JComponent) e.getSource();
 		if(source == this.close)
 		{
-			this.mainWindow.editSector.setEnabled(true);
-		    this.mainWindow.editTable.setEnabled(true);
-		    this.mainWindow.checkRoom.setEnabled(true);
-		    this.mainWindow.checkSchedule.setEnabled(true);
-		    this.mainWindow.roomManager.setEnabled(true);
-		    this.mainWindow.close.setEnabled(true);
+			this.mainWindow.leftArea.editSector.setEnabled(true);
+		    this.mainWindow.leftArea.editTable.setEnabled(true);
+		    this.mainWindow.leftArea.checkRoom.setEnabled(true);
+		    this.mainWindow.leftArea.checkSchedule.setEnabled(true);
+		    this.mainWindow.leftArea.roomManager.setEnabled(true);
+		    this.mainWindow.leftArea.close.setEnabled(true);
 		    this.setVisible(false);
 		    this.R_Area.removeAll();
 		}

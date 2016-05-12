@@ -16,19 +16,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
-class EditSectorWindowEventHandler extends WindowAdapter {
-	public void windowClosing(WindowEvent evt) {
-//		MainWindow.editSector.setEnabled(true);
-//		MainWindow.editTable.setEnabled(true);
-//		MainWindow.checkRoom.setEnabled(true);
-//		MainWindow.checkSchedule.setEnabled(true);
-//		MainWindow.roomManager.setEnabled(true);
-//		MainWindow.close.setEnabled(true);
-//	    MainWindow.editSectorWindow.setVisible(false);
-//	    MainWindow.editSectorWindow.R_Area.removeAll();
-	}
-}
-
+/**
+ * @author TODO
+ *
+ */
 public class SectorEditionWindow extends JFrame implements ActionListener {
 		
 	public JPanel L_Area = new JPanel();
@@ -41,13 +32,13 @@ public class SectorEditionWindow extends JFrame implements ActionListener {
 	
 	public JLabel defaultText;
 
-	public MainWindow theMainWindow;
+	public MainWindow mainWindow;
 	
 	public SectorEditionWindow(MainWindow theMainWindow)
 	{	
 		this.defaultText = new JLabel("Menu d'édition des secteurs");
-		this.theMainWindow = theMainWindow;
-		this.addWindowListener(new WindowEventHandler(this.theMainWindow));
+		this.mainWindow = theMainWindow;
+		this.addWindowListener(new WindowEventHandler(this.mainWindow));
 		this.setTitle("Edit Sector");
 		this.setSize(600, 450);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -86,12 +77,12 @@ public class SectorEditionWindow extends JFrame implements ActionListener {
 		JComponent source = (JComponent) e.getSource();
 		if(source == this.close)
 		{
-			this.theMainWindow.editSector.setEnabled(true);
-		    this.theMainWindow.editTable.setEnabled(true);
-		    this.theMainWindow.checkRoom.setEnabled(true);
-		    this.theMainWindow.checkSchedule.setEnabled(true);
-		    this.theMainWindow.roomManager.setEnabled(true);
-		    this.theMainWindow.close.setEnabled(true);
+			this.mainWindow.leftArea.editSector.setEnabled(true);
+		    this.mainWindow.leftArea.editTable.setEnabled(true);
+		    this.mainWindow.leftArea.checkRoom.setEnabled(true);
+		    this.mainWindow.leftArea.checkSchedule.setEnabled(true);
+		    this.mainWindow.leftArea.roomManager.setEnabled(true);
+		    this.mainWindow.leftArea.close.setEnabled(true);
 		    this.setVisible(false);
 		    this.R_Area.removeAll();
 		}
