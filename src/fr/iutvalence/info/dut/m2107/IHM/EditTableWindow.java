@@ -35,6 +35,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 	public JButton close;
 	
 	public JButton processAddTable;
+	private JButton processDeleteTable;
 	public JButton processEditTable;
 	
 	/**
@@ -56,7 +57,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 	public JComboBox<?> progress;
 
 	public MainWindow mainWindow;
-	private JButton processDeleteTable;
+	
 	
 	/**
 	 * @param mainWindow 
@@ -472,9 +473,43 @@ public class EditTableWindow extends JFrame implements ActionListener {
 			state.setSelectedItem(theTable.getState());
 			progress.setSelectedItem(theTable.getProgress());
 		}
+		else if(source == this.processDeleteTable)
+		{
+			// Prevent Message
+			int response = JOptionPane.showConfirmDialog(null, "Do you wish to delete this table?", "Confirm",
+			        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			if (response == JOptionPane.YES_OPTION) {
+			
+				// Deleting
+				Sector theSector = null;
+				Table theTable = null;
+				try {
+					theSector = this.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
+				} catch (SectorNotExistsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					theTable = theSector.getTable((int)this.comboTables.getSelectedItem());
+				} catch (TableNotExistsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					theSector.removeTable(theTable.getNumTable());
+				} catch (TableNotExistsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
+		else if(source == processEditTable)
+		{
+			//TODO
+		}
 		else
 		{
-			// nothing
-		}		
+			//smth
+		}
 	}
 }
