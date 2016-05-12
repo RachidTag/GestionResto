@@ -55,16 +55,6 @@ public class SectorEditionWindow extends JFrame {
 		this.setResizable(false);
 		
 		/*
-		 * Split the SectorEditionWindow in two parts
-		 */
-		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, this.L_Area, this.R_Area);
-		split.setOneTouchExpandable(true);
-		split.setDividerLocation(120);
-		split.setEnabled(false);
-		split.setDividerSize(1);
-		this.getContentPane().add(split);
-		
-		/*
 		 * Generates the L_Area
 		 */
 		this.L_Area = new EditSectorWindowLeftArea(this);
@@ -73,6 +63,16 @@ public class SectorEditionWindow extends JFrame {
 		 * Generates the R_Area
 		 */
 		this.R_Area = new EditSectorWindowRightArea(this);
+		
+		/*
+		 * Split the SectorEditionWindow in two parts
+		 */
+		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, this.L_Area, this.R_Area);
+		split.setOneTouchExpandable(true);
+		split.setDividerLocation(120);
+		split.setEnabled(false);
+		split.setDividerSize(1);
+		this.getContentPane().add(split);
 		
 		this.setVisible(true);
 	}
