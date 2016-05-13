@@ -65,6 +65,7 @@ public class MainWindow extends JFrame {
 		/*
 		 * Main informations of the window
 		 */
+		this.addWindowListener(new MainWindowEventHandler(this));
 		this.setTitle("Gestion Resto");
 		this.setResizable(false);
 		this.setSize(1200, 720);
