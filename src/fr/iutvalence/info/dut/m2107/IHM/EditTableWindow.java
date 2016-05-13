@@ -298,6 +298,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		line7.add(new JLabel("State"));
 		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
 		this.state = new JComboBox<Object>(State.values());
+		this.state.addActionListener(this);
 		line7.add(state);
 		
 		JPanel line8 = new JPanel();
@@ -306,10 +307,9 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		
 		line8.add(new JLabel("Client Name"));
 		this.clientName = new JTextField();
+		this.clientName.disable();
 		this.R_Area.add(line8);
 		line8.add(clientName);
-		
-		line8.setVisible(false);
 
 		JPanel line9 = new JPanel();
 		line9.setLayout(lineLayout);
@@ -442,15 +442,10 @@ public class EditTableWindow extends JFrame implements ActionListener {
 			} catch (ClientNameRequiredException e1) {
 					// ...
 			}
-			Room theRoom = null;
+			
 			try {
-				theRoom = Room.loadRoom();
-			} catch (ClassNotFoundException | IOException | ObjectReadedIsNotARoomException e1) {
-				e1.printStackTrace();
-			}
-			try {
-				theRoom.getSector(sectorNum).addTable(theTable);
-				theRoom.saveRoom();
+				this.mainWindow.theRoom.getSector(sectorNum).addTable(theTable);
+				this.mainWindow.rightArea.refreshSectors();
 			} catch (TableAlreadyExistsException | SectorNotExistsException e1) {
 				// TODO 
 			}
@@ -503,7 +498,38 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		}
 		else if(source == this.comboTablesEdit)
 		{
-			//TODO
+			Sector theSector = null;
+			try {
+				theSector = this.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
+			} catch (SectorNotExistsException e1) {
+				// ...
+			}
+			Table theTable = null;
+			try
+			{
+				theTable = theSector.getTable((int)this.comboTables.getSelectedItem());
+			}
+			catch (TableNotExistsException e1)
+			{
+				// ... impossible
+			}
+			numOfPlaces.setValue(theTable.getNumberPlaces());
+			posX.setValue(theTable.getPosition().getX());
+			posY.setValue(theTable.getPosition().getY());
+			rotation.setValue(theTable.getPosition().getRotation());
+			state.setSelectedItem(theTable.getState());
+			progress.setSelectedItem(theTable.getProgress());
+			if(theTable.getState() == State.RESERVED)
+				this.clientName.enable();
+			else
+				this.clientName.disable();
+		}
+		else if(source == this.state)
+		{
+			if(this.state.getSelectedItem() == State.RESERVED)
+				this.clientName.enable();
+			else
+				this.clientName.disable();
 		}
 		else if(source == this.comboTables)
 		{
@@ -560,7 +586,11 @@ public class EditTableWindow extends JFrame implements ActionListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				if(action == 3) JOptionPane.showMessageDialog(null, "The table has been correctly deleted");
+				if(action == 3) 
+				{
+					JOptionPane.showMessageDialog(null, "The table has been correctly deleted");
+					this.mainWindow.rightArea.refreshSectors();
+				}
 				else JOptionPane.showMessageDialog(null, "The table has not been correctly deleted!");
 				this.deleteTable();
 			}
