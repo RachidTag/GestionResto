@@ -57,6 +57,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 	public JComboBox<Object> comboTablesDelete;
 	public JComboBox<?> state;
 	public JComboBox<?> progress;
+	public JTextField clientName;
 
 	public MainWindow mainWindow;
 	
@@ -152,7 +153,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		this.R_Area.add(line3);
 		
 		line3.add(new JLabel("X position:"));
-		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
+		spinnerModel =	new SpinnerNumberModel(0, 0, 3, 1);
 		posX = new JSpinner(spinnerModel);
 		line3.add(posX);
 
@@ -161,7 +162,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		this.R_Area.add(line4);
 		
 		line4.add(new JLabel("Y position:"));
-		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
+		spinnerModel =	new SpinnerNumberModel(0, 0, 3, 1);
 		posY = new JSpinner(spinnerModel);
 		line4.add(posY);
 
@@ -205,7 +206,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 	public void editTableArea() {
 		this.R_Area.removeAll();
 		
-		GridLayout controlPanel = new GridLayout(11,1);
+		GridLayout controlPanel = new GridLayout(12,1);
 		controlPanel.setHgap(10);
 		controlPanel.setVgap(5);
 		this.R_Area.setLayout(controlPanel);
@@ -266,7 +267,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		this.R_Area.add(line4);
 		
 		line4.add(new JLabel("X position:"));
-		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
+		spinnerModel =	new SpinnerNumberModel(0, 0, 3, 1);
 		posX = new JSpinner(spinnerModel);
 		line4.add(posX);
 
@@ -275,7 +276,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		this.R_Area.add(line5);
 		
 		line5.add(new JLabel("Y position:"));
-		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
+		spinnerModel =	new SpinnerNumberModel(0, 0, 3, 1);
 		posY = new JSpinner(spinnerModel);
 		line5.add(posY);
 
@@ -284,7 +285,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		this.R_Area.add(line6);
 		
 		line6.add(new JLabel("Rotation:"));
-		spinnerModel =	new SpinnerNumberModel(0, 0, 3, 1);
+		spinnerModel =	new SpinnerNumberModel(1, 1, 2, 1);
 		rotation = new JSpinner(spinnerModel);
 		line6.add(rotation);
 
@@ -296,6 +297,14 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		spinnerModel =	new SpinnerNumberModel(0, 0, 100, 1);
 		this.state = new JComboBox<Object>(State.values());
 		line7.add(state);
+		
+		JPanel line8 = new JPanel();
+		line8.setLayout(lineLayout);
+		this.R_Area.add(line8);
+		
+		line8.add(new JLabel("Client Name"));
+		
+		
 
 		JPanel line9 = new JPanel();
 		line9.setLayout(lineLayout);
@@ -545,7 +554,45 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		}
 		else if(source == processEditTable)
 		{
-			//TODO
+			int numSector = (int) this.comboTables.getSelectedItem();
+			int numTable = (int) this.comboSectors.getSelectedItem();
+			int numOfPlaces = (int) this.numOfPlaces.getValue();
+			int posX = (int) this.posX.getValue();
+			int posY = (int) this.posY.getValue();
+			int rotation = (int) this.rotation.getValue();
+			Position positionTable = new Position(posX,posY,rotation);
+			State tableState = (State) this.state.getSelectedItem();
+			Progress tableProgress = (Progress) this.progress.getSelectedItem();
+			
+			Sector theSector = null;
+			Table theTable = null;
+			try {
+				theSector = this.mainWindow.theRoom.getSector(numSector);
+			} catch (SectorNotExistsException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				theTable = theSector.getTable(numTable);
+			} catch (TableNotExistsException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			if(tableState != State.RESERVED)
+			{
+				try {
+					theTable = new Table(numTable, numOfPlaces, positionTable, tableProgress, tableState);
+				} catch (ClientNameRequiredException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			else 
+			{
+				//theTable = new Table(numTable, numOfPlaces, positionTable, clientName);
+			}
+			
 		}
 		else
 		{
