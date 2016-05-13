@@ -228,12 +228,12 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		Map<Integer, Sector> theSectors = this.mainWindow.theRoom.getSectors();
 		Set<Integer> sectors = new TreeSet<Integer>(this.mainWindow.theRoom.getSectors().keySet());
 		
-		comboSectors = new JComboBox<Object>(sectors.toArray());
+		comboSectorsEdit = new JComboBox<Object>(sectors.toArray());
 		/*
 		 * When you select a sector, it updates automatically the tables list
 		 */
-		comboSectors.addActionListener(this); 
-		line1.add(comboSectors);
+		comboSectorsEdit.addActionListener(this); 
+		line1.add(comboSectorsEdit);
 
 		JPanel line2 = new JPanel();
 		line2.setLayout(lineLayout);
@@ -243,17 +243,17 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		
 		Sector theSector = null;
 		try {
-			theSector = this.mainWindow.theRoom.getSector((int)comboSectors.getSelectedItem());
+			theSector = this.mainWindow.theRoom.getSector((int)comboSectorsEdit.getSelectedItem());
 		} catch (SectorNotExistsException e) {
 			// ...
 		}
 		Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
 		
-		comboTables = new JComboBox<Object>(tables.toArray());
+		comboTablesEdit = new JComboBox<Object>(tables.toArray());
 		
-		comboTables.addActionListener(this);
+		comboTablesEdit.addActionListener(this);
 		
-		line2.add(comboTables);
+		line2.add(comboTablesEdit);
 		
 		JPanel line3 = new JPanel();
 		line3.setLayout(lineLayout);
@@ -339,7 +339,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 	  * Delete a table
 	  * @author Théo
 	  */
-	 public void deleteTable(){
+	 public void deleteTableArea(){
 	  this.R_Area.removeAll();
 	  
 	  GridLayout controlPanel = new GridLayout(4,1);
@@ -426,7 +426,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		}
 		else if(source == this.delete)
 		{
-			this.deleteTable();
+			this.deleteTableArea();
 		}
 		else if(source == this.processAddTable)
 		{
@@ -482,14 +482,14 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		{
 			Sector theSector = null;
 			try {
-				theSector = this.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
+				theSector = this.mainWindow.theRoom.getSector((int)this.comboSectorsDelete.getSelectedItem());
 			} catch (SectorNotExistsException e1) {
 				// ...
 			}
 			Table theTable = null;
 			try
 			{
-				theTable = theSector.getTable((int)this.comboTables.getSelectedItem());
+				theTable = theSector.getTable((int)this.comboTablesDelete.getSelectedItem());
 			}
 			catch (TableNotExistsException e1)
 			{
@@ -592,7 +592,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 					this.mainWindow.rightArea.refreshSectors();
 				}
 				else JOptionPane.showMessageDialog(null, "The table has not been correctly deleted!");
-				this.deleteTable();
+				this.deleteTableArea();
 			}
 		}
 		else if(source == processEditTable)
@@ -608,16 +608,20 @@ public class EditTableWindow extends JFrame implements ActionListener {
 			String clientName = (String) this.clientName.getSelectedText();
 			Progress tableProgress = (Progress) this.progress.getSelectedItem();
 			
+			int action = 0;
+			
 			Sector theSector = null;
 			Table theTable = null;
 			try {
 				theSector = this.mainWindow.theRoom.getSector(numSector);
+				action++;
 			} catch (SectorNotExistsException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			try {
 				theTable = theSector.getTable(numTable);
+				action++;
 			} catch (TableNotExistsException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -627,6 +631,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 			{
 				try {
 					theTable = new Table(numTable, numOfPlaces, positionTable, tableProgress, tableState);
+					action++;
 				} catch (ClientNameRequiredException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -635,8 +640,14 @@ public class EditTableWindow extends JFrame implements ActionListener {
 			else 
 			{
 				theTable = new Table(numTable, numOfPlaces, positionTable, clientName);
+				action++;
 			}
 			
+			if(action==4){
+				JOptionPane.showMessageDialog(null, "The table has been correctly edited");
+				this.mainWindow.rightArea.refreshSectors();
+			}
+			this.editTableArea();
 		}
 		else
 		{
