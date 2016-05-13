@@ -11,6 +11,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import fr.iutvalence.info.dut.m2107.Rank;
+import fr.iutvalence.info.dut.m2107.Waiter;
+
 /**
  * Represents a restaurant's room
  * @author Projet Resto
@@ -160,7 +163,20 @@ public class Room implements Serializable {
 	public static Room loadRoom(String givenFile) throws FileNotFoundException, IOException, ClassNotFoundException, ObjectReadedIsNotARoomException {
 		File saveFile = new File(givenFile);
 		if(!saveFile.exists())
-			throw new FileNotFoundException();
+		{
+			saveFile.createNewFile();
+			Room newRoom = new Room();
+			try {
+				newRoom.addSector(new Sector(1, new Waiter(null, null, null)));
+				newRoom.addSector(new Sector(2, new Waiter(null, null, null)));
+				newRoom.addSector(new Sector(3, new Waiter(null, null, null)));
+				newRoom.addSector(new Sector(4, new Waiter(null, null, null)));
+			} catch (SectorAlreadyExistsException e) {
+				// never happens
+			}
+			newRoom.saveRoom();
+			saveFile = new File(givenFile);
+		}
 		
 		FileInputStream loadStream = new FileInputStream(saveFile);
 		
