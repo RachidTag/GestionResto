@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -149,29 +150,32 @@ public class MainWindowRightArea extends JPanel{
 		this.sectorFour.setLayout(sectorsGrid);
 		
 		/*
-		 * Make a loop for each sectors
-		 * *Mode français activé*
-		 * Elle parcours les tables, les met dans un tableau 2D tableTable[10][10]; en fonction de leurs coordonnées
-		 * Ensuite on parcours ces tableaux dans l'ordre des coordonnées et si pour les coordonnées données il y a une table on l'ajoute au pannel
-		 * si non on ajoute le vide #le néantBgJtm
+		 * Generates the sectors
 		 */
-		
-		Set<Position> tablePos = new TreeSet<Position>();
-
+		this.generatesSector(1, this.sectorOne);
+		this.generatesSector(2, this.sectorTwo);
+		this.generatesSector(3, this.sectorThree);
+		this.generatesSector(4, this.sectorFour);
+	}
+	
+	public void generatesSector(int numSector, JPanel theSector)
+	{
 		Collection<Table> tables = null;
 		try
 		{
-			tables = this.mainWindow.theRoom.getSector(1).getTables().values();
+			tables = this.mainWindow.theRoom.getSector(numSector).getTables().values();
 		}
 		catch (SectorNotExistsException e)
 		{
 			// impossible
 		}
 		
-		for(Iterator tablesIterator = tables.iterator();tablesIterator.hasNext();)
+		Map<Position, Table> tablesPositions = new HashMap<Position, Table>();
+		
+		for(Iterator tablesIterator = tables.iterator(); tablesIterator.hasNext();)
 		{
-			Table currentTable = (Table) tablesIterator.next();
-			tablePos.add(currentTable.getPosition());
+			Table theTable = (Table) tablesIterator.next();
+			tablesPositions.put(theTable.getPosition(), theTable);
 		}
 		
 		ImageIcon imgT = new ImageIcon("img/tableVerteProjet.png");
@@ -189,21 +193,18 @@ public class MainWindowRightArea extends JPanel{
 		{
 			for(int j = 0; j < 4; j++)
 			{
-				JLabel t = new JLabel(imgT);
-				t.setBorder(BorderFactory.createLineBorder(Color.black));
-				JLabel tbis = new JLabel(imgB);
-				tbis.setBorder(BorderFactory.createLineBorder(Color.black));
-				
-				if(tablePos.contains(new Position(j, i, 1)))
+				if(tablesPositions.containsKey(new Position(j, i, 1)))
 				{
-					this.sectorOne.add(t);
+					Table theTable = tablesPositions.get(new Position(j, i, 1));
+					JLabel t = new JLabel(imgT);
+					theSector.add(t);
 				}
 				else
 				{
-					this.sectorOne.add(tbis);
+					JLabel tbis = new JLabel(imgB);
+					theSector.add(tbis);
 				}
 			}
 		}
-		
 	}
 }
