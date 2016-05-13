@@ -507,7 +507,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 			Table theTable = null;
 			try
 			{
-				theTable = theSector.getTable((int)this.comboTables.getSelectedItem());
+				theTable = theSector.getTable((int)this.comboTablesEdit.getSelectedItem());
 			}
 			catch (TableNotExistsException e1)
 			{

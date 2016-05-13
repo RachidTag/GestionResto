@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
@@ -134,8 +135,11 @@ public class MainWindowRightArea extends JPanel{
 	 * TODO
 	 */
 	public void refreshSectors() {
-		
+		System.out.println("Essai");
 		this.sectorOne.removeAll();
+		this.sectorTwo.removeAll();
+		this.sectorThree.removeAll();
+		this.sectorFour.removeAll();
 		/*
 		 * Creates the layout of the sectors
 		 */
@@ -156,6 +160,8 @@ public class MainWindowRightArea extends JPanel{
 		this.generatesSector(2, this.sectorTwo);
 		this.generatesSector(3, this.sectorThree);
 		this.generatesSector(4, this.sectorFour);
+		
+		SwingUtilities.updateComponentTreeUI(this);
 	}
 	
 	public void generatesSector(int numSector, JPanel theSector)
