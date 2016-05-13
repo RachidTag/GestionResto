@@ -295,7 +295,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		{
 			int numSector = (int) this.comboSectors.getSelectedItem();
 			int numTable = (int) this.comboTables.getSelectedItem();
-			int numOfPlaces = (int) 4;
+			int numOfPlaces = (int) this.numOfPlaces.getValue();
 			int posX = (int) this.posX.getValue();
 			int posY = (int) this.posY.getValue();
 			int rotation = (int) this.rotation.getValue();
