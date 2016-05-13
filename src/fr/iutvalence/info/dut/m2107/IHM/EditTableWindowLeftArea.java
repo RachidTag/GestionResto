@@ -1,15 +1,11 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -17,6 +13,7 @@ import javax.swing.SwingUtilities;
  * @author TODO
  *
  */
+@SuppressWarnings("serial")
 public class EditTableWindowLeftArea extends JPanel implements ActionListener{
 	/**
 	 * The main window
@@ -45,7 +42,7 @@ public class EditTableWindowLeftArea extends JPanel implements ActionListener{
 
 	/**
 	 * TODO
-	 * @param mainWindow
+	 * @param editTableWindow
 	 */
 	public EditTableWindowLeftArea(EditTableWindow editTableWindow){
 		/*
@@ -105,19 +102,19 @@ public class EditTableWindowLeftArea extends JPanel implements ActionListener{
 		{
 			this.editTableWindow.R_Area.removeAll();
 			this.editTableWindow.R_Area = new EditTableWindowAddArea(this.editTableWindow);
-			SwingUtilities.updateComponentTreeUI(this.editTableWindow.R_Area);
+			SwingUtilities.updateComponentTreeUI(this.editTableWindow);
 		}
 		else if(source == this.edit)
 		{
 			this.editTableWindow.R_Area.removeAll();
 			this.editTableWindow.R_Area = new EditTableWindowEditArea(this.editTableWindow);
-			SwingUtilities.updateComponentTreeUI(this.editTableWindow.R_Area);
+			SwingUtilities.updateComponentTreeUI(this.editTableWindow);
 		}
 		else if(source == this.delete)
 		{
 			this.editTableWindow.R_Area.removeAll();
 			this.editTableWindow.R_Area = new EditTableWindowDeleteArea(this.editTableWindow);
-			SwingUtilities.updateComponentTreeUI(this.editTableWindow.R_Area);
+			SwingUtilities.updateComponentTreeUI(this.editTableWindow);
 		}
 	}
 }

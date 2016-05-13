@@ -1,12 +1,9 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -21,6 +18,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import fr.iutvalence.info.dut.m2107.room.ClientNameRequiredException;
 import fr.iutvalence.info.dut.m2107.room.Position;
@@ -30,6 +28,7 @@ import fr.iutvalence.info.dut.m2107.room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.room.State;
 import fr.iutvalence.info.dut.m2107.room.Table;
 import fr.iutvalence.info.dut.m2107.room.TableAlreadyExistsException;
+import fr.iutvalence.info.dut.m2107.room.TableNotExistsException;
 
 /**
  * @author TODO
@@ -96,6 +95,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 	 * TODO
 	 * @param editTableWindow 
 	 */
+	@SuppressWarnings("deprecation")
 	public EditTableWindowEditArea(EditTableWindow editTableWindow){
 		/*
 		 * Save the reference to the sector edition window
@@ -140,7 +140,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		JPanel line2 = new JPanel();
 		line2.setLayout(lineLayout);
 		this.add(line2);
-		lin2.add(new JLabel("Table:"));
+		line2.add(new JLabel("Table:"));
 		Sector theSector = null;
 		try {
 			theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)comboSectors.getSelectedItem());
@@ -238,6 +238,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		// TODO : add default configuration of the first table
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JComponent source = (JComponent) arg0.getSource();
@@ -245,13 +246,102 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		{
 			Sector theSector = null;
 			try {
-				theSector = this.mainWindow.theRoom.getSector((int)comboSectorsEdit.getSelectedItem());
+				theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)comboSectors.getSelectedItem());
 			} catch (SectorNotExistsException e1) {
 				// ...
 			}
-			Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
-			DefaultComboBoxModel model = new DefaultComboBoxModel(tables.toArray());
-			this.comboTablesEdit.setModel( model );
+			DefaultComboBoxModel model = new DefaultComboBoxModel(new TreeSet<Integer>(theSector.getTables().keySet()).toArray());
+			this.comboTables.setModel(model);
+		}
+		else if(source == this.comboTables)
+		{
+			Sector theSector = null;
+			try {
+				theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
+			} catch (SectorNotExistsException e1) {
+				// ... impossible
+			}
+			Table theTable = null;
+			try
+			{
+				theTable = theSector.getTable((int)this.comboTables.getSelectedItem());
+			}
+			catch (TableNotExistsException e1)
+			{
+				// ... impossible
+			}
+			numOfPlaces.setValue(theTable.getNumberPlaces());
+			posX.setValue(theTable.getPosition().getX());
+			posY.setValue(theTable.getPosition().getY());
+			rotation.setValue(theTable.getPosition().getRotation());
+			state.setSelectedItem(theTable.getState());
+			progress.setSelectedItem(theTable.getProgress());
+			if(theTable.getState() == State.RESERVED)
+				this.clientName.enable();
+			else
+				this.clientName.disable();
+		}
+		else if(source == this.state)
+		{
+			if(this.state.getSelectedItem() == State.RESERVED)
+				this.clientName.enable();
+			else
+				this.clientName.disable();
+			
+			if(this.state.getSelectedItem() == State.BUSY)
+				this.progress.enable();
+			else
+				this.progress.disable();
+		}
+		else if(source == processEditTable)
+		{
+			int numSector = (int) this.comboSectors.getSelectedItem();
+			int numTable = (int) this.comboTables.getSelectedItem();
+			int numOfPlaces = (int) this.numOfPlaces.getValue();
+			int posX = (int) this.posX.getValue();
+			int posY = (int) this.posY.getValue();
+			int rotation = (int) this.rotation.getValue();
+			Position positionTable = new Position(posX,posY,rotation);
+			State tableState = (State) this.state.getSelectedItem();
+			String clientName = (String) this.clientName.getSelectedText();
+			Progress tableProgress = (Progress) this.progress.getSelectedItem();
+			
+			Sector theSector = null;
+			Table theTable = null;
+			try {
+				theSector = this.editTableWindow.mainWindow.theRoom.getSector(numSector);
+				theTable = theSector.getTable(numTable);
+				theSector.removeTable(theTable.getNumTable());
+			} catch (SectorNotExistsException | TableNotExistsException e1) {
+				// TODO retourner erreur
+			}
+			
+			if(tableState != State.RESERVED)
+			{
+				try {
+					theTable = new Table(numTable, numOfPlaces, positionTable, tableProgress, tableState);
+				} catch (ClientNameRequiredException e1) {
+					// TODO retourner erreur
+				}
+			}
+			else 
+			{
+				theTable = new Table(numTable, numOfPlaces, positionTable, clientName);
+			}
+			
+			try {
+				theSector.addTable(theTable);
+			} catch (TableAlreadyExistsException e1) {
+				// TODO retourner erreur
+			}
+			
+			JOptionPane.showMessageDialog(null, "The table has been correctly edited");
+			this.editTableWindow.mainWindow.rightArea.refreshSectors();
+			
+			//TODO verify if it's usefull or useless
+//			this.editTableWindow.R_Area.removeAll();
+//			this.editTableWindow.R_Area = new EditTableWindowEditArea(this.editTableWindow);
+//			SwingUtilities.updateComponentTreeUI(this.editTableWindow.R_Area);
 		}
 	}
 }
