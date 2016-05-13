@@ -64,22 +64,22 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 	/**
 	 * Sectors combo
 	 */
-	public JComboBox<Object> comboSectors;
+	public JComboBox<?> comboSectors;
 	
 	/**
 	 * Tables combo
 	 */
-	public JComboBox<Object> comboTables;
+	public JComboBox<?> comboTables;
 	
 	/**
 	 * State combo
 	 */
-	public JComboBox<Object> state;
+	public JComboBox<?> state;
 	
 	/**
 	 * Progress combo
 	 */
-	public JComboBox<Object> progress;
+	public JComboBox<?> progress;
 	
 	/**
 	 * Client Name text field
@@ -95,7 +95,6 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 	 * TODO
 	 * @param editTableWindow 
 	 */
-	@SuppressWarnings("deprecation")
 	public EditTableWindowEditArea(EditTableWindow editTableWindow){
 		/*
 		 * Save the reference to the sector edition window
@@ -105,7 +104,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		/*
 		 * Set the layout
 		 */
-		GridLayout controlPanel = new GridLayout(12,1);
+		GridLayout controlPanel = new GridLayout(11,1);
 		controlPanel.setHgap(10);
 		controlPanel.setVgap(5);
 		this.editTableWindow.R_Area.setLayout(controlPanel);
@@ -157,7 +156,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		 */
 		JPanel line3 = new JPanel();
 		line3.setLayout(lineLayout);
-		this.editTableWindow.R_Area.add(line1);
+		this.editTableWindow.R_Area.add(line3);
 		line3.add(new JLabel("Num of places:"));
 		numOfPlaces = new JSpinner(new SpinnerNumberModel(2, 2, 6, 2));
 		line3.add(numOfPlaces);
@@ -296,7 +295,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		{
 			int numSector = (int) this.comboSectors.getSelectedItem();
 			int numTable = (int) this.comboTables.getSelectedItem();
-			int numOfPlaces = (int) this.numOfPlaces.getValue();
+			int numOfPlaces = (int) 4;
 			int posX = (int) this.posX.getValue();
 			int posY = (int) this.posY.getValue();
 			int rotation = (int) this.rotation.getValue();
@@ -340,6 +339,10 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 			this.editTableWindow.R_Area.removeAll();
 			this.editTableWindow.R_Area = new EditTableWindowEditArea(this.editTableWindow);
 			SwingUtilities.updateComponentTreeUI(this.editTableWindow.R_Area);
+
+			this.editTableWindow.R_Area.removeAll();
+			new EditTableWindowEditArea(this.editTableWindow);
+			SwingUtilities.updateComponentTreeUI(this.editTableWindow);
 		}
 	}
 }
