@@ -149,7 +149,14 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		{
 			if(this.editTable.isEnabled())
 			{
+				ImageIcon logoIcon = new ImageIcon("img/logoIcon.png");
+				Image logo = logoIcon.getImage();
+				
 				this.mainWindow.editTableWindow = new EditTableWindow(this.mainWindow);
+				
+				if (this.mainWindow.editTableWindow != null)
+					this.mainWindow.editTableWindow.setIconImage(logo);
+			
 				this.editTable.setEnabled(false);
 				this.editSector.setEnabled(false);
 				this.checkRoom.setEnabled(false);
@@ -162,7 +169,13 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		{
 			if(this.editSector.isEnabled())
 			{
+				ImageIcon logoIcon = new ImageIcon("img/logoIcon.png");
+				Image logo = logoIcon.getImage();
 				this.mainWindow.editSectorWindow = new SectorEditionWindow(this.mainWindow);
+				
+				if (this.mainWindow.editSectorWindow != null)
+					this.mainWindow.editSectorWindow.setIconImage(logo);
+				
 				this.editTable.setEnabled(false);
 				this.editSector.setEnabled(false);
 				this.checkRoom.setEnabled(false);
