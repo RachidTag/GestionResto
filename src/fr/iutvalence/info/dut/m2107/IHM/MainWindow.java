@@ -1,13 +1,7 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 import javax.swing.*;
-import javax.swing.border.*;
-
 import fr.iutvalence.info.dut.m2107.calendar.Calendar;
 import fr.iutvalence.info.dut.m2107.room.Room;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * The Main Window of the application
