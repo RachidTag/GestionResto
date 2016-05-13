@@ -335,14 +335,6 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 			
 			JOptionPane.showMessageDialog(null, "The table has been correctly edited");
 			this.editTableWindow.mainWindow.rightArea.refreshSectors();
-			
-			this.editTableWindow.R_Area.removeAll();
-			this.editTableWindow.R_Area = new EditTableWindowEditArea(this.editTableWindow);
-			SwingUtilities.updateComponentTreeUI(this.editTableWindow.R_Area);
-
-			this.editTableWindow.R_Area.removeAll();
-			new EditTableWindowEditArea(this.editTableWindow);
-			SwingUtilities.updateComponentTreeUI(this.editTableWindow);
 		}
 	}
 }
