@@ -78,7 +78,9 @@ public class Position implements Serializable, Comparable {
 		this.rotation = rotation;
 	}
 	
-	@Override
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -87,7 +89,9 @@ public class Position implements Serializable, Comparable {
 		return result;
 	}
 	
-	@Override
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -103,17 +107,19 @@ public class Position implements Serializable, Comparable {
 		return true;
 	}
 	
-	@Override
+	/**
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
 	public int compareTo(Object o) 
 	{
 		if (getClass() != o.getClass())
-			return 1;
+			return 0;
 		Position other = (Position) o;
 		
-		if (this.y < other.y) return -1;
-		if (this.y > other.y) return 1;
-		if (this.x < other.x) return -1;
-		if (this.x > other.x) return 1;
+		if (this.y < other.y) return 1;
+		if (this.y > other.y) return -1;
+		if (this.x < other.x) return 1;
+		if (this.x > other.x) return -1;
 		
 		return 0;
 	}

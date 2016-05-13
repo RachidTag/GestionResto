@@ -3,9 +3,14 @@ package fr.iutvalence.info.dut.m2107.IHM;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,6 +19,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import fr.iutvalence.info.dut.m2107.room.Position;
+import fr.iutvalence.info.dut.m2107.room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.room.Table;
 
 /**
@@ -127,6 +133,8 @@ public class MainWindowRightArea extends JPanel{
 	 * TODO
 	 */
 	public void refreshSectors() {
+		
+		this.sectorOne.removeAll();
 		/*
 		 * Creates the layout of the sectors
 		 */
@@ -148,55 +156,54 @@ public class MainWindowRightArea extends JPanel{
 		 * si non on ajoute le vide #le néantBgJtm
 		 */
 		
-		Table t1 = new Table(1 , 4 , new Position(1,1, 2), "Claude");
-		Table t2 = new Table(2 , 4 , new Position(1,3, 2), "Micka");
-		Table t3 = new Table(3 , 4 , new Position(2,2, 2), "Alfred");
-		Table t4 = new Table(4 , 4 , new Position(3,2, 2), "Florent");
-		
 		Set<Position> tablePos = new TreeSet<Position>();
-		 
-		tablePos.add(t1.getPosition());
-		tablePos.add(t2.getPosition());
-		tablePos.add(t3.getPosition());
-		tablePos.add(t4.getPosition());
+
+		Collection<Table> tables = null;
+		try
+		{
+			tables = this.mainWindow.theRoom.getSector(1).getTables().values();
+		}
+		catch (SectorNotExistsException e)
+		{
+			// impossible
+		}
 		
-		Position[] positions = tablePos.toArray(new Position[0]);
+		for(Iterator tablesIterator = tables.iterator();tablesIterator.hasNext();)
+		{
+			Table currentTable = (Table) tablesIterator.next();
+			tablePos.add(currentTable.getPosition());
+		}
+		
+		ImageIcon imgT = new ImageIcon("img/tableVerteProjet.png");
+		Image img1 = imgT.getImage();
+		img1 = img1.getScaledInstance(105, 77, Image.SCALE_SMOOTH);
+		imgT= new ImageIcon(img1);
+		
+		ImageIcon imgB = new ImageIcon("img/labelBlanc.jpg");
+		Image img2 = imgB.getImage();
+		img2 = img2.getScaledInstance(105, 77, Image.SCALE_SMOOTH);
+		imgB= new ImageIcon(img2);
+		
 		
 		for(int i = 0; i < 4; i++)
 		{
 			for(int j = 0; j < 4; j++)
 			{
-				ImageIcon imgT = new ImageIcon("img/tableVerteProjet.png");
-				Image img1 = imgT.getImage();
-				img1 = img1.getScaledInstance(100, 75, Image.SCALE_SMOOTH);
-				imgT= new ImageIcon(img1);
-				
 				JLabel t = new JLabel(imgT);
-				t.setSize(10, 10);
-				
-				ImageIcon imgB = new ImageIcon("img/labelBlanc.jpg");
-				Image img2 = imgB.getImage();
-				img2 = img2.getScaledInstance(100, 75, Image.SCALE_SMOOTH);
-				imgB= new ImageIcon(img2);
-				
+				t.setBorder(BorderFactory.createLineBorder(Color.black));
 				JLabel tbis = new JLabel(imgB);
-				tbis.setSize(10, 10);
+				tbis.setBorder(BorderFactory.createLineBorder(Color.black));
 				
-				for(int k = 0; k < tablePos.size(); k++)
+				if(tablePos.contains(new Position(j, i, 1)))
 				{
-					if(positions[k].hasSamePosition(j,i))
-					{
-						this.sectorOne.add(t);
-					}
-					else
-					{
-						this.sectorOne.add(tbis);
-					}
+					this.sectorOne.add(t);
+				}
+				else
+				{
+					this.sectorOne.add(tbis);
 				}
 			}
 		}
-		
-		//this.sectorOne.add(t);
 		
 	}
 }
