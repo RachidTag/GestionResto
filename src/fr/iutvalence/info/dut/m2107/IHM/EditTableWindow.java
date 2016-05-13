@@ -146,7 +146,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		this.R_Area.add(line2);
 		
 		line2.add(new JLabel("Num of places:"));
-		spinnerModel =	new SpinnerNumberModel(2, 2, 4, 2);
+		spinnerModel =	new SpinnerNumberModel(2, 2, 6, 2);
 		numOfPlaces = new JSpinner(spinnerModel);
 		line2.add(numOfPlaces);
 

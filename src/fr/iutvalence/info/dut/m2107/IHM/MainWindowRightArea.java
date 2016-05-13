@@ -203,6 +203,17 @@ public class MainWindowRightArea extends JPanel{
 		tableVerte2Rot2 = tableVerte2Rot2.getScaledInstance(64, 42, Image.SCALE_SMOOTH);
 		tableVerte2Rot = new ImageIcon(tableVerte2Rot2);
 		
+		//To resize
+		ImageIcon tableVerte6 = new ImageIcon("img/tableVerte6ProjetRot2.png");
+		Image tableVerte6Rot1 = tableVerte6.getImage();
+		tableVerte6Rot1 = tableVerte6Rot1.getScaledInstance(84, 64, Image.SCALE_SMOOTH);
+		tableVerte6 = new ImageIcon(tableVerte6Rot1);
+		//To resize
+		ImageIcon tableVerte6Rot = new ImageIcon("img/tableVerte6Projet.png");
+		Image tableVerte6Rot2 = tableVerte6Rot.getImage();
+		tableVerte6Rot2 = tableVerte6Rot2.getScaledInstance(64, 84, Image.SCALE_SMOOTH);
+		tableVerte6Rot = new ImageIcon(tableVerte6Rot2);
+		
 		
 		
 		ImageIcon imgB = new ImageIcon("img/labelBlanc.png");
@@ -222,6 +233,8 @@ public class MainWindowRightArea extends JPanel{
 					JLabel TVerteRot = new JLabel(tableVerte4Rot);
 					JLabel TVerte2 = new JLabel(tableVerte2);
 					JLabel TVerte2Rot = new JLabel(tableVerte2Rot);
+					JLabel TVerte6 = new JLabel(tableVerte6);
+					JLabel TVerte6Rot = new JLabel(tableVerte6Rot);
 					int rot = theTable.getPosition().getRotation();
 					int nbPlace = theTable.getNumberPlaces();
 					
@@ -233,6 +246,10 @@ public class MainWindowRightArea extends JPanel{
 					{
 						theSector.add(TVerte2);
 					}
+					if(rot == 1 && nbPlace == 6)
+					{
+						theSector.add(TVerte6);
+					}
 					if(rot == 2 && nbPlace == 4)
 					{
 						theSector.add(TVerteRot);
@@ -241,6 +258,12 @@ public class MainWindowRightArea extends JPanel{
 					{
 						theSector.add(TVerte2Rot);
 					}
+					if(rot == 2 && nbPlace == 6)
+					{
+						theSector.add(TVerte6Rot);
+					}
+					
+					
 				}
 				else
 				{
