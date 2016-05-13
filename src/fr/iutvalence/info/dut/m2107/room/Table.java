@@ -2,6 +2,8 @@ package fr.iutvalence.info.dut.m2107.room;
 
 import java.io.Serializable;
 
+import com.sun.org.apache.bcel.internal.generic.InstructionConstants.Clinit;
+
 /**
  * Represent a table
  * @author Projet Resto
@@ -52,6 +54,7 @@ public class Table implements Serializable
 		this.numTable = numTable;
 		this.numberPlaces = numberPlaces;
 		this.position = position;
+		if (state == State.RESERVED) throw new ClientNameRequiredException();
 		this.setState(state);
 		this.progress = progress;
 		this.clientName = null;
@@ -71,7 +74,7 @@ public class Table implements Serializable
 		this.position = position;
 		this.setState(clientName);
 		this.progress = Progress.NO_PROGRESS;
-		this.clientName = null;
+		this.clientName = clientName;
 	}
 	
 	/**

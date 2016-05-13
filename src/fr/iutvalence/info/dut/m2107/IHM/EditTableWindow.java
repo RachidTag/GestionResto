@@ -53,8 +53,10 @@ public class EditTableWindow extends JFrame implements ActionListener {
 	public JSpinner rotation; 
 	public JComboBox<?> comboSectors;
 	public JComboBox<?> comboSectorsDelete;
+	public JComboBox<?> comboSectorsEdit;
 	public JComboBox<Object> comboTables;
 	public JComboBox<Object> comboTablesDelete;
+	public JComboBox<Object> comboTablesEdit;
 	public JComboBox<?> state;
 	public JComboBox<?> progress;
 	public JTextField clientName;
@@ -303,8 +305,11 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		this.R_Area.add(line8);
 		
 		line8.add(new JLabel("Client Name"));
+		this.clientName = new JTextField();
+		this.R_Area.add(line8);
+		line8.add(clientName);
 		
-		
+		line8.setVisible(false);
 
 		JPanel line9 = new JPanel();
 		line9.setLayout(lineLayout);
@@ -450,6 +455,10 @@ public class EditTableWindow extends JFrame implements ActionListener {
 				// TODO 
 			}
 		}
+		else if(source == this.comboSectorsEdit)
+		{
+			//TODO
+		}
 		else if(source == this.comboSectorsDelete)
 		{
 			Sector theSector = null;
@@ -491,6 +500,10 @@ public class EditTableWindow extends JFrame implements ActionListener {
 			{
 				// ... impossible
 			}
+		}
+		else if(source == this.comboTablesEdit)
+		{
+			//TODO
 		}
 		else if(source == this.comboTables)
 		{
@@ -554,14 +567,15 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		}
 		else if(source == processEditTable)
 		{
-			int numSector = (int) this.comboTables.getSelectedItem();
-			int numTable = (int) this.comboSectors.getSelectedItem();
+			int numSector = (int) this.comboTablesEdit.getSelectedItem();
+			int numTable = (int) this.comboSectorsEdit.getSelectedItem();
 			int numOfPlaces = (int) this.numOfPlaces.getValue();
 			int posX = (int) this.posX.getValue();
 			int posY = (int) this.posY.getValue();
 			int rotation = (int) this.rotation.getValue();
 			Position positionTable = new Position(posX,posY,rotation);
 			State tableState = (State) this.state.getSelectedItem();
+			String clientName = (String) this.clientName.getSelectedText();
 			Progress tableProgress = (Progress) this.progress.getSelectedItem();
 			
 			Sector theSector = null;
@@ -590,7 +604,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 			}
 			else 
 			{
-				//theTable = new Table(numTable, numOfPlaces, positionTable, clientName);
+				theTable = new Table(numTable, numOfPlaces, positionTable, clientName);
 			}
 			
 		}
