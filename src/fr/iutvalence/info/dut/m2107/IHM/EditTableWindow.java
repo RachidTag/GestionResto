@@ -51,10 +51,10 @@ public class EditTableWindow extends JFrame implements ActionListener {
 	public JSpinner posX; 
 	public JSpinner posY; 
 	public JSpinner rotation; 
-	public JComboBox<?> comboSectors;
+	public JComboBox<?> comboSectorsAdd;
 	public JComboBox<?> comboSectorsDelete;
 	public JComboBox<?> comboSectorsEdit;
-	public JComboBox<Object> comboTables;
+	public JComboBox<Object> comboTablesAdd;
 	public JComboBox<Object> comboTablesDelete;
 	public JComboBox<Object> comboTablesEdit;
 	public JComboBox<?> state;
@@ -184,8 +184,8 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		line6.add(new JLabel("Sector:"));
 		Map<Integer, Sector> sectors = this.mainWindow.theRoom.getSectors();
 		Set<Integer> keySet = sectors.keySet();
-		comboSectors = new JComboBox<Object>(keySet.toArray());
-		line6.add(comboSectors);
+		comboSectorsAdd = new JComboBox<Object>(keySet.toArray());
+		line6.add(comboSectorsAdd);
 
 		JPanel line7 = new JPanel();
 		GridLayout buttonLayout = new GridLayout(1, 2);
@@ -435,7 +435,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 			int posX = (int) this.posX.getValue();
 			int posY = (int) this.posY.getValue();
 			int rotation = (int) this.rotation.getValue();
-			int sectorNum = (int) this.comboSectors.getSelectedItem();
+			int sectorNum = (int) this.comboSectorsAdd.getSelectedItem();
 			Table theTable = null;
 			try {
 				theTable = new Table(tableNum, numOfPlaces, new Position(posX, posY, rotation), Progress.NO_PROGRESS, State.FREE);
@@ -447,12 +447,20 @@ public class EditTableWindow extends JFrame implements ActionListener {
 				this.mainWindow.theRoom.getSector(sectorNum).addTable(theTable);
 				this.mainWindow.rightArea.refreshSectors();
 			} catch (TableAlreadyExistsException | SectorNotExistsException e1) {
-				// TODO 
+				JOptionPane.showMessageDialog(null,"The table already exits in this sector");
 			}
 		}
 		else if(source == this.comboSectorsEdit)
 		{
-			//TODO
+			Sector theSector = null;
+			try {
+				theSector = this.mainWindow.theRoom.getSector((int)comboSectorsEdit.getSelectedItem());
+			} catch (SectorNotExistsException e1) {
+				// ...
+			}
+			Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
+			DefaultComboBoxModel model = new DefaultComboBoxModel(tables.toArray());
+			this.comboTablesEdit.setModel( model );
 		}
 		else if(source == this.comboSectorsDelete)
 		{
@@ -464,19 +472,20 @@ public class EditTableWindow extends JFrame implements ActionListener {
 			}
 			Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
 			DefaultComboBoxModel model = new DefaultComboBoxModel(tables.toArray());
-			this.comboTablesDelete.setModel( model );
+			this.comboTablesEdit.setModel( model );
+			
 		}
-		else if(source == this.comboSectors)
+		else if(source == this.comboSectorsAdd)
 		{
 			Sector theSector = null;
 			try {
-				theSector = this.mainWindow.theRoom.getSector((int)comboSectors.getSelectedItem());
+				theSector = this.mainWindow.theRoom.getSector((int)comboSectorsAdd.getSelectedItem());
 			} catch (SectorNotExistsException e1) {
 				// ...
 			}
 			Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
 			DefaultComboBoxModel model = new DefaultComboBoxModel(tables.toArray());
-			this.comboTables.setModel( model );
+			this.comboTablesAdd.setModel( model );
 		}
 		else if(source == this.comboTablesDelete)
 		{
@@ -500,7 +509,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		{
 			Sector theSector = null;
 			try {
-				theSector = this.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
+				theSector = this.mainWindow.theRoom.getSector((int)this.comboSectorsEdit.getSelectedItem());
 			} catch (SectorNotExistsException e1) {
 				// ...
 			}
@@ -530,19 +539,24 @@ public class EditTableWindow extends JFrame implements ActionListener {
 				this.clientName.enable();
 			else
 				this.clientName.disable();
+			
+			if(this.state.getSelectedItem() == State.BUSY)
+				this.progress.enable();
+			else
+				this.progress.disable();
 		}
-		else if(source == this.comboTables)
+		else if(source == this.comboTablesAdd)
 		{
 			Sector theSector = null;
 			try {
-				theSector = this.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
+				theSector = this.mainWindow.theRoom.getSector((int)this.comboSectorsAdd.getSelectedItem());
 			} catch (SectorNotExistsException e1) {
 				// ...
 			}
 			Table theTable = null;
 			try
 			{
-				theTable = theSector.getTable((int)this.comboTables.getSelectedItem());
+				theTable = theSector.getTable((int)this.comboTablesAdd.getSelectedItem());
 			}
 			catch (TableNotExistsException e1)
 			{
@@ -597,8 +611,8 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		}
 		else if(source == processEditTable)
 		{
-			int numSector = (int) this.comboTablesEdit.getSelectedItem();
-			int numTable = (int) this.comboSectorsEdit.getSelectedItem();
+			int numSector = (int) this.comboSectorsEdit.getSelectedItem();
+			int numTable = (int) this.comboTablesEdit.getSelectedItem();
 			int numOfPlaces = (int) this.numOfPlaces.getValue();
 			int posX = (int) this.posX.getValue();
 			int posY = (int) this.posY.getValue();
@@ -627,6 +641,14 @@ public class EditTableWindow extends JFrame implements ActionListener {
 				e1.printStackTrace();
 			}
 			
+			try {
+				theSector.removeTable(theTable.getNumTable());
+				action++;
+			} catch (TableNotExistsException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			
 			if(tableState != State.RESERVED)
 			{
 				try {
@@ -643,7 +665,15 @@ public class EditTableWindow extends JFrame implements ActionListener {
 				action++;
 			}
 			
-			if(action==4){
+			try {
+				theSector.addTable(theTable);
+				action++;
+			} catch (TableAlreadyExistsException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			if(action==5){
 				JOptionPane.showMessageDialog(null, "The table has been correctly edited");
 				this.mainWindow.rightArea.refreshSectors();
 			}
