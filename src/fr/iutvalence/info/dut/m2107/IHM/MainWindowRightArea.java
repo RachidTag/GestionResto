@@ -130,7 +130,7 @@ public class MainWindowRightArea extends JPanel{
 		/*
 		 * Creates the layout of the sectors
 		 */
-		GridLayout sectorsGrid = new GridLayout(10,10);
+		GridLayout sectorsGrid = new GridLayout(4,4);
 		
 		/*
 		 * Apply the layout
@@ -148,32 +148,55 @@ public class MainWindowRightArea extends JPanel{
 		 * si non on ajoute le vide #le néantBgJtm
 		 */
 		
-		ImageIcon imgT = new ImageIcon("img/tableVerteProjet.png");
-		Image img1 = imgT.getImage();
-		img1 = img1.getScaledInstance(100, 75, Image.SCALE_SMOOTH);
-		imgT= new ImageIcon(img1);
-		
-		JLabel t = new JLabel(imgT);
-		t.setSize(10, 10);	
-		
 		Table t1 = new Table(1 , 4 , new Position(1,1, 2), "Claude");
-		Table t2 = new Table(2 , 4 , new Position(1,2, 2), "Micka");
-		Table t3 = new Table(3 , 4 , new Position(2,1, 2), "Alfred");
-		Table t4 = new Table(4 , 4 , new Position(2,2, 2), "Florent");
+		Table t2 = new Table(2 , 4 , new Position(1,3, 2), "Micka");
+		Table t3 = new Table(3 , 4 , new Position(2,2, 2), "Alfred");
+		Table t4 = new Table(4 , 4 , new Position(3,2, 2), "Florent");
 		
-		Set<Position> table = new TreeSet<Position>();
+		Set<Position> tablePos = new TreeSet<Position>();
 		 
-		table.add(t1.getPosition());
-		table.add(t2.getPosition());
-		table.add(t3.getPosition());
-		table.add(t4.getPosition());
+		tablePos.add(t1.getPosition());
+		tablePos.add(t2.getPosition());
+		tablePos.add(t3.getPosition());
+		tablePos.add(t4.getPosition());
 		
-		Position[] positions = table.toArray(new Position[1]);
+		Position[] positions = tablePos.toArray(new Position[0]);
 		
-		Position first = positions[0];
+		for(int i = 0; i < 4; i++)
+		{
+			for(int j = 0; j < 4; j++)
+			{
+				ImageIcon imgT = new ImageIcon("img/tableVerteProjet.png");
+				Image img1 = imgT.getImage();
+				img1 = img1.getScaledInstance(100, 75, Image.SCALE_SMOOTH);
+				imgT= new ImageIcon(img1);
+				
+				JLabel t = new JLabel(imgT);
+				t.setSize(10, 10);
+				
+				ImageIcon imgB = new ImageIcon("img/labelBlanc.jpg");
+				Image img2 = imgB.getImage();
+				img2 = img2.getScaledInstance(100, 75, Image.SCALE_SMOOTH);
+				imgB= new ImageIcon(img2);
+				
+				JLabel tbis = new JLabel(imgB);
+				tbis.setSize(10, 10);
+				
+				for(int k = 0; k < tablePos.size(); k++)
+				{
+					if(positions[k].hasSamePosition(j,i))
+					{
+						this.sectorOne.add(t);
+					}
+					else
+					{
+						this.sectorOne.add(tbis);
+					}
+				}
+			}
+		}
 		
-		
-		this.sectorOne.add(t);
+		//this.sectorOne.add(t);
 		
 	}
 }

@@ -104,7 +104,8 @@ public class Position implements Serializable, Comparable {
 	}
 	
 	@Override
-	public int compareTo(Object o) {
+	public int compareTo(Object o) 
+	{
 		if (getClass() != o.getClass())
 			return 1;
 		Position other = (Position) o;
@@ -116,5 +117,22 @@ public class Position implements Serializable, Comparable {
 		
 		return 0;
 	}
+	
+	
+	/**
+	 * @param i
+	 * @param j
+	 * @return boolean if position is equals 
+	 */
+	public boolean hasSamePosition(int i, int j)
+	{
+		if(this.x == i && this.y == j)
+		{
+			return true;
+		}
+		return false;
+	
+	}
+	
 	
 }
