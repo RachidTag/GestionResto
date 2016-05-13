@@ -17,7 +17,7 @@ import javax.swing.JSplitPane;
  * @author TODO
  *
  */
-public class SectorEditionWindow extends JFrame {
+public class EditSectorWindow extends JFrame {
 	/**
 	 * The left area
 	 */
@@ -37,7 +37,7 @@ public class SectorEditionWindow extends JFrame {
 	 * Generates an EditSectorWindow
 	 * @param theMainWindow reference
 	 */
-	public SectorEditionWindow(MainWindow theMainWindow)
+	public EditSectorWindow(MainWindow theMainWindow)
 	{	
 		/* 
 		 * Save a reference to the main window

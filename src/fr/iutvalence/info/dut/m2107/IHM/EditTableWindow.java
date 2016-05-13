@@ -137,7 +137,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		this.R_Area.add(line);
 		
 		line.add(new JLabel("Table num:"));
-		SpinnerModel spinnerModel =	new SpinnerNumberModel(0, 0, 1000, 1);
+		SpinnerModel spinnerModel =	new SpinnerNumberModel(1, 1, 1000, 1);
 		tableNum = new JSpinner(spinnerModel);
 		line.add(tableNum);
 
@@ -173,7 +173,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 		this.R_Area.add(line5);
 		
 		line5.add(new JLabel("Rotation:"));
-		spinnerModel =	new SpinnerNumberModel(0, 0, 3, 1);
+		spinnerModel =	new SpinnerNumberModel(1, 1, 2, 1);
 		rotation = new JSpinner(spinnerModel);
 		line5.add(rotation);
 
@@ -472,7 +472,7 @@ public class EditTableWindow extends JFrame implements ActionListener {
 			}
 			Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
 			DefaultComboBoxModel model = new DefaultComboBoxModel(tables.toArray());
-			this.comboTablesEdit.setModel( model );
+			this.comboTablesDelete.setModel( model );
 			
 		}
 		else if(source == this.comboSectorsAdd)

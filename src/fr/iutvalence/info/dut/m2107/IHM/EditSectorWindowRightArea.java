@@ -22,13 +22,13 @@ public class EditSectorWindowRightArea extends JPanel{
 	/**
 	 * The main window
 	 */
-	private SectorEditionWindow sectorEditionWindow;
+	private EditSectorWindow sectorEditionWindow;
 
 	/**
 	 * TODO
 	 * @param mainWindow
 	 */
-	public EditSectorWindowRightArea(SectorEditionWindow sectorEditionWindow){
+	public EditSectorWindowRightArea(EditSectorWindow sectorEditionWindow){
 		/*
 		 * Save the reference to the sector edition window
 		 */

@@ -20,7 +20,7 @@ public class EditSectorWindowLeftArea extends JPanel implements ActionListener{
 	/**
 	 * The main window
 	 */
-	public SectorEditionWindow sectorEditionWindow;
+	public EditSectorWindow sectorEditionWindow;
 	
 	/**
 	 * The edit button
@@ -36,7 +36,7 @@ public class EditSectorWindowLeftArea extends JPanel implements ActionListener{
 	 * TODO
 	 * @param mainWindow
 	 */
-	public EditSectorWindowLeftArea(SectorEditionWindow sectorEditionWindow){
+	public EditSectorWindowLeftArea(EditSectorWindow sectorEditionWindow){
 		/*
 		 * Save the reference to the sectorEditionWindo
 		 */

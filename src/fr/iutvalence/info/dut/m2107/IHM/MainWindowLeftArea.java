@@ -173,7 +173,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 			{
 				ImageIcon logoIcon = new ImageIcon("img/logoIcon.png");
 				Image logo = logoIcon.getImage();
-				this.mainWindow.editSectorWindow = new SectorEditionWindow(this.mainWindow);
+				this.mainWindow.editSectorWindow = new EditSectorWindow(this.mainWindow);
 				
 				if (this.mainWindow.editSectorWindow != null)
 					this.mainWindow.editSectorWindow.setIconImage(logo);
