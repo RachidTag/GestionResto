@@ -135,7 +135,6 @@ public class MainWindowRightArea extends JPanel{
 	 * TODO
 	 */
 	public void refreshSectors() {
-		System.out.println("Essai");
 		this.sectorOne.removeAll();
 		this.sectorTwo.removeAll();
 		this.sectorThree.removeAll();
@@ -184,12 +183,29 @@ public class MainWindowRightArea extends JPanel{
 			tablesPositions.put(theTable.getPosition(), theTable);
 		}
 		
-		ImageIcon imgT = new ImageIcon("img/tableVerteProjet.png");
-		Image img1 = imgT.getImage();
-		img1 = img1.getScaledInstance(105, 77, Image.SCALE_SMOOTH);
-		imgT= new ImageIcon(img1);
+		ImageIcon tableVerte4 = new ImageIcon("img/tableVerte4Projet.png");
+		Image tableVerte4Rot1 = tableVerte4.getImage();
+		tableVerte4Rot1 = tableVerte4Rot1.getScaledInstance(84, 64, Image.SCALE_SMOOTH);
+		tableVerte4 = new ImageIcon(tableVerte4Rot1);
 		
-		ImageIcon imgB = new ImageIcon("img/labelBlanc.jpg");
+		ImageIcon tableVerte4Rot = new ImageIcon("img/tableVerte4ProjetRot2.png");
+		Image tableVerte4Rot2 = tableVerte4Rot.getImage();
+		tableVerte4Rot2 = tableVerte4Rot2.getScaledInstance(84, 64, Image.SCALE_SMOOTH);
+		tableVerte4Rot = new ImageIcon(tableVerte4Rot2);
+		
+		ImageIcon tableVerte2 = new ImageIcon("img/tableVerte2Projet.png");
+		Image tableVerte2Rot1 = tableVerte2.getImage();
+		tableVerte2Rot1 = tableVerte2Rot1.getScaledInstance(84, 64, Image.SCALE_SMOOTH);
+		tableVerte2 = new ImageIcon(tableVerte2Rot1);
+		
+		ImageIcon tableVerte2Rot = new ImageIcon("img/tableVerte2ProjetRot2.png");
+		Image tableVerte2Rot2 = tableVerte2Rot.getImage();
+		tableVerte2Rot2 = tableVerte2Rot2.getScaledInstance(84, 64, Image.SCALE_SMOOTH);
+		tableVerte2Rot = new ImageIcon(tableVerte2Rot2);
+		
+		
+		
+		ImageIcon imgB = new ImageIcon("img/labelBlanc.png");
 		Image img2 = imgB.getImage();
 		img2 = img2.getScaledInstance(105, 77, Image.SCALE_SMOOTH);
 		imgB= new ImageIcon(img2);
@@ -202,8 +218,24 @@ public class MainWindowRightArea extends JPanel{
 				if(tablesPositions.containsKey(new Position(j, i, 1)))
 				{
 					Table theTable = tablesPositions.get(new Position(j, i, 1));
-					JLabel t = new JLabel(imgT);
-					theSector.add(t);
+					JLabel TVerte = new JLabel(tableVerte4);
+					JLabel TVerteRot = new JLabel(tableVerte4Rot);
+					JLabel TVerte2 = new JLabel(tableVerte2);
+					int rot = theTable.getPosition().getRotation();
+					int nbPlace = theTable.getNumberPlaces();
+					
+					if(rot == 1 && nbPlace == 4)
+					{
+						theSector.add(TVerte);
+					}
+					if(rot == 1 && nbPlace == 2)
+					{
+						theSector.add(TVerte2);
+					}
+					if(rot == 2 && nbPlace == 4)
+					{
+						theSector.add(TVerteRot);
+					}	
 				}
 				else
 				{
