@@ -82,14 +82,14 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		 * Set the layout
 		 */
 		GridLayout controlPanel = new GridLayout(8,1);
-		this.setLayout(controlPanel);
+		this.editTableWindow.R_Area.setLayout(controlPanel);
 		
 		/*
 		 * Set the title of the category
 		 */
 		JLabel title = new JLabel("Table adding", SwingConstants.CENTER);
 		title.setFont(title.getFont().deriveFont(Font.BOLD, 20.f));
-		this.add(title);
+		this.editTableWindow.R_Area.add(title);
 		
 		/*
 		 * Creates the line layout
@@ -101,7 +101,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		 */
 		JPanel line1 = new JPanel();
 		line1.setLayout(lineLayout);
-		this.add(line1);
+		this.editTableWindow.R_Area.add(line1);
 		line1.add(new JLabel("Table num:"));
 		tableNum = new JSpinner(new SpinnerNumberModel(1, 1, 1000, 1));
 		line1.add(tableNum);
@@ -111,7 +111,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		 */
 		JPanel line2 = new JPanel();
 		line2.setLayout(lineLayout);
-		this.add(line2);
+		this.editTableWindow.R_Area.add(line2);
 		line2.add(new JLabel("Num of places:"));
 		numOfPlaces = new JSpinner(new SpinnerNumberModel(2, 2, 6, 2));
 		line2.add(numOfPlaces);
@@ -121,7 +121,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		 */
 		JPanel line3 = new JPanel();
 		line3.setLayout(lineLayout);
-		this.add(line3);
+		this.editTableWindow.R_Area.add(line3);
 		line3.add(new JLabel("X position:"));
 		posX = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
 		line3.add(posX);
@@ -131,7 +131,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		 */
 		JPanel line4 = new JPanel();
 		line4.setLayout(lineLayout);
-		this.add(line4);
+		this.editTableWindow.R_Area.add(line4);
 		line4.add(new JLabel("Y position:"));
 		posY = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
 		line4.add(posY);
@@ -141,7 +141,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		 */
 		JPanel line5 = new JPanel();
 		line5.setLayout(lineLayout);
-		this.add(line5);
+		this.editTableWindow.R_Area.add(line5);
 		line5.add(new JLabel("Rotation:"));
 		rotation = new JSpinner(new SpinnerNumberModel(1, 1, 2, 1));
 		line5.add(rotation);
@@ -151,7 +151,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		 */
 		JPanel line6 = new JPanel();
 		line6.setLayout(lineLayout);
-		this.add(line6);
+		this.editTableWindow.R_Area.add(line6);
 		line6.add(new JLabel("Sector:"));
 		Set<Integer> sectorsNums = this.editTableWindow.mainWindow.theRoom.getSectors().keySet();
 		comboSectors = new JComboBox<Object>(sectorsNums.toArray());
@@ -161,7 +161,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		 */
 		JPanel line7 = new JPanel();
 		line7.setLayout(lineLayout);
-		this.add(line7);
+		this.editTableWindow.R_Area.add(line7);
 		line7.add(new JLabel());
 		processAddTable = new JButton("Send");
 		processAddTable.addActionListener(this);

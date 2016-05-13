@@ -1,13 +1,9 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Map;
-import java.util.Set;
 import java.util.TreeSet;
 
 import javax.swing.DefaultComboBoxModel;
@@ -17,15 +13,9 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
-import fr.iutvalence.info.dut.m2107.room.Progress;
 import fr.iutvalence.info.dut.m2107.room.Sector;
 import fr.iutvalence.info.dut.m2107.room.SectorNotExistsException;
-import fr.iutvalence.info.dut.m2107.room.State;
 import fr.iutvalence.info.dut.m2107.room.Table;
 import fr.iutvalence.info.dut.m2107.room.TableNotExistsException;
 
@@ -71,14 +61,14 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
 		GridLayout controlPanel = new GridLayout(4,1);
 		controlPanel.setHgap(10);
 		controlPanel.setVgap(5);
-		this.setLayout(controlPanel);
+		this.editTableWindow.R_Area.setLayout(controlPanel);
 		
 		/*
 		 * Set the title of the category
 		 */
 		JLabel title = new JLabel("Table deleting", SwingConstants.CENTER);
 		title.setFont(title.getFont().deriveFont(Font.BOLD, 20.f));
-		this.add(title);
+		this.editTableWindow.R_Area.add(title);
 		
 		/*
 		 * Make the line layout
@@ -90,7 +80,7 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
 		 */
 		JPanel line1 = new JPanel();
 		line1.setLayout(lineLayout);
-		this.add(line1); 
+		this.editTableWindow.R_Area.add(line1); 
 		line1.add(new JLabel("Sector"));
 		comboSectors = new JComboBox<Object>(new TreeSet<Integer>(this.editTableWindow.mainWindow.theRoom.getSectors().keySet()).toArray());
 		comboSectors.addActionListener(this);
@@ -101,7 +91,7 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
 		 */
 		JPanel line2 = new JPanel();
 		line2.setLayout(lineLayout);
-		this.add(line2);
+		this.editTableWindow.R_Area.add(line2);
 		line2.add(new JLabel("Table"));
 		Sector theSector = null;
 		try {
@@ -118,7 +108,7 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
 		 */
 		JPanel line3 = new JPanel();
 		line3.setLayout(lineLayout);
-		this.add(line3);
+		this.editTableWindow.R_Area.add(line3);
 		line3.add(new JLabel());
 		processDeleteTable = new JButton("Delete");
 		processDeleteTable.addActionListener(this);
@@ -142,24 +132,6 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
 			DefaultComboBoxModel model = new DefaultComboBoxModel(new TreeSet<Integer>(theSector.getTables().keySet()).toArray());
 			this.comboTables.setModel( model );
 			
-		}
-		else if(source == this.comboTables)
-		{
-			Sector theSector = null;
-			try {
-				theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
-			} catch (SectorNotExistsException e1) {
-				// ... impossible
-			}
-			Table theTable = null;
-			try
-			{
-				theTable = theSector.getTable((int)this.comboTables.getSelectedItem());
-			}
-			catch (TableNotExistsException e1)
-			{
-				// ... impossible
-			}
 		}
 		else if(source == this.processDeleteTable)
 		{

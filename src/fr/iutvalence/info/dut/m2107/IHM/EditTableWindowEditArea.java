@@ -108,14 +108,14 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		GridLayout controlPanel = new GridLayout(12,1);
 		controlPanel.setHgap(10);
 		controlPanel.setVgap(5);
-		this.setLayout(controlPanel);
+		this.editTableWindow.R_Area.setLayout(controlPanel);
 		
 		/*
 		 * Set the title of the category
 		 */
 		JLabel title = new JLabel("Table editing", SwingConstants.CENTER);
 		title.setFont(title.getFont().deriveFont(Font.BOLD, 20.f));
-		this.add(title);
+		this.editTableWindow.R_Area.add(title);
 		
 		/*
 		 * Creates the line layout
@@ -127,7 +127,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		 */
 		JPanel line1 = new JPanel();
 		line1.setLayout(lineLayout);
-		this.add(line1);
+		this.editTableWindow.R_Area.add(line1);
 		line1.add(new JLabel("Sector:"));
 		Set<Integer> sectors = new TreeSet<Integer>(this.editTableWindow.mainWindow.theRoom.getSectors().keySet());
 		comboSectors = new JComboBox<Object>(sectors.toArray());
@@ -139,7 +139,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		 */
 		JPanel line2 = new JPanel();
 		line2.setLayout(lineLayout);
-		this.add(line2);
+		this.editTableWindow.R_Area.add(line2);
 		line2.add(new JLabel("Table:"));
 		Sector theSector = null;
 		try {
@@ -157,7 +157,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		 */
 		JPanel line3 = new JPanel();
 		line3.setLayout(lineLayout);
-		this.add(line1);
+		this.editTableWindow.R_Area.add(line1);
 		line3.add(new JLabel("Num of places:"));
 		numOfPlaces = new JSpinner(new SpinnerNumberModel(2, 2, 6, 2));
 		line3.add(numOfPlaces);
@@ -167,7 +167,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		 */
 		JPanel line4 = new JPanel();
 		line4.setLayout(lineLayout);
-		this.add(line4);
+		this.editTableWindow.R_Area.add(line4);
 		line4.add(new JLabel("X position:"));
 		posX = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
 		line4.add(posX);
@@ -177,7 +177,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		 */
 		JPanel line5 = new JPanel();
 		line5.setLayout(lineLayout);
-		this.add(line5);
+		this.editTableWindow.R_Area.add(line5);
 		line5.add(new JLabel("Y position:"));
 		posY = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
 		line5.add(posY);
@@ -187,7 +187,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		 */
 		JPanel line6 = new JPanel();
 		line6.setLayout(lineLayout);
-		this.add(line6);
+		this.editTableWindow.R_Area.add(line6);
 		line6.add(new JLabel("Rotation:"));
 		rotation = new JSpinner(new SpinnerNumberModel(1, 1, 2, 1));
 		line6.add(rotation);
@@ -197,7 +197,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		 */
 		JPanel line7 = new JPanel();
 		line7.setLayout(lineLayout);
-		this.add(line7);
+		this.editTableWindow.R_Area.add(line7);
 		line7.add(new JLabel("State"));
 		this.state = new JComboBox<Object>(State.values());
 		this.state.addActionListener(this);
@@ -208,7 +208,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		 */
 		JPanel line8 = new JPanel();
 		line8.setLayout(lineLayout);
-		this.add(line8);
+		this.editTableWindow.R_Area.add(line8);
 		line8.add(new JLabel("Client Name"));
 		this.clientName = new JTextField();
 		this.clientName.disable();
@@ -219,7 +219,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		 */
 		JPanel line9 = new JPanel();
 		line9.setLayout(lineLayout);
-		this.add(line9);
+		this.editTableWindow.R_Area.add(line9);
 		line9.add(new JLabel("Progress"));
 		progress = new JComboBox<Object>(Progress.values());
 		line9.add(progress);
@@ -229,12 +229,11 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		 */
 		JPanel line10 = new JPanel();
 		line10.setLayout(lineLayout);
-		this.add(line10);
+		this.editTableWindow.R_Area.add(line10);
 		line10.add(new JLabel());
 		processEditTable = new JButton("Send");
 		processEditTable.addActionListener(this);
 		line10.add(processEditTable);
-		
 		// TODO : add default configuration of the first table
 	}
 
@@ -338,10 +337,9 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 			JOptionPane.showMessageDialog(null, "The table has been correctly edited");
 			this.editTableWindow.mainWindow.rightArea.refreshSectors();
 			
-			//TODO verify if it's usefull or useless
-//			this.editTableWindow.R_Area.removeAll();
-//			this.editTableWindow.R_Area = new EditTableWindowEditArea(this.editTableWindow);
-//			SwingUtilities.updateComponentTreeUI(this.editTableWindow.R_Area);
+			this.editTableWindow.R_Area.removeAll();
+			this.editTableWindow.R_Area = new EditTableWindowEditArea(this.editTableWindow);
+			SwingUtilities.updateComponentTreeUI(this.editTableWindow.R_Area);
 		}
 	}
 }
