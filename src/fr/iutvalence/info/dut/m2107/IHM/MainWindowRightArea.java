@@ -22,6 +22,7 @@ import javax.swing.border.TitledBorder;
 
 import fr.iutvalence.info.dut.m2107.room.Position;
 import fr.iutvalence.info.dut.m2107.room.SectorNotExistsException;
+import fr.iutvalence.info.dut.m2107.room.State;
 import fr.iutvalence.info.dut.m2107.room.Table;
 
 /**
@@ -182,46 +183,7 @@ public class MainWindowRightArea extends JPanel{
 			Table theTable = (Table) tablesIterator.next();
 			tablesPositions.put(theTable.getPosition(), theTable);
 		}
-		
-		ImageIcon tableVerte4 = new ImageIcon("img/tableVerte4Projet.png");
-		Image tableVerte4Rot1 = tableVerte4.getImage();
-		tableVerte4Rot1 = tableVerte4Rot1.getScaledInstance(84, 64, Image.SCALE_SMOOTH);
-		tableVerte4 = new ImageIcon(tableVerte4Rot1);
-		
-		ImageIcon tableVerte4Rot = new ImageIcon("img/tableVerte4ProjetRot2.png");
-		Image tableVerte4Rot2 = tableVerte4Rot.getImage();
-		tableVerte4Rot2 = tableVerte4Rot2.getScaledInstance(64, 74, Image.SCALE_SMOOTH);
-		tableVerte4Rot = new ImageIcon(tableVerte4Rot2);
-		
-		ImageIcon tableVerte2 = new ImageIcon("img/tableVerte2Projet.png");
-		Image tableVerte2Rot1 = tableVerte2.getImage();
-		tableVerte2Rot1 = tableVerte2Rot1.getScaledInstance(42, 64, Image.SCALE_SMOOTH);
-		tableVerte2 = new ImageIcon(tableVerte2Rot1);
-		
-		ImageIcon tableVerte2Rot = new ImageIcon("img/tableVerte2ProjetRot2.png");
-		Image tableVerte2Rot2 = tableVerte2Rot.getImage();
-		tableVerte2Rot2 = tableVerte2Rot2.getScaledInstance(64, 42, Image.SCALE_SMOOTH);
-		tableVerte2Rot = new ImageIcon(tableVerte2Rot2);
-		
-		//To resize
-		ImageIcon tableVerte6 = new ImageIcon("img/tableVerte6ProjetRot2.png");
-		Image tableVerte6Rot1 = tableVerte6.getImage();
-		tableVerte6Rot1 = tableVerte6Rot1.getScaledInstance(84, 64, Image.SCALE_SMOOTH);
-		tableVerte6 = new ImageIcon(tableVerte6Rot1);
-		//To resize
-		ImageIcon tableVerte6Rot = new ImageIcon("img/tableVerte6Projet.png");
-		Image tableVerte6Rot2 = tableVerte6Rot.getImage();
-		tableVerte6Rot2 = tableVerte6Rot2.getScaledInstance(64, 84, Image.SCALE_SMOOTH);
-		tableVerte6Rot = new ImageIcon(tableVerte6Rot2);
-		
-		
-		
-		ImageIcon imgB = new ImageIcon("img/labelBlanc.png");
-		Image img2 = imgB.getImage();
-		img2 = img2.getScaledInstance(84, 64, Image.SCALE_SMOOTH);
-		imgB= new ImageIcon(img2);
-		
-		
+			
 		for(int i = 0; i < 4; i++)
 		{
 			for(int j = 0; j < 4; j++)
@@ -229,48 +191,158 @@ public class MainWindowRightArea extends JPanel{
 				if(tablesPositions.containsKey(new Position(j, i, 1)))
 				{
 					Table theTable = tablesPositions.get(new Position(j, i, 1));
-					JLabel TVerte = new JLabel(tableVerte4);
-					JLabel TVerteRot = new JLabel(tableVerte4Rot);
-					JLabel TVerte2 = new JLabel(tableVerte2);
-					JLabel TVerte2Rot = new JLabel(tableVerte2Rot);
-					JLabel TVerte6 = new JLabel(tableVerte6);
-					JLabel TVerte6Rot = new JLabel(tableVerte6Rot);
+
+					JLabel TVerte = new JLabel(returnImage("img/tableVerte4Projet.png", 84 , 64));
+					JLabel TVerteRot = new JLabel(returnImage("img/tableVerte4ProjetRot2.png", 64 , 74));
+					JLabel TVerte2 = new JLabel(returnImage("img/tableVerte2Projet.png", 42 , 64));
+					JLabel TVerte2Rot = new JLabel(returnImage("img/tableVerte2ProjetRot2.png", 64 , 42));
+					JLabel TVerte6 = new JLabel(returnImage("img/tableVerte6Projet.png", 84 , 74));
+					JLabel TVerte6Rot = new JLabel(returnImage("img/tableVerte6ProjetRot2.png", 74 , 74));
+					
+					JLabel TRouge = new JLabel(returnImage("img/tableRouge4Projet.png", 84, 64));
+					JLabel TRougeRot = new JLabel(returnImage("img/tableRouge4ProjetRot2.png", 64, 74));
+					JLabel TRouge2 = new JLabel(returnImage("img/tableRougeProjet.png", 42, 64));
+					JLabel TRouge2Rot = new JLabel(returnImage("img/tableRouge2ProjetRot2.png", 64, 42));
+					JLabel TRouge6 = new JLabel(returnImage("img/tableRouge6Projet.png", 84, 74));
+					JLabel TRouge6Rot = new JLabel(returnImage("img/tableRouge6ProjetRot2.png", 74, 74));
+					
+					JLabel TBleu = new JLabel(returnImage("img/tableBLeu4Projet.png", 84, 64));
+					JLabel TBleuRot = new JLabel(returnImage("img/tableBleu4ProjetRot2.png", 64, 74));
+					JLabel TBleu2 = new JLabel(returnImage("img/tableBleu2Projet.png", 42, 64));
+					JLabel TBleu2Rot = new JLabel(returnImage("img/tableBleu2ProjetRot2.png", 64, 42));
+					JLabel TBleu6 = new JLabel(returnImage("img/tableBleu6Projet.png", 84, 74));
+					JLabel TBleu6Rot = new JLabel(returnImage("img/tableBleu6ProjetRot2.png", 74, 74));	
+					
+					JLabel TOrange = new JLabel(returnImage("img/tableOrange4Projet.png", 84, 64));
+					JLabel TOrangeRot = new JLabel(returnImage("img/tableOrange4ProjetRot2.png", 64, 74));
+					JLabel TOrange2 = new JLabel(returnImage("img/tableOrangeProjet.png", 42, 64));
+					JLabel TOrange2Rot = new JLabel(returnImage("img/tableOrange2ProjetRot2.png", 64, 42));
+					JLabel TOrange6 = new JLabel(returnImage("img/tableOrange6Projet.png", 84, 74));
+					JLabel TOrange6Rot = new JLabel(returnImage("img/tableOrange6ProjetRot2.png", 74, 74));
+					
 					int rot = theTable.getPosition().getRotation();
 					int nbPlace = theTable.getNumberPlaces();
+					State state = theTable.getState();
 					
-					if(rot == 1 && nbPlace == 4)
+					if(rot == 1 && nbPlace == 4 && state == State.FREE)
 					{
 						theSector.add(TVerte);
 					}
-					if(rot == 1 && nbPlace == 2)
-					{
-						theSector.add(TVerte2);
-					}
-					if(rot == 1 && nbPlace == 6)
-					{
-						theSector.add(TVerte6);
-					}
-					if(rot == 2 && nbPlace == 4)
+					if(rot == 2 && nbPlace == 4 && state == State.FREE)
 					{
 						theSector.add(TVerteRot);
 					}
-					if(rot == 2 && nbPlace == 2)
+					if(rot == 1 && nbPlace == 2 && state == State.FREE)
+					{
+						theSector.add(TVerte2);
+					}
+					if(rot == 2 && nbPlace == 2 && state == State.FREE)
 					{
 						theSector.add(TVerte2Rot);
 					}
-					if(rot == 2 && nbPlace == 6)
+					if(rot == 1 && nbPlace == 6 && state == State.FREE)
+					{
+						theSector.add(TVerte6);
+					}
+					if(rot == 2 && nbPlace == 6 && state == State.FREE)
 					{
 						theSector.add(TVerte6Rot);
 					}
 					
 					
+					if(rot == 1 && nbPlace == 4 && state == State.BUSY)
+					{
+						theSector.add(TRouge);
+					}
+					if(rot == 2 && nbPlace == 4 && state == State.BUSY)
+					{
+						theSector.add(TRougeRot);
+					}
+					if(rot == 1 && nbPlace == 2 && state == State.BUSY)
+					{
+						theSector.add(TRouge2);
+					}
+					if(rot == 2 && nbPlace == 2 && state == State.BUSY)
+					{
+						theSector.add(TRouge2Rot);
+					}
+					if(rot == 1 && nbPlace == 6 && state == State.BUSY)
+					{
+						theSector.add(TRouge6);
+					}
+					if(rot == 1 && nbPlace == 6 && state == State.BUSY)
+					{
+						theSector.add(TRouge6Rot);
+					}
+					
+					
+					if(rot == 1 && nbPlace == 4 && state == State.RESERVED)
+					{
+						theSector.add(TBleu);
+					}
+					if(rot == 2 && nbPlace == 4 && state == State.RESERVED)
+					{
+						theSector.add(TBleuRot);
+					}
+					if(rot == 1 && nbPlace == 2 && state == State.RESERVED)
+					{
+						theSector.add(TBleu2);
+					}
+					if(rot == 2 && nbPlace == 2 && state == State.RESERVED)
+					{
+						theSector.add(TBleu2Rot);
+					}
+					if(rot == 1 && nbPlace == 6 && state == State.RESERVED)
+					{
+						theSector.add(TBleu6);
+					}
+					if(rot == 2 && nbPlace == 6 && state == State.RESERVED)
+					{
+						theSector.add(TBleu6Rot);
+					}
+					
+					
+					if(rot == 1 && nbPlace == 4 && state == State.GRIMY)
+					{
+						theSector.add(TOrange);
+					}
+					if(rot == 2 && nbPlace == 4 && state == State.GRIMY)
+					{
+						theSector.add(TOrangeRot);
+					}
+					if(rot == 1 && nbPlace == 2 && state == State.GRIMY)
+					{
+						theSector.add(TOrange2);
+					}
+					if(rot == 2 && nbPlace == 2 && state == State.GRIMY)
+					{
+						theSector.add(TOrange2Rot);
+					}
+					if(rot == 1 && nbPlace == 6 && state == State.GRIMY)
+					{
+						theSector.add(TOrange6);
+					}
+					if(rot == 2 && nbPlace == 6 && state == State.GRIMY)
+					{
+						theSector.add(TOrange6Rot);
+					}
+						
 				}
 				else
 				{
-					JLabel tbis = new JLabel(imgB);
+					JLabel tbis = new JLabel(returnImage("img/labelBlanc.png", 84, 64));
 					theSector.add(tbis);
 				}
 			}
 		}
+	}
+	
+	public ImageIcon returnImage(String image, int h , int l)
+	{
+		ImageIcon image1 = new ImageIcon(image);
+		Image image2 = image1.getImage();
+		image2 = image2.getScaledInstance(h, l, Image.SCALE_SMOOTH);
+		image1= new ImageIcon(image2);
+		return image1;
 	}
 }
