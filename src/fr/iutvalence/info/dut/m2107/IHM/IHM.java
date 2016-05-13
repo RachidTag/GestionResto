@@ -1,7 +1,10 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 
+import java.awt.Image;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import javax.swing.ImageIcon;
 
 import fr.iutvalence.info.dut.m2107.calendar.Calendar;
 import fr.iutvalence.info.dut.m2107.room.ObjectReadedIsNotARoomException;
@@ -19,9 +22,14 @@ public class IHM {
 	 * @param args
 	 */
 	@SuppressWarnings("unused")
-	public static void main(String[] args) {
+	public static void main(String[] args){
+		ImageIcon logoIcon = new ImageIcon("img/logoIcon.png");
+		Image logo = logoIcon.getImage();
+		MainWindow window = null;
 		try {
-			MainWindow window = new MainWindow(Room.loadRoom(), new Calendar());
+			window = new MainWindow(Room.loadRoom(), new Calendar());
+			if (window != null)
+				window.setIconImage(logo);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
