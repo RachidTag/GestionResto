@@ -186,6 +186,25 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 				this.close.setEnabled(false);
 			}				
 		}
+		else if(source == this.checkSchedule)
+		{
+			if(this.checkSchedule.isEnabled())
+			{
+				ImageIcon logoIcon = new ImageIcon("img/logoIcon.png");
+				Image logo = logoIcon.getImage();
+				this.mainWindow.scheduleWindow = new ScheduleWindow(this.mainWindow);
+				
+				if (this.mainWindow.scheduleWindow != null)
+					this.mainWindow.scheduleWindow.setIconImage(logo);
+				
+				this.editTable.setEnabled(false);
+				this.editSector.setEnabled(false);
+				this.checkRoom.setEnabled(false);
+				this.checkSchedule.setEnabled(false);
+				this.roomManager.setEnabled(false);
+				this.close.setEnabled(false);
+			}				
+		}
 		else
 		{
 			// TODO for others buttons

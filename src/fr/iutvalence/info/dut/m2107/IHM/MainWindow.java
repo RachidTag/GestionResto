@@ -40,6 +40,9 @@ public class MainWindow extends JFrame {
 	 * The edit sector window
 	 */
 	public EditSectorWindow editSectorWindow;
+	
+	
+	public ScheduleWindow scheduleWindow;
 		
 	/**
 	 * Generates the main window
