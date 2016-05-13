@@ -1,32 +1,26 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 
 /**
  * @author TODO
  *
  */
+@SuppressWarnings("serial")
 public class EditSectorWindowRightArea extends JPanel{
 	/**
 	 * The main window
 	 */
+	@SuppressWarnings("unused")
 	private EditSectorWindow sectorEditionWindow;
 
 	/**
 	 * TODO
-	 * @param mainWindow
+	 * @param sectorEditionWindow
 	 */
 	public EditSectorWindowRightArea(EditSectorWindow sectorEditionWindow){
 		/*

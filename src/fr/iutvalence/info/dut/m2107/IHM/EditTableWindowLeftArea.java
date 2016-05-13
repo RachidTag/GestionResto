@@ -101,19 +101,19 @@ public class EditTableWindowLeftArea extends JPanel implements ActionListener{
 		else if(source == this.add)
 		{
 			this.editTableWindow.R_Area.removeAll();
-			this.editTableWindow.R_Area = new EditTableWindowAddArea(this.editTableWindow);
+			new EditTableWindowAddArea(this.editTableWindow);
 			SwingUtilities.updateComponentTreeUI(this.editTableWindow);
 		}
 		else if(source == this.edit)
 		{
 			this.editTableWindow.R_Area.removeAll();
-			this.editTableWindow.R_Area = new EditTableWindowEditArea(this.editTableWindow);
+			new EditTableWindowEditArea(this.editTableWindow);
 			SwingUtilities.updateComponentTreeUI(this.editTableWindow);
 		}
 		else if(source == this.delete)
 		{
 			this.editTableWindow.R_Area.removeAll();
-			this.editTableWindow.R_Area = new EditTableWindowDeleteArea(this.editTableWindow);
+			new EditTableWindowDeleteArea(this.editTableWindow);
 			SwingUtilities.updateComponentTreeUI(this.editTableWindow);
 		}
 	}
