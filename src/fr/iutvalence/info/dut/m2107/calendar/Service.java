@@ -63,7 +63,7 @@ public class Service {
 	
 	/**
 	 * Remove a waiter from the list of waiter
-	 * @param waiter the wiater we want to remove from the list of waiter
+	 * @param waiter the waiter we want to remove from the list of waiter
 	 */
 	public void removeWaiter(Waiter waiter) {
 		this.waiters.remove(waiter);
@@ -79,7 +79,7 @@ public class Service {
 	
 	/**
 	 * Remove a waiter from the list of cleaner waiter
-	 * @param waiter the wiater we want to remove from the list of waiter
+	 * @param waiter the waiter we want to remove from the list of waiter
 	 */
 	public void removeCleanerWaiter(Waiter waiter) {
 		this.cleanerWaiter.remove(waiter);
@@ -142,4 +142,35 @@ public class Service {
 		}
 		return theString;	
 	}
+	
+	/**
+	 * To string for the set of waiters
+	 * @return
+	 */
+	public String waitersToString(){
+		String theString = "";
+		theString += "Waiters: ";
+		Iterator<Waiter> theIterator = this.waiters.iterator();
+		while(theIterator.hasNext())
+		{
+			theString += theIterator.next() + ", ";
+		}
+		return theString;
+	}
+	
+	/**
+	 * To string for the set of cleaner waiters
+	 * @return
+	 */
+	 public String cleanerWaitersToString(){
+		 String theString = "";
+		 theString += "Cleaner waiters: ";
+		 Iterator<Waiter> theIterator = this.cleanerWaiter.iterator();
+		 while(theIterator.hasNext())
+		 {
+		 	theString += theIterator.next() + ", ";
+		 }
+		 return theString;	
+	 }
+	
 }
