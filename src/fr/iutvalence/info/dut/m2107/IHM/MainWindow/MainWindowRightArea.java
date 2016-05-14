@@ -201,7 +201,7 @@ public class MainWindowRightArea extends JPanel{
 					
 					JLabel TRouge = new JLabel(returnImage("img/tableRouge4Projet.png", 84, 64));
 					JLabel TRougeRot = new JLabel(returnImage("img/tableRouge4ProjetRot2.png", 64, 74));
-					JLabel TRouge2 = new JLabel(returnImage("img/tableRougeProjet.png", 42, 64));
+					JLabel TRouge2 = new JLabel(returnImage("img/tableRouge2Projet.png", 42, 64));
 					JLabel TRouge2Rot = new JLabel(returnImage("img/tableRouge2ProjetRot2.png", 64, 42));
 					JLabel TRouge6 = new JLabel(returnImage("img/tableRouge6Projet.png", 84, 74));
 					JLabel TRouge6Rot = new JLabel(returnImage("img/tableRouge6ProjetRot2.png", 74, 74));
@@ -215,7 +215,7 @@ public class MainWindowRightArea extends JPanel{
 					
 					JLabel TOrange = new JLabel(returnImage("img/tableOrange4Projet.png", 84, 64));
 					JLabel TOrangeRot = new JLabel(returnImage("img/tableOrange4ProjetRot2.png", 64, 74));
-					JLabel TOrange2 = new JLabel(returnImage("img/tableOrangeProjet.png", 42, 64));
+					JLabel TOrange2 = new JLabel(returnImage("img/tableOrange2Projet.png", 42, 64));
 					JLabel TOrange2Rot = new JLabel(returnImage("img/tableOrange2ProjetRot2.png", 64, 42));
 					JLabel TOrange6 = new JLabel(returnImage("img/tableOrange6Projet.png", 84, 74));
 					JLabel TOrange6Rot = new JLabel(returnImage("img/tableOrange6ProjetRot2.png", 74, 74));
