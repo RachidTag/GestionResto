@@ -1,4 +1,7 @@
 package fr.iutvalence.info.dut.m2107.room;
+
+import java.io.Serializable;
+
 /**
  * Table not exists exception
  * @author Projet Resto
