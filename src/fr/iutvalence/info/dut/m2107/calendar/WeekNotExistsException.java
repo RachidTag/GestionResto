@@ -1,11 +1,17 @@
 package fr.iutvalence.info.dut.m2107.calendar;
 
+import java.io.Serializable;
+
 /**
  * The week don't exist
  * @author Projet Resto
  *
  */
-@SuppressWarnings("serial")
-public class WeekNotExistsException extends Exception {
+public class WeekNotExistsException extends Exception implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 }

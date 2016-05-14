@@ -1,11 +1,18 @@
 package fr.iutvalence.info.dut.m2107.calendar;
 
+import java.io.Serializable;
+
 /**
  * Represents a week from the calendar
  * @author Projet Resto
  *
  */
-public class Week {
+public class Week implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Num of the week in the year
 	 */

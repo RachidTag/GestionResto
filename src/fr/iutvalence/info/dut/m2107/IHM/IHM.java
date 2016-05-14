@@ -21,7 +21,6 @@ public class IHM {
 	 * TODO
 	 * @param args
 	 */
-	@SuppressWarnings("unused")
 	public static void main(String[] args){
 		ImageIcon logoIcon = new ImageIcon("img/logoIcon.png");
 		Image logo = logoIcon.getImage();

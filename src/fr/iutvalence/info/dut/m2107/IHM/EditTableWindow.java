@@ -1,12 +1,6 @@
 package fr.iutvalence.info.dut.m2107.IHM;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-
 import javax.swing.*;
-
-import fr.iutvalence.info.dut.m2107.room.*;
 
 /**
  * TODO

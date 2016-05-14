@@ -18,8 +18,6 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
 import fr.iutvalence.info.dut.m2107.room.ClientNameRequiredException;
 import fr.iutvalence.info.dut.m2107.room.Position;
 import fr.iutvalence.info.dut.m2107.room.Progress;
@@ -95,6 +93,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 	 * TODO
 	 * @param editTableWindow 
 	 */
+	@SuppressWarnings("deprecation")
 	public EditTableWindowEditArea(EditTableWindow editTableWindow){
 		/*
 		 * Save the reference to the sector edition window

@@ -42,10 +42,15 @@ public class MainWindow extends JFrame {
 	public EditSectorWindow editSectorWindow;
 	
 	
+	/**
+	 * The Schedule window
+	 */
 	public ScheduleWindow scheduleWindow;
 		
 	/**
 	 * Generates the main window
+	 * @param theRoom 
+	 * @param theCalendar 
 	 */
 	public MainWindow(Room theRoom, Calendar theCalendar)
 	{

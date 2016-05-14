@@ -1,12 +1,13 @@
 package fr.iutvalence.info.dut.m2107;
 
+import java.io.Serializable;
+
 /**
  * Represents the different waiter's ranks in the restaurant
  * @author Projet Resto
  *
  */
-public enum Rank
-{
+public enum Rank implements Serializable {
 	/**
 	 * A people who runs in the restaurant (#lol)
 	 * Give the plates...
