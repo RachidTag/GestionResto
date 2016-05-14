@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 
+import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
 import fr.iutvalence.info.dut.m2107.calendar.Calendar;
 import fr.iutvalence.info.dut.m2107.room.ObjectReadedIsNotARoomException;
 import fr.iutvalence.info.dut.m2107.room.Room;

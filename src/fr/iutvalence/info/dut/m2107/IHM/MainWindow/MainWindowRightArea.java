@@ -1,4 +1,4 @@
-package fr.iutvalence.info.dut.m2107.IHM;
+package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 
 import java.awt.Color;
 import java.awt.GridLayout;

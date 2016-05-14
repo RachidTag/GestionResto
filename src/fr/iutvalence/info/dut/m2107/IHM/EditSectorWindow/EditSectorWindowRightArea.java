@@ -1,4 +1,4 @@
-package fr.iutvalence.info.dut.m2107.IHM;
+package fr.iutvalence.info.dut.m2107.IHM.EditSectorWindow;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;

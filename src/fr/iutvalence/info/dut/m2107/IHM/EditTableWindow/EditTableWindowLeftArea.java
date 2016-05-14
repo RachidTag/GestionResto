@@ -1,4 +1,4 @@
-package fr.iutvalence.info.dut.m2107.IHM;
+package fr.iutvalence.info.dut.m2107.IHM.EditTableWindow;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;

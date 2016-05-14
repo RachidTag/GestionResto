@@ -3,12 +3,14 @@ package fr.iutvalence.info.dut.m2107.IHM;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
+
 /**
  * Represents the events in the window
  * @author Projet Resto
  *
  */
-class WindowEventHandler extends WindowAdapter {
+public class WindowEventHandler extends WindowAdapter {
 	/**
 	 * The mainWindow
 	 */

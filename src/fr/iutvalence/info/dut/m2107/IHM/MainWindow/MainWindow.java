@@ -1,5 +1,9 @@
-package fr.iutvalence.info.dut.m2107.IHM;
+package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 import javax.swing.*;
+
+import fr.iutvalence.info.dut.m2107.IHM.ScheduleWindow;
+import fr.iutvalence.info.dut.m2107.IHM.EditSectorWindow.EditSectorWindow;
+import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
 import fr.iutvalence.info.dut.m2107.calendar.Calendar;
 import fr.iutvalence.info.dut.m2107.room.Room;
 

@@ -1,4 +1,4 @@
-package fr.iutvalence.info.dut.m2107.IHM;
+package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

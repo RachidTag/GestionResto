@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
+
 @SuppressWarnings("serial")
 public class ScheduleWindow extends JFrame{
 	

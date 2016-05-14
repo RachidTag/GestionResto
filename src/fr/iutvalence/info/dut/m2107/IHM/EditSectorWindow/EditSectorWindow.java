@@ -1,7 +1,10 @@
-package fr.iutvalence.info.dut.m2107.IHM;
+package fr.iutvalence.info.dut.m2107.IHM.EditSectorWindow;
 
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
+
+import fr.iutvalence.info.dut.m2107.IHM.WindowEventHandler;
+import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
 
 /**
  * @author TODO

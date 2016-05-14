@@ -1,4 +1,4 @@
-package fr.iutvalence.info.dut.m2107.IHM;
+package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -11,6 +11,10 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import fr.iutvalence.info.dut.m2107.IHM.ScheduleWindow;
+import fr.iutvalence.info.dut.m2107.IHM.EditSectorWindow.EditSectorWindow;
+import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
 
 /**
  * @author TODO
