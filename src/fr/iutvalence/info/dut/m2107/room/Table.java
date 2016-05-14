@@ -2,8 +2,6 @@ package fr.iutvalence.info.dut.m2107.room;
 
 import java.io.Serializable;
 
-import com.sun.org.apache.bcel.internal.generic.InstructionConstants.Clinit;
-
 /**
  * Represent a table
  * @author Projet Resto

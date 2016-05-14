@@ -16,6 +16,7 @@ import javax.swing.JPanel;
  * @author TODO
  *
  */
+@SuppressWarnings("serial")
 public class MainWindowLeftArea extends JPanel implements ActionListener{
 	/**
 	 * The main window

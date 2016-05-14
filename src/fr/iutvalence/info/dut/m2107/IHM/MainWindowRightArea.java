@@ -7,15 +7,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeSet;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -29,6 +23,7 @@ import fr.iutvalence.info.dut.m2107.room.Table;
  * @author TODO
  *
  */
+@SuppressWarnings("serial")
 public class MainWindowRightArea extends JPanel{
 	/**
 	 * The main window
@@ -164,6 +159,11 @@ public class MainWindowRightArea extends JPanel{
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 	
+	/**
+	 * TODO
+	 * @param numSector
+	 * @param theSector
+	 */
 	public void generatesSector(int numSector, JPanel theSector)
 	{
 		Collection<Table> tables = null;
@@ -178,7 +178,7 @@ public class MainWindowRightArea extends JPanel{
 		
 		Map<Position, Table> tablesPositions = new HashMap<Position, Table>();
 		
-		for(Iterator tablesIterator = tables.iterator(); tablesIterator.hasNext();)
+		for(Iterator<Table> tablesIterator = tables.iterator(); tablesIterator.hasNext();)
 		{
 			Table theTable = (Table) tablesIterator.next();
 			tablesPositions.put(theTable.getPosition(), theTable);
@@ -337,6 +337,13 @@ public class MainWindowRightArea extends JPanel{
 		}
 	}
 	
+	/**
+	 * TODO
+	 * @param image
+	 * @param h
+	 * @param l
+	 * @return ImageIcon
+	 */
 	public ImageIcon returnImage(String image, int h , int l)
 	{
 		ImageIcon image1 = new ImageIcon(image);
