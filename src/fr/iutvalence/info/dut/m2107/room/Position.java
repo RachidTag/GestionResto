@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Represent the position of a table in a sector
  * @author Projet Resto
  */
-public class Position implements Serializable, Comparable {
+public class Position implements Serializable{
 	/**
 	 * 
 	 */
@@ -108,37 +108,17 @@ public class Position implements Serializable, Comparable {
 	}
 	
 	/**
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
-	public int compareTo(Object o) 
-	{
-		if (getClass() != o.getClass())
-			return 0;
-		Position other = (Position) o;
-		
-		if (this.y < other.y) return 1;
-		if (this.y > other.y) return -1;
-		if (this.x < other.x) return 1;
-		if (this.x > other.x) return -1;
-		
-		return 0;
-	}
-	
-	
-	/**
-	 * @param i
-	 * @param j
+	 * Check if the given coordinates are the same as the object
+	 * @param x
+	 * @param y
 	 * @return boolean if position is equals 
 	 */
-	public boolean hasSamePosition(int i, int j)
+	public boolean hasSamePosition(int x, int y)
 	{
-		if(this.x == i && this.y == j)
+		if(this.x == x && this.y == y)
 		{
 			return true;
 		}
 		return false;
-	
-	}
-	
-	
+	}	
 }

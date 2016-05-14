@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.iutvalence.info.dut.m2107.Rank;
 import fr.iutvalence.info.dut.m2107.Waiter;
 
 /**
@@ -115,7 +114,7 @@ public class Room implements Serializable {
 		try {
 			saveFile.createNewFile();
 		} catch (IOException e) {
-			// impossible
+			e.printStackTrace();
 		}
 		
 		FileOutputStream saveStream = null;
@@ -152,7 +151,7 @@ public class Room implements Serializable {
 	}
 	
 	/**
-	 * Load a room from a given file
+	 * Load a room from a given file (creates an empty room if the file isn't existing)
 	 * @param givenFile 
 	 * @return roomReaded
 	 * @throws FileNotFoundException

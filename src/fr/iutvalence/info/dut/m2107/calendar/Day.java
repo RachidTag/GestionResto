@@ -1,11 +1,18 @@
 package fr.iutvalence.info.dut.m2107.calendar;
 
+import java.io.Serializable;
+
 /**
  * Represents a day in a week
  * @author Projet Resto
  *
  */
-public class Day {
+public class Day implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * If the restaurant is closed today
 	 */
@@ -55,6 +62,7 @@ public class Day {
 	 * Set a service for the day
 	 * @param serviceType
 	 * @param service
+	 * @throws RestaurantIsClosedException 
 	 */
 	public void setService(Service service) throws RestaurantIsClosedException{
 		if (this.isClosed) throw new RestaurantIsClosedException();

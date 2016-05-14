@@ -3,11 +3,11 @@ package fr.iutvalence.info.dut.m2107.calendar;
 import java.io.Serializable;
 
 /**
- * Restaurant is closed Exception
+ * The object readed is not a calendar
  * @author Projet Resto
  *
  */
-public class RestaurantIsClosedException extends Exception implements Serializable {
+public class ObjectReadedIsNotACalendarException extends Exception implements Serializable {
 
 	/**
 	 * 

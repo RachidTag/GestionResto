@@ -1,11 +1,13 @@
 package fr.iutvalence.info.dut.m2107.calendar;
 
+import java.io.Serializable;
+
 /**
  * The type of service
  * @author Projet Resto
  *
  */
-public enum ServiceType {
+public enum ServiceType implements Serializable {
 	/**
 	 * Midday service
 	 */

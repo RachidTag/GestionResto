@@ -1,5 +1,6 @@
 package fr.iutvalence.info.dut.m2107.calendar;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -11,7 +12,12 @@ import fr.iutvalence.info.dut.m2107.Waiter;
  * @author Projet Resto
  */
 
-public class Service {
+public class Service implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * A set of waiters
 	 */
@@ -145,7 +151,7 @@ public class Service {
 	
 	/**
 	 * To string for the set of waiters
-	 * @return
+	 * @return String
 	 */
 	public String waitersToString(){
 		String theString = "";
@@ -160,7 +166,7 @@ public class Service {
 	
 	/**
 	 * To string for the set of cleaner waiters
-	 * @return
+	 * @return String
 	 */
 	 public String cleanerWaitersToString(){
 		 String theString = "";
