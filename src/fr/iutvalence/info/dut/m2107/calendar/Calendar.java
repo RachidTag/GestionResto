@@ -55,4 +55,8 @@ public class Calendar {
 		if(this.weeks.containsValue(aWeek)) throw new WeekAlreadyExistsException();
 		this.weeks.put(aWeek.getWeekNum(), aWeek);
 	}
+	
+	public Map<Integer, Week> getAllWeeks(){
+		return this.weeks;
+	}
 }
