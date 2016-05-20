@@ -138,4 +138,39 @@ public class Waiter implements Serializable {
 		return "[lastName=" + lastName + ", firstName=" + firstName + ", rank=" + rank + ", aSector=" + aSector
 				+ "]";
 	}
+
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((this.firstName == null) ? 0 : this.firstName.hashCode());
+		result = prime * result + ((this.lastName == null) ? 0 : this.lastName.hashCode());
+		return result;
+	}
+
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Waiter other = (Waiter) obj;
+		if (this.firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!this.firstName.equals(other.firstName))
+			return false;
+		if (this.lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!this.lastName.equals(other.lastName))
+			return false;
+		return true;
+	}
 }

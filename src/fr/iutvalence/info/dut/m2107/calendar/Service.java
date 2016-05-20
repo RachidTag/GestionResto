@@ -62,8 +62,10 @@ public class Service implements Serializable {
 	/**
 	 * Add a waiter to the list of waiter
 	 * @param waiter the waiter we want to add to the list
+	 * @throws WaiterAllreadyInServiceException 
 	 */
-	public void addWaiter(Waiter waiter) {
+	public void addWaiter(Waiter waiter) throws WaiterAllreadyInServiceException {
+		if(this.cleanerWaiter.contains(waiter) || this.waiters.contains(waiter)) throw new WaiterAllreadyInServiceException();
 		this.waiters.add(waiter);
 	}
 	
@@ -78,8 +80,10 @@ public class Service implements Serializable {
 	/**
 	 * Add a waiter to the list of cleaner waiter
 	 * @param waiter the waiter we want to add to the list
+	 * @throws WaiterAllreadyInServiceException 
 	 */
-	public void addCleanerWaiter(Waiter waiter) {
+	public void addCleanerWaiter(Waiter waiter) throws WaiterAllreadyInServiceException {
+		if(this.cleanerWaiter.contains(waiter) || this.waiters.contains(waiter)) throw new WaiterAllreadyInServiceException();
 		this.cleanerWaiter.add(waiter);
 	}
 	

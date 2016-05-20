@@ -225,13 +225,18 @@ public class Main {
 		//Creation of services
 		Service service1 = new Service(ServiceType.EVENING);
 		Service service2 = new Service(ServiceType.MIDDAY);
-		service1.addWaiter(Didou);
-		service1.addCleanerWaiter(Rachou);
-		service1.addCleanerWaiter(Matou);
-		service1.addCleanerWaiter(Benou);
-		service2.addWaiter(Didou);
-		service2.addCleanerWaiter(Matou);
-		service2.addWaiter(Rachou);
+		try {
+			service1.addWaiter(Didou);
+			service1.addCleanerWaiter(Rachou);
+			service1.addCleanerWaiter(Matou);
+			service1.addCleanerWaiter(Benou);
+			service2.addWaiter(Didou);
+			service2.addCleanerWaiter(Matou);
+			service2.addWaiter(Rachou);
+		} catch (WaiterAllreadyInServiceException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		System.out.println(service1);
 		System.out.println(service2);
 		
