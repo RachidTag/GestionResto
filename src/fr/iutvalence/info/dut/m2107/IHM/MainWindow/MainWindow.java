@@ -2,8 +2,8 @@ package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 import javax.swing.*;
 
 import fr.iutvalence.info.dut.m2107.IHM.ScheduleWindow;
-import fr.iutvalence.info.dut.m2107.IHM.EditSectorWindow.EditSectorWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
+import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
 import fr.iutvalence.info.dut.m2107.IHM.RMModWindow.RMModWindow;
 import fr.iutvalence.info.dut.m2107.calendar.Calendar;
 import fr.iutvalence.info.dut.m2107.room.Room;
@@ -44,7 +44,7 @@ public class MainWindow extends JFrame {
 	/**
 	 * The edit sector window
 	 */
-	public EditSectorWindow editSectorWindow;
+	public EditWaiterWindow editSectorWindow;
 	
 	/**
 	 * The Schedule window

@@ -1,4 +1,4 @@
-package fr.iutvalence.info.dut.m2107.IHM.EditSectorWindow;
+package fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow;
 
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
@@ -11,16 +11,16 @@ import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
  *
  */
 @SuppressWarnings("serial")
-public class EditSectorWindow extends JFrame {
+public class EditWaiterWindow extends JFrame {
 	/**
 	 * The left area
 	 */
-	public EditSectorWindowLeftArea L_Area;
+	public EditWaiterWindowLeftArea L_Area;
 	
 	/**
 	 * The right area
 	 */
-	public EditSectorWindowRightArea R_Area;
+	public EditWaiterWindowRightArea R_Area;
 	
 	/**
 	 * The main window
@@ -31,7 +31,7 @@ public class EditSectorWindow extends JFrame {
 	 * Generates an EditSectorWindow
 	 * @param theMainWindow reference
 	 */
-	public EditSectorWindow(MainWindow theMainWindow)
+	public EditWaiterWindow(MainWindow theMainWindow)
 	{	
 		/* 
 		 * Save a reference to the main window
@@ -51,12 +51,12 @@ public class EditSectorWindow extends JFrame {
 		/*
 		 * Generates the L_Area
 		 */
-		this.L_Area = new EditSectorWindowLeftArea(this);
+		this.L_Area = new EditWaiterWindowLeftArea(this);
 		
 		/*
 		 * Generates the R_Area
 		 */
-		this.R_Area = new EditSectorWindowRightArea(this);
+		this.R_Area = new EditWaiterWindowRightArea(this);
 		
 		/*
 		 * Split the SectorEditionWindow in two parts

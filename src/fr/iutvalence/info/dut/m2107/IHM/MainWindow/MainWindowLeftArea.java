@@ -13,8 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import fr.iutvalence.info.dut.m2107.IHM.ScheduleWindow;
-import fr.iutvalence.info.dut.m2107.IHM.EditSectorWindow.EditSectorWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
+import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
 import fr.iutvalence.info.dut.m2107.IHM.RMModWindow.RMModWindow;
 
 /**
@@ -188,7 +188,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		{
 			if(this.editSector.isEnabled())
 			{
-				this.mainWindow.editSectorWindow = new EditSectorWindow(this.mainWindow);
+				this.mainWindow.editSectorWindow = new EditWaiterWindow(this.mainWindow);
 				this.mainWindow.editSectorWindow.setIconImage(this.logo);
 				
 				this.editTable.setEnabled(false);

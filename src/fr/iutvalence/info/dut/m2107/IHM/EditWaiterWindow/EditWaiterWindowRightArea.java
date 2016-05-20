@@ -1,4 +1,4 @@
-package fr.iutvalence.info.dut.m2107.IHM.EditSectorWindow;
+package fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -11,18 +11,18 @@ import javax.swing.JPanel;
  *
  */
 @SuppressWarnings("serial")
-public class EditSectorWindowRightArea extends JPanel{
+public class EditWaiterWindowRightArea extends JPanel{
 	/**
 	 * The main window
 	 */
 	@SuppressWarnings("unused")
-	private EditSectorWindow sectorEditionWindow;
+	private EditWaiterWindow sectorEditionWindow;
 
 	/**
 	 * TODO
 	 * @param sectorEditionWindow
 	 */
-	public EditSectorWindowRightArea(EditSectorWindow sectorEditionWindow){
+	public EditWaiterWindowRightArea(EditWaiterWindow sectorEditionWindow){
 		/*
 		 * Save the reference to the sector edition window
 		 */

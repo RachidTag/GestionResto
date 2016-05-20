@@ -1,4 +1,4 @@
-package fr.iutvalence.info.dut.m2107.IHM.EditSectorWindow;
+package fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -13,11 +13,11 @@ import javax.swing.JPanel;
  *
  */
 @SuppressWarnings("serial")
-public class EditSectorWindowLeftArea extends JPanel implements ActionListener{
+public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 	/**
 	 * The main window
 	 */
-	public EditSectorWindow sectorEditionWindow;
+	public EditWaiterWindow sectorEditionWindow;
 	
 	/**
 	 * The edit button
@@ -33,7 +33,7 @@ public class EditSectorWindowLeftArea extends JPanel implements ActionListener{
 	 * TODO
 	 * @param sectorEditionWindow
 	 */
-	public EditSectorWindowLeftArea(EditSectorWindow sectorEditionWindow){
+	public EditWaiterWindowLeftArea(EditWaiterWindow sectorEditionWindow){
 		/*
 		 * Save the reference to the sectorEditionWindo
 		 */
