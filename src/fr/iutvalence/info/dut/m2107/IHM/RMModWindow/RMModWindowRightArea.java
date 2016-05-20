@@ -62,7 +62,7 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 		/*
 		 * Set the layout
 		 */
-		GridLayout controlPanel = new GridLayout(11,1);
+		GridLayout controlPanel = new GridLayout(5,1);
 		controlPanel.setHgap(10);
 		controlPanel.setVgap(5);
 		this.setLayout(controlPanel);
