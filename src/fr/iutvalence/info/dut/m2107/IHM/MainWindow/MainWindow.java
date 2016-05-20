@@ -46,7 +46,6 @@ public class MainWindow extends JFrame {
 	 */
 	public EditSectorWindow editSectorWindow;
 	
-	
 	/**
 	 * The Schedule window
 	 */
