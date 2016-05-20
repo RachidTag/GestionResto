@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import fr.iutvalence.info.dut.m2107.IHM.ScheduleWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditSectorWindow.EditSectorWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
+import fr.iutvalence.info.dut.m2107.IHM.RMModWindow.RMModWindow;
 
 /**
  * @author TODO
@@ -56,6 +57,16 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 	 * Close button (left panel)
 	 */
 	public JButton close;
+	
+	/**
+	 * Logo Icon
+	 */
+	public ImageIcon logoIcon;
+	
+	/**
+	 * Logo Image
+	 */
+	public Image logo;
 
 	/**
 	 * TODO
@@ -93,6 +104,12 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		
 		JLabel lab = new JLabel(icon);
 		this.add(lab);
+		
+		/*
+		 * Set the icon
+		 */
+		this.logoIcon = new ImageIcon("img/logoIcon.png");
+		this.logo = this.logoIcon.getImage();
 		
 		/*
 		 * Add "table edition" button
@@ -156,13 +173,8 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		{
 			if(this.editTable.isEnabled())
 			{
-				ImageIcon logoIcon = new ImageIcon("img/logoIcon.png");
-				Image logo = logoIcon.getImage();
-				
 				this.mainWindow.editTableWindow = new EditTableWindow(this.mainWindow);
-				
-				if (this.mainWindow.editTableWindow != null)
-					this.mainWindow.editTableWindow.setIconImage(logo);
+				this.mainWindow.editTableWindow.setIconImage(this.logo);
 			
 				this.editTable.setEnabled(false);
 				this.editSector.setEnabled(false);
@@ -176,12 +188,23 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		{
 			if(this.editSector.isEnabled())
 			{
-				ImageIcon logoIcon = new ImageIcon("img/logoIcon.png");
-				Image logo = logoIcon.getImage();
 				this.mainWindow.editSectorWindow = new EditSectorWindow(this.mainWindow);
+				this.mainWindow.editSectorWindow.setIconImage(this.logo);
 				
-				if (this.mainWindow.editSectorWindow != null)
-					this.mainWindow.editSectorWindow.setIconImage(logo);
+				this.editTable.setEnabled(false);
+				this.editSector.setEnabled(false);
+				this.checkRoom.setEnabled(false);
+				this.checkSchedule.setEnabled(false);
+				this.roomManager.setEnabled(false);
+				this.close.setEnabled(false);
+			}				
+		}
+		else if(source == this.roomManager)
+		{
+			if(this.roomManager.isEnabled())
+			{
+				this.mainWindow.rMModWindow = new RMModWindow(this.mainWindow);
+				this.mainWindow.rMModWindow.setIconImage(this.logo);
 				
 				this.editTable.setEnabled(false);
 				this.editSector.setEnabled(false);
@@ -195,12 +218,8 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		{
 			if(this.checkSchedule.isEnabled())
 			{
-				ImageIcon logoIcon = new ImageIcon("img/logoIcon.png");
-				Image logo = logoIcon.getImage();
 				this.mainWindow.scheduleWindow = new ScheduleWindow(this.mainWindow);
-				
-				if (this.mainWindow.scheduleWindow != null)
-					this.mainWindow.scheduleWindow.setIconImage(logo);
+				this.mainWindow.scheduleWindow.setIconImage(this.logo);
 				
 				this.editTable.setEnabled(false);
 				this.editSector.setEnabled(false);
