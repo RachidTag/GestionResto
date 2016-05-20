@@ -128,9 +128,9 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		this.editTableWindow.R_Area.add(line1);
 		line1.add(new JLabel("Sector:"));
 		Set<Integer> sectors = new TreeSet<Integer>(this.editTableWindow.mainWindow.theRoom.getSectors().keySet());
-		comboSectors = new JComboBox<Object>(sectors.toArray());
-		comboSectors.addActionListener(this);
-		line1.add(comboSectors);
+		this.comboSectors = new JComboBox<Object>(sectors.toArray());
+		this.comboSectors.addActionListener(this);
+		line1.add(this.comboSectors);
 		
 		/*
 		 * Set the second line (combo tables)
@@ -141,14 +141,14 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line2.add(new JLabel("Table:"));
 		Sector theSector = null;
 		try {
-			theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)comboSectors.getSelectedItem());
+			theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
 		} catch (SectorNotExistsException e) {
 			// TODO
 		}
 		Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
-		comboTables = new JComboBox<Object>(tables.toArray());
-		comboTables.addActionListener(this);
-		line2.add(comboTables);
+		this.comboTables = new JComboBox<Object>(tables.toArray());
+		this.comboTables.addActionListener(this);
+		line2.add(this.comboTables);
 		
 		/*
 		 * Set the third line (num of places)
@@ -157,8 +157,8 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line3.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line3);
 		line3.add(new JLabel("Num of places:"));
-		numOfPlaces = new JSpinner(new SpinnerNumberModel(2, 2, 6, 2));
-		line3.add(numOfPlaces);
+		this.numOfPlaces = new JSpinner(new SpinnerNumberModel(2, 2, 6, 2));
+		line3.add(this.numOfPlaces);
 		
 		/*
 		 * Set the 4th line (pos X)
@@ -167,8 +167,8 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line4.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line4);
 		line4.add(new JLabel("X position:"));
-		posX = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
-		line4.add(posX);
+		this.posX = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
+		line4.add(this.posX);
 		
 		/*
 		 * Set the 5th line (pos Y)
@@ -177,8 +177,8 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line5.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line5);
 		line5.add(new JLabel("Y position:"));
-		posY = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
-		line5.add(posY);
+		this.posY = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
+		line5.add(this.posY);
 		
 		/*
 		 * Set the 6th line (rotation)
@@ -187,8 +187,8 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line6.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line6);
 		line6.add(new JLabel("Rotation:"));
-		rotation = new JSpinner(new SpinnerNumberModel(1, 1, 2, 1));
-		line6.add(rotation);
+		this.rotation = new JSpinner(new SpinnerNumberModel(1, 1, 2, 1));
+		line6.add(this.rotation);
 		
 		/*
 		 * Set the 7th line (state)
@@ -199,7 +199,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line7.add(new JLabel("State"));
 		this.state = new JComboBox<Object>(State.values());
 		this.state.addActionListener(this);
-		line7.add(state);
+		line7.add(this.state);
 		
 		/*
 		 * Set the 8th line (client name)
@@ -210,7 +210,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line8.add(new JLabel("Client Name"));
 		this.clientName = new JTextField();
 		this.clientName.disable();
-		line8.add(clientName);
+		line8.add(this.clientName);
 		
 		/*
 		 * Set the 9th line (progress)
@@ -219,8 +219,8 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line9.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line9);
 		line9.add(new JLabel("Progress"));
-		progress = new JComboBox<Object>(Progress.values());
-		line9.add(progress);
+		this.progress = new JComboBox<Object>(Progress.values());
+		line9.add(this.progress);
 		
 		/*
 		 * Set the 10th line (send button)
@@ -229,9 +229,9 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line10.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line10);
 		line10.add(new JLabel());
-		processEditTable = new JButton("Send");
-		processEditTable.addActionListener(this);
-		line10.add(processEditTable);
+		this.processEditTable = new JButton("Send");
+		this.processEditTable.addActionListener(this);
+		line10.add(this.processEditTable);
 		// TODO : add default configuration of the first table
 	}
 
@@ -243,7 +243,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		{
 			Sector theSector = null;
 			try {
-				theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)comboSectors.getSelectedItem());
+				theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
 			} catch (SectorNotExistsException e1) {
 				// ...
 			}
@@ -267,12 +267,12 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 			{
 				// ... impossible
 			}
-			numOfPlaces.setValue(theTable.getNumberPlaces());
-			posX.setValue(theTable.getPosition().getX());
-			posY.setValue(theTable.getPosition().getY());
-			rotation.setValue(theTable.getPosition().getRotation());
-			state.setSelectedItem(theTable.getState());
-			progress.setSelectedItem(theTable.getProgress());
+			this.numOfPlaces.setValue(theTable.getNumberPlaces());
+			this.posX.setValue(theTable.getPosition().getX());
+			this.posY.setValue(theTable.getPosition().getY());
+			this.rotation.setValue(theTable.getPosition().getRotation());
+			this.state.setSelectedItem(theTable.getState());
+			this.progress.setSelectedItem(theTable.getProgress());
 			if(theTable.getState() == State.RESERVED)
 				this.clientName.enable();
 			else
@@ -290,7 +290,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 			else
 				this.progress.disable();
 		}
-		else if(source == processEditTable)
+		else if(source == this.processEditTable)
 		{
 			int numSector = (int) this.comboSectors.getSelectedItem();
 			int numTable = (int) this.comboTables.getSelectedItem();

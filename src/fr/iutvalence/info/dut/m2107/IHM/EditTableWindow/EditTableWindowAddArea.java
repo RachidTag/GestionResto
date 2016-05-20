@@ -103,8 +103,8 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		line1.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line1);
 		line1.add(new JLabel("Table num:"));
-		tableNum = new JSpinner(new SpinnerNumberModel(1, 1, 1000, 1));
-		line1.add(tableNum);
+		this.tableNum = new JSpinner(new SpinnerNumberModel(1, 1, 1000, 1));
+		line1.add(this.tableNum);
 		
 		/*
 		 * Set the second line (num of places)
@@ -113,8 +113,8 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		line2.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line2);
 		line2.add(new JLabel("Num of places:"));
-		numOfPlaces = new JSpinner(new SpinnerNumberModel(2, 2, 6, 2));
-		line2.add(numOfPlaces);
+		this.numOfPlaces = new JSpinner(new SpinnerNumberModel(2, 2, 6, 2));
+		line2.add(this.numOfPlaces);
 		
 		/*
 		 * Set the thrid line (pos X)
@@ -123,8 +123,8 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		line3.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line3);
 		line3.add(new JLabel("X position:"));
-		posX = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
-		line3.add(posX);
+		this.posX = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
+		line3.add(this.posX);
 		
 		/*
 		 * Set the 4th line (pos Y)
@@ -133,8 +133,8 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		line4.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line4);
 		line4.add(new JLabel("Y position:"));
-		posY = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
-		line4.add(posY);
+		this.posY = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
+		line4.add(this.posY);
 		
 		/*
 		 * Set the 5th line (rotation)
@@ -143,8 +143,8 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		line5.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line5);
 		line5.add(new JLabel("Rotation:"));
-		rotation = new JSpinner(new SpinnerNumberModel(1, 1, 2, 1));
-		line5.add(rotation);
+		this.rotation = new JSpinner(new SpinnerNumberModel(1, 1, 2, 1));
+		line5.add(this.rotation);
 		
 		/*
 		 * Set the 6th line (Sector)
@@ -154,8 +154,8 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		this.editTableWindow.R_Area.add(line6);
 		line6.add(new JLabel("Sector:"));
 		Set<Integer> sectorsNums = this.editTableWindow.mainWindow.theRoom.getSectors().keySet();
-		comboSectors = new JComboBox<Object>(sectorsNums.toArray());
-		line6.add(comboSectors);
+		this.comboSectors = new JComboBox<Object>(sectorsNums.toArray());
+		line6.add(this.comboSectors);
 		/*
 		 * Set the 7th line (Sector)
 		 */
@@ -163,9 +163,9 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		line7.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line7);
 		line7.add(new JLabel());
-		processAddTable = new JButton("Send");
-		processAddTable.addActionListener(this);
-		line7.add(processAddTable);
+		this.processAddTable = new JButton("Send");
+		this.processAddTable.addActionListener(this);
+		line7.add(this.processAddTable);
 	}
 
 	/**

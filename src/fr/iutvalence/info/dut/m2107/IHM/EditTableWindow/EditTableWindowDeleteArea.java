@@ -82,9 +82,9 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
 		line1.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line1); 
 		line1.add(new JLabel("Sector"));
-		comboSectors = new JComboBox<Object>(new TreeSet<Integer>(this.editTableWindow.mainWindow.theRoom.getSectors().keySet()).toArray());
-		comboSectors.addActionListener(this);
-		line1.add(comboSectors);
+		this.comboSectors = new JComboBox<Object>(new TreeSet<Integer>(this.editTableWindow.mainWindow.theRoom.getSectors().keySet()).toArray());
+		this.comboSectors.addActionListener(this);
+		line1.add(this.comboSectors);
 		
 		/*
 		 * Set the 2nd line (combo tables)
@@ -95,13 +95,13 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
 		line2.add(new JLabel("Table"));
 		Sector theSector = null;
 		try {
-			theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)comboSectors.getSelectedItem());
+			theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
 		} catch (SectorNotExistsException e) {
 			// ... impossible
 		}
-		comboTables = new JComboBox<Object>(new TreeSet<Integer>(theSector.getTables().keySet()).toArray());
-		comboTables.addActionListener(this);
-		line2.add(comboTables);
+		this.comboTables = new JComboBox<Object>(new TreeSet<Integer>(theSector.getTables().keySet()).toArray());
+		this.comboTables.addActionListener(this);
+		line2.add(this.comboTables);
 		
 		/*
 		 * Set the 3rd line (process button)
@@ -110,9 +110,9 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
 		line3.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line3);
 		line3.add(new JLabel());
-		processDeleteTable = new JButton("Delete");
-		processDeleteTable.addActionListener(this);
-		line3.add(processDeleteTable);
+		this.processDeleteTable = new JButton("Delete");
+		this.processDeleteTable.addActionListener(this);
+		line3.add(this.processDeleteTable);
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
 		{
 			Sector theSector = null;
 			try {
-				theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)comboSectors.getSelectedItem());
+				theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
 			} catch (SectorNotExistsException e1) {
 				// ... impossible
 			}
