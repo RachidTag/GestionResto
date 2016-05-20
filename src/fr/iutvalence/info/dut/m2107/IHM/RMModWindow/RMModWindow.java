@@ -62,7 +62,7 @@ public class RMModWindow extends JFrame
 		/*
 		 * Split the SectorEditionWindow in two parts
 		 */
-		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true);
+		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, this.L_Area, this.R_Area);
 		split.setOneTouchExpandable(true);
 		split.setDividerLocation(120);
 		split.setEnabled(false);

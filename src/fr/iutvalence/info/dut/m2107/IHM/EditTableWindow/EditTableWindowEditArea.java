@@ -300,7 +300,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 			int rotation = (int) this.rotation.getValue();
 			Position positionTable = new Position(posX,posY,rotation);
 			State tableState = (State) this.state.getSelectedItem();
-			String clientName = (String) this.clientName.getSelectedText();
+			String clientName = (String) this.clientName.getText();
 			Progress tableProgress = (Progress) this.progress.getSelectedItem();
 			
 			Sector theSector = null;

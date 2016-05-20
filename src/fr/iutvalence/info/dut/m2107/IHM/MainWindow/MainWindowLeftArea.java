@@ -229,6 +229,21 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 				this.close.setEnabled(false);
 			}				
 		}
+		else if(source == this.mainWindow.rMModWindow.R_Area.editSch)
+		{
+			if(this.mainWindow.rMModWindow.R_Area.editSch.isEnabled())
+			{
+				this.mainWindow.scheduleWindow = new ScheduleWindow(this.mainWindow);
+				this.mainWindow.scheduleWindow.setIconImage(this.logo);
+				
+				this.editTable.setEnabled(false);
+				this.editSector.setEnabled(false);
+				this.checkRoom.setEnabled(false);
+				this.checkSchedule.setEnabled(false);
+				this.roomManager.setEnabled(false);
+				this.close.setEnabled(false);
+			}				
+		}
 		else
 		{
 			// TODO for others buttons
