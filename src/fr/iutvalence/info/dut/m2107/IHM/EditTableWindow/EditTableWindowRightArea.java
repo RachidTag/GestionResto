@@ -30,7 +30,7 @@ public class EditTableWindowRightArea extends JPanel{
 		/*
 		 * Set the default text
 		 */
-		JLabel defaultText = new JLabel("Menu d'édition des tables");
+		JLabel defaultText = new JLabel("Table edition menu");
 		
 		/*
 		 * Set the layout

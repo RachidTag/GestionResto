@@ -31,7 +31,7 @@ public class EditWaiterWindowRightArea extends JPanel{
 		/*
 		 * Set the default text
 		 */
-		JLabel defaultText = new JLabel("Menu d'édition des secteurs");
+		JLabel defaultText = new JLabel("Waiter edition menu");
 		
 		/*
 		 * Set the layout

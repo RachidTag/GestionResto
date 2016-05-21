@@ -75,9 +75,10 @@ public class EditTableWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Add the buttons
 		 */
+
+		this.add(this.add);
 		this.add(this.edit);
 		this.add(this.delete);
-		this.add(this.add);
 		this.add(this.close);
 		
 	}
