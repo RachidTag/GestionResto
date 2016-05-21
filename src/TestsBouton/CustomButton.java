@@ -21,13 +21,13 @@ public class CustomButton extends JButton implements MouseListener {
 	private Image buttonBg;
 	 
 	public CustomButton(String name){
+		super(name); /* jsais plus comment on met un name a un label) --> Comme ça ;) (Dylan) */
 		ImageIcon bgImage = new ImageIcon(getClass().getResource("ButtonBackground.png"));
 		this.setIcon(bgImage);
 		
 		
 		
 		this.add(this.name);
-		name.setName("name"); /* jsais plus comment on met un name a un label) */
 		
 		this.setBorderPainted(false);
 		this.setFocusPainted(false);
