@@ -1,6 +1,7 @@
 package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 import javax.swing.*;
 
+import fr.iutvalence.info.dut.m2107.Staff;
 import fr.iutvalence.info.dut.m2107.IHM.ScheduleWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
@@ -37,6 +38,11 @@ public class MainWindow extends JFrame {
 	public Calendar theCalendar;
 	
 	/**
+	 * The staff object
+	 */
+	public Staff theStaff;
+	
+	/**
 	 * The edit table window
 	 */
 	public EditTableWindow editTableWindow;
@@ -61,7 +67,7 @@ public class MainWindow extends JFrame {
 	 * @param theRoom 
 	 * @param theCalendar 
 	 */
-	public MainWindow(Room theRoom, Calendar theCalendar)
+	public MainWindow(Room theRoom, Calendar theCalendar, Staff theStaff)
 	{
 		/*
 		 * Save the room
@@ -72,6 +78,11 @@ public class MainWindow extends JFrame {
 		 * Save the calendar
 		 */
 		this.theCalendar = theCalendar;
+		
+		/*
+		 * Save the Staff
+		 */
+		this.theStaff = theStaff;
 		
 		/*
 		 * Main informations of the window

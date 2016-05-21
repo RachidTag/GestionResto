@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 
+import fr.iutvalence.info.dut.m2107.Staff;
 import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
 import fr.iutvalence.info.dut.m2107.calendar.Calendar;
 import fr.iutvalence.info.dut.m2107.room.ObjectReadedIsNotARoomException;
@@ -27,7 +28,7 @@ public class IHM {
 		Image logo = logoIcon.getImage();
 		MainWindow window = null;
 		try {
-			window = new MainWindow(Room.loadRoom(), new Calendar());
+			window = new MainWindow(Room.loadRoom(), new Calendar(), new Staff());
 			if (window != null)
 				window.setIconImage(logo);
 		} catch (FileNotFoundException e) {

@@ -10,8 +10,11 @@ import java.util.TreeSet;
 import javax.swing.*;
 
 import fr.iutvalence.info.dut.m2107.Rank;
+import fr.iutvalence.info.dut.m2107.Waiter;
+import fr.iutvalence.info.dut.m2107.WaiterAlreadyExistsException;
 import fr.iutvalence.info.dut.m2107.room.Sector;
 import fr.iutvalence.info.dut.m2107.room.SectorNotExistsException;
+import fr.iutvalence.info.dut.m2107.room.WaiterIsNotPadderException;
 
 /**
  * Represent the area where we can add a new waiter
@@ -20,9 +23,13 @@ import fr.iutvalence.info.dut.m2107.room.SectorNotExistsException;
 public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 
 	/**
-	 * 
+	 * TODO
 	 */
 	public EditWaiterWindow editWaiterWindow;
+	/**
+	 * The spinner for the number of the waiter
+	 */
+	public JSpinner numWaiter;
 	/**
 	 * The text field for the last name
 	 */
@@ -75,63 +82,69 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 		GridLayout lineLayout = new GridLayout(1,2);
 		
 		/*
-		 * Add some space (empty JLabel)
-		 */
-		this.editWaiterWindow.R_Area.add(new JLabel());
-
-		/*
 		 * Set the first line (last name)
 		 */
 		JPanel line1 = new JPanel();
 		line1.setLayout(lineLayout);
 		this.editWaiterWindow.R_Area.add(line1);
-		line1.add(new JLabel("Last Name"));
-		this.lastName = new JTextField();
-		line1.add(this.lastName);
-		
+		line1.add(new JLabel("Waiter Number"));
+		this.numWaiter = new JSpinner(new SpinnerNumberModel(1,1,1000,1));
+		line1.add(this.numWaiter);
+
 		/*
-		 * Set the second line (first name)
+		 * Set the second line (last name)
 		 */
 		JPanel line2 = new JPanel();
 		line2.setLayout(lineLayout);
 		this.editWaiterWindow.R_Area.add(line2);
-		line2.add(new JLabel("Fist Name"));
-		this.firstName = new JTextField();
-		line2.add(this.firstName);
+		line2.add(new JLabel("Last Name"));
+		this.lastName = new JTextField();
+		line2.add(this.lastName);
 		
 		/*
-		 * Set the third line (rank)
+		 * Set the third line (first name)
 		 */
 		JPanel line3 = new JPanel();
 		line3.setLayout(lineLayout);
 		this.editWaiterWindow.R_Area.add(line3);
-		line3.add(new JLabel("Rabk"));
-		this.comboRanks = new JComboBox<Rank>(Rank.values());
-		this.comboRanks.addActionListener(this);
-		line3.add(this.comboRanks);
+		line3.add(new JLabel("Fist Name"));
+		this.firstName = new JTextField();
+		line3.add(this.firstName);
 		
 		/*
-		 * Set the fourth line (Sector)
+		 * Set the fourth line (rank)
 		 */
 		JPanel line4 = new JPanel();
 		line4.setLayout(lineLayout);
 		this.editWaiterWindow.R_Area.add(line4);
-		line4.add(new JLabel("Sector assignement"));
-		Set<Integer> sectorsNum = this.editWaiterWindow.mainWindow.theRoom.getSectors().keySet();
-		this.comboSectors = new JComboBox<Object>(sectorsNum.toArray());
-		this.comboSectors.disable();
-		this.comboSectors.addActionListener(this);
-		line4.add(this.comboSectors);
+		line4.add(new JLabel("Rank"));
+		this.comboRanks = new JComboBox<Rank>(Rank.values());
+		this.comboRanks.addActionListener(this);
+		line4.add(this.comboRanks);
 		
 		/*
-		 * Set the fifth line (send)
+		 * Set the fifth line (Sector)
 		 */
 		JPanel line5 = new JPanel();
 		line5.setLayout(lineLayout);
 		this.editWaiterWindow.R_Area.add(line5);
-		line5.add(new JLabel());
+		line5.add(new JLabel("Sector assignement"));
+		Set<Integer> sectorsNum = this.editWaiterWindow.mainWindow.theRoom.getSectors().keySet();
+		this.comboSectors = new JComboBox<Object>(sectorsNum.toArray());
+		this.comboSectors.disable();
+		this.comboSectors.addActionListener(this);
+		line5.add(this.comboSectors);
+		
+		/*
+		 * Set the sixth line (send)
+		 */
+		JPanel line6 = new JPanel();
+		line6.setLayout(lineLayout);
+		this.editWaiterWindow.R_Area.add(line6);
+		line6.add(new JLabel());
 		this.processAddWaiter = new JButton("Send");
-		line5.add(this.processAddWaiter);
+		line6.add(this.processAddWaiter);
+		
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -148,14 +161,35 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 			//TODO
 		}
 		else if(source == processAddWaiter){
+			int numWaiter = (int) this.numWaiter.getValue();
 			String lastName = this.lastName.getText();
 			String firstName = this.firstName.getText();
 			Rank rank = (Rank) this.comboRanks.getSelectedItem();
 			int numSector = (int )this.comboSectors.getSelectedItem();
+			int action = 0;
 			
+			Waiter theWaiter = new Waiter(numWaiter, lastName, firstName, rank);
 			
+			try {
+				this.editWaiterWindow.mainWindow.theStaff.addWaiter(theWaiter);
+				action++;
+			} catch (WaiterAlreadyExistsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
+			if (rank == Rank.PADDER){
+				try {
+					this.editWaiterWindow.mainWindow.theRoom.getSector(numSector).setPadder(theWaiter);
+				} catch (WaiterIsNotPadderException | SectorNotExistsException e) {
+					// ...
+					e.printStackTrace();
+				}
+			}
+				if (action!=0)
+					JOptionPane.showMessageDialog(null, "The waiter has been correctly added");
 		}
+		
 	}
 
 }
