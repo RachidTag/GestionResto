@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindowAddArea;
 
 /**
  * @author TODO
@@ -17,13 +20,20 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 	/**
 	 * The main window
 	 */
-	public EditWaiterWindow sectorEditionWindow;
+	public EditWaiterWindow editWaiterWindow;
 	
+	/**
+	 * The add button
+	 */
+	public JButton add;
 	/**
 	 * The edit button
 	 */
 	public JButton edit;
-	
+	/**
+	 * The remove button
+	 */
+	public JButton remove;
 	/**
 	 * The close button
 	 */
@@ -37,7 +47,7 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Save the reference to the sectorEditionWindo
 		 */
-		this.sectorEditionWindow = sectorEditionWindow;
+		this.editWaiterWindow = sectorEditionWindow;
 		
 		/*
 		 * Set the layout
@@ -46,10 +56,25 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 		this.setLayout(controlPanel);
 		
 		/*
-		 * Set the edit sector button
+		 * Set the add waiter button
 		 */
-		this.edit = new JButton("Edit Sector");
+		this.add = new JButton("Add Waiter");
+		this.add.addActionListener(this);
+		this.add(add);
+		
+		/*
+		 * Set the edit waiter button
+		 */
+		this.edit = new JButton("Edit Waiter");
+		this.edit.addActionListener(this);
 		this.add(edit);
+
+		/*
+		 * Set the remove waiter button
+		 */
+		this.remove = new JButton("Remove Waiter");
+		this.remove.addActionListener(this);
+		this.add(remove);
 		
 		/*
 		 * Set the close button
@@ -67,18 +92,20 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 		JComponent source = (JComponent) e.getSource();
 		if(source == this.close)
 		{
-			this.sectorEditionWindow.mainWindow.leftArea.editSector.setEnabled(true);
-		    this.sectorEditionWindow.mainWindow.leftArea.editTable.setEnabled(true);
-		    this.sectorEditionWindow.mainWindow.leftArea.checkRoom.setEnabled(true);
-		    this.sectorEditionWindow.mainWindow.leftArea.checkSchedule.setEnabled(true);
-		    this.sectorEditionWindow.mainWindow.leftArea.roomManager.setEnabled(true);
-		    this.sectorEditionWindow.mainWindow.leftArea.close.setEnabled(true);
-		    this.sectorEditionWindow.setVisible(false);
-		    this.sectorEditionWindow.R_Area.removeAll();
+			this.editWaiterWindow.mainWindow.leftArea.editSector.setEnabled(true);
+		    this.editWaiterWindow.mainWindow.leftArea.editTable.setEnabled(true);
+		    this.editWaiterWindow.mainWindow.leftArea.checkRoom.setEnabled(true);
+		    this.editWaiterWindow.mainWindow.leftArea.checkSchedule.setEnabled(true);
+		    this.editWaiterWindow.mainWindow.leftArea.roomManager.setEnabled(true);
+		    this.editWaiterWindow.mainWindow.leftArea.close.setEnabled(true);
+		    this.editWaiterWindow.setVisible(false);
+		    this.editWaiterWindow.R_Area.removeAll();
 		}
 		else if(source == this.edit)
 		{
-			
+			this.editWaiterWindow.R_Area.removeAll();
+			new EditWaiterWindowAddArea(this.editWaiterWindow);
+			SwingUtilities.updateComponentTreeUI(this.editWaiterWindow);
 		}
 		else
 		{
