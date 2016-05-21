@@ -64,8 +64,8 @@ public class Staff {
 	 * @param waiter Waiter
 	 * @throws SectorAlreadyExistsException 
 	 */
-	public void addSector(Waiter waiter) throws SectorAlreadyExistsException{
-		if(this.waiters.containsValue(waiter)) throw new SectorAlreadyExistsException();
+	public void addWaiter(Waiter waiter) throws WaiterAlreadyExistsException{
+		if(this.waiters.containsValue(waiter)) throw new WaiterAlreadyExistsException();
 		this.waiters.put(waiter.getNumWaiter(), waiter);
 	}
 	
@@ -75,7 +75,7 @@ public class Staff {
 	 * @param waiter Waiter
 	 * @throws WaiterDoesNotExistException 
 	 */
-	public void editSector(int numWaiter, Waiter waiter) throws WaiterDoesNotExistException{
+	public void editWaiter(int numWaiter, Waiter waiter) throws WaiterDoesNotExistException{
 		if(!this.waiters.containsKey(numWaiter)) throw new WaiterDoesNotExistException();
 		this.waiters.put(numWaiter, waiter);
 	}
@@ -85,13 +85,13 @@ public class Staff {
 	 * @param numWaiter int
 	 * @throws WaiterDoesNotExistException 
 	 */
-	public void deleteSector(int numWaiter) throws WaiterDoesNotExistException{
+	public void deleteWaiter(int numWaiter) throws WaiterDoesNotExistException{
 		if(!this.waiters.containsKey(numWaiter)) throw new WaiterDoesNotExistException();
 		this.waiters.remove(numWaiter);
 	}
 	
 	/**
-	 * Save the current room to the file savingRoom.save
+	 * Save the current staff to the file savingStaff.save
 	 */
 	public void saveStaff() {
 		saveStaff("savingStaff.save");
