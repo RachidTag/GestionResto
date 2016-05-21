@@ -27,10 +27,6 @@ public class Waiter implements Serializable {
 	 * The rank of the waiter
 	 */
 	private Rank rank;
-	/**
-	 * If the waiter is a padder, his sector
-	 */
-	private Sector aSector;
 	
 	/**
 	 * Create a new waiter
@@ -42,21 +38,6 @@ public class Waiter implements Serializable {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.rank = rank;
-		this.aSector = null;
-	}
-	
-	/**
-	 * Create a new waiter with a sector
-	 * @param lastName String the last name of the waiter  
-	 * @param firstName String first name og the waiter
-	 * @param rank the rank of the waiter
-	 * @param sector the padder' sector
-	 */
-	public Waiter(String lastName, String firstName, Rank rank, Sector sector){
-		this.lastName = lastName;
-		this.firstName = firstName;
-		this.rank = rank;
-		this.aSector = sector;
 	}
 
 	/**
@@ -113,30 +94,12 @@ public class Waiter implements Serializable {
 		this.rank = rank;
 	}
 	
-	/**
-	 * Get the padder's sector (null if no sector)
-	 * @return aSector
-	 */
-	public Sector getaSector() {
-		return this.aSector;
-	}
-	
-	/**
-	 * Set a sector to a padder
-	 * @param aSector
-	 * @throws WaiterIsNotAPadderException 
-	 */
-	public void setaSector(Sector aSector) throws WaiterIsNotAPadderException {
-		if(this.rank != Rank.PADDER) throw new WaiterIsNotAPadderException();
-		this.aSector = aSector;
-	}
 
 	/**
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "[lastName=" + lastName + ", firstName=" + firstName + ", rank=" + rank + ", aSector=" + aSector
-				+ "]";
+		return "[lastName=" + lastName + ", firstName=" + firstName + ", rank=" + rank + ", aSector=" + "]";
 	}
 
 	/**

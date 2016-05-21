@@ -2,18 +2,22 @@ package fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow;
 
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.swing.*;
 
 import fr.iutvalence.info.dut.m2107.Rank;
 import fr.iutvalence.info.dut.m2107.room.Sector;
+import fr.iutvalence.info.dut.m2107.room.SectorNotExistsException;
 
 /**
  * Represent the area where we can add a new waiter
  * @author Théo
  */
-public class EditWaiterWindowAddArea {
+public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 
 	/**
 	 * 
@@ -30,20 +34,21 @@ public class EditWaiterWindowAddArea {
 	/**
 	 * The combo box for the rank
 	 */
-	public JComboBox<Rank> rank;
+	public JComboBox<?> comboRanks;
 	/**
 	 * The combo box for the sector
 	 */
-	public JComboBox<?> sector;
+	public JComboBox<?> comboSectors;
 	/**
 	 * The send button
 	 */
-	public JButton send;
+	public JButton processAddWaiter;
 	
 	/**
 	 * TODO
 	 * @param editWaiterWindow
 	 */
+	@SuppressWarnings("deprecation")
 	public EditWaiterWindowAddArea(EditWaiterWindow editWaiterWindow) {
 
 		this.editWaiterWindow = editWaiterWindow;
@@ -52,6 +57,8 @@ public class EditWaiterWindowAddArea {
 		 * Set the GridLayout
 		 */
 		GridLayout controlPanel = new GridLayout(8,1);
+		controlPanel.setHgap(10);
+		controlPanel.setVgap(5);
 		this.editWaiterWindow.R_Area.setLayout(controlPanel);
 
 		
@@ -99,8 +106,9 @@ public class EditWaiterWindowAddArea {
 		line3.setLayout(lineLayout);
 		this.editWaiterWindow.R_Area.add(line3);
 		line3.add(new JLabel("Rabk"));
-		this.rank = new JComboBox<Rank>(Rank.values());
-		line3.add(this.rank);
+		this.comboRanks = new JComboBox<Rank>(Rank.values());
+		this.comboRanks.addActionListener(this);
+		line3.add(this.comboRanks);
 		
 		/*
 		 * Set the fourth line (Sector)
@@ -110,14 +118,10 @@ public class EditWaiterWindowAddArea {
 		this.editWaiterWindow.R_Area.add(line4);
 		line4.add(new JLabel("Sector assignement"));
 		Set<Integer> sectorsNum = this.editWaiterWindow.mainWindow.theRoom.getSectors().keySet();
-		this.sector = new JComboBox<Object>(sectorsNum.toArray());
-		this.sector.disable();
-		line4.add(this.sector);
-		
-		/*
-		 * Add some space (empty JLabel)
-		 */
-		this.editWaiterWindow.R_Area.add(new JLabel());
+		this.comboSectors = new JComboBox<Object>(sectorsNum.toArray());
+		this.comboSectors.disable();
+		this.comboSectors.addActionListener(this);
+		line4.add(this.comboSectors);
 		
 		/*
 		 * Set the fifth line (send)
@@ -126,9 +130,28 @@ public class EditWaiterWindowAddArea {
 		line5.setLayout(lineLayout);
 		this.editWaiterWindow.R_Area.add(line5);
 		line5.add(new JLabel());
-		this.send = new JButton("Send");
-		line5.add(this.send);
+		this.processAddWaiter = new JButton("Send");
+		line5.add(this.processAddWaiter);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void actionPerformed(ActionEvent arg0){
+		JComponent source = (JComponent) arg0.getSource();
 		
+		if(source == this.comboRanks){
+			if(this.comboRanks.getSelectedItem() == Rank.PADDER)
+				this.comboSectors.enable();
+			else 
+				this.comboSectors.disable();
+		}
+		else if(source == comboSectors){
+			//TODO
+		}
+		else if(source == processAddWaiter){
+			String lastName = this.lastName.getText();
+			String firstName = this.firstName.getText();
+			
+		}
 	}
 
 }
