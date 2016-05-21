@@ -117,7 +117,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		line2.add(this.numOfPlaces);
 		
 		/*
-		 * Set the thrid line (pos X)
+		 * Set the third line (pos X)
 		 */
 		JPanel line3 = new JPanel();
 		line3.setLayout(lineLayout);
@@ -157,7 +157,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		this.comboSectors = new JComboBox<Object>(sectorsNums.toArray());
 		line6.add(this.comboSectors);
 		/*
-		 * Set the 7th line (Sector)
+		 * Set the 7th line (Send button)
 		 */
 		JPanel line7 = new JPanel();
 		line7.setLayout(lineLayout);
@@ -184,7 +184,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		} catch (ClientNameRequiredException e1) {
 				// never happens
 		}
-		// TODO verify if the posX/posY is allready picked
+		// TODO verify if the posX/posY is already picked
 		try {
 			this.editTableWindow.mainWindow.theRoom.getSector(sectorNum).addTable(theTable);
 			this.editTableWindow.mainWindow.rightArea.refreshSectors();

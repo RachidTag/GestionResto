@@ -39,10 +39,10 @@ public class EditWaiterWindow extends JFrame {
 		this.mainWindow = theMainWindow;
 		
 		/*
-		 * Initialise the SectorEditionWindow
+		 * Initialize the editWaiterWindow
 		 */
 		this.addWindowListener(new WindowEventHandler(this.mainWindow));
-		this.setTitle("Edit Sector");
+		this.setTitle("Edit Waiter");
 		this.setSize(600, 450);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.setLocationRelativeTo(null);
