@@ -34,9 +34,9 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 	public JButton editTable;
 	
 	/**
-	 * Edit sector button (left panel)
+	 * Edit waiter button (left panel)
 	 */
-	public JButton editSector;
+	public JButton editWaiter;
 
 	/**
 	 * Check the room button (left panel)
@@ -121,9 +121,9 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Add "sector edition" menu
 		 */
-		this.editSector = new JButton("Edit Sector");
-		this.editSector.addActionListener(this);
-		this.add(this.editSector);
+		this.editWaiter = new JButton("Edit Waiter");
+		this.editWaiter.addActionListener(this);
+		this.add(this.editWaiter);
 		
 		/*
 		 * Add "check a room" button
@@ -177,22 +177,22 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 				this.mainWindow.editTableWindow.setIconImage(this.logo);
 			
 				this.editTable.setEnabled(false);
-				this.editSector.setEnabled(false);
+				this.editWaiter.setEnabled(false);
 				this.checkRoom.setEnabled(false);
 				this.checkSchedule.setEnabled(false);
 				this.roomManager.setEnabled(false);
 				this.close.setEnabled(false);
 			}	
 		}
-		else if(source == this.editSector)
+		else if(source == this.editWaiter)
 		{
-			if(this.editSector.isEnabled())
+			if(this.editWaiter.isEnabled())
 			{
 				this.mainWindow.editSectorWindow = new EditWaiterWindow(this.mainWindow);
 				this.mainWindow.editSectorWindow.setIconImage(this.logo);
 				
 				this.editTable.setEnabled(false);
-				this.editSector.setEnabled(false);
+				this.editWaiter.setEnabled(false);
 				this.checkRoom.setEnabled(false);
 				this.checkSchedule.setEnabled(false);
 				this.roomManager.setEnabled(false);
@@ -207,7 +207,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 				this.mainWindow.rMModWindow.setIconImage(this.logo);
 				
 				this.editTable.setEnabled(false);
-				this.editSector.setEnabled(false);
+				this.editWaiter.setEnabled(false);
 				this.checkRoom.setEnabled(false);
 				this.checkSchedule.setEnabled(false);
 				this.roomManager.setEnabled(false);
@@ -222,7 +222,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 				this.mainWindow.scheduleWindow.setIconImage(this.logo);
 				
 				this.editTable.setEnabled(false);
-				this.editSector.setEnabled(false);
+				this.editWaiter.setEnabled(false);
 				this.checkRoom.setEnabled(false);
 				this.checkSchedule.setEnabled(false);
 				this.roomManager.setEnabled(false);
@@ -237,7 +237,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 				this.mainWindow.scheduleWindow.setIconImage(this.logo);
 				
 				this.editTable.setEnabled(false);
-				this.editSector.setEnabled(false);
+				this.editWaiter.setEnabled(false);
 				this.checkRoom.setEnabled(false);
 				this.checkSchedule.setEnabled(false);
 				this.roomManager.setEnabled(false);

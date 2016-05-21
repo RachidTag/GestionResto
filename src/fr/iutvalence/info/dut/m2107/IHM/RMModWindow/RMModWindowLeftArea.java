@@ -58,7 +58,7 @@ public void actionPerformed(ActionEvent e) {
 	JComponent source = (JComponent) e.getSource();
 	if(source == this.close)
 	{
-		this.rMModWindow.mainWindow.leftArea.editSector.setEnabled(true);
+		this.rMModWindow.mainWindow.leftArea.editWaiter.setEnabled(true);
 	    this.rMModWindow.mainWindow.leftArea.editTable.setEnabled(true);
 	    this.rMModWindow.mainWindow.leftArea.checkRoom.setEnabled(true);
 	    this.rMModWindow.mainWindow.leftArea.checkSchedule.setEnabled(true);

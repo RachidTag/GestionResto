@@ -29,7 +29,7 @@ public class WindowEventHandler extends WindowAdapter {
 	 * @see java.awt.event.WindowAdapter#windowClosing(java.awt.event.WindowEvent)
 	 */
 	public void windowClosing(WindowEvent evt) {
-		this.mainWindow.leftArea.editSector.setEnabled(true);
+		this.mainWindow.leftArea.editWaiter.setEnabled(true);
 		this.mainWindow.leftArea.editTable.setEnabled(true);
 		this.mainWindow.leftArea.checkRoom.setEnabled(true);
 		this.mainWindow.leftArea.checkSchedule.setEnabled(true);

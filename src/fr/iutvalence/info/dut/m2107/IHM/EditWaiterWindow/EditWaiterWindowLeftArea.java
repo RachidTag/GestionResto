@@ -92,7 +92,7 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 		JComponent source = (JComponent) e.getSource();
 		if(source == this.close)
 		{
-			this.editWaiterWindow.mainWindow.leftArea.editSector.setEnabled(true);
+			this.editWaiterWindow.mainWindow.leftArea.editWaiter.setEnabled(true);
 		    this.editWaiterWindow.mainWindow.leftArea.editTable.setEnabled(true);
 		    this.editWaiterWindow.mainWindow.leftArea.checkRoom.setEnabled(true);
 		    this.editWaiterWindow.mainWindow.leftArea.checkSchedule.setEnabled(true);
@@ -101,7 +101,7 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 		    this.editWaiterWindow.setVisible(false);
 		    this.editWaiterWindow.R_Area.removeAll();
 		}
-		else if(source == this.edit)
+		else if(source == this.add)
 		{
 			this.editWaiterWindow.R_Area.removeAll();
 			new EditWaiterWindowAddArea(this.editWaiterWindow);
