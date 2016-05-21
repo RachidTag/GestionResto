@@ -25,6 +25,7 @@ public class CustomButton extends JButton implements MouseListener {
 		ImageIcon bgImage = new ImageIcon(getClass().getResource("ButtonBackground.png"));
 		this.setIcon(bgImage);
 		
+		this.name = new JLabel(name); /* et ça */
 		
 		
 		this.add(this.name);
