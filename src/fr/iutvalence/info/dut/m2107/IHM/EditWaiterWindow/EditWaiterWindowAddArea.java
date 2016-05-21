@@ -150,6 +150,10 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 		else if(source == processAddWaiter){
 			String lastName = this.lastName.getText();
 			String firstName = this.firstName.getText();
+			Rank rank = (Rank) this.comboRanks.getSelectedItem();
+			int numSector = (int )this.comboSectors.getSelectedItem();
+			
+			
 			
 		}
 	}

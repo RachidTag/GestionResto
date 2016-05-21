@@ -166,10 +166,10 @@ public class Room implements Serializable {
 			saveFile.createNewFile();
 			Room newRoom = new Room();
 			try {
-				newRoom.addSector(new Sector(1, new Waiter(null, null, null)));
-				newRoom.addSector(new Sector(2, new Waiter(null, null, null)));
-				newRoom.addSector(new Sector(3, new Waiter(null, null, null)));
-				newRoom.addSector(new Sector(4, new Waiter(null, null, null)));
+				newRoom.addSector(new Sector(1, null));
+				newRoom.addSector(new Sector(2, null));
+				newRoom.addSector(new Sector(3, null));
+				newRoom.addSector(new Sector(4, null));
 			} catch (SectorAlreadyExistsException e) {
 				// never happens
 			}

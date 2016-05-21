@@ -16,6 +16,10 @@ public class Waiter implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
+	 * The number of the waiter
+	 */
+	private final int numWaiter;
+	/**
 	 * The last name of the waiter
 	 */
 	private String lastName;
@@ -34,7 +38,8 @@ public class Waiter implements Serializable {
 	 * @param firstName String first name og the waiter
 	 * @param rank the rank of the waiter
 	 */
-	public Waiter(String lastName, String firstName, Rank rank){
+	public Waiter(int numWaiter, String lastName, String firstName, Rank rank){
+		this.numWaiter = numWaiter;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.rank = rank;
@@ -99,7 +104,7 @@ public class Waiter implements Serializable {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "[lastName=" + lastName + ", firstName=" + firstName + ", rank=" + rank + ", aSector=" + "]";
+		return "[numWaiter="+numWaiter+"lastName=" + lastName + ", firstName=" + firstName + ", rank=" + rank + ", aSector=" + "]";
 	}
 
 	/**
@@ -114,6 +119,7 @@ public class Waiter implements Serializable {
 	}
 
 	/**
+	 *TODO redefine
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	public boolean equals(Object obj) {
@@ -135,5 +141,9 @@ public class Waiter implements Serializable {
 		} else if (!this.lastName.equals(other.lastName))
 			return false;
 		return true;
+	}
+
+	public int getNumWaiter() {
+		return numWaiter;
 	}
 }
