@@ -3,7 +3,7 @@ package fr.iutvalence.info.dut.m2107.IHM.RMModWindow;
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 
-import fr.iutvalence.info.dut.m2107.IHM.WindowEventHandler;
+import fr.iutvalence.info.dut.m2107.WindowEventHandler;
 import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
 
 /**

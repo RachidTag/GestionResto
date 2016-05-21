@@ -12,10 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import fr.iutvalence.info.dut.m2107.IHM.ScheduleWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
 import fr.iutvalence.info.dut.m2107.IHM.RMModWindow.RMModWindow;
+import fr.iutvalence.info.dut.m2107.IHM.Schedule.ScheduleWindow;
 
 /**
  * @author TODO
@@ -165,7 +165,8 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 			        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (response == JOptionPane.YES_OPTION) {
 				this.mainWindow.theRoom.saveRoom();
-				// TODO this.mainWindow.theCalendar.saveCalendar();
+				this.mainWindow.theCalendar.saveCalendar();
+				// TODO save staff
 		    	System.exit(0);
 		    }
 		}

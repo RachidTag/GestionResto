@@ -9,12 +9,12 @@ import java.util.TreeSet;
 
 import javax.swing.*;
 
-import fr.iutvalence.info.dut.m2107.Rank;
-import fr.iutvalence.info.dut.m2107.Waiter;
-import fr.iutvalence.info.dut.m2107.WaiterAlreadyExistsException;
-import fr.iutvalence.info.dut.m2107.room.Sector;
-import fr.iutvalence.info.dut.m2107.room.SectorNotExistsException;
-import fr.iutvalence.info.dut.m2107.room.WaiterIsNotPadderException;
+import fr.iutvalence.info.dut.m2107.Room.Sector;
+import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
+import fr.iutvalence.info.dut.m2107.Room.WaiterIsNotPadderException;
+import fr.iutvalence.info.dut.m2107.Staff.Rank;
+import fr.iutvalence.info.dut.m2107.Staff.Waiter;
+import fr.iutvalence.info.dut.m2107.Staff.WaiterAlreadyExistsException;
 
 /**
  * Represent the area where we can add a new waiter

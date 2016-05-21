@@ -2,7 +2,7 @@ package fr.iutvalence.info.dut.m2107.IHM.EditTableWindow;
 
 import javax.swing.*;
 
-import fr.iutvalence.info.dut.m2107.IHM.WindowEventHandler;
+import fr.iutvalence.info.dut.m2107.WindowEventHandler;
 import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
 
 /**

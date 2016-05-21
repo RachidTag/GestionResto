@@ -14,10 +14,10 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import fr.iutvalence.info.dut.m2107.room.Position;
-import fr.iutvalence.info.dut.m2107.room.SectorNotExistsException;
-import fr.iutvalence.info.dut.m2107.room.State;
-import fr.iutvalence.info.dut.m2107.room.Table;
+import fr.iutvalence.info.dut.m2107.Room.Position;
+import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
+import fr.iutvalence.info.dut.m2107.Room.State;
+import fr.iutvalence.info.dut.m2107.Room.Table;
 
 /**
  * @author TODO

@@ -28,6 +28,7 @@ class MainWindowEventHandler extends WindowAdapter {
 	 */
 	public void windowClosing(WindowEvent evt) {
 		this.mainWindow.theRoom.saveRoom();
-		// TODO this.mainWindow.theCalendar.saveCalendar();
+		this.mainWindow.theCalendar.saveCalendar();
+		// TODO staff save
 	}
 }

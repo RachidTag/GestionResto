@@ -14,10 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import fr.iutvalence.info.dut.m2107.room.Sector;
-import fr.iutvalence.info.dut.m2107.room.SectorNotExistsException;
-import fr.iutvalence.info.dut.m2107.room.Table;
-import fr.iutvalence.info.dut.m2107.room.TableNotExistsException;
+
+import fr.iutvalence.info.dut.m2107.Room.Sector;
+import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
+import fr.iutvalence.info.dut.m2107.Room.Table;
+import fr.iutvalence.info.dut.m2107.Room.TableNotExistsException;
 
 /**
  * @author TODO

@@ -1,13 +1,13 @@
 package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 import javax.swing.*;
 
-import fr.iutvalence.info.dut.m2107.Staff;
-import fr.iutvalence.info.dut.m2107.IHM.ScheduleWindow;
+import fr.iutvalence.info.dut.m2107.Calendar.Calendar;
 import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
 import fr.iutvalence.info.dut.m2107.IHM.RMModWindow.RMModWindow;
-import fr.iutvalence.info.dut.m2107.calendar.Calendar;
-import fr.iutvalence.info.dut.m2107.room.Room;
+import fr.iutvalence.info.dut.m2107.IHM.Schedule.ScheduleWindow;
+import fr.iutvalence.info.dut.m2107.Room.Room;
+import fr.iutvalence.info.dut.m2107.Staff.Staff;
 
 /**
  * The Main Window of the application

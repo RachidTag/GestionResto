@@ -18,15 +18,16 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import fr.iutvalence.info.dut.m2107.room.ClientNameRequiredException;
-import fr.iutvalence.info.dut.m2107.room.Position;
-import fr.iutvalence.info.dut.m2107.room.Progress;
-import fr.iutvalence.info.dut.m2107.room.Sector;
-import fr.iutvalence.info.dut.m2107.room.SectorNotExistsException;
-import fr.iutvalence.info.dut.m2107.room.State;
-import fr.iutvalence.info.dut.m2107.room.Table;
-import fr.iutvalence.info.dut.m2107.room.TableAlreadyExistsException;
-import fr.iutvalence.info.dut.m2107.room.TableNotExistsException;
+
+import fr.iutvalence.info.dut.m2107.Room.ClientNameRequiredException;
+import fr.iutvalence.info.dut.m2107.Room.Position;
+import fr.iutvalence.info.dut.m2107.Room.Progress;
+import fr.iutvalence.info.dut.m2107.Room.Sector;
+import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
+import fr.iutvalence.info.dut.m2107.Room.State;
+import fr.iutvalence.info.dut.m2107.Room.Table;
+import fr.iutvalence.info.dut.m2107.Room.TableAlreadyExistsException;
+import fr.iutvalence.info.dut.m2107.Room.TableNotExistsException;
 
 /**
  * @author TODO
