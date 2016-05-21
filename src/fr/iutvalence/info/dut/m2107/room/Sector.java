@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import fr.iutvalence.info.dut.m2107.Rank;
 import fr.iutvalence.info.dut.m2107.Waiter;
 
 /**
@@ -23,7 +24,6 @@ public class Sector implements Serializable
 	/**
 	 * A padder assigned to a sector
 	 */
-	@SuppressWarnings("unused")
 	private Waiter padder;
 	/**
 	 * List of tables
@@ -61,8 +61,10 @@ public class Sector implements Serializable
 	/**
 	 * Edit the current padder
 	 * @param padder Waiter
+	 * @throws WaiterIsNotPadderException 
 	 */
-	public void setPadder(Waiter padder){
+	public void setPadder(Waiter padder) throws WaiterIsNotPadderException{
+		if (padder.getRank() != Rank.PADDER) throw new WaiterIsNotPadderException();
 		this.padder = padder;
 	}
 	/**
