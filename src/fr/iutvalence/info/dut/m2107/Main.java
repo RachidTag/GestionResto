@@ -23,6 +23,20 @@ public class Main {
 		ImageIcon logoIcon = new ImageIcon("img/logoIcon.png");
 		Image logo = logoIcon.getImage();
 		MainWindow window = null;
+		
+		Calendar cal = new Calendar();
+		Week weeeee = new Week(1);
+		try {
+			cal.addWeekCalendar(weeeee);
+		} catch (WeekAlreadyExistsException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			weeeee.editDayCalendar(1, new Day());
+		} catch (DayNotExistsException e1) {
+			e1.printStackTrace();
+		}
+		
 		try {
 			window = new MainWindow(Room.loadRoom(), Calendar.loadCalendar(), new Staff());
 			if (window != null)

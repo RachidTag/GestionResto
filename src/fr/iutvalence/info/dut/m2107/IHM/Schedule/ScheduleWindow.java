@@ -1,13 +1,19 @@
 package fr.iutvalence.info.dut.m2107.IHM.Schedule;
 
 import java.awt.GridLayout;
+import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 import fr.iutvalence.info.dut.m2107.WindowEventHandler;
+import fr.iutvalence.info.dut.m2107.Calendar.DayNotExistsException;
+import fr.iutvalence.info.dut.m2107.Calendar.ServiceType;
+import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
 import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
+import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 
 @SuppressWarnings("serial")
 public class ScheduleWindow extends JFrame{
@@ -37,13 +43,53 @@ public class ScheduleWindow extends JFrame{
 		
 		Day.setLayout(week);
 		this.add(Day);
-		Day.add(new JLabel("Monday"));
-		Day.add(new JLabel("Tuesday"));
-		Day.add(new JLabel("Wednesday"));
-		Day.add(new JLabel("Thursday"));
-		Day.add(new JLabel("Friday"));
-		Day.add(new JLabel("Saturday"));
-		Day.add(new JLabel("Sunday"));
+		
+		Set<Waiter> waiters = null;
+		try {
+			System.out.println(this.mainWindow);
+			System.out.println(this.mainWindow.theCalendar);
+			System.out.println(this.mainWindow.theCalendar.getWeekCalendar(1));
+			System.out.println(this.mainWindow.theCalendar.getWeekCalendar(1).getDay(1));
+			System.out.println(this.mainWindow.theCalendar.getWeekCalendar(1).getDay(1).getService(ServiceType.MIDDAY));
+			System.out.println(this.mainWindow.theCalendar.getWeekCalendar(1).getDay(1).getService(ServiceType.MIDDAY).getAllWaiters());
+			waiters = this.mainWindow.theCalendar.getWeekCalendar(1).getDay(1).getService(ServiceType.MIDDAY).getAllWaiters();
+		} catch (DayNotExistsException | WeekNotExistsException e) {
+			e.printStackTrace();
+		}
+		
+		if (waiters != null)
+		{
+		
+			Waiter[] wArray = new Waiter[waiters.size()];
+			wArray = waiters.toArray(wArray);
+			Object[][] ws = new Waiter[waiters.size()][4];
+			for (int i = 0; i < ws.length; i++) {
+				ws[i][0] = wArray[i].getNumWaiter();
+				ws[i][1] = wArray[i].getFirstName();
+				ws[i][2] = wArray[i].getLastName();
+				ws[i][3] = wArray[i].getRank();
+			}
+			
+			String[] titles = {"numbers","First Name", "Last Name", "Rank"};
+			
+			JTable employes = new JTable(ws, titles);
+			
+			Day.add(employes);
+		}
+		else{
+			System.out.println("ERROR !!!");
+		}
+		
+		
+        /*Object[][] bite = {
+                {"jacquie", "Van de Kampf", Color.black, true, Sport.FOOTBALL},
+                {"Damien", "Cuthbert", Color.cyan, true, Sport.RIEN},
+                {"Corinne", "Valance", Color.blue, false, Sport.NATATION},
+                {"Emilie", "Schrödinger", Color.magenta, false, Sport.FOOTBALL},
+                {"Delphine", "Duke", Color.yellow, false, Sport.TENNIS},
+                {"Eric", "Trump", Color.pink, true, Sport.FOOTBALL},
+        };*/
+		
 		
 		
 		
