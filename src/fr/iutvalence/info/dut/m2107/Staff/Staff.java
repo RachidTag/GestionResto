@@ -179,7 +179,7 @@ public class Staff implements Serializable{
 			newStaff.addWaiter(new Waiter(9, "JEAN", "Sébastien", Rank.RUNNER));
 			newStaff.addWaiter(new Waiter(10, "ROTTELEUR", "Pierre", Rank.RUNNER));
 			//TODO continue
-			newStaff.saveStaff();
+			newStaff.saveStaff(); 
 			saveFile = new File(givenFile);
 		}
 		FileInputStream loadStream = new FileInputStream(saveFile);
