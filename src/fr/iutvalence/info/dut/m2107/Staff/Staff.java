@@ -1,7 +1,12 @@
 package fr.iutvalence.info.dut.m2107.Staff;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -103,8 +108,35 @@ public class Staff implements Serializable{
 		saveStaff("savingStaff.save");
 	}
 
-	private void saveStaff(String string) {
-		// TODO Auto-generated method stub
+	private void saveStaff(String fileName) {
+		File saveFile = new File(fileName);
+		if(saveFile.exists())
+			saveFile.delete();
+		try {
+			saveFile.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		FileOutputStream saveStream = null;
+		try {
+			saveStream = new FileOutputStream(saveFile, true);
+		} catch (FileNotFoundException e) {
+			// impossible
+		}
+		
+		ObjectOutputStream oos = null;
+		try {
+			oos = new ObjectOutputStream(saveStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			oos.writeObject(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -116,13 +148,39 @@ public class Staff implements Serializable{
 	 * @throws ClassNotFoundException
 	 * @throws ObjectReadedIsNotARoomException
 	 */
-	public static Room loadStaff() throws FileNotFoundException, IOException, ClassNotFoundException, ObjectReadedIsNotARoomException {
-		return loadStaff("savingRoom.save");
+	public static Staff loadStaff() throws FileNotFoundException, IOException, ClassNotFoundException, ObjectReadedIsNotARoomException {
+		return loadStaff("savingStaff.save");
 	}
 
-	private static Room loadStaff(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	private static Staff loadStaff(String givenFile) throws IOException, ClassNotFoundException, ObjectReadedIsNotARoomException {
+		File saveFile = new File(givenFile);
+		if(!saveFile.exists())
+		{
+			saveFile.createNewFile();
+			Staff newStaff = new Staff();
+			
+			newStaff.saveStaff();
+			saveFile = new File(givenFile);
+		}
+		FileInputStream loadStream = new FileInputStream(saveFile);
+		
+		ObjectInputStream ois = new ObjectInputStream(loadStream);
+		
+		Object readObject = ois.readObject();
+		
+		ois.close();
+		
+		Staff staffReaded = null;
+		if(readObject instanceof Staff)
+		{
+			staffReaded = (Staff)readObject;
+		}
+		else
+		{
+			throw new ObjectReadedIsNotARoomException();
+		}
+		
+		return staffReaded;
 	}
 	
 	
