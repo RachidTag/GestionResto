@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.Set;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -20,6 +22,8 @@ import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 public class ScheduleWindow extends JFrame{
 	
 	public MainWindow mainWindow;
+	
+	public JComboBox<?> comboSectors;
 	
 	public ScheduleWindow(MainWindow theMainWindow)
 	{
@@ -38,15 +42,22 @@ public class ScheduleWindow extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		
-		GridLayout week = new GridLayout(1,1);
+		GridLayout week = new GridLayout(3,1);
 		
-		JPanel Day = new JPanel();
+		JPanel Calendar1 = new JPanel();
 		
-		Day.setLayout(week);
-		this.add(Day);
+		Calendar1.setLayout(week);
+		this.add(Calendar1);
 		
+		GridLayout lineLayout = new GridLayout(1, 2);
 		
-		
+		JPanel aweek = new JPanel();
+		aweek.setLayout(lineLayout);
+		this.add(aweek);
+		aweek.add(new JLabel("Week:"));
+		Set<Integer> weekNums = this.mainWindow.theCalendar.getAllWeeks().keySet();
+		this.comboSectors = new JComboBox<Object>(weekNums.toArray());
+		aweek.add(this.comboSectors);
 		
 		Set<Waiter> waiters = null;
 		try {

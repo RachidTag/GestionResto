@@ -151,8 +151,8 @@ public class Calendar implements Serializable {
 		if(!saveFile.exists())
 		{
 			saveFile.createNewFile();
-			//Calendar newCalendar = new Calendar();
-			Calendar cal = new Calendar();
+			Calendar newCalendar = new Calendar();
+			/*Calendar cal = new Calendar();
 			Week weeeee = new Week(1);
 			Staff bibi = null;
 			try {
@@ -204,9 +204,17 @@ public class Calendar implements Serializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			try {
+				ser.addWaiter(bibi.getWaiter(8));
+			} catch (WaiterAllreadyInServiceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (WaiterDoesNotExistException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
 			
-			
-			//newCalendar.saveCalendar();
+			newCalendar.saveCalendar();
 			saveFile = new File(givenFile);
 		}
 		
