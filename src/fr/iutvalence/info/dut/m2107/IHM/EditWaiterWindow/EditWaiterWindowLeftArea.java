@@ -9,8 +9,6 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindowAddArea;
-
 /**
  * @author TODO
  *
@@ -110,7 +108,7 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 		else if (source == this.edit)
 		{
 			this.editWaiterWindow.R_Area.removeAll();
-			new EditWaiterWindowAddArea(this.editWaiterWindow);
+			new EditWaiterWindowEditArea(this.editWaiterWindow);
 			SwingUtilities.updateComponentTreeUI(this.editWaiterWindow);
 		}	
 	}

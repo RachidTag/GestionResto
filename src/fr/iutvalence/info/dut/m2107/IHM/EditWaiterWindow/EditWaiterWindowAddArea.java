@@ -23,7 +23,7 @@ import fr.iutvalence.info.dut.m2107.Staff.WaiterAlreadyExistsException;
 public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 
 	/**
-	 * TODO
+	 * The main window
 	 */
 	public EditWaiterWindow editWaiterWindow;
 	/**
@@ -107,7 +107,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 		JPanel line3 = new JPanel();
 		line3.setLayout(lineLayout);
 		this.editWaiterWindow.R_Area.add(line3);
-		line3.add(new JLabel("Fist Name"));
+		line3.add(new JLabel("First Name"));
 		this.firstName = new JTextField();
 		line3.add(this.firstName);
 		
@@ -144,6 +144,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 		line6.add(new JLabel());
 		this.processAddWaiter = new JButton("Send");
 		line6.add(this.processAddWaiter);
+		this.processAddWaiter.addActionListener(this);
 		
 	}
 	
