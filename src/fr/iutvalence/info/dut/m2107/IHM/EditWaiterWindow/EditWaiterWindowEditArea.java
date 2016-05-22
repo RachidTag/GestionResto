@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -60,6 +61,10 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 	 * JLabel for the last name
 	 */
 	public JLabel labelLastName;
+	/**
+	 * JLabel for the first name
+	 */
+	public JLabel labelFirstName;
 	
 	/**
 	 * create the edit waiter right area
@@ -68,6 +73,10 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 	public EditWaiterWindowEditArea(EditWaiterWindow editWaiterWindow) {
 		
 		this.editWaiterWindow = editWaiterWindow;
+		this.lastName = null;
+		this.firstName = null;
+		this.labelLastName = new JLabel(this.lastName);
+		this.labelFirstName = new JLabel(this.firstName);
 		
 		/*
 		 * Set the grid layout
@@ -108,7 +117,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		 line2.setLayout(lineLayout);
 		 this.editWaiterWindow.R_Area.add(line2);
 		 line2.add(new JLabel("Last name :"));
-		 line2.add(new JLabel(this.lastName));
+		 line2.add(this.labelLastName);
 		 
 		 /*
 		  * Set the third line (first name)
@@ -117,7 +126,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		 line3.setLayout(lineLayout);
 		 this.editWaiterWindow.R_Area.add(line3);
 		 line3.add(new JLabel("First name :"));
-		 line3.add(new JLabel(this.firstName));
+		 line3.add(this.labelFirstName);
 		 
 		 /*
 		  * Set the forth line (Rank)
@@ -164,6 +173,9 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 				Waiter theWaiter = this.editWaiterWindow.mainWindow.theStaff.getWaiter((int) this.comboWaiter.getSelectedItem());
 				this.lastName = theWaiter.getLastName();
 				this.firstName = theWaiter.getFirstName();
+				this.comboRank.setSelectedItem(theWaiter.getRank());
+				this.labelLastName.setText(this.lastName);
+				this.labelFirstName.setText(this.firstName);
 			} catch (WaiterDoesNotExistException e) {
 				this.lastName = null;
 				this.firstName = null;
@@ -196,9 +208,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	
-			
-			
+			JOptionPane.showMessageDialog(null, "The waiter has been correctly edited");
 		}
 		
 	}
