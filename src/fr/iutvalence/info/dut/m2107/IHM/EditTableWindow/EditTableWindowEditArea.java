@@ -316,10 +316,20 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 			
 			if(tableState != State.RESERVED)
 			{
-				try {
-					theTable = new Table(numTable, numOfPlaces, positionTable, tableProgress, tableState);
-				} catch (ClientNameRequiredException e1) {
-					// TODO retourner erreur
+				if(tableState != State.BUSY){
+					try {
+						theTable = new Table(numTable, numOfPlaces, positionTable, Progress.NO_PROGRESS, tableState);
+					} catch (ClientNameRequiredException e1) {
+						// TODO retourner erreur
+					}
+				} 
+				else{
+					try {
+						theTable = new Table(numTable, numOfPlaces, positionTable, tableProgress, tableState);
+					} catch (ClientNameRequiredException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 			else 
