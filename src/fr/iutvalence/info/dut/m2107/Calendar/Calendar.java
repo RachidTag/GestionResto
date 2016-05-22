@@ -44,7 +44,7 @@ public class Calendar implements Serializable {
 	 */
 	public Week getWeekCalendar(int weekNum) throws WeekNotExistsException
 	{
-		if(this.weeks.containsKey(weekNum)) throw new WeekNotExistsException();
+		if(!this.weeks.containsKey(weekNum)) throw new WeekNotExistsException();
 		return this.weeks.get(weekNum);
 	}
 

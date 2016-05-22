@@ -7,7 +7,9 @@ import javax.swing.ImageIcon;
 import fr.iutvalence.info.dut.m2107.Calendar.*;
 import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
 import fr.iutvalence.info.dut.m2107.Room.*;
+import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Staff;
+import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 /**
  * Application that launches an IHM, a Calendar and a Room 
  * @author Projet Resto
@@ -31,14 +33,48 @@ public class Main {
 		} catch (WeekAlreadyExistsException e1) {
 			e1.printStackTrace();
 		}
+		Day dai = new Day();
 		try {
-			weeeee.editDayCalendar(1, new Day());
+			weeeee.editDayCalendar(1, dai);
 		} catch (DayNotExistsException e1) {
 			e1.printStackTrace();
 		}
+		Service ser = new Service(ServiceType.MIDDAY);
+		try {
+			dai.setService(ser);
+		} catch (RestaurantIsClosedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			ser.addWaiter(new Waiter(1, "Jacquie", "michel", Rank.CHIEF));
+		} catch (WaiterAllreadyInServiceException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			ser.addWaiter(new Waiter(2, "Pierre", "Poulpe", Rank.PADDER));
+		} catch (WaiterAllreadyInServiceException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			ser.addWaiter(new Waiter(3, "Pikachu", "sacha", Rank.RUNNER));
+		} catch (WaiterAllreadyInServiceException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			ser.addWaiter(new Waiter(4, "Alfred", "Batman", Rank.RUNNER));
+		} catch (WaiterAllreadyInServiceException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 		
 		try {
-			window = new MainWindow(Room.loadRoom(), Calendar.loadCalendar(), new Staff());
+			window = new MainWindow(Room.loadRoom(),cal, new Staff());
 			if (window != null)
 				window.setIconImage(logo);
 		} catch (FileNotFoundException e) {
@@ -51,9 +87,6 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ObjectReadedIsNotARoomException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ObjectReadedIsNotACalendarException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

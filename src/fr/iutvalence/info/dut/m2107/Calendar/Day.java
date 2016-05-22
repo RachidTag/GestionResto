@@ -29,6 +29,7 @@ public class Day implements Serializable {
 	public Day()
 	{
 		this.isClosed = false;
+		this.services = new Service[2];
 		this.services[0] = new Service(ServiceType.MIDDAY);
 		this.services[1] = new Service(ServiceType.EVENING);
 	}

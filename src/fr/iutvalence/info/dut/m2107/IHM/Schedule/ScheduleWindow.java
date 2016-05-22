@@ -62,7 +62,7 @@ public class ScheduleWindow extends JFrame{
 		
 			Waiter[] wArray = new Waiter[waiters.size()];
 			wArray = waiters.toArray(wArray);
-			Object[][] ws = new Waiter[waiters.size()][4];
+			Object[][] ws = new Object[waiters.size()][4];
 			for (int i = 0; i < ws.length; i++) {
 				ws[i][0] = wArray[i].getNumWaiter();
 				ws[i][1] = wArray[i].getFirstName();
@@ -73,7 +73,7 @@ public class ScheduleWindow extends JFrame{
 			String[] titles = {"numbers","First Name", "Last Name", "Rank"};
 			
 			JTable employes = new JTable(ws, titles);
-			
+					
 			Day.add(employes);
 		}
 		else{
