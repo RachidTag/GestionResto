@@ -147,18 +147,38 @@ public class Staff implements Serializable{
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 * @throws ObjectReadedIsNotARoomException
+	 * @throws WaiterAlreadyExistsException 
 	 */
-	public static Staff loadStaff() throws FileNotFoundException, IOException, ClassNotFoundException, ObjectReadedIsNotARoomException {
+	public static Staff loadStaff() throws FileNotFoundException, IOException, ClassNotFoundException, ObjectReadedIsNotARoomException, WaiterAlreadyExistsException {
 		return loadStaff("savingStaff.save");
 	}
 
-	private static Staff loadStaff(String givenFile) throws IOException, ClassNotFoundException, ObjectReadedIsNotARoomException {
+	/**
+	 * Load or create a new Staff
+	 * @param givenFile
+	 * @return the staff loaded or created
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 * @throws ObjectReadedIsNotARoomException
+	 * @throws WaiterAlreadyExistsException
+	 */
+	private static Staff loadStaff(String givenFile) throws IOException, ClassNotFoundException, ObjectReadedIsNotARoomException, WaiterAlreadyExistsException {
 		File saveFile = new File(givenFile);
 		if(!saveFile.exists())
 		{
 			saveFile.createNewFile();
 			Staff newStaff = new Staff();
-			
+			newStaff.addWaiter(new Waiter(1, "LORETTE", "Théo", Rank.PADDER));
+			newStaff.addWaiter(new Waiter(2, "TAGHAT", "Rachid", Rank.PADDER));
+			newStaff.addWaiter(new Waiter(3, "PALMIER", "Benjamin", Rank.PADDER));
+			newStaff.addWaiter(new Waiter(4, "AUBÉ", "Mathieu", Rank.PADDER));
+			newStaff.addWaiter(new Waiter(5, "FAYANT", "Dylan", Rank.CHIEF));
+			newStaff.addWaiter(new Waiter(6, "PRADES", "Mickaël", Rank.RUNNER));
+			newStaff.addWaiter(new Waiter(7, "BRIZAC", "Alfred", Rank.RUNNER));
+			newStaff.addWaiter(new Waiter(8, "DI VALENTIN", "Olivia", Rank.RUNNER));
+			newStaff.addWaiter(new Waiter(9, "JEAN", "Sébastien", Rank.RUNNER));
+			newStaff.addWaiter(new Waiter(10, "ROTTELEUR", "Pierre", Rank.RUNNER));
+			//TODO continue
 			newStaff.saveStaff();
 			saveFile = new File(givenFile);
 		}
