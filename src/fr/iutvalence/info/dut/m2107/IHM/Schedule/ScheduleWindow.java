@@ -1,11 +1,12 @@
 package fr.iutvalence.info.dut.m2107.IHM.Schedule;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.Set;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import fr.iutvalence.info.dut.m2107.WindowEventHandler;
@@ -37,21 +38,18 @@ public class ScheduleWindow extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		
-		GridLayout week = new GridLayout(3,7);
+		GridLayout week = new GridLayout(1,1);
 		
 		JPanel Day = new JPanel();
 		
 		Day.setLayout(week);
 		this.add(Day);
 		
+		
+		
+		
 		Set<Waiter> waiters = null;
 		try {
-			System.out.println(this.mainWindow);
-			System.out.println(this.mainWindow.theCalendar);
-			System.out.println(this.mainWindow.theCalendar.getWeekCalendar(1));
-			System.out.println(this.mainWindow.theCalendar.getWeekCalendar(1).getDay(1));
-			System.out.println(this.mainWindow.theCalendar.getWeekCalendar(1).getDay(1).getService(ServiceType.MIDDAY));
-			System.out.println(this.mainWindow.theCalendar.getWeekCalendar(1).getDay(1).getService(ServiceType.MIDDAY).getAllWaiters());
 			waiters = this.mainWindow.theCalendar.getWeekCalendar(1).getDay(1).getService(ServiceType.MIDDAY).getAllWaiters();
 		} catch (DayNotExistsException | WeekNotExistsException e) {
 			e.printStackTrace();
@@ -74,7 +72,8 @@ public class ScheduleWindow extends JFrame{
 			
 			JTable employes = new JTable(ws, titles);
 					
-			Day.add(employes);
+			//this.add(employes);
+			getContentPane().add(new JScrollPane(employes), BorderLayout.CENTER);
 		}
 		else{
 			System.out.println("ERROR !!!");
@@ -89,9 +88,6 @@ public class ScheduleWindow extends JFrame{
                 {"Delphine", "Duke", Color.yellow, false, Sport.TENNIS},
                 {"Eric", "Trump", Color.pink, true, Sport.FOOTBALL},
         };*/
-		
-		
-		
 		
 		this.setVisible(true);
 	}
