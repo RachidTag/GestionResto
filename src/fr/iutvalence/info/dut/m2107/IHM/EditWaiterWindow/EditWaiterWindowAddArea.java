@@ -189,6 +189,8 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 			}
 				if (action!=0)
 					JOptionPane.showMessageDialog(null, "The waiter has been correctly added");
+				else
+					JOptionPane.showMessageDialog(null, "Error : the waiter can't be added");
 		}
 		
 	}

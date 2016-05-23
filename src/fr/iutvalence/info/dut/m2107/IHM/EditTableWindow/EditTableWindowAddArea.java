@@ -179,6 +179,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		int rotation = (int) this.rotation.getValue();
 		int sectorNum = (int) this.comboSectors.getSelectedItem();
 		Table theTable = null;
+		int action =0;
 		try {
 			theTable = new Table(tableNum, numOfPlaces, new Position(posX, posY, rotation), Progress.NO_PROGRESS, State.FREE);
 		} catch (ClientNameRequiredException e1) {
@@ -188,8 +189,11 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		try {
 			this.editTableWindow.mainWindow.theRoom.getSector(sectorNum).addTable(theTable);
 			this.editTableWindow.mainWindow.rightArea.refreshSectors();
+			action++;
 		} catch (TableAlreadyExistsException | SectorNotExistsException e1) {
 			JOptionPane.showMessageDialog(null,"The table already exits in this sector");
 		}
+		if (action!=0)
+			JOptionPane.showMessageDialog(null,"The table has been correctly added");
 	}
 }

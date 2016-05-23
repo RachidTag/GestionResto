@@ -110,6 +110,11 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 			this.editWaiterWindow.R_Area.removeAll();
 			new EditWaiterWindowEditArea(this.editWaiterWindow);
 			SwingUtilities.updateComponentTreeUI(this.editWaiterWindow);
-		}	
+		}
+		else if (source == this.remove){
+			this.editWaiterWindow.R_Area.removeAll();
+			new EditWaiterWindowRemoveArea(this.editWaiterWindow);
+			SwingUtilities.updateComponentTreeUI(this.editWaiterWindow);
+		}
 	}
 }

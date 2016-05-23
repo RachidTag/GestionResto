@@ -77,6 +77,7 @@ public class Staff implements Serializable{
 	 */
 	public void addWaiter(Waiter waiter) throws WaiterAlreadyExistsException{
 		if(this.waiters.containsValue(waiter)) throw new WaiterAlreadyExistsException();
+		if(this.waiters.containsKey(waiter.getNumWaiter())) throw new WaiterAlreadyExistsException();
 		this.waiters.put(waiter.getNumWaiter(), waiter);
 	}
 	
@@ -100,6 +101,21 @@ public class Staff implements Serializable{
 		if(!this.waiters.containsKey(numWaiter)) throw new WaiterDoesNotExistException();
 		this.waiters.remove(numWaiter);
 	}
+	
+	/**
+	 * Redefine equals method for containsValue method
+	 * @param 
+	 * @return bool
+	 */
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (this.getClass() != obj.getClass())
+			return false;
+		return true;
+	}	
 	
 	/**
 	 * Save the current staff to the file savingStaff.save
