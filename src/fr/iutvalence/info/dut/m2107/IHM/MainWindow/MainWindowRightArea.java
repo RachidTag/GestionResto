@@ -200,145 +200,64 @@ public class MainWindowRightArea extends JPanel{
 			{
 				if(tablesPositions.containsKey(new Position(j, i, 1)))
 				{
+					String tableLink = "img/table";
+					
 					Table theTable = tablesPositions.get(new Position(j, i, 1));
-					
-					String numTable = ""+theTable.getNumTable();
-					
-					JLabel TVerte = new JLabel(returnImage("img/tableVerte4Projet.png", 84 , 64, numTable));
-					JLabel TVerteRot = new JLabel(returnImage("img/tableVerte4ProjetRot2.png", 64 , 74, numTable));
-					JLabel TVerte2 = new JLabel(returnImage("img/tableVerte2Projet.png", 42 , 64, numTable));
-					JLabel TVerte2Rot = new JLabel(returnImage("img/tableVerte2ProjetRot2.png", 64 , 42, numTable));
-					JLabel TVerte6 = new JLabel(returnImage("img/tableVerte6Projet.png", 84 , 74, numTable));
-					JLabel TVerte6Rot = new JLabel(returnImage("img/tableVerte6ProjetRot2.png", 74 , 74, numTable));
-					
-					JLabel TRouge = new JLabel(returnImage("img/tableRouge4Projet.png", 84, 64, numTable));
-					JLabel TRougeRot = new JLabel(returnImage("img/tableRouge4ProjetRot2.png", 64, 74, numTable));
-					JLabel TRouge2 = new JLabel(returnImage("img/tableRouge2Projet.png", 42, 64, numTable));
-					JLabel TRouge2Rot = new JLabel(returnImage("img/tableRouge2ProjetRot2.png", 64, 42, numTable));
-					JLabel TRouge6 = new JLabel(returnImage("img/tableRouge6Projet.png", 84, 74, numTable));
-					JLabel TRouge6Rot = new JLabel(returnImage("img/tableRouge6ProjetRot2.png", 74, 74, numTable));
-					
-					JLabel TBleu = new JLabel(returnImage("img/tableBLeu4Projet.png", 84, 64, numTable));
-					JLabel TBleuRot = new JLabel(returnImage("img/tableBleu4ProjetRot2.png", 64, 74, numTable));
-					JLabel TBleu2 = new JLabel(returnImage("img/tableBleu2Projet.png", 42, 64, numTable));
-					JLabel TBleu2Rot = new JLabel(returnImage("img/tableBleu2ProjetRot2.png", 64, 42, numTable));
-					JLabel TBleu6 = new JLabel(returnImage("img/tableBleu6Projet.png", 84, 74, numTable));
-					JLabel TBleu6Rot = new JLabel(returnImage("img/tableBleu6ProjetRot2.png", 74, 74, numTable));	
-					
-					JLabel TOrange = new JLabel(returnImage("img/tableOrange4Projet.png", 84, 64, numTable));
-					JLabel TOrangeRot = new JLabel(returnImage("img/tableOrange4ProjetRot2.png", 64, 74, numTable));
-					JLabel TOrange2 = new JLabel(returnImage("img/tableOrange2Projet.png", 42, 64, numTable));
-					JLabel TOrange2Rot = new JLabel(returnImage("img/tableOrange2ProjetRot2.png", 64, 42, numTable));
-					JLabel TOrange6 = new JLabel(returnImage("img/tableOrange6Projet.png", 84, 74, numTable));
-					JLabel TOrange6Rot = new JLabel(returnImage("img/tableOrange6ProjetRot2.png", 74, 74, numTable));
 					
 					int rot = theTable.getPosition().getRotation();
 					int nbPlace = theTable.getNumberPlaces();
 					State state = theTable.getState();
+					String numTable = String.valueOf(theTable.getNumTable());
 					
-					if(rot == 1 && nbPlace == 4 && state == State.FREE)
+					int sizeX = 0;
+					int sizeY = 0;
+					
+					switch(state)
 					{
-						theSector.add(TVerte);
-					}
-					if(rot == 2 && nbPlace == 4 && state == State.FREE)
-					{
-						theSector.add(TVerteRot);
-					}
-					if(rot == 1 && nbPlace == 2 && state == State.FREE)
-					{
-						theSector.add(TVerte2);
-					}
-					if(rot == 2 && nbPlace == 2 && state == State.FREE)
-					{
-						theSector.add(TVerte2Rot);
-					}
-					if(rot == 1 && nbPlace == 6 && state == State.FREE)
-					{
-						theSector.add(TVerte6);
-					}
-					if(rot == 2 && nbPlace == 6 && state == State.FREE)
-					{
-						theSector.add(TVerte6Rot);
+						case FREE:
+							tableLink += "Verte";
+							break;
+						case BUSY:
+							tableLink += "Rouge";
+							break;
+						case RESERVED:
+							tableLink += "Bleu";
+							break;
+						case GRIMY:
+							tableLink += "Orange";
+							break;
 					}
 					
-					
-					if(rot == 1 && nbPlace == 4 && state == State.BUSY)
+					switch(nbPlace)
 					{
-						theSector.add(TRouge);
-					}
-					if(rot == 2 && nbPlace == 4 && state == State.BUSY)
-					{
-						theSector.add(TRougeRot);
-					}
-					if(rot == 1 && nbPlace == 2 && state == State.BUSY)
-					{
-						theSector.add(TRouge2);
-					}
-					if(rot == 2 && nbPlace == 2 && state == State.BUSY)
-					{
-						theSector.add(TRouge2Rot);
-					}
-					if(rot == 1 && nbPlace == 6 && state == State.BUSY)
-					{
-						theSector.add(TRouge6);
-					}
-					if(rot == 1 && nbPlace == 6 && state == State.BUSY)
-					{
-						theSector.add(TRouge6Rot);
+						case 2:
+							tableLink += "2Projet";
+							sizeX = 40;
+							sizeY = 60;
+							break;
+						case 4:
+							tableLink += "4Projet";
+							sizeX = 75;
+							sizeY = 60;
+							break;
+						case 6:
+							tableLink += "6Projet";
+							sizeX = 75;
+							sizeY = 70;
+							break;
 					}
 					
-					
-					if(rot == 1 && nbPlace == 4 && state == State.RESERVED)
+					switch(rot)
 					{
-						theSector.add(TBleu);
+						case 2:
+							tableLink += "Rot2";
+							int provisoire = sizeX;
+							sizeX = sizeY;
+							sizeY = provisoire;
+							break;
 					}
-					if(rot == 2 && nbPlace == 4 && state == State.RESERVED)
-					{
-						theSector.add(TBleuRot);
-					}
-					if(rot == 1 && nbPlace == 2 && state == State.RESERVED)
-					{
-						theSector.add(TBleu2);
-					}
-					if(rot == 2 && nbPlace == 2 && state == State.RESERVED)
-					{
-						theSector.add(TBleu2Rot);
-					}
-					if(rot == 1 && nbPlace == 6 && state == State.RESERVED)
-					{
-						theSector.add(TBleu6);
-					}
-					if(rot == 2 && nbPlace == 6 && state == State.RESERVED)
-					{
-						theSector.add(TBleu6Rot);
-					}
-					
-					
-					if(rot == 1 && nbPlace == 4 && state == State.GRIMY)
-					{
-						theSector.add(TOrange);
-					}
-					if(rot == 2 && nbPlace == 4 && state == State.GRIMY)
-					{
-						theSector.add(TOrangeRot);
-					}
-					if(rot == 1 && nbPlace == 2 && state == State.GRIMY)
-					{
-						theSector.add(TOrange2);
-					}
-					if(rot == 2 && nbPlace == 2 && state == State.GRIMY)
-					{
-						theSector.add(TOrange2Rot);
-					}
-					if(rot == 1 && nbPlace == 6 && state == State.GRIMY)
-					{
-						theSector.add(TOrange6);
-					}
-					if(rot == 2 && nbPlace == 6 && state == State.GRIMY)
-					{
-						theSector.add(TOrange6Rot);
-					}
-						
+
+					theSector.add(new JLabel(returnImage(tableLink+".png", sizeX , sizeY, numTable)));
 				}
 				else
 				{
