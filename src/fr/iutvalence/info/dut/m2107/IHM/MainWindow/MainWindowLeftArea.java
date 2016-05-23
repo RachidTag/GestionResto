@@ -164,9 +164,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 			int response = JOptionPane.showConfirmDialog(null, "Do you wish to close the application?", "Confirm",
 			        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (response == JOptionPane.YES_OPTION) {
-				this.mainWindow.theRoom.saveRoom();
-				this.mainWindow.theCalendar.saveCalendar();
-				// TODO save staff
+				this.mainWindow.restaurant.saveRestaurant();
 		    	System.exit(0);
 		    }
 		}

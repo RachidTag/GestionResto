@@ -153,7 +153,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		line6.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line6);
 		line6.add(new JLabel("Sector:"));
-		Set<Integer> sectorsNums = this.editTableWindow.mainWindow.theRoom.getSectors().keySet();
+		Set<Integer> sectorsNums = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSectors().keySet();
 		this.comboSectors = new JComboBox<Object>(sectorsNums.toArray());
 		line6.add(this.comboSectors);
 		/*
@@ -187,7 +187,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		}
 		// TODO verify if the posX/posY is already picked
 		try {
-			this.editTableWindow.mainWindow.theRoom.getSector(sectorNum).addTable(theTable);
+			this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector(sectorNum).addTable(theTable);
 			this.editTableWindow.mainWindow.rightArea.refreshSectors();
 			action++;
 		} catch (TableAlreadyExistsException | SectorNotExistsException e1) {

@@ -105,7 +105,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		 line1.setLayout(lineLayout);
 		 this.editWaiterWindow.R_Area.add(line1);
 		 line1.add(new JLabel("Num waiters"));
-		 Set<Integer> waitersNum = this.editWaiterWindow.mainWindow.theStaff.getStaff().keySet();
+		 Set<Integer> waitersNum = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getStaff().keySet();
 		 this.comboWaiter = new JComboBox<Object>(waitersNum.toArray());
 		 this.comboWaiter.addActionListener(this);
 		 line1.add(this.comboWaiter);
@@ -146,7 +146,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 			line5.setLayout(lineLayout);
 			this.editWaiterWindow.R_Area.add(line5);
 			line5.add(new JLabel("Sector assignement"));
-			Set<Integer> sectorsNum = this.editWaiterWindow.mainWindow.theRoom.getSectors().keySet();
+			Set<Integer> sectorsNum = this.editWaiterWindow.mainWindow.restaurant.getTheRoom().getSectors().keySet();
 			this.comboSector = new JComboBox<Object>(sectorsNum.toArray());
 			this.comboSector.disable();
 			this.comboSector.addActionListener(this);
@@ -170,7 +170,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		
 		if(source == this.comboWaiter){
 			try {
-				Waiter theWaiter = this.editWaiterWindow.mainWindow.theStaff.getWaiter((int) this.comboWaiter.getSelectedItem());
+				Waiter theWaiter = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getWaiter((int) this.comboWaiter.getSelectedItem());
 				this.lastName = theWaiter.getLastName();
 				this.firstName = theWaiter.getFirstName();
 				this.comboRank.setSelectedItem(theWaiter.getRank());
@@ -196,7 +196,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 			
 			Waiter theWaiter = null;
 			try {
-				theWaiter = editWaiterWindow.mainWindow.theStaff.getWaiter(theNumWaiter);
+				theWaiter = editWaiterWindow.mainWindow.restaurant.getTheStaff().getWaiter(theNumWaiter);
 				theWaiter.setRank(theRank);
 				action++;
 			} catch (WaiterDoesNotExistException e) {
@@ -205,7 +205,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 			}
 			
 			try {
-				editWaiterWindow.mainWindow.theRoom.getSector(theNumSector).setPadder(theWaiter);
+				editWaiterWindow.mainWindow.restaurant.getTheRoom().getSector(theNumSector).setPadder(theWaiter);
 				action++;
 			} catch (WaiterIsNotPadderException | SectorNotExistsException e) {
 				// TODO Auto-generated catch block

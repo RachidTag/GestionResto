@@ -128,7 +128,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line1.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line1);
 		line1.add(new JLabel("Sector:"));
-		Set<Integer> sectors = new TreeSet<Integer>(this.editTableWindow.mainWindow.theRoom.getSectors().keySet());
+		Set<Integer> sectors = new TreeSet<Integer>(this.editTableWindow.mainWindow.restaurant.getTheRoom().getSectors().keySet());
 		this.comboSectors = new JComboBox<Object>(sectors.toArray());
 		this.comboSectors.addActionListener(this);
 		line1.add(this.comboSectors);
@@ -142,7 +142,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line2.add(new JLabel("Table:"));
 		Sector theSector = null;
 		try {
-			theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
+			theSector = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem());
 		} catch (SectorNotExistsException e) {
 			// TODO
 		}
@@ -244,7 +244,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		{
 			Sector theSector = null;
 			try {
-				theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
+				theSector = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem());
 			} catch (SectorNotExistsException e1) {
 				// ...
 			}
@@ -255,7 +255,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		{
 			Sector theSector = null;
 			try {
-				theSector = this.editTableWindow.mainWindow.theRoom.getSector((int)this.comboSectors.getSelectedItem());
+				theSector = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem());
 			} catch (SectorNotExistsException e1) {
 				// ... impossible
 			}
@@ -307,7 +307,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 			Sector theSector = null;
 			Table theTable = null;
 			try {
-				theSector = this.editTableWindow.mainWindow.theRoom.getSector(numSector);
+				theSector = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector(numSector);
 				theTable = theSector.getTable(numTable);
 				theSector.removeTable(theTable.getNumTable());
 			} catch (SectorNotExistsException | TableNotExistsException e1) {

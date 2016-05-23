@@ -87,7 +87,7 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 		 line1.setLayout(lineLayout);
 		 this.editWaiterWindow.R_Area.add(line1);
 		 line1.add(new JLabel("Num waiters"));
-		 Set<Integer> waitersNum = this.editWaiterWindow.mainWindow.theStaff.getStaff().keySet();
+		 Set<Integer> waitersNum = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getStaff().keySet();
 		 this.comboWaiter = new JComboBox<Object>(waitersNum.toArray());
 		 this.comboWaiter.addActionListener(this);
 		 line1.add(this.comboWaiter);
@@ -130,7 +130,7 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 		
 		if (source == this.comboWaiter){
 			try {
-				Waiter theWaiter = this.editWaiterWindow.mainWindow.theStaff.getWaiter((int) this.comboWaiter.getSelectedItem());
+				Waiter theWaiter = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getWaiter((int) this.comboWaiter.getSelectedItem());
 				this.lastName = theWaiter.getLastName();
 				this.firstName = theWaiter.getFirstName();
 				this.labelLastName.setText(this.lastName);
@@ -145,7 +145,7 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 			int numWaiter = (int) this.comboWaiter.getSelectedItem();
 			int action =0;
 			try {
-				this.editWaiterWindow.mainWindow.theStaff.deleteWaiter(numWaiter);
+				this.editWaiterWindow.mainWindow.restaurant.getTheStaff().deleteWaiter(numWaiter);
 				action++;
 			} catch (WaiterDoesNotExistException e) {
 				// TODO Auto-generated catch block

@@ -27,8 +27,6 @@ class MainWindowEventHandler extends WindowAdapter {
 	 * @see java.awt.event.WindowAdapter#windowClosing(java.awt.event.WindowEvent)
 	 */
 	public void windowClosing(WindowEvent evt) {
-		this.mainWindow.theRoom.saveRoom();
-		this.mainWindow.theCalendar.saveCalendar();
-		// TODO staff save
+		this.mainWindow.restaurant.saveRestaurant();
 	}
 }

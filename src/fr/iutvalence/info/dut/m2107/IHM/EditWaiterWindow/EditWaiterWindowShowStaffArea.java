@@ -45,7 +45,7 @@ public class EditWaiterWindowShowStaffArea extends JFrame{
 		this.editWaiterWindow.R_Area.setLayout(new GridLayout(1,1));
 		this.editWaiterWindow.R_Area.add(showPanel);
 		
-		Map<Integer, Waiter> staff = this.editWaiterWindow.mainWindow.theStaff.getStaff();
+		Map<Integer, Waiter> staff = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getStaff();
 		
 			Object[][] ws = new Object[staff.size()][4];
 			

@@ -1,13 +1,11 @@
 package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 import javax.swing.*;
 
-import fr.iutvalence.info.dut.m2107.Calendar.Calendar;
+import fr.iutvalence.info.dut.m2107.Restaurant;
 import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
 import fr.iutvalence.info.dut.m2107.IHM.RMModWindow.RMModWindow;
 import fr.iutvalence.info.dut.m2107.IHM.Schedule.ScheduleWindow;
-import fr.iutvalence.info.dut.m2107.Room.Room;
-import fr.iutvalence.info.dut.m2107.Staff.Staff;
 
 /**
  * The Main Window of the application
@@ -25,22 +23,12 @@ public class MainWindow extends JFrame {
 	/**
 	 * The right panel
 	 */
-	public MainWindowRightArea rightArea;	
-
-	/**
-	 * The room object
-	 */
-	public Room theRoom;
-
-	/**
-	 * The calendar object
-	 */
-	public Calendar theCalendar;
+	public MainWindowRightArea rightArea;
 	
 	/**
-	 * The staff object
+	 * Reference to the restaurant object
 	 */
-	public Staff theStaff;
+	public Restaurant restaurant;
 	
 	/**
 	 * The edit table window
@@ -64,25 +52,14 @@ public class MainWindow extends JFrame {
 		
 	/**
 	 * Generates the main window
-	 * @param theRoom 
-	 * @param theCalendar 
+	 * @param restaurant
 	 */
-	public MainWindow(Room theRoom, Calendar theCalendar, Staff theStaff)
+	public MainWindow(Restaurant restaurant)
 	{
 		/*
-		 * Save the room
+		 * Save the restaurant
 		 */
-		this.theRoom = theRoom;
-		
-		/*
-		 * Save the calendar
-		 */
-		this.theCalendar = theCalendar;
-		
-		/*
-		 * Save the Staff
-		 */
-		this.theStaff = theStaff;
+		this.restaurant = restaurant;
 		
 		/*
 		 * Main informations of the window

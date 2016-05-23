@@ -88,7 +88,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 		line1.setLayout(lineLayout);
 		this.editWaiterWindow.R_Area.add(line1);
 		line1.add(new JLabel("Waiter Number"));
-		this.numWaiter = new JLabel(String.valueOf(this.editWaiterWindow.mainWindow.theStaff.findFirstFreeIndex()));
+		this.numWaiter = new JLabel(String.valueOf(this.editWaiterWindow.mainWindow.restaurant.getTheStaff().findFirstFreeIndex()));
 		line1.add(this.numWaiter);
 
 		/*
@@ -129,7 +129,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 		line5.setLayout(lineLayout);
 		this.editWaiterWindow.R_Area.add(line5);
 		line5.add(new JLabel("Sector assignement"));
-		Set<Integer> sectorsNum = this.editWaiterWindow.mainWindow.theRoom.getSectors().keySet();
+		Set<Integer> sectorsNum = this.editWaiterWindow.mainWindow.restaurant.getTheRoom().getSectors().keySet();
 		this.comboSectors = new JComboBox<Object>(sectorsNum.toArray());
 		this.comboSectors.disable();
 		this.comboSectors.addActionListener(this);
@@ -162,7 +162,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 			//TODO
 		}
 		else if(source == processAddWaiter){
-			int numWaiter = (int) this.editWaiterWindow.mainWindow.theStaff.findFirstFreeIndex();
+			int numWaiter = (int) this.editWaiterWindow.mainWindow.restaurant.getTheStaff().findFirstFreeIndex();
 			String lastName = this.lastName.getText();
 			String firstName = this.firstName.getText();
 			Rank rank = (Rank) this.comboRanks.getSelectedItem();
@@ -172,7 +172,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 			Waiter theWaiter = new Waiter(numWaiter, lastName, firstName, rank);
 			
 			try {
-				this.editWaiterWindow.mainWindow.theStaff.addWaiter(theWaiter);
+				this.editWaiterWindow.mainWindow.restaurant.getTheStaff().addWaiter(theWaiter);
 				action++;
 			} catch (WaiterAlreadyExistsException e) {
 				JOptionPane.showMessageDialog(null, "This number already exists");
@@ -181,7 +181,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 			
 			if (rank == Rank.PADDER){
 				try {
-					this.editWaiterWindow.mainWindow.theRoom.getSector(numSector).setPadder(theWaiter);
+					this.editWaiterWindow.mainWindow.restaurant.getTheRoom().getSector(numSector).setPadder(theWaiter);
 				} catch (WaiterIsNotPadderException | SectorNotExistsException e) {
 					// ...
 					e.printStackTrace();

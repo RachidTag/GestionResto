@@ -179,7 +179,7 @@ public class MainWindowRightArea extends JPanel{
 		Collection<Table> tables = null;
 		try
 		{
-			tables = this.mainWindow.theRoom.getSector(numSector).getTables().values();
+			tables = this.mainWindow.restaurant.getTheRoom().getSector(numSector).getTables().values();
 		}
 		catch (SectorNotExistsException e)
 		{

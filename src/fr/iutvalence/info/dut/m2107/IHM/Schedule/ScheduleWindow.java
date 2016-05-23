@@ -71,7 +71,7 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 		aWeek.setLayout(lineLayout);
 		this.topArea.add(aWeek);
 		aWeek.add(new JLabel("Week:"));
-		Set<Integer> weekNums = this.mainWindow.theCalendar.getAllWeeks().keySet();
+		Set<Integer> weekNums = this.mainWindow.restaurant.getTheCalendar().getAllWeeks().keySet();
 		this.comboWeeks = new JComboBox<Object>(weekNums.toArray());
 		aWeek.add(this.comboWeeks);
 		
@@ -123,7 +123,7 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 		{
 			Week theWeek = null;
 				try {
-					theWeek = this.mainWindow.theCalendar.getWeekCalendar((int)this.comboWeeks.getSelectedItem());
+					theWeek = this.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboWeeks.getSelectedItem());
 				} catch (WeekNotExistsException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -138,7 +138,7 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 			
 			Set<Waiter> waiters = null;
 			try {
-				waiters = this.mainWindow.theCalendar.getWeekCalendar(1).getDay(1).getService(ServiceType.MIDDAY).getAllWaiters();
+				waiters = this.mainWindow.restaurant.getTheCalendar().getWeekCalendar(1).getDay(1).getService(ServiceType.MIDDAY).getAllWaiters();
 			} catch (DayNotExistsException | WeekNotExistsException e) {
 				e.printStackTrace();
 			}
