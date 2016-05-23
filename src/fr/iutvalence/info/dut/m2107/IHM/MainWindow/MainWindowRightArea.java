@@ -1,12 +1,22 @@
 package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -191,34 +201,36 @@ public class MainWindowRightArea extends JPanel{
 				if(tablesPositions.containsKey(new Position(j, i, 1)))
 				{
 					Table theTable = tablesPositions.get(new Position(j, i, 1));
-
-					JLabel TVerte = new JLabel(returnImage("img/tableVerte4Projet.png", 84 , 64));
-					JLabel TVerteRot = new JLabel(returnImage("img/tableVerte4ProjetRot2.png", 64 , 74));
-					JLabel TVerte2 = new JLabel(returnImage("img/tableVerte2Projet.png", 42 , 64));
-					JLabel TVerte2Rot = new JLabel(returnImage("img/tableVerte2ProjetRot2.png", 64 , 42));
-					JLabel TVerte6 = new JLabel(returnImage("img/tableVerte6Projet.png", 84 , 74));
-					JLabel TVerte6Rot = new JLabel(returnImage("img/tableVerte6ProjetRot2.png", 74 , 74));
 					
-					JLabel TRouge = new JLabel(returnImage("img/tableRouge4Projet.png", 84, 64));
-					JLabel TRougeRot = new JLabel(returnImage("img/tableRouge4ProjetRot2.png", 64, 74));
-					JLabel TRouge2 = new JLabel(returnImage("img/tableRouge2Projet.png", 42, 64));
-					JLabel TRouge2Rot = new JLabel(returnImage("img/tableRouge2ProjetRot2.png", 64, 42));
-					JLabel TRouge6 = new JLabel(returnImage("img/tableRouge6Projet.png", 84, 74));
-					JLabel TRouge6Rot = new JLabel(returnImage("img/tableRouge6ProjetRot2.png", 74, 74));
+					String numTable = ""+theTable.getNumTable();
 					
-					JLabel TBleu = new JLabel(returnImage("img/tableBLeu4Projet.png", 84, 64));
-					JLabel TBleuRot = new JLabel(returnImage("img/tableBleu4ProjetRot2.png", 64, 74));
-					JLabel TBleu2 = new JLabel(returnImage("img/tableBleu2Projet.png", 42, 64));
-					JLabel TBleu2Rot = new JLabel(returnImage("img/tableBleu2ProjetRot2.png", 64, 42));
-					JLabel TBleu6 = new JLabel(returnImage("img/tableBleu6Projet.png", 84, 74));
-					JLabel TBleu6Rot = new JLabel(returnImage("img/tableBleu6ProjetRot2.png", 74, 74));	
+					JLabel TVerte = new JLabel(returnImage("img/tableVerte4Projet.png", 84 , 64, numTable));
+					JLabel TVerteRot = new JLabel(returnImage("img/tableVerte4ProjetRot2.png", 64 , 74, numTable));
+					JLabel TVerte2 = new JLabel(returnImage("img/tableVerte2Projet.png", 42 , 64, numTable));
+					JLabel TVerte2Rot = new JLabel(returnImage("img/tableVerte2ProjetRot2.png", 64 , 42, numTable));
+					JLabel TVerte6 = new JLabel(returnImage("img/tableVerte6Projet.png", 84 , 74, numTable));
+					JLabel TVerte6Rot = new JLabel(returnImage("img/tableVerte6ProjetRot2.png", 74 , 74, numTable));
 					
-					JLabel TOrange = new JLabel(returnImage("img/tableOrange4Projet.png", 84, 64));
-					JLabel TOrangeRot = new JLabel(returnImage("img/tableOrange4ProjetRot2.png", 64, 74));
-					JLabel TOrange2 = new JLabel(returnImage("img/tableOrange2Projet.png", 42, 64));
-					JLabel TOrange2Rot = new JLabel(returnImage("img/tableOrange2ProjetRot2.png", 64, 42));
-					JLabel TOrange6 = new JLabel(returnImage("img/tableOrange6Projet.png", 84, 74));
-					JLabel TOrange6Rot = new JLabel(returnImage("img/tableOrange6ProjetRot2.png", 74, 74));
+					JLabel TRouge = new JLabel(returnImage("img/tableRouge4Projet.png", 84, 64, numTable));
+					JLabel TRougeRot = new JLabel(returnImage("img/tableRouge4ProjetRot2.png", 64, 74, numTable));
+					JLabel TRouge2 = new JLabel(returnImage("img/tableRouge2Projet.png", 42, 64, numTable));
+					JLabel TRouge2Rot = new JLabel(returnImage("img/tableRouge2ProjetRot2.png", 64, 42, numTable));
+					JLabel TRouge6 = new JLabel(returnImage("img/tableRouge6Projet.png", 84, 74, numTable));
+					JLabel TRouge6Rot = new JLabel(returnImage("img/tableRouge6ProjetRot2.png", 74, 74, numTable));
+					
+					JLabel TBleu = new JLabel(returnImage("img/tableBLeu4Projet.png", 84, 64, numTable));
+					JLabel TBleuRot = new JLabel(returnImage("img/tableBleu4ProjetRot2.png", 64, 74, numTable));
+					JLabel TBleu2 = new JLabel(returnImage("img/tableBleu2Projet.png", 42, 64, numTable));
+					JLabel TBleu2Rot = new JLabel(returnImage("img/tableBleu2ProjetRot2.png", 64, 42, numTable));
+					JLabel TBleu6 = new JLabel(returnImage("img/tableBleu6Projet.png", 84, 74, numTable));
+					JLabel TBleu6Rot = new JLabel(returnImage("img/tableBleu6ProjetRot2.png", 74, 74, numTable));	
+					
+					JLabel TOrange = new JLabel(returnImage("img/tableOrange4Projet.png", 84, 64, numTable));
+					JLabel TOrangeRot = new JLabel(returnImage("img/tableOrange4ProjetRot2.png", 64, 74, numTable));
+					JLabel TOrange2 = new JLabel(returnImage("img/tableOrange2Projet.png", 42, 64, numTable));
+					JLabel TOrange2Rot = new JLabel(returnImage("img/tableOrange2ProjetRot2.png", 64, 42, numTable));
+					JLabel TOrange6 = new JLabel(returnImage("img/tableOrange6Projet.png", 84, 74, numTable));
+					JLabel TOrange6Rot = new JLabel(returnImage("img/tableOrange6ProjetRot2.png", 74, 74, numTable));
 					
 					int rot = theTable.getPosition().getRotation();
 					int nbPlace = theTable.getNumberPlaces();
@@ -330,7 +342,7 @@ public class MainWindowRightArea extends JPanel{
 				}
 				else
 				{
-					JLabel tbis = new JLabel(returnImage("img/labelBlanc.png", 84, 64));
+					JLabel tbis = new JLabel(returnImage("img/labelBlanc.png", 84, 64, ""));
 					theSector.add(tbis);
 				}
 			}
@@ -344,12 +356,72 @@ public class MainWindowRightArea extends JPanel{
 	 * @param l
 	 * @return ImageIcon
 	 */
-	public ImageIcon returnImage(String image, int h , int l)
+	public ImageIcon returnImage(String image, int h , int l, String numTable)
 	{
-		ImageIcon image1 = new ImageIcon(image);
-		Image image2 = image1.getImage();
-		image2 = image2.getScaledInstance(h, l, Image.SCALE_SMOOTH);
-		image1= new ImageIcon(image2);
-		return image1;
+		/*
+		 * Resizes the image
+		 */
+		BufferedImage bufferedBackgroundImage = null;
+		try
+		{
+			bufferedBackgroundImage = ImageIO.read(new File(image));
+		}
+		catch (IOException e)
+		{
+			System.err.println("Table background image missing !");
+		}
+		
+		Image resizedBackgroundImage = new ImageIcon(bufferedBackgroundImage).getImage();
+		resizedBackgroundImage = resizedBackgroundImage.getScaledInstance(h, l, Image.SCALE_SMOOTH);
+		
+		/*
+		 * Make the buffered background image from the resized image
+		 */
+		bufferedBackgroundImage = new BufferedImage(resizedBackgroundImage.getWidth(null), resizedBackgroundImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+	    Graphics2D bGr = bufferedBackgroundImage.createGraphics();
+	    bGr.drawImage(resizedBackgroundImage, 0, 0, null);
+	    
+	    /*
+	     * Set the good font to the Graphics
+	     */
+		Font theFont = new Font("TimesRoman", Font.PLAIN, 18);
+		bGr.setFont(theFont);
+		
+		/*
+		 * If the image is not a White label, put the table num with a background
+		 */
+		if(!image.equals("img/labelBlanc.png"))
+		{
+			/*
+			 * Get the metrics from the font to know where to put the text
+			 */
+    	    FontMetrics metrics = bGr.getFontMetrics(theFont);
+    	    
+    	    /*
+    	     * Get the text's coordinates
+    	     */
+    	    int x = (bufferedBackgroundImage.getWidth()-metrics.stringWidth(numTable))/2;
+    	    int y = ((bufferedBackgroundImage.getHeight()-metrics.getHeight())/2) + metrics.getAscent();
+
+            Rectangle2D rect = metrics.getStringBounds(numTable, bGr);
+            
+            /*
+             * Draw the rect
+             */
+            bGr.setColor(Color.BLACK);
+            bGr.fillRect(x-1, ((bufferedBackgroundImage.getHeight()-metrics.getHeight())/2)+4,
+                       (int) rect.getWidth()+1,
+                       (int) rect.getHeight()-4);
+    		
+            /*
+             * Drax the num
+             */
+            bGr.setColor(Color.white);
+            bGr.drawString(numTable, x, y);
+		}
+		
+		bGr.dispose();
+		
+		return new ImageIcon(bufferedBackgroundImage);
 	}
 }
