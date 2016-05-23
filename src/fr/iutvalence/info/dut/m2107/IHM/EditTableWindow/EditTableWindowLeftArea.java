@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
- * @author TODO
- *
+ * Represents the left area of the edit table window
+ * @author Projet Resto
  */
 @SuppressWarnings("serial")
 public class EditTableWindowLeftArea extends JPanel implements ActionListener{
@@ -41,7 +41,7 @@ public class EditTableWindowLeftArea extends JPanel implements ActionListener{
 	public JButton close;
 
 	/**
-	 * TODO
+	 * Generates the left area of the edit table window
 	 * @param editTableWindow
 	 */
 	public EditTableWindowLeftArea(EditTableWindow editTableWindow){

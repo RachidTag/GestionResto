@@ -7,8 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * @author TODO
- *
+ * Represents the default right area of the edit table window
+ * @author Projet Resto
  */
 @SuppressWarnings("serial")
 public class EditTableWindowRightArea extends JPanel{
@@ -18,7 +18,7 @@ public class EditTableWindowRightArea extends JPanel{
 	public EditTableWindow editTableWindow;
 
 	/**
-	 * TODO
+	 * Generates the right area of the edit table window
 	 * @param editTableWindow
 	 */
 	public EditTableWindowRightArea(EditTableWindow editTableWindow){
