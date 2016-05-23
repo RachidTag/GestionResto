@@ -2,31 +2,32 @@ package fr.iutvalence.info.dut.m2107.Staff;
 
 import java.io.Serializable;
 
-import fr.iutvalence.info.dut.m2107.Room.Sector;
-
 /**
  * Represents a waiter
  * @author Projet Resto
  *
  */
 public class Waiter implements Serializable {
-
 	/**
-	 * 
+	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * The number of the waiter
 	 */
 	private final int numWaiter;
+	
 	/**
 	 * The last name of the waiter
 	 */
 	private String lastName;
+	
 	/**
 	 * The first name of the waiter
 	 */
 	private String firstName;
+	
 	/**
 	 * The rank of the waiter
 	 */
@@ -34,6 +35,7 @@ public class Waiter implements Serializable {
 	
 	/**
 	 * Create a new waiter
+	 * @param numWaiter 
 	 * @param lastName String the last name of the waiter  
 	 * @param firstName String first name og the waiter
 	 * @param rank the rank of the waiter
@@ -98,7 +100,14 @@ public class Waiter implements Serializable {
 	{
 		this.rank = rank;
 	}
-	
+
+	/**
+	 * Get waiter's num
+	 * @return numWaiter int
+	 */
+	public int getNumWaiter() {
+		return this.numWaiter;
+	}
 
 	/**
 	 * @see java.lang.Object#toString()
@@ -119,7 +128,6 @@ public class Waiter implements Serializable {
 	}
 
 	/**
-	 *TODO redefine
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	public boolean equals(Object obj) {
@@ -141,9 +149,5 @@ public class Waiter implements Serializable {
 		} else if (!this.lastName.equals(other.lastName))
 			return false;
 		return true;
-	}
-
-	public int getNumWaiter() {
-		return numWaiter;
 	}
 }

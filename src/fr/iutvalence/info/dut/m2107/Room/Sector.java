@@ -6,7 +6,7 @@ import java.util.Map;
 
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
-import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotPadderException;
+import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotAPadderException;
 
 /**
  * Represent the Sector
@@ -69,10 +69,10 @@ public class Sector implements Serializable
 	/**
 	 * Edit the current padder
 	 * @param padder Waiter
-	 * @throws WaiterIsNotPadderException 
+	 * @throws WaiterIsNotAPadderException 
 	 */
-	public void setPadder(Waiter padder) throws WaiterIsNotPadderException{
-		if (padder.getRank() != Rank.PADDER) throw new WaiterIsNotPadderException();
+	public void setPadder(Waiter padder) throws WaiterIsNotAPadderException{
+		if (padder.getRank() != Rank.PADDER) throw new WaiterIsNotAPadderException();
 		this.padder = padder;
 	}
 	

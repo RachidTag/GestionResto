@@ -2,21 +2,13 @@ package fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.io.IOException;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import fr.iutvalence.info.dut.m2107.Room.ObjectReadedIsNotARoomException;
-import fr.iutvalence.info.dut.m2107.Staff.Rank;
-import fr.iutvalence.info.dut.m2107.Staff.Staff;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
-import fr.iutvalence.info.dut.m2107.Staff.WaiterAlreadyExistsException;
 
 /**
  * Show all the staff

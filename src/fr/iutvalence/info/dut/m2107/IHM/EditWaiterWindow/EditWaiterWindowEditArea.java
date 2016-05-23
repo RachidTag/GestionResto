@@ -21,7 +21,7 @@ import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
-import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotPadderException;
+import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotAPadderException;
 
 /**
  * Represent the area where we can edit a waiter
@@ -207,7 +207,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 			try {
 				editWaiterWindow.mainWindow.restaurant.getTheRoom().getSector(theNumSector).setPadder(theWaiter);
 				action++;
-			} catch (WaiterIsNotPadderException | SectorNotExistsException e) {
+			} catch (WaiterIsNotAPadderException | SectorNotExistsException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
