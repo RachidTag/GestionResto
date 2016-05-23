@@ -11,6 +11,8 @@ import java.io.Serializable;
 
 import fr.iutvalence.info.dut.m2107.Calendar.Calendar;
 import fr.iutvalence.info.dut.m2107.Room.Room;
+import fr.iutvalence.info.dut.m2107.Room.Sector;
+import fr.iutvalence.info.dut.m2107.Room.SectorAlreadyExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Staff;
 
 /**
@@ -166,8 +168,23 @@ public class Restaurant implements Serializable {
 		if(!saveFile.exists())
 		{
 			saveFile.createNewFile();
-			Restaurant newRestaurant = new Restaurant(null, null, null);
-			// TODO: generate an empty restaurant
+			
+			Room newRoom = new Room();
+			try {
+				newRoom.addSector(new Sector(1, null));
+				newRoom.addSector(new Sector(2, null));
+				newRoom.addSector(new Sector(3, null));
+				newRoom.addSector(new Sector(4, null));
+			} catch (SectorAlreadyExistsException e) {
+				// impossible
+			}
+			
+			Staff newStaff = new Staff();
+			
+			Calendar newCalendar = new Calendar();
+			
+			Restaurant newRestaurant = new Restaurant(newStaff, newCalendar, newRoom);
+			
 			newRestaurant.saveRestaurant();
 			saveFile = new File(givenFile);
 		}
