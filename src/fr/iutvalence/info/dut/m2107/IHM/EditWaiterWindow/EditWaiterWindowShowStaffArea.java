@@ -27,7 +27,7 @@ public class EditWaiterWindowShowStaffArea extends JFrame{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; 
 	/**
 	 * The window
 	 */
@@ -61,6 +61,8 @@ public class EditWaiterWindowShowStaffArea extends JFrame{
 			String[] titles = {"numbers","First Name", "Last Name", "Rank"};
 			
 			JTable employes = new JTable(ws, titles);
+			employes.getTableHeader().setReorderingAllowed(false);
+			employes.getTableHeader().setResizingAllowed(false);
 			employes.disable();
 					
 			showPanel.add(new JScrollPane(employes), BorderLayout.CENTER);

@@ -94,12 +94,27 @@ public class Staff implements Serializable{
 
 	/**
 	 * delete a waiters
-	 * @param numWaiter int
+	 * @param numWaiter int 
 	 * @throws WaiterDoesNotExistException 
 	 */
 	public void deleteWaiter(int numWaiter) throws WaiterDoesNotExistException{
 		if(!this.waiters.containsKey(numWaiter)) throw new WaiterDoesNotExistException();
 		this.waiters.remove(numWaiter);
+	}
+	
+	/**
+	 * Return the 1st free index of the list of waiter
+	 * @return int the 1st free index
+	 */
+	public int findFirstFreeIndex(){
+		if(this.waiters == null) return 0;
+		int index = 1;
+		while(index <= this.waiters.size()){
+			if(!this.waiters.containsKey(index))break;
+			index++;
+		}
+		return index;
+		
 	}
 	
 	/**

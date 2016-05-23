@@ -33,7 +33,7 @@ public class Week implements Serializable {
 	public Week(int weekNum) {
 		this.weekNum = weekNum;
 		this.days = new Day[7];
-		for(int i = 1; i < 7; i++)
+		for(int i = 0; i < 7; i++)
 			this.days[i] = new Day();
 	}
 	

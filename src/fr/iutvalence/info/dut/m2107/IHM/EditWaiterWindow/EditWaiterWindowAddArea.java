@@ -29,7 +29,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 	/**
 	 * The spinner for the number of the waiter
 	 */
-	public JSpinner numWaiter;
+	public JLabel numWaiter;
 	/**
 	 * The text field for the last name
 	 */
@@ -88,7 +88,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 		line1.setLayout(lineLayout);
 		this.editWaiterWindow.R_Area.add(line1);
 		line1.add(new JLabel("Waiter Number"));
-		this.numWaiter = new JSpinner(new SpinnerNumberModel(1,1,1000,1));
+		this.numWaiter = new JLabel(String.valueOf(this.editWaiterWindow.mainWindow.theStaff.findFirstFreeIndex()));
 		line1.add(this.numWaiter);
 
 		/*
@@ -144,7 +144,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 		line6.add(new JLabel());
 		this.processAddWaiter = new JButton("Send");
 		line6.add(this.processAddWaiter);
-		this.processAddWaiter.addActionListener(this);
+		this.processAddWaiter.addActionListener(this); 
 		
 	}
 	
@@ -162,7 +162,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 			//TODO
 		}
 		else if(source == processAddWaiter){
-			int numWaiter = (int) this.numWaiter.getValue();
+			int numWaiter = (int) this.editWaiterWindow.mainWindow.theStaff.findFirstFreeIndex();
 			String lastName = this.lastName.getText();
 			String firstName = this.firstName.getText();
 			Rank rank = (Rank) this.comboRanks.getSelectedItem();
@@ -175,7 +175,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 				this.editWaiterWindow.mainWindow.theStaff.addWaiter(theWaiter);
 				action++;
 			} catch (WaiterAlreadyExistsException e) {
-				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "This number already exists");
 				e.printStackTrace();
 			}
 			
