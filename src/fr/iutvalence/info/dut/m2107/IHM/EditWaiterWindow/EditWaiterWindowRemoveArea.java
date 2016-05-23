@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
@@ -62,7 +63,7 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 		/*
 		 * Set the grid layout
 		 */
-		GridLayout controlPanel = new GridLayout(4,1);
+		GridLayout controlPanel = new GridLayout(5,1);
 		controlPanel.setHgap(10);
 		controlPanel.setVgap(5);
 		this.editWaiterWindow.R_Area.setLayout(controlPanel);
@@ -154,6 +155,10 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 				JOptionPane.showMessageDialog(null, "The waiter has been correctly deleted");
 			else 
 				JOptionPane.showMessageDialog(null, "The waiter can't be deleted");
+			
+			this.editWaiterWindow.R_Area.removeAll();
+			new EditWaiterWindowRemoveArea(this.editWaiterWindow);
+			SwingUtilities.updateComponentTreeUI(this.editWaiterWindow);
 		}
 		
 	}

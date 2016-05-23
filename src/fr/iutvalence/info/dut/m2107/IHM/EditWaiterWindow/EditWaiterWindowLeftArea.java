@@ -25,6 +25,10 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 	 */
 	public JButton add;
 	/**
+	 * The show staff button
+	 */
+	public JButton showStaff;
+	/**
 	 * The edit button
 	 */
 	public JButton edit;
@@ -50,9 +54,15 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Set the layout
 		 */
-		GridLayout controlPanel = new GridLayout(4,1);
+		GridLayout controlPanel = new GridLayout(5,1);
 		this.setLayout(controlPanel);
 		
+		/*
+		 * Set the add waiter button
+		 */
+		this.showStaff = new JButton("Show Staff");
+		this.showStaff.addActionListener(this);
+		this.add(this.showStaff);
 		/*
 		 * Set the add waiter button
 		 */
@@ -114,6 +124,11 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 		else if (source == this.remove){
 			this.editWaiterWindow.R_Area.removeAll();
 			new EditWaiterWindowRemoveArea(this.editWaiterWindow);
+			SwingUtilities.updateComponentTreeUI(this.editWaiterWindow);
+		}
+		else if(source == this.showStaff){
+			this.editWaiterWindow.R_Area.removeAll();
+			new EditWaiterWindowShowStaffArea(this.editWaiterWindow);
 			SwingUtilities.updateComponentTreeUI(this.editWaiterWindow);
 		}
 	}

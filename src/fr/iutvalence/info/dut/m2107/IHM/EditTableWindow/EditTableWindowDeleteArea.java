@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import fr.iutvalence.info.dut.m2107.Room.Sector;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
@@ -170,12 +171,12 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
 					JOptionPane.showMessageDialog(null, "The table has been correctly deleted");
 					this.editTableWindow.mainWindow.rightArea.refreshSectors();
 				}
-				else JOptionPane.showMessageDialog(null, "The table has not been correctly deleted!");
+				else JOptionPane.showMessageDialog(null, "The table can't be deleted");
 				
 				// verify if it's useless
-//				this.editTableWindow.R_Area.removeAll();
-//				this.editTableWindow.R_Area = new EditTableWindowDeleteArea(this.editTableWindow);
-//				SwingUtilities.updateComponentTreeUI(this.editTableWindow.R_Area);
+				this.editTableWindow.R_Area.removeAll();
+				new EditTableWindowDeleteArea(this.editTableWindow);
+				SwingUtilities.updateComponentTreeUI(this.editTableWindow.R_Area);
 			}
 		}
 	}
