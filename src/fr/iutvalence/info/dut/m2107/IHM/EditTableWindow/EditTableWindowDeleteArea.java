@@ -150,31 +150,23 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
 					theSector = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem());
 					action++;
 				} catch (SectorNotExistsException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					// impossible
 				}
 				try {
 					theTable = theSector.getTable((int)this.comboTables.getSelectedItem());
-					action++;
-				} catch (TableNotExistsException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				try {
 					theSector.removeTable(theTable.getNumTable());
 					action++;
 				} catch (TableNotExistsException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					// impossible
 				}
-				if(action == 3) 
+				if(action == 2) 
 				{
 					JOptionPane.showMessageDialog(null, "The table has been correctly deleted");
 					this.editTableWindow.mainWindow.rightArea.refreshSectors();
 				}
 				else JOptionPane.showMessageDialog(null, "The table can't be deleted");
 				
-				// verify if it's useless
+				// Refresh the page
 				this.editTableWindow.R_Area.removeAll();
 				new EditTableWindowDeleteArea(this.editTableWindow);
 				SwingUtilities.updateComponentTreeUI(this.editTableWindow.R_Area);
