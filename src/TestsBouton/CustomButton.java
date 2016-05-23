@@ -2,12 +2,14 @@ package TestsBouton;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -17,18 +19,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class CustomButton extends JButton implements MouseListener {
-	private JLabel name;
 	private Image buttonBg;
-	 
+	File font_file = new File("KeepCalm.ttf");
+	Font keepCalm = Font.createFont(Font.TRUETYPE_FONT, font_file); // PUTAIN ELLE VIENT DOU CETTE ERREUR
+		 
 	public CustomButton(String name){
-		super(name); /* jsais plus comment on met un name a un label) --> Comme ça ;) (Dylan) */
+		super(name);
 		ImageIcon bgImage = new ImageIcon(getClass().getResource("ButtonBackground.png"));
 		this.setIcon(bgImage);
 		
-		this.name = new JLabel(name); /* et ça */
+		JLabel jLabelName = new JLabel(name);
+		jLabelName.setFont(keepCalm);
+		jLabelName.setForeground(Color.BLACK);
 		
-		
-		this.add(this.name);
+		this.add(jLabelName);
 		
 		this.setBorderPainted(false);
 		this.setFocusPainted(false);
@@ -54,8 +58,13 @@ public class CustomButton extends JButton implements MouseListener {
 		 * Création du bouton, application d'une taille par défault pour ce bouton
 		 */
 		
-		CustomButton bouton = new CustomButton("bouton");
+		CustomButton bouton = new CustomButton("Edit Table");
+		CustomButton bouton2 = new CustomButton("Edit TRUC");
+		CustomButton bouton3 = new CustomButton("GOD MOD");
+		
 		pan.add(bouton);
+		pan.add(bouton2);
+		pan.add(bouton3);
 		
 		
 		window.setContentPane(pan);
