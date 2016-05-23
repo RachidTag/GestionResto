@@ -1,6 +1,9 @@
 package fr.iutvalence.info.dut.m2107.Calendar;
 
 import java.io.Serializable;
+import java.util.Map;
+
+import fr.iutvalence.info.dut.m2107.Room.Table;
 
 /**
  * Represents a week from the calendar
@@ -43,6 +46,13 @@ public class Week implements Serializable {
 	{
 		if(dayNum < 1 || dayNum > 7) throw new DayNotExistsException();
 		return this.days[dayNum];
+	}
+	
+	/**
+	 * @return the days tables
+	 */
+	public Day[] getDays(){
+		return this.days;
 	}
 	
 	/**

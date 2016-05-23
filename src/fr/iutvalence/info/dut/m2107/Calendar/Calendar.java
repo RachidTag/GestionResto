@@ -152,68 +152,6 @@ public class Calendar implements Serializable {
 		{
 			saveFile.createNewFile();
 			Calendar newCalendar = new Calendar();
-			/*Calendar cal = new Calendar();
-			Week weeeee = new Week(1);
-			Staff bibi = null;
-			try {
-				bibi = Staff.loadStaff();
-			} catch (ObjectReadedIsNotARoomException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			} catch (WaiterAlreadyExistsException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-			Day dai = new Day();
-			try {
-				weeeee.editDayCalendar(1, dai);
-			} catch (DayNotExistsException e1) {
-				e1.printStackTrace();
-			}
-			Service ser = new Service(ServiceType.MIDDAY);
-			try {
-				dai.setService(ser);
-			} catch (RestaurantIsClosedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			try {
-				ser.addWaiter(bibi.getWaiter(2));
-			} catch (WaiterAllreadyInServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (WaiterDoesNotExistException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				ser.addWaiter(bibi.getWaiter(5));
-			} catch (WaiterAllreadyInServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (WaiterDoesNotExistException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				ser.addWaiter(bibi.getWaiter(7));
-			} catch (WaiterAllreadyInServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (WaiterDoesNotExistException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				ser.addWaiter(bibi.getWaiter(8));
-			} catch (WaiterAllreadyInServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (WaiterDoesNotExistException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
-			
 			newCalendar.saveCalendar();
 			saveFile = new File(givenFile);
 		}
