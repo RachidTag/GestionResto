@@ -7,7 +7,7 @@ public class SectorAlreadyExistsException extends Exception
 {
 
 	/**
-	 * 
+	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
 

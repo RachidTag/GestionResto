@@ -9,29 +9,35 @@ import java.io.Serializable;
 public class Table implements Serializable
 {
 	/**
-	 * 
+	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Number of the table
 	 */
 	private final int numTable;
+	
 	/**
 	 * Number of places for the table
 	 */
 	private int numberPlaces;
+	
 	/**
 	 * Position of the table in the sector
 	 */
 	private Position position;
+	
 	/**
 	 * State of the table
 	 */
 	private State state;
+	
 	/**
 	 * Progress of the meal
 	 */
 	private Progress progress;
+	
 	/**
 	 * Reservation informations
 	 */
@@ -77,7 +83,7 @@ public class Table implements Serializable
 	
 	/**
 	 * Get the number of the table
-	 * @return int
+	 * @return numTable int
 	 */
 	public int getNumTable() {
 		return this.numTable;
@@ -169,7 +175,6 @@ public class Table implements Serializable
 		return result;
 	}
 	
-
 	/**
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
@@ -185,7 +190,4 @@ public class Table implements Serializable
 			return false;
 		return true;
 	}
-
-	
-	
 }

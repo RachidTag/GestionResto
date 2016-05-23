@@ -10,7 +10,7 @@ public class TableNotExistsException extends Exception implements Serializable
 {
 
 	/**
-	 * 
+	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
 

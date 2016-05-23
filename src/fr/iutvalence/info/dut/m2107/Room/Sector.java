@@ -6,6 +6,7 @@ import java.util.Map;
 
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
+import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotPadderException;
 
 /**
  * Represent the Sector
@@ -14,17 +15,21 @@ import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 public class Sector implements Serializable
 {
 	/**
-	 * 
+	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Number of the sector
 	 */
 	private final int numSector;
+	
 	/**
 	 * A padder assigned to a sector
 	 */
+	@SuppressWarnings("unused")
 	private Waiter padder;
+	
 	/**
 	 * List of tables
 	 */
@@ -40,6 +45,7 @@ public class Sector implements Serializable
 		this.padder = padder;
 		this.tables = new HashMap<Integer, Table>();
 	}
+	
 	/**
 	 * Add a table to a sector
 	 * @param table Table
@@ -49,6 +55,7 @@ public class Sector implements Serializable
 		if(this.tables.containsValue(table)) throw new TableAlreadyExistsException();
 		this.tables.put(table.getNumTable(), table);
 	}
+	
 	/**
 	 * Remove a table from the sector
 	 * @param numTable int
@@ -58,6 +65,7 @@ public class Sector implements Serializable
 		if(!this.tables.containsKey(numTable)) throw new TableNotExistsException();
 		this.tables.remove(numTable);
 	}
+	
 	/**
 	 * Edit the current padder
 	 * @param padder Waiter
@@ -67,6 +75,7 @@ public class Sector implements Serializable
 		if (padder.getRank() != Rank.PADDER) throw new WaiterIsNotPadderException();
 		this.padder = padder;
 	}
+	
 	/**
 	 * Get a table from the list
 	 * @param numTable int
@@ -77,6 +86,7 @@ public class Sector implements Serializable
 		if(!this.tables.containsKey(numTable)) throw new TableNotExistsException();
 		return this.tables.get(numTable);
 	}
+	
 	/**
 	 * Get the tables list
 	 * @param numTable int
@@ -95,7 +105,6 @@ public class Sector implements Serializable
 		return this.numSector;
 	}
 	
-	
 	/**
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -105,7 +114,6 @@ public class Sector implements Serializable
 		result = prime * result + this.numSector;
 		return result;
 	}
-
 	
 	/**
 	 * @see java.lang.Object#equals(java.lang.Object)

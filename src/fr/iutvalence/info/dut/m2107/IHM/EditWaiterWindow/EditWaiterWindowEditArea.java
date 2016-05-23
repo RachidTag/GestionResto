@@ -18,10 +18,10 @@ import javax.swing.SwingConstants;
 
 import fr.iutvalence.info.dut.m2107.Room.Sector;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
-import fr.iutvalence.info.dut.m2107.Room.WaiterIsNotPadderException;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
+import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotPadderException;
 
 /**
  * Represent the area where we can edit a waiter

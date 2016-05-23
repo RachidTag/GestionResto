@@ -10,7 +10,7 @@ public class TableAlreadyExistsException extends Exception implements Serializab
 {
 
 	/**
-	 * 
+	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
 

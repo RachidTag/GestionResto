@@ -1,4 +1,4 @@
-package fr.iutvalence.info.dut.m2107.Room;
+package fr.iutvalence.info.dut.m2107.Staff;
 /**
  * Waiter is not a padder exception
  * @author Théo

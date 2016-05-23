@@ -9,7 +9,7 @@ public class ClientNameRequiredException extends Exception
 {
 
 	/**
-	 * 
+	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
 	
