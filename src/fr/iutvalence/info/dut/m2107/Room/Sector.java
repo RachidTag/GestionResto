@@ -50,9 +50,14 @@ public class Sector implements Serializable
 	 * Add a table to a sector
 	 * @param table Table
 	 * @throws TableAlreadyExistsException 
+	 * @throws ATableIsAlreadyInThisPositionException 
 	 */
-	public void addTable(Table table) throws TableAlreadyExistsException{
+	public void addTable(Table table) throws TableAlreadyExistsException, ATableIsAlreadyInThisPositionException{
 		if(this.tables.containsValue(table)) throw new TableAlreadyExistsException();
+		for(Table aTable : this.tables.values())
+		{
+			if(aTable.getPosition().equals(table.getPosition())) throw new ATableIsAlreadyInThisPositionException();
+		}
 		this.tables.put(table.getNumTable(), table);
 	}
 	

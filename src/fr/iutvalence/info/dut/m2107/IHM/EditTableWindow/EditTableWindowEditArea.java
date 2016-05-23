@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
+import fr.iutvalence.info.dut.m2107.Room.ATableIsAlreadyInThisPositionException;
 import fr.iutvalence.info.dut.m2107.Room.ClientNameRequiredException;
 import fr.iutvalence.info.dut.m2107.Room.Position;
 import fr.iutvalence.info.dut.m2107.Room.Progress;
@@ -341,6 +342,8 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 				theSector.addTable(theTable);
 			} catch (TableAlreadyExistsException e1) {
 				// TODO retourner erreur
+			} catch (ATableIsAlreadyInThisPositionException e) {
+				// TODO retourner l'erreur
 			}
 			
 			JOptionPane.showMessageDialog(null, "The table has been correctly edited");

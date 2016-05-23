@@ -149,7 +149,7 @@ public class Restaurant implements Serializable {
 	 * @throws ObjectReadedIsNotARestaurantException
 	 */
 	public static Restaurant loadRestaurant() throws FileNotFoundException, IOException, ClassNotFoundException, ObjectReadedIsNotARestaurantException {
-		return loadRestaurant("savingRoom.save");
+		return loadRestaurant("restaurant.save");
 	}
 	
 	/**

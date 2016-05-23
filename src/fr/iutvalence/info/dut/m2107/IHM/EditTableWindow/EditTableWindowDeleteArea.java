@@ -22,8 +22,8 @@ import fr.iutvalence.info.dut.m2107.Room.Table;
 import fr.iutvalence.info.dut.m2107.Room.TableNotExistsException;
 
 /**
- * @author TODO
- *
+ * Represents the delete area of the edit table window
+ * @author Projet Resto
  */
 @SuppressWarnings("serial")
 public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
@@ -48,7 +48,7 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
 	private JButton processDeleteTable;
 	
 	/**
-	 * TODO
+	 * Generates the delete area of the edit table window
 	 * @param editTableWindow 
 	 */
 	public EditTableWindowDeleteArea(EditTableWindow editTableWindow){
@@ -125,6 +125,7 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
 		JComponent source = (JComponent) e.getSource();
 		if(source == this.comboSectors)
 		{
+			// update the tables list when you select a sector in the sectors list
 			Sector theSector = null;
 			try {
 				theSector = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem());

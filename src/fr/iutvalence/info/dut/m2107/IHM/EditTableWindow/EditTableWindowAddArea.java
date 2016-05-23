@@ -14,6 +14,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
+import fr.iutvalence.info.dut.m2107.Room.ATableIsAlreadyInThisPositionException;
 import fr.iutvalence.info.dut.m2107.Room.ClientNameRequiredException;
 import fr.iutvalence.info.dut.m2107.Room.Position;
 import fr.iutvalence.info.dut.m2107.Room.Progress;
@@ -23,7 +24,8 @@ import fr.iutvalence.info.dut.m2107.Room.Table;
 import fr.iutvalence.info.dut.m2107.Room.TableAlreadyExistsException;
 
 /**
- * @author TODO
+ * Represents the add area of the edit table window
+ * @author Projet Resto
  *
  */
 @SuppressWarnings("serial")
@@ -69,7 +71,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 	private JButton processAddTable;
 
 	/**
-	 * TODO
+	 * Generates the add area of the edit table window
 	 * @param editTableWindow 
 	 */
 	public EditTableWindowAddArea(EditTableWindow editTableWindow){
@@ -99,6 +101,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		/*
 		 * Set the first line (table num)
 		 */
+		// TODO make a list of all availables nums
 		JPanel line1 = new JPanel();
 		line1.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line1);
@@ -179,21 +182,20 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		int rotation = (int) this.rotation.getValue();
 		int sectorNum = (int) this.comboSectors.getSelectedItem();
 		Table theTable = null;
-		int action =0;
 		try {
 			theTable = new Table(tableNum, numOfPlaces, new Position(posX, posY, rotation), Progress.NO_PROGRESS, State.FREE);
 		} catch (ClientNameRequiredException e1) {
 				// never happens
 		}
-		// TODO verify if the posX/posY is already picked
 		try {
 			this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector(sectorNum).addTable(theTable);
 			this.editTableWindow.mainWindow.rightArea.refreshSectors();
-			action++;
+			JOptionPane.showMessageDialog(null,"The table has been correctly added");
 		} catch (TableAlreadyExistsException | SectorNotExistsException e1) {
 			JOptionPane.showMessageDialog(null,"The table already exits in this sector");
+		} catch (ATableIsAlreadyInThisPositionException e) {
+			JOptionPane.showMessageDialog(null,"A table is already in this position");
 		}
-		if (action!=0)
-			JOptionPane.showMessageDialog(null,"The table has been correctly added");
+			
 	}
 }

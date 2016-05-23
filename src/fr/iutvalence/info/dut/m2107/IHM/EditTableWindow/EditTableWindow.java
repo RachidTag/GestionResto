@@ -6,12 +6,13 @@ import fr.iutvalence.info.dut.m2107.WindowEventHandler;
 import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
 
 /**
- * TODO
+ * Represents the edit table window
  * @author Projet Resto
  *
  */
 @SuppressWarnings("serial")
 public class EditTableWindow extends JFrame {
+	
 	/**
 	 * Main Window
 	 */
@@ -28,7 +29,8 @@ public class EditTableWindow extends JFrame {
 	public JPanel R_Area;
 	
 	/**
-	 * @param mainWindow 
+	 * Generates the EditTableWindow
+	 * @param mainWindow reference to the main window
 	 * 
 	 */
 	public EditTableWindow(MainWindow mainWindow)
