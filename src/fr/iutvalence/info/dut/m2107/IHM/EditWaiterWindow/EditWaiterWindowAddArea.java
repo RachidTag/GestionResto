@@ -144,7 +144,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 		line6.add(new JLabel());
 		this.processAddWaiter = new JButton("Send");
 		line6.add(this.processAddWaiter);
-		this.processAddWaiter.addActionListener(this);
+		this.processAddWaiter.addActionListener(this); 
 		
 	}
 	

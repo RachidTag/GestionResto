@@ -94,7 +94,7 @@ public class Staff implements Serializable{
 
 	/**
 	 * delete a waiters
-	 * @param numWaiter int
+	 * @param numWaiter int 
 	 * @throws WaiterDoesNotExistException 
 	 */
 	public void deleteWaiter(int numWaiter) throws WaiterDoesNotExistException{
