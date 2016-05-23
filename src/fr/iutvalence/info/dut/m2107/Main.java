@@ -29,6 +29,12 @@ public class Main {
 		
 		Calendar cal = new Calendar();
 		Week week1 = new Week(1);
+		try {
+			cal.addWeekCalendar(week1);
+		} catch (WeekAlreadyExistsException e3) {
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		}
 		Staff staf = null;
 		try {
 			staf = Staff.loadStaff();

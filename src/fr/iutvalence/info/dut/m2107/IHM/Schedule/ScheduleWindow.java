@@ -28,7 +28,7 @@ import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 
 @SuppressWarnings("serial")
-public class ScheduleWindow extends JFrame{
+public class ScheduleWindow extends JFrame implements ActionListener{
 	
 	public MainWindow mainWindow;
 	
@@ -64,7 +64,7 @@ public class ScheduleWindow extends JFrame{
 		
 		JPanel aweek = new JPanel();
 		aweek.setLayout(lineLayout);
-		this.add(aweek);
+		Calendar1.add(aweek);
 		aweek.add(new JLabel("Week:"));
 		Set<Integer> weekNums = this.mainWindow.theCalendar.getAllWeeks().keySet();
 		this.comboWeeks = new JComboBox<Object>(weekNums.toArray());
@@ -122,7 +122,7 @@ public class ScheduleWindow extends JFrame{
 		this.setVisible(true);
 	}
 
-	/*@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
@@ -142,6 +142,6 @@ public class ScheduleWindow extends JFrame{
 		
 		}
 	
-	}*/
+	}
 
 }
