@@ -1,21 +1,8 @@
 package fr.iutvalence.info.dut.m2107.Calendar;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
-import fr.iutvalence.info.dut.m2107.Room.ObjectReadedIsNotARoomException;
-import fr.iutvalence.info.dut.m2107.Room.Room;
-import fr.iutvalence.info.dut.m2107.Staff.Staff;
-import fr.iutvalence.info.dut.m2107.Staff.WaiterAlreadyExistsException;
-import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
 
 /**
  * Represents the common calendar
@@ -24,7 +11,7 @@ import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
  */
 public class Calendar implements Serializable {
 	/**
-	 * 
+	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -81,99 +68,5 @@ public class Calendar implements Serializable {
 	 */
 	public Map<Integer, Week> getAllWeeks(){
 		return this.weeks;
-	}
-	
-	/**
-	 * Save the current calendar to the file savingCalendar.save
-	 */
-	public void saveCalendar() {
-		saveCalendar("savingCalendar.save");
-	}
-	
-	/**
-	 * Save the current calendar to a given file
-	 * @param fileName 
-	 */
-	public void saveCalendar(String fileName) {
-		File saveFile = new File(fileName);
-		if(saveFile.exists())
-			saveFile.delete();
-		try {
-			saveFile.createNewFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		FileOutputStream saveStream = null;
-		try {
-			saveStream = new FileOutputStream(saveFile, true);
-		} catch (FileNotFoundException e) {
-			// impossible
-		}
-		
-		ObjectOutputStream oos = null;
-		try {
-			oos = new ObjectOutputStream(saveStream);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		try {
-			oos.writeObject(this);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Load a calendar from savingCalendar.save
-	 * @return calendarReaded
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 * @throws ObjectReadedIsNotACalendarException
-	 */
-	public static Calendar loadCalendar() throws FileNotFoundException, IOException, ClassNotFoundException, ObjectReadedIsNotACalendarException {
-		return loadCalendar("savingCalendar.save");
-	}
-	
-	/**
-	 * Load a calendar from a given file (creates an empty calendar if the file isn't existing)
-	 * @param givenFile 
-	 * @return calendarReaded
-	 * @throws FileNotFoundException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 * @throws ObjectReadedIsNotACalendarException
-	 */
-	public static Calendar loadCalendar(String givenFile) throws FileNotFoundException, IOException, ClassNotFoundException, ObjectReadedIsNotACalendarException {
-		File saveFile = new File(givenFile);
-		if(!saveFile.exists())
-		{
-			saveFile.createNewFile();
-			Calendar newCalendar = new Calendar();
-			newCalendar.saveCalendar();
-			saveFile = new File(givenFile);
-		}
-		
-		FileInputStream loadStream = new FileInputStream(saveFile);
-		
-		ObjectInputStream ois = new ObjectInputStream(loadStream);
-		
-		Object readObject = ois.readObject();
-		
-		ois.close();
-		
-		Calendar calendarReaded = null;
-		if(readObject instanceof Calendar)
-		{
-			calendarReaded = (Calendar)readObject;
-		}
-		else
-		{
-			throw new ObjectReadedIsNotACalendarException();
-		}
-		
-		return calendarReaded;
 	}
 }

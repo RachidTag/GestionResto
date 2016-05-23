@@ -8,7 +8,7 @@ package fr.iutvalence.info.dut.m2107.Calendar;
 public class WaiterAllreadyInServiceException extends Exception {
 
 	/**
-	 * 
+	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
 

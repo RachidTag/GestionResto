@@ -1,9 +1,6 @@
 package fr.iutvalence.info.dut.m2107.Calendar;
 
 import java.io.Serializable;
-import java.util.Map;
-
-import fr.iutvalence.info.dut.m2107.Room.Table;
 
 /**
  * Represents a week from the calendar
@@ -12,7 +9,7 @@ import fr.iutvalence.info.dut.m2107.Room.Table;
  */
 public class Week implements Serializable {
 	/**
-	 * 
+	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -44,7 +41,7 @@ public class Week implements Serializable {
 	 */
 	public Day getDay(int dayNum) throws DayNotExistsException
 	{
-		if(dayNum < 1 || dayNum > 7) throw new DayNotExistsException();
+		if(dayNum < 0 || dayNum >= 7) throw new DayNotExistsException();
 		return this.days[dayNum];
 	}
 	
@@ -57,13 +54,13 @@ public class Week implements Serializable {
 	
 	/**
 	 * @param dayNum weekNum the number of the week from the year
-	 * @param Day a Day
+	 * @param day a Day
 	 * @throws DayNotExistsException
 	 */
-	public void editDayCalendar(int dayNum, Day Day) throws DayNotExistsException
+	public void editDayCalendar(int dayNum, Day day) throws DayNotExistsException
 	{
-		if(dayNum < 1 || dayNum > 7) throw new DayNotExistsException();
-		this.days[dayNum] = Day;
+		if(dayNum < 0 || dayNum >= 7) throw new DayNotExistsException();
+		this.days[dayNum] = day;
 	}
 
 	/**

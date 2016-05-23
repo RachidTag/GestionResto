@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class Day implements Serializable {
 	/**
-	 * 
+	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -67,10 +67,7 @@ public class Day implements Serializable {
 	 */
 	public void setService(Service service) throws RestaurantIsClosedException{
 		if (this.isClosed) throw new RestaurantIsClosedException();
-		if(service.getServiceType() == ServiceType.MIDDAY)
-			this.services[0] = service;
-		if(service.getServiceType() == ServiceType.EVENING)
-			this.services[1] = service;
+		this.services[service.getServiceType().getNumService()] = service;
 	} 
 
 }

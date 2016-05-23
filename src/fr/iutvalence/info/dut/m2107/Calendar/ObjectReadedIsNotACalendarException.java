@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class ObjectReadedIsNotACalendarException extends Exception implements Serializable {
 
 	/**
-	 * 
+	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
 

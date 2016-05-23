@@ -12,6 +12,7 @@ public enum ServiceType implements Serializable {
 	 * Midday service
 	 */
 	MIDDAY(0),
+	
 	/**
 	 * Evening service
 	 */

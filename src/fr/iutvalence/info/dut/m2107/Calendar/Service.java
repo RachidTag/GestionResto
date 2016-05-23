@@ -14,7 +14,7 @@ import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 
 public class Service implements Serializable {
 	/**
-	 * 
+	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
 
