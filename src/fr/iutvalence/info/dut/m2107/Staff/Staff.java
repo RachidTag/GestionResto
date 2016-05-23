@@ -103,6 +103,21 @@ public class Staff implements Serializable{
 	}
 	
 	/**
+	 * Return the 1st free index of the list of waiter
+	 * @return int the 1st free index
+	 */
+	public int findFirstFreeIndex(){
+		if(this.waiters == null) return 0;
+		int index = 1;
+		while(index <= this.waiters.size()){
+			if(!this.waiters.containsKey(index))break;
+			index++;
+		}
+		return index;
+		
+	}
+	
+	/**
 	 * Redefine equals method for containsValue method
 	 * @param 
 	 * @return bool
