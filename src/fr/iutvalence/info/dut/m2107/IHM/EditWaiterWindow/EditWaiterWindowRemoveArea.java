@@ -151,9 +151,9 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 				e.printStackTrace();
 			}
 			if (action !=0)
-				JOptionPane.showMessageDialog(null, "The waiter has been correctly edited");
+				JOptionPane.showMessageDialog(null, "The waiter has been correctly deleted");
 			else 
-				JOptionPane.showMessageDialog(null, "The waiter can't be edited");
+				JOptionPane.showMessageDialog(null, "The waiter can't be deleted");
 		}
 		
 	}
