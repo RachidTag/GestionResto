@@ -53,23 +53,30 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		
-		GridLayout week = new GridLayout(3,1);
+		GridLayout mainLayout = new GridLayout(2,1);
+		this.setLayout(mainLayout);
+
+		JPanel topArea = new JPanel();
+		topArea.setLayout(new GridLayout(1, 2));
 		
-		JPanel Calendar1 = new JPanel();
+		JPanel bottomArea = new JPanel();
+		bottomArea.setLayout(new GridLayout(1, 1));
 		
-		Calendar1.setLayout(week);
-		this.add(Calendar1);
+		this.add(topArea);
+		this.add(bottomArea);
 		
-		GridLayout lineLayout = new GridLayout(1, 2);
+		GridLayout lineLayout = new GridLayout(1,2);
 		
 		JPanel aweek = new JPanel();
 		aweek.setLayout(lineLayout);
-		Calendar1.add(aweek);
+		topArea.add(aweek);
 		aweek.add(new JLabel("Week:"));
 		Set<Integer> weekNums = this.mainWindow.theCalendar.getAllWeeks().keySet();
 		this.comboWeeks = new JComboBox<Object>(weekNums.toArray());
 		aweek.add(this.comboWeeks);
+		this.comboWeeks.setSize(300, 115);
 		
+		topArea.add(new JPanel());		
 		//a voir 
 		/*JPanel aday = new JPanel();
 		aday.setLayout(lineLayout);
@@ -111,9 +118,10 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 			String[] titles = {"numbers","First Name", "Last Name", "Rank"};
 			
 			JTable employes = new JTable(ws, titles);
+			employes.disable();
 					
 			//this.add(employes);
-			getContentPane().add(new JScrollPane(employes), BorderLayout.CENTER);
+			bottomArea.add(new JScrollPane(employes), BorderLayout.CENTER);
 		}
 		else{
 			System.out.println("ERROR !!!");
