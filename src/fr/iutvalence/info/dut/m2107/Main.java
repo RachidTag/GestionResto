@@ -21,8 +21,9 @@ public class Main {
 	/**
 	 * Application's main
 	 * @param args command-line arguments (unused)
+	 * @throws WaiterAlreadyExistsException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws WaiterAlreadyExistsException {
 		ImageIcon logoIcon = new ImageIcon("img/logoIcon.png");
 		Image logo = logoIcon.getImage();
 		MainWindow window = null;
@@ -106,7 +107,7 @@ public class Main {
 		
 		
 		try {
-			window = new MainWindow(Room.loadRoom(), cal, new Staff());
+			window = new MainWindow(Room.loadRoom(), cal, Staff.loadStaff());
 			if (window != null)
 				window.setIconImage(logo);
 		} catch (FileNotFoundException e) {
