@@ -61,7 +61,6 @@ public class Day implements Serializable {
 	
 	/**
 	 * Set a service for the day
-	 * @param serviceType
 	 * @param service
 	 * @throws RestaurantIsClosedException 
 	 */

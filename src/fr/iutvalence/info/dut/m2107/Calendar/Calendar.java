@@ -52,7 +52,6 @@ public class Calendar implements Serializable {
 	
 	/**
 	 * Add a pre-defined week to the calendar
-	 * @param weekNum the number of the week from the year
 	 * @param aWeek a Week
 	 * @throws WeekAlreadyExistsException 
 	 */
