@@ -91,6 +91,8 @@ public class TableJPanel extends JPanel
 		
 		// Add the image of the table + the num of the table to the JPanel
 		this.add(new JLabel(returnImage(tableLink+".png", sizeX , sizeY, numTable)));
+		
+		// TODO : make that when we click on the table, it opens the edit table window 
 	}
 
 	/**

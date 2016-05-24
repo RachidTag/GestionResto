@@ -5,11 +5,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
-import java.util.TreeSet;
 
 import javax.swing.*;
 
-import fr.iutvalence.info.dut.m2107.Room.Sector;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
@@ -18,46 +16,55 @@ import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotAPadderException;
 
 /**
  * Represent the area where we can add a new waiter
- * @author Théo
+ * @author Projet Resto
  */
+@SuppressWarnings("serial")
 public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 
 	/**
 	 * The main window
 	 */
 	public EditWaiterWindow editWaiterWindow;
+	
 	/**
 	 * The spinner for the number of the waiter
 	 */
 	public JLabel numWaiter;
+	
 	/**
 	 * The text field for the last name
 	 */
 	public JTextField lastName;
+	
 	/**
 	 * The text field for the first name
 	 */
 	public JTextField firstName;
+	
 	/**
 	 * The combo box for the rank
 	 */
 	public JComboBox<?> comboRanks;
+	
 	/**
 	 * The combo box for the sector
 	 */
 	public JComboBox<?> comboSectors;
+	
 	/**
 	 * The send button
 	 */
 	public JButton processAddWaiter;
 	
 	/**
-	 * TODO
+	 * Generates a add area of the edit waiter window
 	 * @param editWaiterWindow
 	 */
 	@SuppressWarnings("deprecation")
 	public EditWaiterWindowAddArea(EditWaiterWindow editWaiterWindow) {
-
+		/*
+		 * Save a reference to the edit waiter window
+		 */
 		this.editWaiterWindow = editWaiterWindow;
 		
 		/*
@@ -132,7 +139,6 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 		Set<Integer> sectorsNum = this.editWaiterWindow.mainWindow.restaurant.getTheRoom().getSectors().keySet();
 		this.comboSectors = new JComboBox<Object>(sectorsNum.toArray());
 		this.comboSectors.disable();
-		this.comboSectors.addActionListener(this);
 		line5.add(this.comboSectors);
 		
 		/*
@@ -148,6 +154,9 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 		
 	}
 	
+	/**
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent arg0){
 		JComponent source = (JComponent) arg0.getSource();
@@ -158,15 +167,12 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 			else 
 				this.comboSectors.disable();
 		}
-		else if(source == comboSectors){
-			//TODO
-		}
-		else if(source == processAddWaiter){
+		else if(source == this.processAddWaiter){
 			int numWaiter = (int) this.editWaiterWindow.mainWindow.restaurant.getTheStaff().findFirstFreeIndex();
 			String lastName = this.lastName.getText();
 			String firstName = this.firstName.getText();
 			Rank rank = (Rank) this.comboRanks.getSelectedItem();
-			int numSector = (int )this.comboSectors.getSelectedItem();
+			int numSector = (int)this.comboSectors.getSelectedItem();
 			int action = 0;
 			
 			Waiter theWaiter = new Waiter(numWaiter, lastName, firstName, rank);
@@ -176,29 +182,25 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 				action++;
 			} catch (WaiterAlreadyExistsException e) {
 				JOptionPane.showMessageDialog(null, "This number already exists");
-				e.printStackTrace();
 			}
 			
 			if (rank == Rank.PADDER){
 				try {
 					this.editWaiterWindow.mainWindow.restaurant.getTheRoom().getSector(numSector).setPadder(theWaiter);
 				} catch (WaiterIsNotAPadderException | SectorNotExistsException e) {
-					// ...
-					e.printStackTrace();
+					// impossible
 				}
 			}
-				if (action!=0){
-					JOptionPane.showMessageDialog(null, "The waiter has been correctly added");
-				this.numWaiter.setText(String.valueOf(this.editWaiterWindow.mainWindow.restaurant.getTheStaff().findFirstFreeIndex()));
-				this.lastName.setText("");
-				this.firstName.setText("");
-				this.comboRanks.setSelectedItem(Rank.RUNNER);
-				this.comboSectors.setSelectedItem(1);
-				}
-				else
-					JOptionPane.showMessageDialog(null, "Error : the waiter can't be added");
+			
+			if (action!=0)
+			{
+				JOptionPane.showMessageDialog(null, "The waiter has been correctly added");
+				this.editWaiterWindow.R_Area.removeAll();
+				new EditWaiterWindowAddArea(this.editWaiterWindow);
+				this.editWaiterWindow.R_Area.validate();
+			}
+			else
+				JOptionPane.showMessageDialog(null, "Error : the waiter can't be added");
 		}
-		
 	}
-
 }

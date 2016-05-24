@@ -7,8 +7,8 @@ import fr.iutvalence.info.dut.m2107.WindowEventHandler;
 import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
 
 /**
- * @author TODO
- *
+ * Represents the edit waiter window
+ * @author Projet Resto
  */
 @SuppressWarnings("serial")
 public class EditWaiterWindow extends JFrame {

@@ -81,6 +81,8 @@ public class MainWindowRightArea extends JPanel{
 		this.sectorThree = new JPanel();
 		this.sectorFour = new JPanel();
 		
+		// TODO : Put the padder's name in the sector's name
+		
 		/*
 		 * Create new border Titled with sector name, 5 black pixel wide
 		 */
