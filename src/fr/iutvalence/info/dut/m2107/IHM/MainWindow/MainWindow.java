@@ -10,7 +10,6 @@ import fr.iutvalence.info.dut.m2107.IHM.Schedule.ScheduleWindow;
 /**
  * The Main Window of the application
  * @author Projet Resto
- *
  */
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
