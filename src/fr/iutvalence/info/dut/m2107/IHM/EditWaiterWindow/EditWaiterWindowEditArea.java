@@ -111,6 +111,17 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		 line1.add(this.comboWaiter);
 		 
 		 /*
+		 * Set default waiter
+		 */
+		 Waiter defaultWaiter = null;
+		 try {
+		 	defaultWaiter = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboWaiter.getSelectedItem());
+		 } catch (WaiterDoesNotExistException e) {
+		 	defaultWaiter = new Waiter(1, "", "", Rank.RUNNER);
+		 	e.printStackTrace();
+		 }
+			 
+		 /*
 		  * Set the second line (last name)
 		  */
 		 JPanel line2 = new JPanel();
@@ -118,6 +129,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		 this.editWaiterWindow.R_Area.add(line2);
 		 line2.add(new JLabel("Last name :"));
 		 line2.add(this.labelLastName);
+		 this.labelLastName.setText(defaultWaiter.getLastName());
 		 
 		 /*
 		  * Set the third line (first name)
@@ -127,6 +139,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		 this.editWaiterWindow.R_Area.add(line3);
 		 line3.add(new JLabel("First name :"));
 		 line3.add(this.labelFirstName);
+		 this.labelFirstName.setText(defaultWaiter.getFirstName());
 		 
 		 /*
 		  * Set the forth line (Rank)
@@ -137,7 +150,9 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		 line4.add(new JLabel("Rank"));
 		 this.comboRank = new JComboBox<Rank>(Rank.values());
 		 line4.add(this.comboRank);
+		 this.comboRank.setSelectedItem(defaultWaiter.getRank());
 		 this.comboRank.addActionListener(this);
+
 		 
 			/*
 			 * Set the fifth line (Sector)

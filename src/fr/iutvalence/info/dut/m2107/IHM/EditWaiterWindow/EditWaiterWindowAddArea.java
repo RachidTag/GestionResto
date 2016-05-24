@@ -187,8 +187,14 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 					e.printStackTrace();
 				}
 			}
-				if (action!=0)
+				if (action!=0){
 					JOptionPane.showMessageDialog(null, "The waiter has been correctly added");
+				this.numWaiter.setText(String.valueOf(this.editWaiterWindow.mainWindow.restaurant.getTheStaff().findFirstFreeIndex()));
+				this.lastName.setText("");
+				this.firstName.setText("");
+				this.comboRanks.setSelectedItem(Rank.RUNNER);
+				this.comboSectors.setSelectedItem(1);
+				}
 				else
 					JOptionPane.showMessageDialog(null, "Error : the waiter can't be added");
 		}

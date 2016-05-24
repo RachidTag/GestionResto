@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
 
@@ -92,6 +93,18 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 		 this.comboWaiter.addActionListener(this);
 		 line1.add(this.comboWaiter);
 		 
+			
+		 /*
+		 * Set default waiter
+		 */
+		 Waiter defaultWaiter = null;
+		 try {
+		 	defaultWaiter = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboWaiter.getSelectedItem());
+		 } catch (WaiterDoesNotExistException e) {
+		 	defaultWaiter = new Waiter(1, "", "", Rank.RUNNER);
+		 	e.printStackTrace();
+		 }
+			
 		 /*
 		  * Set the second line (last name)
 		  */
@@ -100,6 +113,7 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 		 this.editWaiterWindow.R_Area.add(line2);
 		 line2.add(new JLabel("Last name :"));
 		 line2.add(this.labelLastName);
+		 this.labelLastName.setText(defaultWaiter.getLastName());
 		 
 		 /*
 		  * Set the third line (first name)
@@ -109,6 +123,7 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 		 this.editWaiterWindow.R_Area.add(line3);
 		 line3.add(new JLabel("First name :"));
 		 line3.add(this.labelFirstName);
+		 this.labelFirstName.setText(defaultWaiter.getFirstName());
 		 
 		 /*
 		  * Set the forth line (remove button)
