@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
 
-import javax.management.StringValueExp;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -16,8 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
 import fr.iutvalence.info.dut.m2107.Room.ATableIsAlreadyInThisPositionException;
 import fr.iutvalence.info.dut.m2107.Room.ClientNameRequiredException;
 import fr.iutvalence.info.dut.m2107.Room.Position;
@@ -30,7 +27,6 @@ import fr.iutvalence.info.dut.m2107.Room.TableAlreadyExistsException;
 /**
  * Represents the add area of the edit table window
  * @author Projet Resto
- *
  */
 @SuppressWarnings("serial")
 public class EditTableWindowAddArea extends JPanel implements ActionListener{
@@ -113,8 +109,7 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 		try {
 			this.tableNum = new JLabel(String.valueOf(this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector(1).findFirstFreeIndex()));
 		} catch (SectorNotExistsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// impossible
 		}
 		line1.add(this.tableNum);
 		
@@ -187,14 +182,13 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		JComponent source = (JComponent) arg0.getSource();
 		
-			if(source == this.processAddTable){
-				
+		if(source == this.processAddTable)
+		{
 			int tableNum = 0;
 			try {
 				tableNum = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int) this.comboSectors.getSelectedItem()).findFirstFreeIndex();
 			} catch (SectorNotExistsException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
+				// impossible
 			}
 			int numOfPlaces = (int) this.numOfPlaces.getValue();
 			int posX = (int) this.posX.getValue();
@@ -210,22 +204,23 @@ public class EditTableWindowAddArea extends JPanel implements ActionListener{
 			try {
 				this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector(sectorNum).addTable(theTable);
 				this.editTableWindow.mainWindow.rightArea.refreshSectors();
-				JOptionPane.showMessageDialog(null,"The table has been correctly added");
+				
+				// put in the add form the next table id
 				this.tableNum.setText(String.valueOf(this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem()).findFirstFreeIndex()));
+
+				JOptionPane.showMessageDialog(null,"The table has been correctly added");
 			} catch (TableAlreadyExistsException | SectorNotExistsException e1) {
 				JOptionPane.showMessageDialog(null,"The table already exits in this sector");
 			} catch (ATableIsAlreadyInThisPositionException e) {
 				JOptionPane.showMessageDialog(null,"A table is already in this position");
 			}
 		}
-			else if(source == this.comboSectors){
-				try {
-					this.tableNum.setText(String.valueOf(this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem()).findFirstFreeIndex()));
-				} catch (SectorNotExistsException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		else if(source == this.comboSectors){
+			try {
+				this.tableNum.setText(String.valueOf(this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem()).findFirstFreeIndex()));
+			} catch (SectorNotExistsException e) {
+				// impossible
 			}
-			
+		}
 	}
 }
