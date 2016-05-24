@@ -3,6 +3,8 @@ package TestsBouton;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -20,16 +22,31 @@ import javax.swing.JPanel;
 
 public class CustomButton extends JButton implements MouseListener {
 	private Image buttonBg;
-	File font_file = new File("KeepCalm.ttf");
-	Font keepCalm = Font.createFont(Font.TRUETYPE_FONT, font_file); // PUTAIN ELLE VIENT DOU CETTE ERREUR
+	
 		 
-	public CustomButton(String name){
+	public CustomButton(String name){		
 		super(name);
+		Font customFont = null;
+		/*
+		 * J'ai fixé ton erreur (à voir) :P
+		 */
+		try {
+		    //create the font to use. Specify the size!
+			customFont = Font.createFont(Font.TRUETYPE_FONT, new File("KeepCalm.ttf")).deriveFont(12f);
+		    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		    //register the font
+		    ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("KeepCalm.ttf")));
+		} catch (IOException e) {
+		    e.printStackTrace();
+		} catch(FontFormatException e) {
+		    e.printStackTrace();
+		}
+		
 		ImageIcon bgImage = new ImageIcon(getClass().getResource("ButtonBackground.png"));
 		this.setIcon(bgImage);
 		
 		JLabel jLabelName = new JLabel(name);
-		jLabelName.setFont(keepCalm);
+		jLabelName.setFont(customFont);
 		jLabelName.setForeground(Color.BLACK);
 		
 		this.add(jLabelName);
