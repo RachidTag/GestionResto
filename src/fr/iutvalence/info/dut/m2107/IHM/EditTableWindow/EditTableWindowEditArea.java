@@ -159,10 +159,11 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		Table defaultTable = null;
 		try
 		{
-			defaultTable = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem()).getTable((int)this.comboTables.getSelectedIndex());
+			defaultTable = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem()).getTable((int)this.comboTables.getSelectedItem());
 		}
-		catch (TableNotExistsException | SectorNotExistsException e)
+		catch (TableNotExistsException | SectorNotExistsException | NullPointerException e)
 		{
+			System.out.println("ok");
 			try
 			{
 				defaultTable = new Table(0, 2, new Position(0, 0, 1), Progress.NO_PROGRESS, State.FREE);
@@ -174,7 +175,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		}
 		
 		/*
-		 * Set the third line (num of places)
+		 * Set the third line (num of places) 
 		 */
 		JPanel line3 = new JPanel();
 		line3.setLayout(lineLayout);
