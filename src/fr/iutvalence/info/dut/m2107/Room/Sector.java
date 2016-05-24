@@ -94,9 +94,7 @@ public class Sector implements Serializable
 	
 	/**
 	 * Get the tables list
-	 * @param numTable int
-	 * @return Table
-	 * @throws TableNotExistsException 
+	 * @return Tables Map<Integer, Table>
 	 */
 	public Map<Integer, Table> getTables(){
 		return this.tables;

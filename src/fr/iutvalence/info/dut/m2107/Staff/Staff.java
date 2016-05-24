@@ -104,7 +104,7 @@ public class Staff implements Serializable {
 	
 	/**
 	 * Redefine equals method for containsValue method
-	 * @param 
+	 * @param obj Compared object
 	 * @return bool
 	 */
 	public boolean equals(Object obj) {

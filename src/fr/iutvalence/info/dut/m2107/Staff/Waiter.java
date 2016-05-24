@@ -113,7 +113,7 @@ public class Waiter implements Serializable {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return "[numWaiter="+numWaiter+"lastName=" + lastName + ", firstName=" + firstName + ", rank=" + rank + ", aSector=" + "]";
+		return "[numWaiter="+this.numWaiter+"lastName=" + this.lastName + ", firstName=" + this.firstName + ", rank=" + this.rank + ", aSector=" + "]";
 	}
 
 	/**
