@@ -93,7 +93,7 @@ public class Staff implements Serializable {
 	 * @return int the 1st free index
 	 */
 	public int findFirstFreeIndex(){
-		if(this.waiters == null) return 0;
+		if(this.waiters == null) return 1;
 		int index = 1;
 		while(index <= this.waiters.size()){
 			if(!this.waiters.containsKey(index)) break;

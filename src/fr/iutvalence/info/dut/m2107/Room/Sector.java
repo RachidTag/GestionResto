@@ -121,6 +121,20 @@ public class Sector implements Serializable
 	}
 	
 	/**
+	 * Return the 1st free index of the list of table
+	 * @return int the 1st free index
+	 */
+	public int findFirstFreeIndex(){
+		if(this.tables == null) return 1;
+		int index = 1;
+		while(index <= this.tables.size()){
+			if(!this.tables.containsKey(index)) break;
+			index++;
+		}
+		return index;
+	}
+	
+	/**
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	public boolean equals(Object obj) {
