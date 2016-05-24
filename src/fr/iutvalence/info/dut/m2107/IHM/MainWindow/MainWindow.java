@@ -1,6 +1,7 @@
 package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 import javax.swing.*;
 
+import fr.iutvalence.info.dut.m2017.IHM.RMModEditScheduleWindow.RMModEditScheduleWindow;
 import fr.iutvalence.info.dut.m2107.Restaurant;
 import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
@@ -43,6 +44,8 @@ public class MainWindow extends JFrame {
 	 * The Schedule window
 	 */
 	public ScheduleWindow scheduleWindow;
+	
+	public RMModEditScheduleWindow editScheduleWindow;
 	
 	/**
 	 * The Room Manager Mod window

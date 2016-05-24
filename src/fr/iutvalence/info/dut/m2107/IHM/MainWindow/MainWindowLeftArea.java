@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import fr.iutvalence.info.dut.m2017.IHM.RMModEditScheduleWindow.RMModEditScheduleWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
 import fr.iutvalence.info.dut.m2107.IHM.RMModWindow.RMModWindow;
@@ -206,8 +207,8 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 			{
 				if(this.mainWindow.rMModWindow.R_Area.editSch.isEnabled())
 				{
-					this.mainWindow.scheduleWindow = new ScheduleWindow(this.mainWindow);
-					this.mainWindow.scheduleWindow.setIconImage(this.logo);
+					this.mainWindow.editScheduleWindow = new RMModEditScheduleWindow(this.mainWindow);
+					this.mainWindow.editScheduleWindow.setIconImage(this.logo);
 				}				
 			}
 			else
