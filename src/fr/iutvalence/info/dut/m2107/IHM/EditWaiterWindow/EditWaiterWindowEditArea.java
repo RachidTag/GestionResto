@@ -5,9 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
-import java.util.TreeSet;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -16,7 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import fr.iutvalence.info.dut.m2107.Room.Sector;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
@@ -25,42 +22,50 @@ import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotAPadderException;
 
 /**
  * Represent the area where we can edit a waiter
- * @author Théo
+ * @author Projet Resto
  */
+@SuppressWarnings("serial")
 public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
-
 	/**
 	 * The main window
 	 */
 	public EditWaiterWindow editWaiterWindow;
+	
 	/**
 	 * The combo box of the waiters
 	 */
 	public JComboBox<?> comboWaiter;
+	
 	/**
 	 * the combo box of the ranks
 	 */
 	public JComboBox<?> comboRank;
+	
 	/**
 	 * the combo box for the sector
 	 */
 	public JComboBox<?> comboSector;
+	
 	/**
 	 * the last name of the waiter
 	 */
 	public String lastName;
+	
 	/**
 	 * the first name of the waiter
 	 */
 	public String firstName;
+	
 	/**
 	 * The send button
 	 */
 	public JButton processEditWaiter;
+	
 	/**
 	 * JLabel for the last name
 	 */
 	public JLabel labelLastName;
+	
 	/**
 	 * JLabel for the first name
 	 */
@@ -70,13 +75,12 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 	 * create the edit waiter right area
 	 * @param editWaiterWindow
 	 */
+	@SuppressWarnings("deprecation")
 	public EditWaiterWindowEditArea(EditWaiterWindow editWaiterWindow) {
-		
+		/*
+		 * Save a reference to the edit waiter window
+		 */
 		this.editWaiterWindow = editWaiterWindow;
-		this.lastName = null;
-		this.firstName = null;
-		this.labelLastName = new JLabel(this.lastName);
-		this.labelFirstName = new JLabel(this.firstName);
 		
 		/*
 		 * Set the grid layout
@@ -105,7 +109,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		 line1.setLayout(lineLayout);
 		 this.editWaiterWindow.R_Area.add(line1);
 		 line1.add(new JLabel("Num waiters"));
-		 Set<Integer> waitersNum = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getStaff().keySet();
+		 Set<Integer> waitersNum = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getWaiters().keySet();
 		 this.comboWaiter = new JComboBox<Object>(waitersNum.toArray());
 		 this.comboWaiter.addActionListener(this);
 		 line1.add(this.comboWaiter);
@@ -128,6 +132,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		 line2.setLayout(lineLayout);
 		 this.editWaiterWindow.R_Area.add(line2);
 		 line2.add(new JLabel("Last name :"));
+		 this.labelLastName = new JLabel(defaultWaiter.getLastName());
 		 line2.add(this.labelLastName);
 		 this.labelLastName.setText(defaultWaiter.getLastName());
 		 
@@ -138,6 +143,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		 line3.setLayout(lineLayout);
 		 this.editWaiterWindow.R_Area.add(line3);
 		 line3.add(new JLabel("First name :"));
+		 this.labelFirstName = new JLabel(defaultWaiter.getFirstName());
 		 line3.add(this.labelFirstName);
 		 this.labelFirstName.setText(defaultWaiter.getFirstName());
 		 
@@ -153,33 +159,39 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		 this.comboRank.setSelectedItem(defaultWaiter.getRank());
 		 this.comboRank.addActionListener(this);
 
-		 
-			/*
-			 * Set the fifth line (Sector)
-			 */
-			JPanel line5 = new JPanel();
-			line5.setLayout(lineLayout);
-			this.editWaiterWindow.R_Area.add(line5);
-			line5.add(new JLabel("Sector assignement"));
-			Set<Integer> sectorsNum = this.editWaiterWindow.mainWindow.restaurant.getTheRoom().getSectors().keySet();
-			this.comboSector = new JComboBox<Object>(sectorsNum.toArray());
+		 /*
+		 * Set the fifth line (Sector)
+		 */
+		JPanel line5 = new JPanel();
+		line5.setLayout(lineLayout);
+		this.editWaiterWindow.R_Area.add(line5);
+		line5.add(new JLabel("Sector assignement"));
+		Set<Integer> sectorsNum = this.editWaiterWindow.mainWindow.restaurant.getTheRoom().getSectors().keySet();
+		this.comboSector = new JComboBox<Object>(sectorsNum.toArray());
+		// this.comboSector.setSelectedItem(defaultWaiter); TODO : default sector
+		if(defaultWaiter.getRank() == Rank.PADDER)
+			this.comboSector.enable();
+		else
 			this.comboSector.disable();
-			this.comboSector.addActionListener(this);
-			line5.add(this.comboSector);
-			
-			/*
-			 * Set the sixth line (send)
-			 */
-			JPanel line6 = new JPanel();
-			line6.setLayout(lineLayout);
-			this.editWaiterWindow.R_Area.add(line6);
-			line6.add(new JLabel());
-			this.processEditWaiter = new JButton("Send");
-			line6.add(this.processEditWaiter);
-			this.processEditWaiter.addActionListener(this);
+		this.comboSector.addActionListener(this);
+		line5.add(this.comboSector);
+		
+		/*
+		 * Set the sixth line (send)
+		 */
+		JPanel line6 = new JPanel();
+		line6.setLayout(lineLayout);
+		this.editWaiterWindow.R_Area.add(line6);
+		line6.add(new JLabel());
+		this.processEditWaiter = new JButton("Send");
+		line6.add(this.processEditWaiter);
+		this.processEditWaiter.addActionListener(this);
 	}
 
-	@Override
+	/**
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent arg0) {
 		JComponent source = (JComponent) arg0.getSource();
 		
@@ -198,10 +210,10 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 			}
 		}
 		else if(source == this.comboRank){
-				if(this.comboRank.getSelectedItem() == Rank.PADDER)
-					this.comboSector.enable();
-				else
-					this.comboSector.disable();
+			if(this.comboRank.getSelectedItem() == Rank.PADDER)
+				this.comboSector.enable();
+			else
+				this.comboSector.disable();
 		}
 		else if(source == this.processEditWaiter){
 			int theNumWaiter = (int) this.comboWaiter.getSelectedItem();
@@ -211,21 +223,23 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 			
 			Waiter theWaiter = null;
 			try {
-				theWaiter = editWaiterWindow.mainWindow.restaurant.getTheStaff().getWaiter(theNumWaiter);
+				theWaiter = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getWaiter(theNumWaiter);
 				theWaiter.setRank(theRank);
 				action++;
 			} catch (WaiterDoesNotExistException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// impossible
 			}
 			
-			try {
-				editWaiterWindow.mainWindow.restaurant.getTheRoom().getSector(theNumSector).setPadder(theWaiter);
-				action++;
-			} catch (WaiterIsNotAPadderException | SectorNotExistsException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(theRank == Rank.PADDER)
+			{
+				try {
+					this.editWaiterWindow.mainWindow.restaurant.getTheRoom().getSector(theNumSector).setPadder(theWaiter);
+					action++;
+				} catch (WaiterIsNotAPadderException | SectorNotExistsException e) {
+					// impossible
+				}
 			}
+			
 			if (action !=0)
 				JOptionPane.showMessageDialog(null, "The waiter has been correctly edited");
 			else 

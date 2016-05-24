@@ -105,7 +105,7 @@ public class RMModEditScheduleWindowEditArea extends JPanel implements ActionLis
 			 line1.setLayout(lineLayout);
 			 this.rmModEditScheduleWindow.R_Area.add(line1);
 			 line1.add(new JLabel("Num waiters"));
-			 Set<Integer> waitersNum = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getStaff().keySet();
+			 Set<Integer> waitersNum = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiters().keySet();
 			 this.comboWaiter = new JComboBox<Object>(waitersNum.toArray());
 			 this.comboWaiter.addActionListener(this);
 			 line1.add(this.comboWaiter);

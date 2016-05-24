@@ -20,46 +20,55 @@ import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
 
 /**
- * Represent the remove waiter right area
- * @author lorettet
+ * Represents the remove area of the edit waiter window
+ * @author Projet Resto
  */
+@SuppressWarnings("serial")
 public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener{
-
 	/**
-	 * The Window
+	 * Reference to the edit waiter window
 	 */
 	public EditWaiterWindow editWaiterWindow;
+	
 	/**
 	 * The Combo box for waiters
 	 */
 	public JComboBox<?> comboWaiter;
+	
 	/**
 	 * the first name of the waiter
 	 */
 	public String firstName;
+	
 	/**
 	 * the last name of the waiter
 	 */
 	public String lastName;
+	
 	/**
 	 * The remove button
 	 */
 	public JButton processRemoveWaiter;
+	
 	/**
 	 * The label for the first name
 	 */
 	public JLabel labelFirstName;
+	
 	/**
 	 * The label for the last name
 	 */
 	public JLabel labelLastName;
 	
+	/**
+	 * Generates remove area of the edit waiter window 
+	 * @param editWaiterWindow
+	 */
 	public EditWaiterWindowRemoveArea(EditWaiterWindow editWaiterWindow){
+		/*
+		 * Save the reference to the edit waiter window
+		 */
 		this.editWaiterWindow = editWaiterWindow;
-		this.lastName = null;
-		this.firstName = null;
-		this.labelLastName = new JLabel(this.lastName);
-		this.labelFirstName = new JLabel(this.firstName);
 		
 		/*
 		 * Set the grid layout
@@ -88,12 +97,11 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 		 line1.setLayout(lineLayout);
 		 this.editWaiterWindow.R_Area.add(line1);
 		 line1.add(new JLabel("Num waiters"));
-		 Set<Integer> waitersNum = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getStaff().keySet();
+		 Set<Integer> waitersNum = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getWaiters().keySet();
 		 this.comboWaiter = new JComboBox<Object>(waitersNum.toArray());
 		 this.comboWaiter.addActionListener(this);
 		 line1.add(this.comboWaiter);
 		 
-			
 		 /*
 		 * Set default waiter
 		 */
@@ -112,6 +120,7 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 		 line2.setLayout(lineLayout);
 		 this.editWaiterWindow.R_Area.add(line2);
 		 line2.add(new JLabel("Last name :"));
+		 this.labelLastName = new JLabel(defaultWaiter.getLastName());
 		 line2.add(this.labelLastName);
 		 this.labelLastName.setText(defaultWaiter.getLastName());
 		 
@@ -122,6 +131,7 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 		 line3.setLayout(lineLayout);
 		 this.editWaiterWindow.R_Area.add(line3);
 		 line3.add(new JLabel("First name :"));
+		 this.labelFirstName.setText(defaultWaiter.getFirstName());
 		 line3.add(this.labelFirstName);
 		 this.labelFirstName.setText(defaultWaiter.getFirstName());
 		 
@@ -135,11 +145,11 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 		 this.processRemoveWaiter = new JButton("Remove");
 		 line4.add(this.processRemoveWaiter);
 		 this.processRemoveWaiter.addActionListener(this);
-		 
-		 
 	}
 
-	@Override
+	/**
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent arg0) {
 		JComponent source = (JComponent) arg0.getSource();
 		
@@ -151,9 +161,7 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 				this.labelLastName.setText(this.lastName);
 				this.labelFirstName.setText(this.firstName);
 			} catch (WaiterDoesNotExistException e) {
-				this.lastName = null;
-				this.firstName = null;
-				e.printStackTrace();
+				// impossible
 			}
 		}
 		else if (source == this.processRemoveWaiter){
@@ -163,8 +171,7 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 				this.editWaiterWindow.mainWindow.restaurant.getTheStaff().deleteWaiter(numWaiter);
 				action++;
 			} catch (WaiterDoesNotExistException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// impossible
 			}
 			if (action !=0)
 				JOptionPane.showMessageDialog(null, "The waiter has been correctly deleted");
@@ -175,6 +182,5 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 			new EditWaiterWindowRemoveArea(this.editWaiterWindow);
 			SwingUtilities.updateComponentTreeUI(this.editWaiterWindow);
 		}
-		
 	}
 }

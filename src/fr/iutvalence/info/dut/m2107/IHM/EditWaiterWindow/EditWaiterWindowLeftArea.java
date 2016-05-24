@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
- * @author TODO
- *
+ * Represents the left area of the edit waiter window
+ * @author Projet Resto
  */
 @SuppressWarnings("serial")
 public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
@@ -24,32 +24,36 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 	 * The add button
 	 */
 	public JButton add;
+	
 	/**
 	 * The show staff button
 	 */
 	public JButton showStaff;
+	
 	/**
 	 * The edit button
 	 */
 	public JButton edit;
+	
 	/**
 	 * The remove button
 	 */
 	public JButton remove;
+	
 	/**
 	 * The close button
 	 */
 	public JButton close;
 
 	/**
-	 * TODO
-	 * @param sectorEditionWindow
+	 * Generates the left area of the edit waiter window
+	 * @param editWaiterWindow
 	 */
-	public EditWaiterWindowLeftArea(EditWaiterWindow sectorEditionWindow){
+	public EditWaiterWindowLeftArea(EditWaiterWindow editWaiterWindow){
 		/*
 		 * Save the reference to the sectorEditionWindo
 		 */
-		this.editWaiterWindow = sectorEditionWindow;
+		this.editWaiterWindow = editWaiterWindow;
 		
 		/*
 		 * Set the layout
@@ -68,28 +72,28 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 		 */
 		this.add = new JButton("Add Waiter");
 		this.add.addActionListener(this);
-		this.add(add);
+		this.add(this.add);
 		
 		/*
 		 * Set the edit waiter button
 		 */
 		this.edit = new JButton("Edit Waiter");
 		this.edit.addActionListener(this);
-		this.add(edit);
+		this.add(this.edit);
 
 		/*
 		 * Set the remove waiter button
 		 */
 		this.remove = new JButton("Remove Waiter");
 		this.remove.addActionListener(this);
-		this.add(remove);
+		this.add(this.remove);
 		
 		/*
 		 * Set the close button
 		 */
 		this.close = new JButton("close");
 		this.close.addActionListener(this);
-		this.add(close);
+		this.add(this.close);
 		
 	}
 

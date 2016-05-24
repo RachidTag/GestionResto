@@ -7,8 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * @author TODO
- *
+ * Represents the default right area of the edit waiter window
+ * @author Projet Resto
  */
 @SuppressWarnings("serial")
 public class EditWaiterWindowRightArea extends JPanel{
@@ -19,7 +19,7 @@ public class EditWaiterWindowRightArea extends JPanel{
 	private EditWaiterWindow sectorEditionWindow;
 
 	/**
-	 * TODO
+	 * Generates the default right area of the edit waiter window
 	 * @param sectorEditionWindow
 	 */
 	public EditWaiterWindowRightArea(EditWaiterWindow sectorEditionWindow){

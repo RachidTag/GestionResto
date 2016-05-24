@@ -33,7 +33,7 @@ public class Staff implements Serializable {
 	 * Get all the waiters
 	 * @return waiters Map<Integer, Waiter>
 	 */
-	public Map<Integer, Waiter> getStaff(){
+	public Map<Integer, Waiter> getWaiters(){
 		return this.waiters;
 	}
 	

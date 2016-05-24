@@ -45,6 +45,9 @@ public class MainWindow extends JFrame {
 	 */
 	public ScheduleWindow scheduleWindow;
 	
+	/**
+	 * The edit schedule window
+	 */
 	public RMModEditScheduleWindow editScheduleWindow;
 	
 	/**
