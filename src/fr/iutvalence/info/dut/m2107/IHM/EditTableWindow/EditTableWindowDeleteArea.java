@@ -26,7 +26,7 @@ import fr.iutvalence.info.dut.m2107.Room.TableNotExistsException;
  * @author Projet Resto
  */
 @SuppressWarnings("serial")
-public class EditTableWindowDeleteArea extends JPanel implements ActionListener{
+public class EditTableWindowDeleteArea extends JPanel implements ActionListener {
 	/**
 	 * The main window
 	 */

@@ -41,7 +41,6 @@ public class Table implements Serializable
 	/**
 	 * Reservation informations
 	 */
-	@SuppressWarnings("unused")
 	private String clientName;
 	
 	/**
@@ -69,7 +68,6 @@ public class Table implements Serializable
 	 * @param numTable
 	 * @param numberPlaces
 	 * @param position
-	 * @param progress
 	 * @param clientName 
 	 */
 	public Table(int numTable, int numberPlaces, Position position, String clientName){
@@ -163,6 +161,15 @@ public class Table implements Serializable
 	 */
 	public void setProgress(Progress progress) {
 		this.progress = progress;
+	}
+
+	/**
+	 * Get the client name of the table
+	 * @return clientName
+	 */
+	public String getClientName()
+	{
+		return this.clientName;
 	}
 
 	/**

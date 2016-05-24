@@ -31,7 +31,8 @@ import fr.iutvalence.info.dut.m2107.Room.TableAlreadyExistsException;
 import fr.iutvalence.info.dut.m2107.Room.TableNotExistsException;
 
 /**
- * @author TODO
+ * Represents the edit area of the edit table window
+ * @author Projet Resto
  *
  */
 @SuppressWarnings("serial")
@@ -92,7 +93,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 	private JButton processEditTable;	
 
 	/**
-	 * TODO
+	 * Generates the edit area of the edit table window
 	 * @param editTableWindow 
 	 */
 	@SuppressWarnings("deprecation")
@@ -145,12 +146,32 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		try {
 			theSector = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem());
 		} catch (SectorNotExistsException e) {
-			// TODO
+			// impossible
 		}
 		Set<Integer> tables = new TreeSet<Integer>(theSector.getTables().keySet());
 		this.comboTables = new JComboBox<Object>(tables.toArray());
 		this.comboTables.addActionListener(this);
 		line2.add(this.comboTables);
+		
+		/*
+		 * Default table informations
+		 */
+		Table defaultTable = null;
+		try
+		{
+			defaultTable = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem()).getTable((int)this.comboTables.getSelectedIndex());
+		}
+		catch (TableNotExistsException | SectorNotExistsException e)
+		{
+			try
+			{
+				defaultTable = new Table(0, 2, new Position(0, 0, 1), Progress.NO_PROGRESS, State.FREE);
+			}
+			catch (ClientNameRequiredException e1)
+			{
+				// impossible
+			}
+		}
 		
 		/*
 		 * Set the third line (num of places)
@@ -159,7 +180,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line3.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line3);
 		line3.add(new JLabel("Num of places:"));
-		this.numOfPlaces = new JSpinner(new SpinnerNumberModel(2, 2, 6, 2));
+		this.numOfPlaces = new JSpinner(new SpinnerNumberModel(defaultTable.getNumberPlaces(), 2, 6, 2));
 		line3.add(this.numOfPlaces);
 		
 		/*
@@ -169,7 +190,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line4.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line4);
 		line4.add(new JLabel("X position:"));
-		this.posX = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
+		this.posX = new JSpinner(new SpinnerNumberModel(defaultTable.getPosition().getX(), 0, 3, 1));
 		line4.add(this.posX);
 		
 		/*
@@ -179,7 +200,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line5.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line5);
 		line5.add(new JLabel("Y position:"));
-		this.posY = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
+		this.posY = new JSpinner(new SpinnerNumberModel(defaultTable.getPosition().getY(), 0, 3, 1));
 		line5.add(this.posY);
 		
 		/*
@@ -189,7 +210,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line6.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line6);
 		line6.add(new JLabel("Rotation:"));
-		this.rotation = new JSpinner(new SpinnerNumberModel(1, 1, 2, 1));
+		this.rotation = new JSpinner(new SpinnerNumberModel(defaultTable.getPosition().getRotation(), 1, 2, 1));
 		line6.add(this.rotation);
 		
 		/*
@@ -200,6 +221,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		this.editTableWindow.R_Area.add(line7);
 		line7.add(new JLabel("State"));
 		this.state = new JComboBox<Object>(State.values());
+		this.state.setSelectedItem(defaultTable.getState());
 		this.state.addActionListener(this);
 		line7.add(this.state);
 		
@@ -211,6 +233,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		this.editTableWindow.R_Area.add(line8);
 		line8.add(new JLabel("Client Name"));
 		this.clientName = new JTextField();
+		this.clientName.setText(defaultTable.getClientName());
 		this.clientName.disable();
 		line8.add(this.clientName);
 		
@@ -222,6 +245,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		this.editTableWindow.R_Area.add(line9);
 		line9.add(new JLabel("Progress"));
 		this.progress = new JComboBox<Object>(Progress.values());
+		this.progress.setSelectedItem(defaultTable.getProgress());
 		line9.add(this.progress);
 		
 		/*
@@ -234,15 +258,17 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		this.processEditTable = new JButton("Send");
 		this.processEditTable.addActionListener(this);
 		line10.add(this.processEditTable);
-		// TODO : add default configuration of the first table
 	}
 
+	/**
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JComponent source = (JComponent) arg0.getSource();
 		if(source == this.comboSectors)
 		{
+			// Get the sectors list
 			Sector theSector = null;
 			try {
 				theSector = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem());
@@ -254,6 +280,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		}
 		else if(source == this.comboTables)
 		{
+			// Get the tables list from the given sector
 			Sector theSector = null;
 			try {
 				theSector = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector((int)this.comboSectors.getSelectedItem());
@@ -294,6 +321,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		}
 		else if(source == this.processEditTable)
 		{
+			// process the edit table
 			int numSector = (int) this.comboSectors.getSelectedItem();
 			int numTable = (int) this.comboTables.getSelectedItem();
 			int numOfPlaces = (int) this.numOfPlaces.getValue();
@@ -312,38 +340,35 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 				theTable = theSector.getTable(numTable);
 				theSector.removeTable(theTable.getNumTable());
 			} catch (SectorNotExistsException | TableNotExistsException e1) {
-				// TODO retourner erreur
+				// impossible
 			}
 			
-			if(tableState != State.RESERVED)
+			try
 			{
-				if(tableState != State.BUSY){
-					try {
-						theTable = new Table(numTable, numOfPlaces, positionTable, Progress.NO_PROGRESS, tableState);
-					} catch (ClientNameRequiredException e1) {
-						// TODO retourner erreur
-					}
-				} 
-				else{
-					try {
+				switch(tableState)
+				{
+					case RESERVED:
+						theTable = new Table(numTable, numOfPlaces, positionTable, clientName);
+						break;
+					case BUSY:
 						theTable = new Table(numTable, numOfPlaces, positionTable, tableProgress, tableState);
-					} catch (ClientNameRequiredException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+						break;
+					default:
+						theTable = new Table(numTable, numOfPlaces, positionTable, tableProgress, tableState);
+						break;
 				}
 			}
-			else 
+			catch (ClientNameRequiredException e2)
 			{
-				theTable = new Table(numTable, numOfPlaces, positionTable, clientName);
+				// impossible
 			}
 			
 			try {
 				theSector.addTable(theTable);
 			} catch (TableAlreadyExistsException e1) {
-				// TODO retourner erreur
+				// impossible
 			} catch (ATableIsAlreadyInThisPositionException e) {
-				// TODO retourner l'erreur
+				JOptionPane.showMessageDialog(null,"The table already exits in this position");
 			}
 			
 			JOptionPane.showMessageDialog(null, "The table has been correctly edited");
