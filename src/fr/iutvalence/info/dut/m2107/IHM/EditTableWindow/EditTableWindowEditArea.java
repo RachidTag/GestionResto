@@ -175,7 +175,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		}
 		
 		/*
-		 * Set the third line (num of places)
+		 * Set the third line (num of places) 
 		 */
 		JPanel line3 = new JPanel();
 		line3.setLayout(lineLayout);
