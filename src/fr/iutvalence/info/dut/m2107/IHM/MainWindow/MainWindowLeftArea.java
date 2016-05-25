@@ -1,7 +1,5 @@
 package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -240,10 +238,6 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 					this.mainWindow.editScheduleWindow = new RMModEditScheduleWindow(this.mainWindow);
 					this.mainWindow.editScheduleWindow.setIconImage(this.logo);
 				}				
-			}
-			else
-			{
-				// TODO for others buttons
 			}
 			
 			// Put the buttons disabled

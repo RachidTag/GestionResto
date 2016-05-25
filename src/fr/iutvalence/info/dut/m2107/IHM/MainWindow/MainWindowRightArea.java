@@ -46,6 +46,11 @@ public class MainWindowRightArea extends JPanel{
 	 * Sector four (right panel)
 	 */
 	public JPanel sectorFour;
+	
+	/**
+	 * TitledBorders
+	 */
+	public TitledBorder[] borders;
 
 	/**
 	 * Generates the right area of the main window
@@ -56,28 +61,6 @@ public class MainWindowRightArea extends JPanel{
 		 * Save the reference to the main window
 		 */
 		this.mainWindow = mainWindow;
-		
-		/*
-		 * get the name of all the padder
-		 */
-		String namePadder1 = "";
-		String namePadder2 = "";
-		String namePadder3 = "";
-		String namePadder4 = "";
-
-		try {
-			if(this.mainWindow.restaurant.getTheRoom().getSector(1).getPadder() != null)
-				namePadder1 = this.mainWindow.restaurant.getTheRoom().getSector(1).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(1).getPadder().getLastName();
-			if(this.mainWindow.restaurant.getTheRoom().getSector(2).getPadder() != null)
-				namePadder2 = this.mainWindow.restaurant.getTheRoom().getSector(2).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(2).getPadder().getLastName();
-			if(this.mainWindow.restaurant.getTheRoom().getSector(3).getPadder() != null)
-				namePadder3 = this.mainWindow.restaurant.getTheRoom().getSector(3).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(3).getPadder().getLastName();
-			if(this.mainWindow.restaurant.getTheRoom().getSector(4).getPadder() != null)
-				namePadder4 = this.mainWindow.restaurant.getTheRoom().getSector(4).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(4).getPadder().getLastName();
-		} catch (SectorNotExistsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		/*
 		 * Creates the layout
@@ -103,12 +86,32 @@ public class MainWindowRightArea extends JPanel{
 		this.sectorThree = new JPanel();
 		this.sectorFour = new JPanel();
 		
-		// TODO : Put the padder's name in the sector's name
+		/*
+		 * get the name of all the padders to the borders
+		 */
+		this.borders = new TitledBorder[this.mainWindow.restaurant.getTheRoom().getSectors().size()];
+		
+		for(int sectorNum : this.mainWindow.restaurant.getTheRoom().getSectors().keySet())
+		{
+			try {
+				if(this.mainWindow.restaurant.getTheRoom().getSector(sectorNum).getPadder() != null)
+				{
+					String padderName = this.mainWindow.restaurant.getTheRoom().getSector(sectorNum).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(sectorNum).getPadder().getLastName();
+					this.borders[sectorNum-1] = new TitledBorder(new LineBorder(Color.black, 5), "Sector "+sectorNum+" : "+padderName);
+				}
+				else
+				{
+					this.borders[sectorNum-1] = new TitledBorder(new LineBorder(Color.black, 5), "Sector "+sectorNum);
+				}
+			} catch (SectorNotExistsException e) {
+				// impossible
+			}
+		}
 		
 		/*
 		 * Create new border Titled with sector name, 5 black pixel wide
 		 */
-		this.sectorOne.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 1 : "+ namePadder1));
+		this.sectorOne.setBorder(this.borders[0]);
 		
 		/*
 		 * Add sector one to rightArea panel
@@ -118,7 +121,7 @@ public class MainWindowRightArea extends JPanel{
 		/*
 		 * Create new border Titled with sector name, 5 black pixel wide
 		 */
-		this.sectorTwo.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 2 : "+namePadder2));
+		this.sectorTwo.setBorder(this.borders[1]);
 		
 		/*
 		 * Add sector two to rightArea panel
@@ -128,7 +131,7 @@ public class MainWindowRightArea extends JPanel{
 		/*
 		 * Create new border Titled with sector name, 5 black pixel wide
 		 */
-		this.sectorThree.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 3"+namePadder3));
+		this.sectorThree.setBorder(this.borders[2]);
 		
 		/*
 		 * Add sector three to rightArea panel
@@ -138,7 +141,7 @@ public class MainWindowRightArea extends JPanel{
 		/*
 		 * Create new border Titled with sector name, 5 black pixel wide
 		 */
-		this.sectorFour.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 4 : "+namePadder4));
+		this.sectorFour.setBorder(this.borders[3]);
 		
 		/*
 		 * Add sector four to rightArea panel
@@ -146,6 +149,17 @@ public class MainWindowRightArea extends JPanel{
 		this.add(this.sectorFour);
 		
 		this.refreshSectors();
+	}
+	
+	/**
+	 * Set a padder's name to a sector
+	 * @param numSector int
+	 * @param padderName String
+	 */
+	public void setPadderName(int numSector, String padderName)
+	{
+		this.borders[numSector-1].setTitle(padderName);
+		this.validate();
 	}
 	
 	/**
