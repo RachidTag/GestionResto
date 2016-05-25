@@ -81,6 +81,15 @@ public class Sector implements Serializable
 		this.padder = padder;
 	}
 	
+	
+	/**
+	 * Get the padder of the sector
+	 * @return the padder
+	 */
+	public Waiter getPadder() {
+		return padder;
+	}
+
 	/**
 	 * Get a table from the list
 	 * @param numTable int
