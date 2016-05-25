@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -121,7 +122,11 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 		{
 			this.rMModWindow.mainWindow.leftArea.editSchedule.setVisible(true);
 			this.rMModWindow.mainWindow.leftArea.editWaiter.setVisible(true);
+			this.rMModWindow.mainWindow.leftArea.roomManager.setVisible(false);
 			this.rMModWindow.mainWindow.leftArea.validate();
-		}		
+			JOptionPane.showMessageDialog(null, "You've been correctly logged on Room Manager mode");
+		}	
+		else
+			JOptionPane.showMessageDialog(null, "Wrong username / password");
 	}
 }
