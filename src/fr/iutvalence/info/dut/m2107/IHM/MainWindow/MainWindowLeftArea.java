@@ -1,5 +1,7 @@
 package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -11,8 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import TestsBouton.CustomButton;
 import fr.iutvalence.info.dut.m2017.IHM.RMModEditScheduleWindow.RMModEditScheduleWindow;
+import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
 import fr.iutvalence.info.dut.m2107.IHM.RMModWindow.RMModWindow;
@@ -53,6 +55,11 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 	 * Room manager button (left panel)
 	 */
 	public CustomButton roomManager;
+
+	/**
+	 * Edit schedule button (left panel)
+	 */
+	public CustomButton editSchedule;
 	
 	/**
 	 * Close button (left panel)
@@ -117,42 +124,65 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		 */
 		this.editTable = new CustomButton("Edit Table");
 		this.editTable.addActionListener(this);
-		this.add(this.editTable);		
-
-		/*
-		 * Add "sector edition" menu
-		 */
-		this.editWaiter = new CustomButton("Edit Waiter");
-		this.editWaiter.addActionListener(this);
-		this.add(this.editWaiter);
+		JPanel editTablePanel = new JPanel();
+		editTablePanel.add(this.editTable);
+		this.add(editTablePanel);	
 		
 		/*
 		 * Add "check a room" button
 		 */
 		this.checkRoom = new CustomButton("Check the room");
 		this.checkRoom.addActionListener(this);
-		this.add(this.checkRoom);
+		JPanel checkRoomPanel = new JPanel();
+		checkRoomPanel.add(this.checkRoom);
+		this.add(checkRoomPanel);
 		
 		/*
 		 * Add "check a schedule" button
 		 */
 		this.checkSchedule = new CustomButton("Check the Schedule");
 		this.checkSchedule.addActionListener(this);
-		this.add(this.checkSchedule);
+		JPanel checkSchedulePanel = new JPanel();
+		checkSchedulePanel.add(this.checkSchedule);
+		this.add(checkSchedulePanel);
 		
 		/*
 		 * Add "room manager mod" button
 		 */
 		this.roomManager = new CustomButton("Room Manager mod");
 		this.roomManager.addActionListener(this);
-		this.add(this.roomManager);
+		JPanel roomManagerPanel = new JPanel();
+		roomManagerPanel.add(this.roomManager);
+		this.add(roomManagerPanel);	
+
+		/*
+		 * Add "edit waiter" menu
+		 */
+		this.editWaiter = new CustomButton("Edit Waiter");
+		this.editWaiter.addActionListener(this);
+		JPanel editWaiterPanel = new JPanel();
+		editWaiterPanel.add(this.editWaiter);
+		this.add(editWaiterPanel);
+		this.editWaiter.setVisible(false);
+		
+		/*
+		 * Add "edit schedule" button
+		 */
+		this.editSchedule = new CustomButton("Edit Schedule");
+		this.editSchedule.addActionListener(this);
+		JPanel editSchedulePanel = new JPanel();
+		editSchedulePanel.add(this.editSchedule);
+		this.add(editSchedulePanel);
+		this.editSchedule.setVisible(false);
 		
 		/*
 		 * Add "quit" button
 		 */
 		this.close = new CustomButton("Close");
 		this.close.addActionListener(this);
-		this.add(this.close);
+		JPanel closePanel = new JPanel();
+		closePanel.add(this.close);
+		this.add(closePanel);
 	}
 
 	/**
@@ -203,9 +233,9 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 					this.mainWindow.scheduleWindow.setIconImage(this.logo);
 				}				
 			}
-			else if(source == this.mainWindow.rMModWindow.R_Area.editSch)
+			else if(source == this.editSchedule)
 			{
-				if(this.mainWindow.rMModWindow.R_Area.editSch.isEnabled())
+				if(this.editSchedule.isEnabled())
 				{
 					this.mainWindow.editScheduleWindow = new RMModEditScheduleWindow(this.mainWindow);
 					this.mainWindow.editScheduleWindow.setIconImage(this.logo);
@@ -222,6 +252,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 			this.checkRoom.setEnabled(false);
 			this.checkSchedule.setEnabled(false);
 			this.roomManager.setEnabled(false);
+			this.editSchedule.setEnabled(false);
 			this.close.setEnabled(false);
 		}
 	}

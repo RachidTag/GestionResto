@@ -8,8 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
-
 /**
  * Represents the left area of the room manager window
  * @author Projet Resto
@@ -63,6 +61,7 @@ public void actionPerformed(ActionEvent e) {
 	    this.rMModWindow.mainWindow.leftArea.checkRoom.setEnabled(true);
 	    this.rMModWindow.mainWindow.leftArea.checkSchedule.setEnabled(true);
 	    this.rMModWindow.mainWindow.leftArea.roomManager.setEnabled(true);
+	    this.rMModWindow.mainWindow.leftArea.editSchedule.setEnabled(true);
 	    this.rMModWindow.mainWindow.leftArea.close.setEnabled(true);
 	    this.rMModWindow.setVisible(false);
 	    this.rMModWindow.R_Area.removeAll();

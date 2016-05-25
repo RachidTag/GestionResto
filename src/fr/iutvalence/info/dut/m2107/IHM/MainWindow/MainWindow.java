@@ -72,7 +72,7 @@ public class MainWindow extends JFrame {
 		this.addWindowListener(new MainWindowEventHandler(this));
 		this.setTitle("Gestion Resto");
 		this.setResizable(false);
-		this.setSize(1200, 720);
+		this.setSize(1100, 720);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 
@@ -89,9 +89,9 @@ public class MainWindow extends JFrame {
 		splitPane.setOneTouchExpandable(true);
 		
 		/*
-		 * Set divider location to 300px, 1/4 of the screen
+		 * Set divider location to 200px, 1/4 of the screen
 		 */
-		splitPane.setDividerLocation(300);
+		splitPane.setDividerLocation(200);
 		
 		/*
 		 * Disable divider control

@@ -96,6 +96,7 @@ public class EditTableWindowLeftArea extends JPanel implements ActionListener{
 		    this.editTableWindow.mainWindow.leftArea.checkSchedule.setEnabled(true);
 		    this.editTableWindow.mainWindow.leftArea.roomManager.setEnabled(true);
 		    this.editTableWindow.mainWindow.leftArea.close.setEnabled(true);
+		    this.editTableWindow.mainWindow.leftArea.editSchedule.setEnabled(true);
 		    this.editTableWindow.setVisible(false);
 		    this.editTableWindow.R_Area.removeAll();
 		}

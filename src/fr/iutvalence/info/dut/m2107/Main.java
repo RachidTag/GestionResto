@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 
 import fr.iutvalence.info.dut.m2107.Calendar.*;
 import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
-import fr.iutvalence.info.dut.m2107.Room.*;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Staff;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
@@ -25,7 +24,6 @@ public class Main {
 	 * @param args command-line arguments (unused)
 	 * @throws WaiterAlreadyExistsException 
 	 */
-	@SuppressWarnings("null")
 	public static void main(String[] args) throws WaiterAlreadyExistsException {
 		ImageIcon logoIcon = new ImageIcon("img/logoIcon.png");
 		Image logo = logoIcon.getImage();

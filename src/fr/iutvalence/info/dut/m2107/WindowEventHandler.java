@@ -34,6 +34,7 @@ public class WindowEventHandler extends WindowAdapter {
 		this.mainWindow.leftArea.checkRoom.setEnabled(true);
 		this.mainWindow.leftArea.checkSchedule.setEnabled(true);
 		this.mainWindow.leftArea.roomManager.setEnabled(true);
+		this.mainWindow.leftArea.editSchedule.setEnabled(true);
 		this.mainWindow.leftArea.close.setEnabled(true);
 		
 		// TODO add all windows

@@ -114,14 +114,13 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 	/**
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent arg0) {
 		if(this.username.getText().equals("admin")
 				&& this.password.getText().equals("admin"))
 		{
-			editSch = new JButton("Edit the schedule");
-			editSch.addActionListener(this.rMModWindow.mainWindow.leftArea);
-			
-			this.rMModWindow.mainWindow.leftArea.add(editSch);
+			this.rMModWindow.mainWindow.leftArea.editSchedule.setVisible(true);
+			this.rMModWindow.mainWindow.leftArea.editWaiter.setVisible(true);
 			this.rMModWindow.mainWindow.leftArea.validate();
 		}		
 	}

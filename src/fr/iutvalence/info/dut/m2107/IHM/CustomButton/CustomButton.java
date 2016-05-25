@@ -1,4 +1,4 @@
-package TestsBouton;
+package fr.iutvalence.info.dut.m2107.IHM.CustomButton;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -51,7 +51,7 @@ public class CustomButton extends JButton implements MouseListener {
 		this.setBorderPainted(false);
 		this.setFocusPainted(false);
 		this.addMouseListener(this);
-		this.setPreferredSize(new Dimension(190, 70));
+		this.setPreferredSize(new Dimension(200, 70));
 	}
 	
 	
