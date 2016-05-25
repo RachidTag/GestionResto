@@ -77,7 +77,7 @@ public class Sector implements Serializable
 	 * @throws WaiterIsNotAPadderException 
 	 */
 	public void setPadder(Waiter padder) throws WaiterIsNotAPadderException{
-		if (padder.getRank() != Rank.PADDER) throw new WaiterIsNotAPadderException();
+		if (padder != null && padder.getRank() != Rank.PADDER) throw new WaiterIsNotAPadderException();
 		this.padder = padder;
 	}
 	

@@ -161,7 +161,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		JPanel editWaiterPanel = new JPanel();
 		editWaiterPanel.add(this.editWaiter);
 		this.add(editWaiterPanel);
-		this.editWaiter.setVisible(false);
+		this.editWaiter.setVisible(true); // TODO
 		
 		/*
 		 * Add "edit schedule" button

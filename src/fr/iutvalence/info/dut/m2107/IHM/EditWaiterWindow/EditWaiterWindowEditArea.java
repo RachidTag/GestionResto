@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import fr.iutvalence.info.dut.m2107.Room.Sector;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
@@ -203,6 +204,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 				this.comboRank.setSelectedItem(theWaiter.getRank());
 				this.labelLastName.setText(this.lastName);
 				this.labelFirstName.setText(this.firstName);
+				// TODO : set the sector of the padder !
 			} catch (WaiterDoesNotExistException e) {
 				this.lastName = null;
 				this.firstName = null;
@@ -218,7 +220,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		else if(source == this.processEditWaiter){
 			int theNumWaiter = (int) this.comboWaiter.getSelectedItem();
 			Rank theRank = (Rank) this.comboRank.getSelectedItem();
-			int theNumSector = (int) this.comboSector.getSelectedItem();
+			int numSector = (int) this.comboSector.getSelectedItem();
 			int action = 0;
 			
 			Waiter theWaiter = null;
@@ -232,12 +234,30 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 			
 			if(theRank == Rank.PADDER)
 			{
+				// Remove the name of the padder in the old sector
+				for(Sector sector : this.editWaiterWindow.mainWindow.restaurant.getTheRoom().getSectors().values())
+				{
+					if(sector.getPadder() != null && sector.getPadder().equals(theWaiter))
+					{
+						try {
+							sector.setPadder(null);
+						} catch (WaiterIsNotAPadderException e) {
+							// impossible
+						}
+						this.editWaiterWindow.mainWindow.rightArea.setPadderName(sector.getNumSector(), null);
+					}
+				}
+				
+				// Set the name of the padder in the sector
 				try {
-					this.editWaiterWindow.mainWindow.restaurant.getTheRoom().getSector(theNumSector).setPadder(theWaiter);
+					this.editWaiterWindow.mainWindow.restaurant.getTheRoom().getSector(numSector).setPadder(theWaiter);
 					action++;
 				} catch (WaiterIsNotAPadderException | SectorNotExistsException e) {
 					// impossible
 				}
+				
+				// write the name of the padder in the sector's part of the IHM
+				this.editWaiterWindow.mainWindow.rightArea.setPadderName(numSector, theWaiter.getFirstName() + " " + theWaiter.getLastName());
 			}
 			
 			if (action !=0)

@@ -190,6 +190,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 				} catch (WaiterIsNotAPadderException | SectorNotExistsException e) {
 					// impossible
 				}
+				this.editWaiterWindow.mainWindow.rightArea.setPadderName(numSector, firstName + " " + lastName);
 			}
 			
 			if (action!=0)

@@ -158,8 +158,12 @@ public class MainWindowRightArea extends JPanel{
 	 */
 	public void setPadderName(int numSector, String padderName)
 	{
-		this.borders[numSector-1].setTitle(padderName);
-		this.validate();
+		if(padderName == null)
+			this.borders[numSector-1].setTitle("Sector "+numSector);
+		else
+			this.borders[numSector-1].setTitle("Sector "+numSector+" : " +padderName);
+		
+		SwingUtilities.updateComponentTreeUI(this);
 	}
 	
 	/**

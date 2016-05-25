@@ -15,9 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import fr.iutvalence.info.dut.m2107.Room.Sector;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
+import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotAPadderException;
 
 /**
  * Represents the remove area of the edit waiter window
@@ -101,16 +103,15 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 		 this.comboWaiter = new JComboBox<Object>(waitersNum.toArray());
 		 this.comboWaiter.addActionListener(this);
 		 line1.add(this.comboWaiter);
-		 
 		 /*
 		 * Set default waiter
 		 */
 		 Waiter defaultWaiter = null;
 		 try {
 		 	defaultWaiter = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboWaiter.getSelectedItem());
-		 } catch (WaiterDoesNotExistException e) {
-		 	defaultWaiter = new Waiter(1, "", "", Rank.RUNNER);
-		 	e.printStackTrace();
+			 
+		 } catch (WaiterDoesNotExistException | java.lang.NullPointerException e) {
+		 	defaultWaiter = new Waiter(0, "", "", Rank.RUNNER);
 		 }
 			
 		 /*
@@ -131,7 +132,7 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 		 line3.setLayout(lineLayout);
 		 this.editWaiterWindow.R_Area.add(line3);
 		 line3.add(new JLabel("First name :"));
-		 this.labelFirstName.setText(defaultWaiter.getFirstName());
+		 this.labelFirstName = new JLabel(defaultWaiter.getFirstName());
 		 line3.add(this.labelFirstName);
 		 this.labelFirstName.setText(defaultWaiter.getFirstName());
 		 
@@ -168,9 +169,23 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 			int numWaiter = (int) this.comboWaiter.getSelectedItem();
 			int action =0;
 			try {
+				Waiter theWaiter = this.editWaiterWindow.mainWindow.restaurant.getTheStaff().getWaiter(numWaiter);
 				this.editWaiterWindow.mainWindow.restaurant.getTheStaff().deleteWaiter(numWaiter);
+
+				if(theWaiter.getRank() == Rank.PADDER)
+				{
+					// Remove the name of the padder in the sector
+					for(Sector sector : this.editWaiterWindow.mainWindow.restaurant.getTheRoom().getSectors().values())
+					{
+						if(sector.getPadder() != null && sector.getPadder().equals(theWaiter))
+						{
+							sector.setPadder(null);
+							this.editWaiterWindow.mainWindow.rightArea.setPadderName(sector.getNumSector(), null);
+						}
+					}
+				}
 				action++;
-			} catch (WaiterDoesNotExistException e) {
+			} catch (WaiterDoesNotExistException | WaiterIsNotAPadderException e) {
 				// impossible
 			}
 			if (action !=0)
