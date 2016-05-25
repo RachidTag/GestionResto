@@ -15,8 +15,6 @@ import javax.swing.border.TitledBorder;
 import fr.iutvalence.info.dut.m2107.Room.Position;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Room.Table;
-import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
-import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotAPadderException;
 
 /**
  * Represents the right area of the main window
@@ -68,10 +66,14 @@ public class MainWindowRightArea extends JPanel{
 		String namePadder4 = "";
 
 		try {
-			namePadder1 = this.mainWindow.restaurant.getTheRoom().getSector(1).getPadder().getLastName();
-			namePadder2 = this.mainWindow.restaurant.getTheRoom().getSector(2).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(2).getPadder().getLastName();
-			namePadder3 = this.mainWindow.restaurant.getTheRoom().getSector(3).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(3).getPadder().getLastName();
-			namePadder4 = this.mainWindow.restaurant.getTheRoom().getSector(4).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(4).getPadder().getLastName();
+			if(this.mainWindow.restaurant.getTheRoom().getSector(1).getPadder() != null)
+				namePadder1 = this.mainWindow.restaurant.getTheRoom().getSector(1).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(1).getPadder().getLastName();
+			if(this.mainWindow.restaurant.getTheRoom().getSector(2).getPadder() != null)
+				namePadder2 = this.mainWindow.restaurant.getTheRoom().getSector(2).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(2).getPadder().getLastName();
+			if(this.mainWindow.restaurant.getTheRoom().getSector(3).getPadder() != null)
+				namePadder3 = this.mainWindow.restaurant.getTheRoom().getSector(3).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(3).getPadder().getLastName();
+			if(this.mainWindow.restaurant.getTheRoom().getSector(4).getPadder() != null)
+				namePadder4 = this.mainWindow.restaurant.getTheRoom().getSector(4).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(4).getPadder().getLastName();
 		} catch (SectorNotExistsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

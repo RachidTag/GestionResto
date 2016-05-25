@@ -24,8 +24,7 @@ public class CustomButton extends JButton implements MouseListener {
 	private Image buttonBg;
 	
 		 
-	public CustomButton(String name){		
-		super(name);
+	public CustomButton(String name){
 		Font customFont = null;
 		try {
 		    //create the font to use. Specify the size!
