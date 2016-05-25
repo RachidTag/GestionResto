@@ -27,9 +27,6 @@ public class CustomButton extends JButton implements MouseListener {
 	public CustomButton(String name){		
 		super(name);
 		Font customFont = null;
-		/*
-		 * J'ai fixé ton erreur (à voir) :P
-		 */
 		try {
 		    //create the font to use. Specify the size!
 			customFont = Font.createFont(Font.TRUETYPE_FONT, new File("KeepCalm.ttf")).deriveFont(12f);
@@ -45,11 +42,12 @@ public class CustomButton extends JButton implements MouseListener {
 		ImageIcon bgImage = new ImageIcon(getClass().getResource("ButtonBackground.png"));
 		this.setIcon(bgImage);
 		
-		JLabel jLabelName = new JLabel(name);
+		JLabel jLabelName = new JLabel(name, JLabel.CENTER);
 		jLabelName.setFont(customFont);
 		jLabelName.setForeground(Color.BLACK);
 		
 		this.add(jLabelName);
+
 		
 		this.setBorderPainted(false);
 		this.setFocusPainted(false);

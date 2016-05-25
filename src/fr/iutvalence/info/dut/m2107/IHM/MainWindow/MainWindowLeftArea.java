@@ -6,12 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import TestsBouton.CustomButton;
 import fr.iutvalence.info.dut.m2017.IHM.RMModEditScheduleWindow.RMModEditScheduleWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
@@ -32,32 +32,32 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 	/**
 	 * Edit Table button (left panel)
 	 */
-	public JButton editTable;
+	public CustomButton editTable;
 	
 	/**
 	 * Edit waiter button (left panel)
 	 */
-	public JButton editWaiter;
+	public CustomButton editWaiter;
 
 	/**
 	 * Check the room button (left panel)
 	 */
-	public JButton checkRoom;
+	public CustomButton checkRoom;
 
 	/**
 	 * Check the schedule button (left panel)
 	 */
-	public JButton checkSchedule;
+	public CustomButton checkSchedule;
 
 	/**
 	 * Room manager button (left panel)
 	 */
-	public JButton roomManager;
+	public CustomButton roomManager;
 	
 	/**
 	 * Close button (left panel)
 	 */
-	public JButton close;
+	public CustomButton close;
 	
 	/**
 	 * Logo Icon
@@ -115,42 +115,42 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Add "table edition" button
 		 */
-		this.editTable = new JButton("Edit Table");
+		this.editTable = new CustomButton("Edit Table");
 		this.editTable.addActionListener(this);
 		this.add(this.editTable);		
 
 		/*
 		 * Add "sector edition" menu
 		 */
-		this.editWaiter = new JButton("Edit Waiter");
+		this.editWaiter = new CustomButton("Edit Waiter");
 		this.editWaiter.addActionListener(this);
 		this.add(this.editWaiter);
 		
 		/*
 		 * Add "check a room" button
 		 */
-		this.checkRoom = new JButton("Check the room");
+		this.checkRoom = new CustomButton("Check the room");
 		this.checkRoom.addActionListener(this);
 		this.add(this.checkRoom);
 		
 		/*
 		 * Add "check a schedule" button
 		 */
-		this.checkSchedule = new JButton("Check the Schedule");
+		this.checkSchedule = new CustomButton("Check the Schedule");
 		this.checkSchedule.addActionListener(this);
 		this.add(this.checkSchedule);
 		
 		/*
 		 * Add "room manager mod" button
 		 */
-		this.roomManager = new JButton("Room Manager mod");
+		this.roomManager = new CustomButton("Room Manager mod");
 		this.roomManager.addActionListener(this);
 		this.add(this.roomManager);
 		
 		/*
 		 * Add "quit" button
 		 */
-		this.close = new JButton("Close");
+		this.close = new CustomButton("Close");
 		this.close.addActionListener(this);
 		this.add(this.close);
 	}
