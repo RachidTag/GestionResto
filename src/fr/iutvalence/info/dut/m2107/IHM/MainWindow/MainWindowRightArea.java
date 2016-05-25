@@ -15,6 +15,8 @@ import javax.swing.border.TitledBorder;
 import fr.iutvalence.info.dut.m2107.Room.Position;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Room.Table;
+import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
+import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotAPadderException;
 
 /**
  * Represents the right area of the main window
@@ -58,6 +60,24 @@ public class MainWindowRightArea extends JPanel{
 		this.mainWindow = mainWindow;
 		
 		/*
+		 * get the name of all the padder
+		 */
+		String namePadder1 = "";
+		String namePadder2 = "";
+		String namePadder3 = "";
+		String namePadder4 = "";
+
+		try {
+			namePadder1 = this.mainWindow.restaurant.getTheRoom().getSector(1).getPadder().getLastName();
+			namePadder2 = this.mainWindow.restaurant.getTheRoom().getSector(2).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(2).getPadder().getLastName();
+			namePadder3 = this.mainWindow.restaurant.getTheRoom().getSector(3).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(3).getPadder().getLastName();
+			namePadder4 = this.mainWindow.restaurant.getTheRoom().getSector(4).getPadder().getFirstName() + " " + this.mainWindow.restaurant.getTheRoom().getSector(4).getPadder().getLastName();
+		} catch (SectorNotExistsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		/*
 		 * Creates the layout
 		 */
 		GridLayout roomGrid = new GridLayout(2,2);
@@ -86,7 +106,7 @@ public class MainWindowRightArea extends JPanel{
 		/*
 		 * Create new border Titled with sector name, 5 black pixel wide
 		 */
-		this.sectorOne.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 1"));
+		this.sectorOne.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 1 : "+ namePadder1));
 		
 		/*
 		 * Add sector one to rightArea panel
@@ -96,7 +116,7 @@ public class MainWindowRightArea extends JPanel{
 		/*
 		 * Create new border Titled with sector name, 5 black pixel wide
 		 */
-		this.sectorTwo.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 2"));
+		this.sectorTwo.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 2 : "+namePadder2));
 		
 		/*
 		 * Add sector two to rightArea panel
@@ -106,7 +126,7 @@ public class MainWindowRightArea extends JPanel{
 		/*
 		 * Create new border Titled with sector name, 5 black pixel wide
 		 */
-		this.sectorThree.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 3"));
+		this.sectorThree.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 3"+namePadder3));
 		
 		/*
 		 * Add sector three to rightArea panel
@@ -116,7 +136,7 @@ public class MainWindowRightArea extends JPanel{
 		/*
 		 * Create new border Titled with sector name, 5 black pixel wide
 		 */
-		this.sectorFour.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 4"));
+		this.sectorFour.setBorder(new TitledBorder(new LineBorder(Color.black, 5), "Sector 4 : "+namePadder4));
 		
 		/*
 		 * Add sector four to rightArea panel
