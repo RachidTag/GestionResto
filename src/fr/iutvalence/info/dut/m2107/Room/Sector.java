@@ -27,7 +27,6 @@ public class Sector implements Serializable
 	/**
 	 * A padder assigned to a sector
 	 */
-	@SuppressWarnings("unused")
 	private Waiter padder;
 	
 	/**
