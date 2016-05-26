@@ -1,14 +1,10 @@
 package fr.iutvalence.info.dut.m2107.IHM.Schedule;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
-import java.util.TreeSet;
-
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -23,28 +19,51 @@ import fr.iutvalence.info.dut.m2107.Calendar.Day;
 import fr.iutvalence.info.dut.m2107.Calendar.DayNotExistsException;
 import fr.iutvalence.info.dut.m2107.Calendar.Service;
 import fr.iutvalence.info.dut.m2107.Calendar.ServiceType;
-import fr.iutvalence.info.dut.m2107.Calendar.Week;
 import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
 import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
-import fr.iutvalence.info.dut.m2107.Room.Sector;
-import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 
+/**
+ * Represents the schedule window
+ * @author Projet Resto
+ */
 @SuppressWarnings("serial")
 public class ScheduleWindow extends JFrame implements ActionListener{
 	
+	/**
+	 * Reference to the main window
+	 */
 	public MainWindow mainWindow;
 	
+	/**
+	 * Weeks' combo box
+	 */
 	public JComboBox<?> comboWeeks;
 	
+	/**
+	 * Days' combo box
+	 */
 	public JComboBox<?> comboDays;
 	
+	/**
+	 * Services' combo box
+	 */
 	public JComboBox<?> comboServices;
 	
+	/**
+	 * Bottom area (schedule)
+	 */
 	public JPanel bottomArea = new JPanel();
 	
+	/**
+	 * Top area (selecting the week)
+	 */
 	public JPanel topArea = new JPanel();
 	
+	/**
+	 * Generates the schedule window
+	 * @param theMainWindow
+	 */
 	public ScheduleWindow(MainWindow theMainWindow)
 	{
 		/* 
@@ -53,7 +72,7 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 		this.mainWindow = theMainWindow;
 		
 		/*
-		 * Initialise the SectorEditionWindow
+		 * Initialize the ScheduleWindow
 		 */
 		this.addWindowListener(new WindowEventHandler(this.mainWindow));
 		this.setTitle("Check the Schedule");
@@ -62,14 +81,20 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 
-		
+		/*
+		 * Set the layouts
+		 */
 		this.topArea.setLayout(new GridLayout(1, 3));
-		
-		
 		this.bottomArea.setLayout(new GridLayout(1, 1));
 		
+		/*
+		 * Creates the line layout
+		 */
 		GridLayout lineLayout = new GridLayout(1,2);
 		
+		/*
+		 * Top Area part 1 (Selecting week)
+		 */
 		JPanel aWeek = new JPanel();
 		aWeek.setLayout(lineLayout);
 		this.topArea.add(aWeek);
@@ -77,7 +102,10 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 		Set<Integer> weekNums = this.mainWindow.restaurant.getTheCalendar().getAllWeeks().keySet();
 		this.comboWeeks = new JComboBox<Object>(weekNums.toArray());
 		aWeek.add(this.comboWeeks);
-		
+
+		/*
+		 * Top Area part 2 (Selecting day)
+		 */
 		JPanel aDay = new JPanel();
 		aDay.setLayout(lineLayout);
 		this.topArea.add(aDay);
@@ -86,7 +114,10 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 		this.comboDays = new JComboBox<Object>(days);
 		this.comboDays.addActionListener(this);
 		aDay.add(this.comboDays);
-		
+
+		/*
+		 * Top Area part 3 (Selecting service)
+		 */
 		JPanel aService = new JPanel();
 		aService.setLayout(lineLayout);
 		this.topArea.add(aService);
@@ -102,6 +133,9 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, topArea, bottomArea);
 		splitPane.setOneTouchExpandable(true);
 		
+		/*
+		 * Set the divider location
+		 */
 		splitPane.setDividerLocation(50);
 		
 		/*
@@ -122,47 +156,38 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 		this.setVisible(true);
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
+	/**
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent arg0) {
-		
 		JComponent source = (JComponent) arg0.getSource();
-		if(source == this.comboWeeks)
-		{
-			Week theWeek = null;
-				try {
-					theWeek = this.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboWeeks.getSelectedItem());
-				} catch (WeekNotExistsException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			@SuppressWarnings({ "rawtypes" })
-			DefaultComboBoxModel model = new DefaultComboBoxModel(new TreeSet<Integer>().toArray());
-			this.comboDays.setModel(model);
-		
-		}
-		else if(source == this.comboDays || source == this.comboServices)
+		if(source == this.comboDays || source == this.comboServices)
 		{
 			this.bottomArea.removeAll();
 			
-			Set<Waiter> waiters = null;
+			Day theDay = null;
 			try {
-				waiters = this.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboWeeks.getSelectedItem()).getDay((int)this.comboDays.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).getAllWaiters();
+				theDay = this.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboWeeks.getSelectedItem()).getDay((int)this.comboDays.getSelectedItem());
 			} catch (DayNotExistsException | WeekNotExistsException e) {
-				e.printStackTrace();
-			}
+				// impossible
+			}			
 			
-			if (waiters != null)
+			Service theService = theDay.getService((ServiceType)this.comboServices.getSelectedItem());
+
+			Set<Waiter> waiters = theService.getAllWaiters();
+			
+			if(!theDay.isClosed())
 			{
-				Waiter[] wArray = new Waiter[waiters.size()];
-				wArray = waiters.toArray(wArray);
-				Object[][] ws = new Object[waiters.size()][6];
-				for (int i = 0; i < ws.length; i++) {
-					
-					try {
-						if(this.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboWeeks.getSelectedItem()).getDay((int)this.comboDays.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).getCleanerWaiters().contains(wArray[i])) 
+				if (waiters != null)
+				{
+					// Make the array of the waiters 
+					Object[][] ws = new Object[waiters.size()][6];
+					int i = 0;
+					for (Waiter waiter : waiters)
+					{
+						if(theService.getCleanerWaiters().contains(waiter)) 
 						{
-							
 							if((ServiceType)this.comboServices.getSelectedItem() == ServiceType.MIDDAY)
 							{
 								ws[i][4] = "11h";
@@ -186,36 +211,37 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 								ws[i][4] = "19h";
 								ws[i][5] = "22h30";
 							}
-
+	
 						}
 						
-					} catch (DayNotExistsException | WeekNotExistsException e) {
-						// impossible
+						ws[i][0] = waiter.getNumWaiter();
+						ws[i][1] = waiter.getFirstName();
+						ws[i][2] = waiter.getLastName();
+						ws[i][3] = waiter.getRank();
+						
+						i++;
 					}
-					ws[i][0] = wArray[i].getNumWaiter();
-					ws[i][1] = wArray[i].getFirstName();
-					ws[i][2] = wArray[i].getLastName();
-					ws[i][3] = wArray[i].getRank();
-				}
-				
-				String[] titles = {"numbers","First Name", "Last Name", "Rank", "Began Hours", "End Hours"};
-				
-				JTable employes = new JTable(ws, titles);
-				employes.disable();
 					
-				this.bottomArea.add(new JScrollPane(employes), BorderLayout.CENTER);
-		
-				employes.getTableHeader().setReorderingAllowed(false);
-				employes.getTableHeader().setResizingAllowed(false);
-				
-				this.bottomArea.validate();
+					String[] titles = {"numbers","First Name", "Last Name", "Rank", "Began Hours", "End Hours"};
+					
+					JTable employes = new JTable(ws, titles);
+					employes.disable();
+						
+					this.bottomArea.add(new JScrollPane(employes), BorderLayout.CENTER);
+			
+					employes.getTableHeader().setReorderingAllowed(false);
+					employes.getTableHeader().setResizingAllowed(false);
+					
+					this.bottomArea.validate();
+				}
+				else{
+					System.err.println("Waiters is null");
+				}
 			}
-			else{
-				System.out.println("ERROR !!!");
-			}
-
 		}
-	
+		else
+		{
+			this.bottomArea.add(new JLabel("The restaurant is closed today !"));
+		}
 	}
-
 }

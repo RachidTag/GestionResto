@@ -172,6 +172,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 	/**
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent e) {
 		JComponent source = (JComponent) e.getSource();
 		if(source == this.close)

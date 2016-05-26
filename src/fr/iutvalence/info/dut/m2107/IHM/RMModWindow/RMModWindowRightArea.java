@@ -1,8 +1,6 @@
 package fr.iutvalence.info.dut.m2107.IHM.RMModWindow;
 
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,19 +13,16 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
-
 /**
- * @author TODO
- *
+ * Represents the right area of the room manager window
+ * @author Projet Resto
  */
 @SuppressWarnings("serial")
 public class RMModWindowRightArea extends JPanel implements ActionListener
 {
 	/**
-	 * The main window
+	 * Reference to the main window
 	 */
-	@SuppressWarnings("unused")
 	private RMModWindow rMModWindow;
 	
 	/**
@@ -51,7 +46,7 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 	public JButton editSch;
 
 	/**
-	 * TODO
+	 * Generates the right area of the room manager mod window
 	 * @param rMModWindow
 	 */
 	public RMModWindowRightArea(RMModWindow rMModWindow){
@@ -63,7 +58,7 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 		/*
 		 * Set the layout
 		 */
-		GridLayout controlPanel = new GridLayout(5,1);
+		GridLayout controlPanel = new GridLayout(7,1);
 		controlPanel.setHgap(10);
 		controlPanel.setVgap(5);
 		this.setLayout(controlPanel);
@@ -71,7 +66,7 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 		/*
 		 * Set the title of the category
 		 */
-		JLabel title = new JLabel("Connection", SwingConstants.CENTER);
+		JLabel title = new JLabel("Connexion", SwingConstants.CENTER);
 		title.setFont(title.getFont().deriveFont(Font.BOLD, 20.f));
 		this.add(title);
 		

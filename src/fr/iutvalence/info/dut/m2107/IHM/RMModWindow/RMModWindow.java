@@ -7,8 +7,8 @@ import fr.iutvalence.info.dut.m2107.WindowEventHandler;
 import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
 
 /**
- * @author TODO
- *
+ * Represents the Room Manager window
+ * @author Projet Resto
  */
 @SuppressWarnings("serial")
 public class RMModWindow extends JFrame
@@ -24,12 +24,12 @@ public class RMModWindow extends JFrame
 	public RMModWindowRightArea R_Area;
 	
 	/**
-	 * The main window
+	 * Reference to the main window
 	 */
 	public MainWindow mainWindow;
 
 	/**
-	 * TODO
+	 * Generates the Room Manager mod window
 	 * @param mainWindow
 	 */
 	public RMModWindow(MainWindow mainWindow)
@@ -40,7 +40,7 @@ public class RMModWindow extends JFrame
 		this.mainWindow = mainWindow;
 		
 		/*
-		 * Initialise the SectorEditionWindow
+		 * Initialize the SectorEditionWindow
 		 */
 		this.addWindowListener(new WindowEventHandler(this.mainWindow));
 		this.setTitle("Room Manager Mod");

@@ -14,51 +14,52 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class RMModWindowLeftArea extends JPanel implements ActionListener {
-/**
- * The main window
- */
-public RMModWindow rMModWindow;
-
-/**
- * The close button
- */
-public JButton close;
-
-/**
- * TODO
- * @param rMModWindow
- */
-public RMModWindowLeftArea(RMModWindow rMModWindow){
-	/*
-	 * Save the reference to the sectorEditionWindo
+	/**
+	 * Reference to the main window
 	 */
-	this.rMModWindow = rMModWindow;
+	public RMModWindow rMModWindow;
 	
-	/*
-	 * Set the layout
+	/**
+	 * The close button
 	 */
-	GridLayout controlPanel = new GridLayout(8,1);
-	this.setLayout(controlPanel);
+	public JButton close;
 	
-	/*
-	 * Set the close button
+	/**
+	 * Generates the left area of the RM mod window
+	 * @param rMModWindow
 	 */
-	this.close = new JButton("close");
-	this.close.addActionListener(this);
-	this.add(close);
+	public RMModWindowLeftArea(RMModWindow rMModWindow){
+		/*
+		 * Save the reference to the sectorEditionWindo
+		 */
+		this.rMModWindow = rMModWindow;
+		
+		/*
+		 * Set the layout
+		 */
+		GridLayout controlPanel = new GridLayout(8,1);
+		this.setLayout(controlPanel);
+		
+		/*
+		 * Set the close button
+		 */
+		this.close = new JButton("close");
+		this.close.addActionListener(this);
+		this.add(close);
+		
+	}
 	
-}
-
-/**
- * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
- */
-public void actionPerformed(ActionEvent e) {
-	JComponent source = (JComponent) e.getSource();
-	if(source == this.close)
-	{
-		this.rMModWindow.mainWindow.enable();
-	    this.rMModWindow.dispose();
-	    this.rMModWindow.R_Area.removeAll();
-	}	
-}
+	/**
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@SuppressWarnings("deprecation")
+	public void actionPerformed(ActionEvent e) {
+		JComponent source = (JComponent) e.getSource();
+		if(source == this.close)
+		{
+			this.rMModWindow.mainWindow.enable();
+		    this.rMModWindow.dispose();
+		    this.rMModWindow.R_Area.removeAll();
+		}	
+	}
 }

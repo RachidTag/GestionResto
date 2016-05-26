@@ -33,22 +33,22 @@ import fr.iutvalence.info.dut.m2107.Room.TableNotExistsException;
 public class TableJPanel extends JPanel implements MouseListener
 {	
 	/**
-	 * TODO
+	 * Reference to the table concerned
 	 */
 	private Table theTable;
 	
 	/**
-	 * TODO
+	 * Reference to the main window right area
 	 */
 	private MainWindowRightArea mainWindowRightArea;
 
 	/**
-	 * TODO
+	 * Num of the table' sector
 	 */
 	private int numSector;
 
 	/**
-	 * Generates the table jpanel
+	 * Generates the table'ss jpanel
 	 * @param theTable (Table)
 	 * @param numSector (int)
 	 * @param mainWindowRightArea  (MainWindowRightArea)
@@ -56,20 +56,23 @@ public class TableJPanel extends JPanel implements MouseListener
 	public TableJPanel(Table theTable, int numSector, MainWindowRightArea mainWindowRightArea)
 	{
 		/*
-		 * TODO
+		 * Save the reference to the table
 		 */
 		this.theTable = theTable;
 		
 		/*
-		 * TODO
+		 * Save the sector's num
 		 */
 		this.numSector = numSector;
 		
 		/*
-		 * TODO
+		 * Save the reference to the main window right area
 		 */
 		this.mainWindowRightArea = mainWindowRightArea;
 		
+		/*
+		 * Prepare the link
+		 */
 		String tableLink = "img/table";
 		
 		int rot = theTable.getPosition().getRotation();
@@ -131,10 +134,6 @@ public class TableJPanel extends JPanel implements MouseListener
 		// Add the image of the table + the num of the table to the JPanel
 		this.addMouseListener(this);
 		this.add(new JLabel(returnImage(tableLink+".png", sizeX , sizeY, numTable)));
-		
-	
-		
-		// TODO : make that when we click on the table, it opens the edit table window 
 	}
 
 	/**
@@ -215,20 +214,36 @@ public class TableJPanel extends JPanel implements MouseListener
 		return new ImageIcon(bufferedBackgroundImage);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		/*
-		 * Opens the edit table window edit area with the selected table's form
+		 * Opens edit table frame
 		 */
 		this.mainWindowRightArea.mainWindow.editTableWindow = new EditTableWindow(this.mainWindowRightArea.mainWindow);
+		/*
+		 * Cleans the right area of the frame
+		 */
 		this.mainWindowRightArea.mainWindow.editTableWindow.R_Area.removeAll();
+		/*
+		 * Set the edit area to the right area of the frame
+		 */
 		EditTableWindowEditArea editTableWindowEditArea = new EditTableWindowEditArea(this.mainWindowRightArea.mainWindow.editTableWindow);
+		/*
+		 * Set the selected table in the form
+		 */
 		try {
 			editTableWindowEditArea.selectTheTable(this.theTable.getNumTable(), this.numSector);
 		} catch (SectorNotExistsException | TableNotExistsException e) {
 			System.err.println("Error, the sector or the table doesn't exist!");
 		}
+		/*
+		 * Refresh the frame
+		 */
 		SwingUtilities.updateComponentTreeUI(this.mainWindowRightArea.mainWindow.editTableWindow);
+		/*
+		 * Disable the main window
+		 */
 		this.mainWindowRightArea.mainWindow.disable();
 		
 	}
