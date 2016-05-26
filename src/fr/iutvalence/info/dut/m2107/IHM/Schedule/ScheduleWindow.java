@@ -1,6 +1,9 @@
 package fr.iutvalence.info.dut.m2107.IHM.Schedule;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -176,7 +179,6 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 			Service theService = theDay.getService((ServiceType)this.comboServices.getSelectedItem());
 
 			Set<Waiter> waiters = theService.getAllWaiters();
-			
 			if(!theDay.isClosed())
 			{
 				if (waiters != null)
@@ -238,10 +240,26 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 					System.err.println("Waiters is null");
 				}
 			}
-		}
-		else
-		{
-			this.bottomArea.add(new JLabel("The restaurant is closed today !"));
+			else
+			{
+				/*
+				 * Set the layout
+				 */
+				this.bottomArea.setLayout(new GridBagLayout());
+				
+				/*
+				 * Add the default text
+				 */
+				JLabel defaultText = new JLabel("The restaurant is closed today !");
+				GridBagConstraints gbc = new GridBagConstraints();
+				defaultText.setFont(defaultText.getFont().deriveFont(Font.ITALIC, 24.f));
+				this.bottomArea.add(defaultText, gbc);
+				
+				/*
+				 * Refresh
+				 */
+				this.bottomArea.validate();
+			}
 		}
 	}
 }

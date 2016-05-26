@@ -50,8 +50,11 @@ public class Main {
 		staf.addWaiter(new Waiter(10, "Rotteleur", "Pierre" , Rank.RUNNER));
 
 		Day dai = new Day();
+		Day dai3 = new Day();
+		dai3.setClosed(true);
 		try {
 			week1.editDayCalendar(1, dai);
+			week1.editDayCalendar(3, dai3);
 		} catch (DayNotExistsException e1) {
 			e1.printStackTrace();
 		}
