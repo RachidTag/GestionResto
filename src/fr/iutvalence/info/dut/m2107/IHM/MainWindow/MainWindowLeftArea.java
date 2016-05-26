@@ -40,11 +40,6 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 	public CustomButton editWaiter;
 
 	/**
-	 * Check the room button (left panel)
-	 */
-	public CustomButton checkRoom;
-
-	/**
 	 * Check the schedule button (left panel)
 	 */
 	public CustomButton checkSchedule;
@@ -124,16 +119,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		this.editTable.addActionListener(this);
 		JPanel editTablePanel = new JPanel();
 		editTablePanel.add(this.editTable);
-		this.add(editTablePanel);	
-		
-		/*
-		 * Add "check a room" button
-		 */
-		this.checkRoom = new CustomButton("Check the room");
-		this.checkRoom.addActionListener(this);
-		JPanel checkRoomPanel = new JPanel();
-		checkRoomPanel.add(this.checkRoom);
-		this.add(checkRoomPanel);
+		this.add(editTablePanel);
 		
 		/*
 		 * Add "check a schedule" button
@@ -201,53 +187,32 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		{
 			if(source == this.editTable)
 			{
-				if(this.editTable.isEnabled())
-				{
-					this.mainWindow.editTableWindow = new EditTableWindow(this.mainWindow);
-					this.mainWindow.editTableWindow.setIconImage(this.logo);
-				}	
+				this.mainWindow.editTableWindow = new EditTableWindow(this.mainWindow);
+				this.mainWindow.editTableWindow.setIconImage(this.logo);	
 			}
 			else if(source == this.editWaiter)
 			{
-				if(this.editWaiter.isEnabled())
-				{
-					this.mainWindow.editSectorWindow = new EditWaiterWindow(this.mainWindow);
-					this.mainWindow.editSectorWindow.setIconImage(this.logo);
-				}				
+				this.mainWindow.editSectorWindow = new EditWaiterWindow(this.mainWindow);
+				this.mainWindow.editSectorWindow.setIconImage(this.logo);		
 			}
 			else if(source == this.roomManager)
 			{
-				if(this.roomManager.isEnabled())
-				{
-					this.mainWindow.rMModWindow = new RMModWindow(this.mainWindow);
-					this.mainWindow.rMModWindow.setIconImage(this.logo);
-				}				
+				this.mainWindow.rMModWindow = new RMModWindow(this.mainWindow);
+				this.mainWindow.rMModWindow.setIconImage(this.logo);			
 			}
 			else if(source == this.checkSchedule)
 			{
-				if(this.checkSchedule.isEnabled())
-				{
-					this.mainWindow.scheduleWindow = new ScheduleWindow(this.mainWindow);
-					this.mainWindow.scheduleWindow.setIconImage(this.logo);
-				}				
+				this.mainWindow.scheduleWindow = new ScheduleWindow(this.mainWindow);
+				this.mainWindow.scheduleWindow.setIconImage(this.logo);
 			}
 			else if(source == this.editSchedule)
 			{
-				if(this.editSchedule.isEnabled())
-				{
-					this.mainWindow.editScheduleWindow = new RMModEditScheduleWindow(this.mainWindow);
-					this.mainWindow.editScheduleWindow.setIconImage(this.logo);
-				}				
+				this.mainWindow.editScheduleWindow = new RMModEditScheduleWindow(this.mainWindow);
+				this.mainWindow.editScheduleWindow.setIconImage(this.logo);
 			}
 			
 			// Put the buttons disabled
-			this.editTable.setEnabled(false);
-			this.editWaiter.setEnabled(false);
-			this.checkRoom.setEnabled(false);
-			this.checkSchedule.setEnabled(false);
-			this.roomManager.setEnabled(false);
-			this.editSchedule.setEnabled(false);
-			this.close.setEnabled(false);
+			this.mainWindow.disable();
 		}
 	}
 }

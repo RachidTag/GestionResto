@@ -90,14 +90,8 @@ public class EditTableWindowLeftArea extends JPanel implements ActionListener{
 		JComponent source = (JComponent) e.getSource();
 		if(source == this.close)
 		{
-			this.editTableWindow.mainWindow.leftArea.editWaiter.setEnabled(true);
-		    this.editTableWindow.mainWindow.leftArea.editTable.setEnabled(true);
-		    this.editTableWindow.mainWindow.leftArea.checkRoom.setEnabled(true);
-		    this.editTableWindow.mainWindow.leftArea.checkSchedule.setEnabled(true);
-		    this.editTableWindow.mainWindow.leftArea.roomManager.setEnabled(true);
-		    this.editTableWindow.mainWindow.leftArea.close.setEnabled(true);
-		    this.editTableWindow.mainWindow.leftArea.editSchedule.setEnabled(true);
-		    this.editTableWindow.setVisible(false);
+			this.editTableWindow.mainWindow.enable();
+		    this.editTableWindow.dispose();
 		    this.editTableWindow.R_Area.removeAll();
 		}
 		else if(source == this.add)

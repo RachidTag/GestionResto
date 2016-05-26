@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,23 +16,60 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
+import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
+import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindowEditArea;
+import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Room.State;
 import fr.iutvalence.info.dut.m2107.Room.Table;
+import fr.iutvalence.info.dut.m2107.Room.TableNotExistsException;
 
 /**
  * This class represents the Table's jlabel (Image)
  * @author Projet Resto
  */
 @SuppressWarnings("serial")
-public class TableJPanel extends JPanel
+public class TableJPanel extends JPanel implements MouseListener
 {	
 	/**
-	 * Generates the table jpanel
-	 * @param theTable
+	 * TODO
 	 */
-	public TableJPanel(Table theTable)
+	private Table theTable;
+	
+	/**
+	 * TODO
+	 */
+	private MainWindowRightArea mainWindowRightArea;
+
+	/**
+	 * TODO
+	 */
+	private int numSector;
+
+	/**
+	 * Generates the table jpanel
+	 * @param theTable (Table)
+	 * @param numSector (int)
+	 * @param mainWindowRightArea  (MainWindowRightArea)
+	 */
+	public TableJPanel(Table theTable, int numSector, MainWindowRightArea mainWindowRightArea)
 	{
+		/*
+		 * TODO
+		 */
+		this.theTable = theTable;
+		
+		/*
+		 * TODO
+		 */
+		this.numSector = numSector;
+		
+		/*
+		 * TODO
+		 */
+		this.mainWindowRightArea = mainWindowRightArea;
+		
 		String tableLink = "img/table";
 		
 		int rot = theTable.getPosition().getRotation();
@@ -90,7 +129,10 @@ public class TableJPanel extends JPanel
 		}
 		
 		// Add the image of the table + the num of the table to the JPanel
+		this.addMouseListener(this);
 		this.add(new JLabel(returnImage(tableLink+".png", sizeX , sizeY, numTable)));
+		
+	
 		
 		// TODO : make that when we click on the table, it opens the edit table window 
 	}
@@ -171,5 +213,43 @@ public class TableJPanel extends JPanel
 		bGr.dispose();
 		
 		return new ImageIcon(bufferedBackgroundImage);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		/*
+		 * Opens the edit table window edit area with the selected table's form
+		 */
+		this.mainWindowRightArea.mainWindow.editTableWindow = new EditTableWindow(this.mainWindowRightArea.mainWindow);
+		this.mainWindowRightArea.mainWindow.editTableWindow.R_Area.removeAll();
+		EditTableWindowEditArea editTableWindowEditArea = new EditTableWindowEditArea(this.mainWindowRightArea.mainWindow.editTableWindow);
+		try {
+			editTableWindowEditArea.selectTheTable(this.theTable.getNumTable(), this.numSector);
+		} catch (SectorNotExistsException | TableNotExistsException e) {
+			System.err.println("Error, the sector or the table doesn't exist!");
+		}
+		SwingUtilities.updateComponentTreeUI(this.mainWindowRightArea.mainWindow.editTableWindow);
+		this.mainWindowRightArea.mainWindow.disable();
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		
 	}
 }

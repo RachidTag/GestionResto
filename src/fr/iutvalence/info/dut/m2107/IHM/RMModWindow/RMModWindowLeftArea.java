@@ -56,14 +56,8 @@ public void actionPerformed(ActionEvent e) {
 	JComponent source = (JComponent) e.getSource();
 	if(source == this.close)
 	{
-		this.rMModWindow.mainWindow.leftArea.editWaiter.setEnabled(true);
-	    this.rMModWindow.mainWindow.leftArea.editTable.setEnabled(true);
-	    this.rMModWindow.mainWindow.leftArea.checkRoom.setEnabled(true);
-	    this.rMModWindow.mainWindow.leftArea.checkSchedule.setEnabled(true);
-	    this.rMModWindow.mainWindow.leftArea.roomManager.setEnabled(true);
-	    this.rMModWindow.mainWindow.leftArea.editSchedule.setEnabled(true);
-	    this.rMModWindow.mainWindow.leftArea.close.setEnabled(true);
-	    this.rMModWindow.setVisible(false);
+		this.rMModWindow.mainWindow.enable();
+	    this.rMModWindow.dispose();
 	    this.rMModWindow.R_Area.removeAll();
 	}	
 }

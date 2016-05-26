@@ -247,6 +247,10 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line9.add(new JLabel("Progress"));
 		this.progress = new JComboBox<Object>(Progress.values());
 		this.progress.setSelectedItem(defaultTable.getProgress());
+		if(defaultTable.getState() == State.BUSY)
+			this.progress.enable();
+		else
+			this.progress.disable();
 		line9.add(this.progress);
 		
 		/*
@@ -259,6 +263,40 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		this.processEditTable = new JButton("Send");
 		this.processEditTable.addActionListener(this);
 		line10.add(this.processEditTable);
+	}
+	
+	/**
+	 * Set the form with the selected table values
+	 * @param numTable
+	 * @param numSector
+	 * @throws SectorNotExistsException 
+	 * @throws TableNotExistsException 
+	 */
+	@SuppressWarnings("deprecation")
+	public void selectTheTable(int numTable, int numSector) throws SectorNotExistsException, TableNotExistsException
+	{
+		this.comboSectors.setSelectedItem(numSector);
+		this.comboTables.setSelectedItem(numTable);
+		
+		Sector theSector = this.editTableWindow.mainWindow.restaurant.getTheRoom().getSector(numSector);
+		Table theTable = theSector.getTable(numTable);
+		
+		this.numOfPlaces.setValue(theTable.getNumberPlaces());
+		this.posX.setValue(theTable.getPosition().getX());
+		this.posY.setValue(theTable.getPosition().getY());
+		this.rotation.setValue(theTable.getPosition().getRotation());
+		this.state.setSelectedItem(theTable.getState());
+		this.progress.setSelectedItem(theTable.getProgress());
+		
+		if(theTable.getState() == State.RESERVED)
+			this.clientName.enable();
+		else
+			this.clientName.disable();
+		
+		if(theTable.getState() == State.BUSY)
+			this.progress.setEnabled(true);
+		else
+			this.progress.setEnabled(false);
 	}
 
 	/**
@@ -307,6 +345,12 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 				this.clientName.enable();
 			else
 				this.clientName.disable();
+			
+			if(theTable.getState() == State.BUSY)
+				this.progress.setEnabled(true);
+			else
+				this.progress.setEnabled(false);
+			
 		}
 		else if(source == this.state)
 		{
@@ -316,9 +360,9 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 				this.clientName.disable();
 			
 			if(this.state.getSelectedItem() == State.BUSY)
-				this.progress.enable();
+				this.progress.setEnabled(true);
 			else
-				this.progress.disable();
+				this.progress.setEnabled(false);
 		}
 		else if(source == this.processEditTable)
 		{

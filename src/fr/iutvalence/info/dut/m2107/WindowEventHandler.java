@@ -28,25 +28,31 @@ public class WindowEventHandler extends WindowAdapter {
 	/**
 	 * @see java.awt.event.WindowAdapter#windowClosing(java.awt.event.WindowEvent)
 	 */
+	@SuppressWarnings("deprecation")
 	public void windowClosing(WindowEvent evt) {
-		this.mainWindow.leftArea.editWaiter.setEnabled(true);
-		this.mainWindow.leftArea.editTable.setEnabled(true);
-		this.mainWindow.leftArea.checkRoom.setEnabled(true);
-		this.mainWindow.leftArea.checkSchedule.setEnabled(true);
-		this.mainWindow.leftArea.roomManager.setEnabled(true);
-		this.mainWindow.leftArea.editSchedule.setEnabled(true);
-		this.mainWindow.leftArea.close.setEnabled(true);
+
+		this.mainWindow.enable();
 		
 		// TODO add all windows
 		if(this.mainWindow.editSectorWindow != null && this.mainWindow.editSectorWindow.isVisible())
 		{
 			this.mainWindow.editSectorWindow.R_Area.removeAll();
-			this.mainWindow.editSectorWindow.setVisible(false);
 		}
 		if(this.mainWindow.editTableWindow != null && this.mainWindow.editTableWindow.isVisible())
 		{
 			this.mainWindow.editTableWindow.R_Area.removeAll();
-			this.mainWindow.editTableWindow.setVisible(false);
+		}
+		if(this.mainWindow.rMModWindow != null && this.mainWindow.rMModWindow.isVisible())
+		{
+			this.mainWindow.rMModWindow.R_Area.removeAll();
+		}
+		if(this.mainWindow.editScheduleWindow != null && this.mainWindow.editScheduleWindow.isVisible())
+		{
+			this.mainWindow.editScheduleWindow.R_Area.removeAll();
+		}
+		if(this.mainWindow.scheduleWindow != null && this.mainWindow.scheduleWindow.isVisible())
+		{
+			this.mainWindow.scheduleWindow.removeAll();
 		}
 	}
 }

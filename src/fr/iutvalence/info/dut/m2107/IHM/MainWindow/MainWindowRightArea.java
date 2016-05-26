@@ -25,7 +25,7 @@ public class MainWindowRightArea extends JPanel{
 	/**
 	 * The main window
 	 */
-	private MainWindow mainWindow;
+	public MainWindow mainWindow;
 	
 	/**
 	 * Sector one (right panel)
@@ -242,7 +242,7 @@ public class MainWindowRightArea extends JPanel{
 				{
 					Table theTable = tablesPositions.get(new Position(j, i, 1));
 
-					theSector.add(new TableJPanel(theTable));
+					theSector.add(new TableJPanel(theTable, numSector, this));
 				}
 				else
 				{
