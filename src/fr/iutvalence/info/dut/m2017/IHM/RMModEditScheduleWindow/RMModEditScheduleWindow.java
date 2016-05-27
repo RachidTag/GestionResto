@@ -35,7 +35,7 @@ public class RMModEditScheduleWindow extends JFrame {
 			 * Initialize the editWaiterWindow
 			 */
 			this.addWindowListener(new WindowEventHandler(this.mainWindow));
-			this.setTitle("Edit Waiter");
+			this.setTitle("Edit schedule");
 			this.setSize(600, 450);
 			this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			this.setLocationRelativeTo(null);

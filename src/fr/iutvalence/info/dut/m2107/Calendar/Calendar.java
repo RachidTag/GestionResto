@@ -60,6 +60,16 @@ public class Calendar implements Serializable {
 		if(this.weeks.containsValue(aWeek)) throw new WeekAlreadyExistsException();
 		this.weeks.put(aWeek.getWeekNum(), aWeek);
 	}
+	/**
+	 * delete a week from the calendar
+	 * @param numWeek
+	 * @throws WeekNotExistsException
+	 */
+	public void deleteWeekCalendar(int numWeek) throws WeekNotExistsException 
+	{
+		if(!this.weeks.containsKey(numWeek)) throw new WeekNotExistsException();
+		this.weeks.remove(numWeek, this.weeks.get(numWeek));
+	}
 	
 	/**
 	 * Get all the weeks of the calendar

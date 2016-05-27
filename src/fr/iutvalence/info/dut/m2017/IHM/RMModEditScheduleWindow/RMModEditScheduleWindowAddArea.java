@@ -9,6 +9,7 @@ import java.util.TreeSet;
 
 import javax.swing.*;
 
+import fr.iutvalence.info.dut.m2107.Calendar.WeekAlreadyExistsException;
 import fr.iutvalence.info.dut.m2107.Room.Sector;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
@@ -17,6 +18,7 @@ import fr.iutvalence.info.dut.m2107.Staff.WaiterAlreadyExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotAPadderException;
 
 /**
+ * represent the add week area
  * @author projet Resto'
  *
  */
@@ -26,30 +28,15 @@ public class RMModEditScheduleWindowAddArea extends JFrame implements ActionList
 	 * The main window
 	 */
 	public RMModEditScheduleWindow rmModEditScheduleWindow;
-	/**
-	 * The spinner for the number of the waiter
-	 */
-	public JLabel numWaiter;
+
 	/**
 	 * The text field for the last name
 	 */
-	public JTextField lastName;
-	/**
-	 * The text field for the first name
-	 */
-	public JTextField firstName;
-	/**
-	 * The combo box for the rank
-	 */
-	public JComboBox<?> comboRanks;
-	/**
-	 * The combo box for the sector
-	 */
-	public JComboBox<?> comboSectors;
+	public JSpinner numWeek;
 	/**
 	 * The send button
 	 */
-	public JButton processAddWaiter;
+	public JButton processAddWeek;
 	
 	/**
 	 * TODO
@@ -72,7 +59,7 @@ public class RMModEditScheduleWindowAddArea extends JFrame implements ActionList
 		/*
 		 * Set the title of the panel
 		 */
-		JLabel title = new JLabel("Add Waiter",SwingConstants.CENTER);
+		JLabel title = new JLabel("Add Week",SwingConstants.CENTER);
 		title.setFont(title.getFont().deriveFont(Font.BOLD, 20.f));
 		this.rmModEditScheduleWindow.R_Area.add(title);
 		
@@ -87,112 +74,51 @@ public class RMModEditScheduleWindowAddArea extends JFrame implements ActionList
 		JPanel line1 = new JPanel();
 		line1.setLayout(lineLayout);
 		this.rmModEditScheduleWindow.R_Area.add(line1);
-		line1.add(new JLabel("Waiter Number"));
-		this.numWaiter = new JLabel(String.valueOf(this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().findFirstFreeIndex()));
-		line1.add(this.numWaiter);
-
+		line1.add(new JLabel("Week Number"));
+		this.numWeek = new JSpinner(new SpinnerNumberModel(1, 1, 52, 1));
+		line1.add(this.numWeek);
+		
 		/*
-		 * Set the second line (last name)
+		 * Set the second line (process add week)
 		 */
 		JPanel line2 = new JPanel();
 		line2.setLayout(lineLayout);
 		this.rmModEditScheduleWindow.R_Area.add(line2);
-		line2.add(new JLabel("Last Name"));
-		this.lastName = new JTextField();
-		line2.add(this.lastName);
-		
-		/*
-		 * Set the third line (first name)
-		 */
-		JPanel line3 = new JPanel();
-		line3.setLayout(lineLayout);
-		this.rmModEditScheduleWindow.R_Area.add(line3);
-		line3.add(new JLabel("First Name"));
-		this.firstName = new JTextField();
-		line3.add(this.firstName);
-		
-		/*
-		 * Set the fourth line (rank)
-		 */
-		JPanel line4 = new JPanel();
-		line4.setLayout(lineLayout);
-		this.rmModEditScheduleWindow.R_Area.add(line4);
-		line4.add(new JLabel("Rank"));
-		this.comboRanks = new JComboBox<Rank>(Rank.values());
-		this.comboRanks.addActionListener(this);
-		line4.add(this.comboRanks);
-		
-		/*
-		 * Set the fifth line (Sector)
-		 */
-		JPanel line5 = new JPanel();
-		line5.setLayout(lineLayout);
-		this.rmModEditScheduleWindow.R_Area.add(line5);
-		line5.add(new JLabel("Sector assignement"));
-		Set<Integer> sectorsNum = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheRoom().getSectors().keySet();
-		this.comboSectors = new JComboBox<Object>(sectorsNum.toArray());
-		this.comboSectors.disable();
-		this.comboSectors.addActionListener(this);
-		line5.add(this.comboSectors);
-		
-		/*
-		 * Set the sixth line (send)
-		 */
-		JPanel line6 = new JPanel();
-		line6.setLayout(lineLayout);
-		this.rmModEditScheduleWindow.R_Area.add(line6);
-		line6.add(new JLabel());
-		this.processAddWaiter = new JButton("Send");
-		line6.add(this.processAddWaiter);
-		this.processAddWaiter.addActionListener(this); 
+		line2.add(new JLabel());
+		this.processAddWeek = new JButton("send");
+		this.processAddWeek.addActionListener(this);
+		line2.add(this.processAddWeek);
+
+	
 		
 	}
 	
 	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent arg0){
 		JComponent source = (JComponent) arg0.getSource();
-		
-		if(source == this.comboRanks){
-			if(this.comboRanks.getSelectedItem() == Rank.PADDER)
-				this.comboSectors.enable();
-			else 
-				this.comboSectors.disable();
-		}
-		else if(source == comboSectors){
-			//TODO
-		}
-		else if(source == processAddWaiter){
-			int numWaiter = (int) this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().findFirstFreeIndex();
-			String lastName = this.lastName.getText();
-			String firstName = this.firstName.getText();
-			Rank rank = (Rank) this.comboRanks.getSelectedItem();
-			int numSector = (int )this.comboSectors.getSelectedItem();
+	
+		if(source == this.processAddWeek)
+		{
+			int theNumWeek = (int)this.numWeek.getValue();
 			int action = 0;
 			
-			Waiter theWaiter = new Waiter(numWaiter, lastName, firstName, rank);
-			
-			try {
-				this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().addWaiter(theWaiter);
+			try
+			{
+				this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().addWeekCalendar(theNumWeek);
 				action++;
-			} catch (WaiterAlreadyExistsException e) {
-				JOptionPane.showMessageDialog(null, "This number already exists");
+			}
+			catch (WeekAlreadyExistsException e)
+			{
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			if (rank == Rank.PADDER){
-				try {
-					this.rmModEditScheduleWindow.mainWindow.restaurant.getTheRoom().getSector(numSector).setPadder(theWaiter);
-				} catch (WaiterIsNotAPadderException | SectorNotExistsException e) {
-					// ...
-					e.printStackTrace();
-				}
-			}
-				if (action!=0)
-					JOptionPane.showMessageDialog(null, "The waiter has been correctly added");
-				else
-					JOptionPane.showMessageDialog(null, "Error : the waiter can't be added");
+			if(action != 0)
+				JOptionPane.showMessageDialog(null, "The week has been correctly added");
+			else
+				JOptionPane.showMessageDialog(null, "Can't be added");
 		}
 		
 	}
-
+		
 }

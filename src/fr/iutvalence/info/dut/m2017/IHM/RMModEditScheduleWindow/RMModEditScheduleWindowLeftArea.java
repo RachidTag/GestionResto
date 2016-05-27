@@ -92,13 +92,8 @@ public class RMModEditScheduleWindowLeftArea extends JPanel implements ActionLis
 		JComponent source = (JComponent) e.getSource();
 		if(source == this.close)
 		{
-			this.rmModEditScheduleWindow.mainWindow.leftArea.editWaiter.setEnabled(true);
-		    this.rmModEditScheduleWindow.mainWindow.leftArea.editTable.setEnabled(true);
-		    this.rmModEditScheduleWindow.mainWindow.leftArea.checkRoom.setEnabled(true);
-		    this.rmModEditScheduleWindow.mainWindow.leftArea.checkSchedule.setEnabled(true);
-		    this.rmModEditScheduleWindow.mainWindow.leftArea.roomManager.setEnabled(true);
-		    this.rmModEditScheduleWindow.mainWindow.leftArea.close.setEnabled(true);
-		    this.rmModEditScheduleWindow.setVisible(false);
+			this.rmModEditScheduleWindow.mainWindow.enable();
+		    this.rmModEditScheduleWindow.dispose();
 		    this.rmModEditScheduleWindow.R_Area.removeAll();
 		}
 		else if(source == this.add)

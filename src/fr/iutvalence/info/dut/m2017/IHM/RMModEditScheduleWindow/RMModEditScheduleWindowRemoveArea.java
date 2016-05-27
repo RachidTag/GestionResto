@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import fr.iutvalence.info.dut.m2107.Calendar.Week;
+import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
 
@@ -29,34 +31,16 @@ public class RMModEditScheduleWindowRemoveArea extends JPanel implements ActionL
 	/**
 	 * The Combo box for waiters
 	 */
-	public JComboBox<?> comboWaiter;
+	public JComboBox<?> comboWeek;
+	
 	/**
-	 * the first name of the waiter
+	 * the button process delete week
 	 */
-	public String firstName;
-	/**
-	 * the last name of the waiter
-	 */
-	public String lastName;
-	/**
-	 * The remove button
-	 */
-	public JButton processRemoveWaiter;
-	/**
-	 * The label for the first name
-	 */
-	public JLabel labelFirstName;
-	/**
-	 * The label for the last name
-	 */
-	public JLabel labelLastName;
+	public JButton processDeleteWeek;
+
 	
 	public RMModEditScheduleWindowRemoveArea(RMModEditScheduleWindow rmModEditScheduleWindow){
 		this.rmModEditScheduleWindow = rmModEditScheduleWindow;
-		this.lastName = null;
-		this.firstName = null;
-		this.labelLastName = new JLabel(this.lastName);
-		this.labelFirstName = new JLabel(this.firstName);
 		
 		/*
 		 * Set the grid layout
@@ -84,30 +68,12 @@ public class RMModEditScheduleWindowRemoveArea extends JPanel implements ActionL
 		 JPanel line1 = new JPanel();
 		 line1.setLayout(lineLayout);
 		 this.rmModEditScheduleWindow.R_Area.add(line1);
-		 line1.add(new JLabel("Num waiters"));
-		 Set<Integer> waitersNum = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiters().keySet();
-		 this.comboWaiter = new JComboBox<Object>(waitersNum.toArray());
-		 this.comboWaiter.addActionListener(this);
-		 line1.add(this.comboWaiter);
-		 
-		 /*
-		  * Set the second line (last name)
-		  */
-		 JPanel line2 = new JPanel();
-		 line2.setLayout(lineLayout);
-		 this.rmModEditScheduleWindow.R_Area.add(line2);
-		 line2.add(new JLabel("Last name :"));
-		 line2.add(this.labelLastName);
-		 
-		 /*
-		  * Set the third line (first name)
-		  */
-		 JPanel line3 = new JPanel();
-		 line3.setLayout(lineLayout);
-		 this.rmModEditScheduleWindow.R_Area.add(line3);
-		 line3.add(new JLabel("First name :"));
-		 line3.add(this.labelFirstName);
-		 
+		 line1.add(new JLabel("Num week"));
+		 Set<Integer> weeksNum = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getAllWeeks().keySet();
+		 this.comboWeek = new JComboBox<Object>(weeksNum.toArray());
+		 this.comboWeek.addActionListener(this);
+		 line1.add(this.comboWeek);
+
 		 /*
 		  * Set the forth line (remove button)
 		  */
@@ -115,9 +81,9 @@ public class RMModEditScheduleWindowRemoveArea extends JPanel implements ActionL
 		 line4.setLayout(lineLayout);
 		 this.rmModEditScheduleWindow.R_Area.add(line4);
 		 line4.add(new JLabel());
-		 this.processRemoveWaiter = new JButton("Remove");
-		 line4.add(this.processRemoveWaiter);
-		 this.processRemoveWaiter.addActionListener(this);
+		 this.processDeleteWeek = new JButton("Delete");
+		 line4.add(this.processDeleteWeek);
+		 this.processDeleteWeek.addActionListener(this);
 		 
 		 
 	}
@@ -126,33 +92,29 @@ public class RMModEditScheduleWindowRemoveArea extends JPanel implements ActionL
 	public void actionPerformed(ActionEvent arg0) {
 		JComponent source = (JComponent) arg0.getSource();
 		
-		if (source == this.comboWaiter){
-			try {
-				Waiter theWaiter = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int) this.comboWaiter.getSelectedItem());
-				this.lastName = theWaiter.getLastName();
-				this.firstName = theWaiter.getFirstName();
-				this.labelLastName.setText(this.lastName);
-				this.labelFirstName.setText(this.firstName);
-			} catch (WaiterDoesNotExistException e) {
-				this.lastName = null;
-				this.firstName = null;
-				e.printStackTrace();
-			}
+		if (source == this.comboWeek){
+
 		}
-		else if (source == this.processRemoveWaiter){
-			int numWaiter = (int) this.comboWaiter.getSelectedItem();
+		else if (source == this.processDeleteWeek){
+			int numWeek = (int) this.comboWeek.getSelectedItem();
 			int action =0;
-			try {
-				this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().deleteWaiter(numWaiter);
+			Week theWeek = null;
+
+			try
+			{
+				this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().deleteWeekCalendar(numWeek);
 				action++;
-			} catch (WaiterDoesNotExistException e) {
+			}
+			catch (WeekNotExistsException e)
+			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			if (action !=0)
-				JOptionPane.showMessageDialog(null, "The waiter has been correctly deleted");
+				JOptionPane.showMessageDialog(null, "The week has been correctly deleted");
 			else 
-				JOptionPane.showMessageDialog(null, "The waiter can't be deleted");
+				JOptionPane.showMessageDialog(null, "The week can't be deleted");
 				
 				this.rmModEditScheduleWindow.R_Area.removeAll();
 				new RMModEditScheduleWindowRemoveArea(this.rmModEditScheduleWindow);
