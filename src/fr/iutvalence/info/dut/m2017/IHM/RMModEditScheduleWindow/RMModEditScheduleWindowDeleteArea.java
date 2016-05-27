@@ -22,7 +22,7 @@ import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
 
-public class RMModEditScheduleWindowRemoveArea extends JPanel implements ActionListener{
+public class RMModEditScheduleWindowDeleteArea extends JPanel implements ActionListener{
 
 	/**
 	 * The Window
@@ -39,7 +39,7 @@ public class RMModEditScheduleWindowRemoveArea extends JPanel implements ActionL
 	public JButton processDeleteWeek;
 
 	
-	public RMModEditScheduleWindowRemoveArea(RMModEditScheduleWindow rmModEditScheduleWindow){
+	public RMModEditScheduleWindowDeleteArea(RMModEditScheduleWindow rmModEditScheduleWindow){
 		this.rmModEditScheduleWindow = rmModEditScheduleWindow;
 		
 		/*
@@ -117,7 +117,7 @@ public class RMModEditScheduleWindowRemoveArea extends JPanel implements ActionL
 				JOptionPane.showMessageDialog(null, "The week can't be deleted");
 				
 				this.rmModEditScheduleWindow.R_Area.removeAll();
-				new RMModEditScheduleWindowRemoveArea(this.rmModEditScheduleWindow);
+				new RMModEditScheduleWindowDeleteArea(this.rmModEditScheduleWindow);
 				SwingUtilities.updateComponentTreeUI(this.rmModEditScheduleWindow);
 			}
 			
