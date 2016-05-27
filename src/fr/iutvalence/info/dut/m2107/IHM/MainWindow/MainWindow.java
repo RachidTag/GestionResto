@@ -1,10 +1,10 @@
 package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 import javax.swing.*;
 
-import fr.iutvalence.info.dut.m2017.IHM.RMModEditScheduleWindow.RMModEditScheduleWindow;
 import fr.iutvalence.info.dut.m2107.Restaurant;
 import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
+import fr.iutvalence.info.dut.m2107.IHM.RMModEditScheduleWindow.RMModEditScheduleWindow;
 import fr.iutvalence.info.dut.m2107.IHM.RMModWindow.RMModWindow;
 import fr.iutvalence.info.dut.m2107.IHM.Schedule.ScheduleWindow;
 

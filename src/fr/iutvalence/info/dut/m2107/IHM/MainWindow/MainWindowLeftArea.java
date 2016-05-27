@@ -12,10 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import fr.iutvalence.info.dut.m2017.IHM.RMModEditScheduleWindow.RMModEditScheduleWindow;
 import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 import fr.iutvalence.info.dut.m2107.IHM.EditTableWindow.EditTableWindow;
 import fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow.EditWaiterWindow;
+import fr.iutvalence.info.dut.m2107.IHM.RMModEditScheduleWindow.RMModEditScheduleWindow;
 import fr.iutvalence.info.dut.m2107.IHM.RMModWindow.RMModWindow;
 import fr.iutvalence.info.dut.m2107.IHM.Schedule.ScheduleWindow;
 

@@ -1,4 +1,4 @@
-package fr.iutvalence.info.dut.m2017.IHM.RMModEditScheduleWindow;
+package fr.iutvalence.info.dut.m2107.IHM.RMModEditScheduleWindow;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
