@@ -24,60 +24,49 @@ import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotAPadderException;
 	/**
-	 * Represent the area where we can edit a waiter
+	 * Represent the area where we can edit a week
 	 * @author Théo
 	 */
-public class RMModEditScheduleWindowEditArea extends JPanel implements ActionListener{
+public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements ActionListener{
 
 		/**
 		 * The main window
 		 */
 		public RMModEditScheduleWindow rmModEditScheduleWindow;
 		/**
-		 * The combo box of the waiters
+		 * The combo box for the weeks
 		 */
-		public JComboBox<?> comboWaiter;
+		public JComboBox<?> numWeek;
 		/**
-		 * the combo box of the ranks
+		 * The combo box for the days
 		 */
-		public JComboBox<?> comboRank;
+		public JComboBox<?> numDay;
 		/**
-		 * the combo box for the sector
+		 * The combo box for the service
 		 */
-		public JComboBox<?> comboSector;
+		public JComboBox<?> service;
 		/**
-		 * the last name of the waiter
+		 * the combo box for the num waiter we want to add
 		 */
-		public String lastName;
+		public JComboBox<?> numWaiter;
 		/**
-		 * the first name of the waiter
+		 * The send button for a normal waiter
 		 */
-		public String firstName;
+		public JButton processEditWaiterAsNormalWaiter;
 		/**
-		 * The send button
+		 * The send button for a cleaner waiter
 		 */
-		public JButton processEditWaiter;
-		/**
-		 * JLabel for the last name
-		 */
-		public JLabel labelLastName;
-		/**
-		 * JLabel for the first name
-		 */
-		public JLabel labelFirstName;
+		public JButton processEditWaiterAsCleanerWaiter;
+		
 		
 		/**
 		 * create the edit waiter right area
 		 * @param editWaiterWindow
 		 */
-		public RMModEditScheduleWindowEditArea(RMModEditScheduleWindow rmModEditScheduleWindow) {
+		public RMModEditScheduleWindowEditAreaAddWaiter(RMModEditScheduleWindow rmModEditScheduleWindow) {
 			
 			this.rmModEditScheduleWindow = rmModEditScheduleWindow;
-			this.lastName = null;
-			this.firstName = null;
-			this.labelLastName = new JLabel(this.lastName);
-			this.labelFirstName = new JLabel(this.firstName);
-			
+
 			/*
 			 * Set the grid layout
 			 */
@@ -99,25 +88,27 @@ public class RMModEditScheduleWindowEditArea extends JPanel implements ActionLis
 			 GridLayout lineLayout = new GridLayout(1,2);
 			 
 			 /*
-			  * Set first line (waiters)
+			  * Set first line (weeks)
 			  */
 			 JPanel line1 = new JPanel();
 			 line1.setLayout(lineLayout);
 			 this.rmModEditScheduleWindow.R_Area.add(line1);
-			 line1.add(new JLabel("Num waiters"));
-			 Set<Integer> waitersNum = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiters().keySet();
-			 this.comboWaiter = new JComboBox<Object>(waitersNum.toArray());
-			 this.comboWaiter.addActionListener(this);
-			 line1.add(this.comboWaiter);
+			 line1.add(new JLabel("Num weeks"));
+			 Set<Integer> waitersNum = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getAllWeeks().keySet();
+			 this.numWeek = new JComboBox<Object>(waitersNum.toArray());
+			 this.numWeek.addActionListener(this);
+			 line1.add(this.numWeek);
 			 
 			 /*
-			  * Set the second line (last name)
+			  * Set the second line (days)
 			  */
 			 JPanel line2 = new JPanel();
 			 line2.setLayout(lineLayout);
 			 this.rmModEditScheduleWindow.R_Area.add(line2);
-			 line2.add(new JLabel("Last name :"));
-			 line2.add(this.labelLastName);
+			 line2.add(new JLabel("Num day :"));
+			 Integer[] days = {1, 2, 3, 4, 5, 6, 7};
+			 this.numDay.
+			 line2.add(this.numDay);
 			 
 			 /*
 			  * Set the third line (first name)
@@ -168,9 +159,9 @@ public class RMModEditScheduleWindowEditArea extends JPanel implements ActionLis
 	public void actionPerformed(ActionEvent arg0) {
 		JComponent source = (JComponent) arg0.getSource();
 		
-		if(source == this.comboWaiter){
+		if(source == this.numWeek){
 			try {
-				Waiter theWaiter = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int) this.comboWaiter.getSelectedItem());
+				Waiter theWaiter = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int) this.numWeek.getSelectedItem());
 				this.lastName = theWaiter.getLastName();
 				this.firstName = theWaiter.getFirstName();
 				this.comboRank.setSelectedItem(theWaiter.getRank());
@@ -189,7 +180,7 @@ public class RMModEditScheduleWindowEditArea extends JPanel implements ActionLis
 					this.comboSector.disable();
 		}
 		else if(source == this.processEditWaiter){
-			int theNumWaiter = (int) this.comboWaiter.getSelectedItem();
+			int theNumWaiter = (int) this.numWeek.getSelectedItem();
 			Rank theRank = (Rank) this.comboRank.getSelectedItem();
 			int theNumSector = (int) this.comboSector.getSelectedItem();
 			int action = 0;
