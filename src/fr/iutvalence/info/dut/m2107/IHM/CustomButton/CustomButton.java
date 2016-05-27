@@ -88,7 +88,7 @@ public class CustomButton extends JButton implements MouseListener {
 		
 
 	}
-	
+	/*
 	public static BufferedImage load9Patch(String path, int reqWidth, int reqHeight)
     {
         int x1=0,x2,y1=0,y2,w,h;
@@ -177,13 +177,13 @@ public class CustomButton extends JButton implements MouseListener {
         return scaledImage;
     }
 	
-	@Override
+    @Override
 	public void setPreferredSize(Dimension dimension) {
 		super.setPreferredSize(dimension);
 		this.buttonBg = new ImageIcon(load9Patch("ButtonBackground.png", (int)dimension.getWidth(), (int)dimension.getHeight()));
 		this.setIcon(this.buttonBg);
 	}
-
+*/
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 			

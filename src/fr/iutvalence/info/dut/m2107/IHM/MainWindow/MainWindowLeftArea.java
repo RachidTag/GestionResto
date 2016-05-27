@@ -1,5 +1,6 @@
 package fr.iutvalence.info.dut.m2107.IHM.MainWindow;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -115,7 +116,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Add "table edition" button
 		 */
-		this.editTable = new CustomButton("Edit Table");
+		this.editTable = new CustomButton("Edit Table", new Dimension(200, 70));
 		this.editTable.addActionListener(this);
 		JPanel editTablePanel = new JPanel();
 		editTablePanel.add(this.editTable);
@@ -124,7 +125,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Add "check a schedule" button
 		 */
-		this.checkSchedule = new CustomButton("Check the Schedule");
+		this.checkSchedule = new CustomButton("Check the Schedule", new Dimension(200, 70));
 		this.checkSchedule.addActionListener(this);
 		JPanel checkSchedulePanel = new JPanel();
 		checkSchedulePanel.add(this.checkSchedule);
@@ -133,7 +134,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Add "room manager mod" button
 		 */
-		this.roomManager = new CustomButton("Room Manager mod");
+		this.roomManager = new CustomButton("Room Manager mod", new Dimension(200, 70));
 		this.roomManager.addActionListener(this);
 		JPanel roomManagerPanel = new JPanel();
 		roomManagerPanel.add(this.roomManager);
@@ -142,7 +143,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Add "edit waiter" menu
 		 */
-		this.editWaiter = new CustomButton("Edit Waiter");
+		this.editWaiter = new CustomButton("Edit Waiter", new Dimension(200, 70));
 		this.editWaiter.addActionListener(this);
 		JPanel editWaiterPanel = new JPanel();
 		editWaiterPanel.add(this.editWaiter);
@@ -152,7 +153,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Add "edit schedule" button
 		 */
-		this.editSchedule = new CustomButton("Edit Schedule");
+		this.editSchedule = new CustomButton("Edit Schedule", new Dimension(200, 70));
 		this.editSchedule.addActionListener(this);
 		JPanel editSchedulePanel = new JPanel();
 		editSchedulePanel.add(this.editSchedule);
@@ -162,7 +163,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Add "quit" button
 		 */
-		this.close = new CustomButton("Close");
+		this.close = new CustomButton("Close", new Dimension(200, 70));
 		this.close.addActionListener(this);
 		JPanel closePanel = new JPanel();
 		closePanel.add(this.close);
