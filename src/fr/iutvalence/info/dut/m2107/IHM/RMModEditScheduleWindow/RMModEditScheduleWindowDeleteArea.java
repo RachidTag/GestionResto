@@ -53,7 +53,7 @@ public class RMModEditScheduleWindowDeleteArea extends JPanel implements ActionL
 		/*
 		 * Set the title of the panel
 		 */
-		 JLabel title = new JLabel("Remove waiter", SwingConstants.CENTER);
+		 JLabel title = new JLabel("Remove week", SwingConstants.CENTER);
 		 title.setFont(title.getFont().deriveFont(Font.BOLD,20.f));
 		 this.rmModEditScheduleWindow.R_Area.add(title);
 		 
