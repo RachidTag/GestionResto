@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import fr.iutvalence.info.dut.m2107.Calendar.DayNotExistsException;
 import fr.iutvalence.info.dut.m2107.Calendar.Service;
 import fr.iutvalence.info.dut.m2107.Calendar.ServiceType;
+import fr.iutvalence.info.dut.m2107.Calendar.Week;
 import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
 import fr.iutvalence.info.dut.m2107.Room.Sector;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
@@ -64,6 +65,19 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 		 * The send button for a cleaner waiter
 		 */
 		public JButton processEditWaiterAsCleanerWaiter;
+		/**
+		 * the last name of the waiter
+		 */
+		public String lastName;
+		
+		/**
+		 * the first name of the waiter
+		 */
+		public String firstName;
+		/**
+		 * the label of the name
+		 */
+		public JLabel name;
 		
 		
 		/**
@@ -72,6 +86,15 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 		 */
 		public RMModEditScheduleWindowEditAreaAddWaiter(RMModEditScheduleWindow rmModEditScheduleWindow) {
 			
+			/*
+			 * Set the strings
+			 */
+			this.lastName = "";
+			this.firstName = "";
+			
+			/*
+			 * Set the reference of the rmMod edit schedule window
+			 */
 			this.rmModEditScheduleWindow = rmModEditScheduleWindow;
 
 			/*
@@ -165,15 +188,32 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 			this.comboNumWaiter.addActionListener(this);
 			
 			/*
-			 * Set the fifth line (send)
+			 * Set the fifth line (label)
 			 */
 			JPanel line5 = new JPanel();
 			line5.setLayout(lineLayout);
 			this.rmModEditScheduleWindow.R_Area.add(line5);
+			try {
+				this.lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
+				this.firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
+			} catch (WaiterDoesNotExistException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.name = new JLabel(this.lastName + " " + this.firstName);
+			line5.add(new JLabel("Name :"));
+			line5.add(this.name);
+			
+			/*
+			 * Set the sixth line (send)
+			 */
+			JPanel line6 = new JPanel();
+			line6.setLayout(lineLayout);
+			this.rmModEditScheduleWindow.R_Area.add(line6);
 			this.processEditWaiterAsNormalWaiter = new JButton("Add Waiter");
 			this.processEditWaiterAsCleanerWaiter = new JButton("Add Cleaner Waiter");
-			line5.add(this.processEditWaiterAsNormalWaiter);
-			line5.add(this.processEditWaiterAsCleanerWaiter);
+			line6.add(this.processEditWaiterAsNormalWaiter);
+			line6.add(this.processEditWaiterAsCleanerWaiter);
 			this.processEditWaiterAsNormalWaiter.addActionListener(this);
 			this.processEditWaiterAsCleanerWaiter.addActionListener(this);
 
@@ -183,6 +223,28 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 	public void actionPerformed(ActionEvent arg0) {
 		JComponent source = (JComponent) arg0.getSource();
 		
+		if(source == this.comboNumWeek){
+			Week theWeek = null;
+			try {
+				theWeek = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem());
+			} catch (WeekNotExistsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		else if (source == this.comboNumWaiter){
+			try {
+				this.lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
+				this.firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
+			} catch (WaiterDoesNotExistException e) {
+				// TODO Auto-generated catch block
+				this.lastName = "";
+				this.firstName = "";
+				e.printStackTrace();
+			}
+			this.name.setText(this.lastName + " " + this.firstName);
+		}
 		
 	}
 }

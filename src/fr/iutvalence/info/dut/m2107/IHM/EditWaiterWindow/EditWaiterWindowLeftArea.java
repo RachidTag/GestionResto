@@ -106,7 +106,7 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 		if(source == this.close)
 		{
 			this.editWaiterWindow.mainWindow.enable();
-		    this.editWaiterWindow.dispose();
+		    this.editWaiterWindow.mainWindow.dispose();
 		    this.editWaiterWindow.R_Area.removeAll();
 		}
 		else if(source == this.add)

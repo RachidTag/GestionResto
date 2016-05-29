@@ -188,7 +188,7 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 					int i = 0;
 					for (Waiter waiter : waiters)
 					{
-						if(theService.getCleanerWaiters().contains(waiter)) 
+						if(theService.getCleanerWaiters().containsValue(waiter)) 
 						{
 							if((ServiceType)this.comboServices.getSelectedItem() == ServiceType.MIDDAY)
 							{

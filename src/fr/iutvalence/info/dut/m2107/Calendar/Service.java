@@ -1,8 +1,11 @@
 package fr.iutvalence.info.dut.m2107.Calendar;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
@@ -21,12 +24,12 @@ public class Service implements Serializable {
 	/**
 	 * A set of waiters
 	 */
-	private Set<Waiter> waiters;
+	private Map<Integer,Waiter> waiters;
 	
 	/**
 	 * A set of cleaner waiters
 	 */
-	private Set<Waiter> cleanerWaiter;
+	private Map<Integer,Waiter> cleanerWaiters;
 	
 	/**
 	 * The type of service (
@@ -38,8 +41,8 @@ public class Service implements Serializable {
 	 * @param serviceType (ServiceType.MIDI or SOIR)
 	 */
 	public Service(ServiceType serviceType) {
-		this.waiters = new HashSet<Waiter>();
-		this.cleanerWaiter = new HashSet<Waiter>();
+		this.waiters = new HashMap<Integer,Waiter>();
+		this.cleanerWaiters = new HashMap<Integer,Waiter>();
 		this.serviceType = serviceType;
 	}
 	
@@ -65,8 +68,8 @@ public class Service implements Serializable {
 	 * @throws WaiterAllreadyInServiceException 
 	 */
 	public void addWaiter(Waiter waiter) throws WaiterAllreadyInServiceException {
-		if(this.cleanerWaiter.contains(waiter) || this.waiters.contains(waiter)) throw new WaiterAllreadyInServiceException();
-		this.waiters.add(waiter);
+		if(this.cleanerWaiters.containsValue(waiter) || this.waiters.containsValue(waiter)) throw new WaiterAllreadyInServiceException();
+		this.waiters.put(waiter.getNumWaiter(), waiter);
 	}
 	
 	/**
@@ -83,8 +86,8 @@ public class Service implements Serializable {
 	 * @throws WaiterAllreadyInServiceException 
 	 */
 	public void addCleanerWaiter(Waiter waiter) throws WaiterAllreadyInServiceException {
-		if(this.cleanerWaiter.contains(waiter) || this.waiters.contains(waiter)) throw new WaiterAllreadyInServiceException();
-		this.cleanerWaiter.add(waiter);
+		if(this.cleanerWaiters.containsValue(waiter) || this.waiters.containsValue(waiter)) throw new WaiterAllreadyInServiceException();
+		this.cleanerWaiters.put(waiter.getNumWaiter(),waiter);
 	}
 	
 	/**
@@ -92,7 +95,7 @@ public class Service implements Serializable {
 	 * @param waiter the waiter we want to remove from the list of waiter
 	 */
 	public void removeCleanerWaiter(Waiter waiter) {
-		this.cleanerWaiter.remove(waiter);
+		this.cleanerWaiters.remove(waiter);
 	}
 	
 	/**
@@ -102,15 +105,13 @@ public class Service implements Serializable {
 	public Set<Waiter> getAllWaiters() {
 		Set<Waiter> allWaiters = new HashSet<Waiter>();
 
-		Iterator<Waiter> waitersIterator = this.waiters.iterator();
-		while(waitersIterator.hasNext())
+		for(Entry<Integer, Waiter> waiter : this.waiters.entrySet())
 		{
-			allWaiters.add(waitersIterator.next());
+			allWaiters.add(waiter.getValue());
 		}
-		Iterator<Waiter> cleanersIterator = this.cleanerWaiter.iterator();
-		while(cleanersIterator.hasNext())
+		for(Entry<Integer, Waiter> cleanerWaiter : this.cleanerWaiters.entrySet())
 		{
-			allWaiters.add(cleanersIterator.next());
+			allWaiters.add(cleanerWaiter.getValue());
 		}
 		
 		return allWaiters;
@@ -120,7 +121,7 @@ public class Service implements Serializable {
 	 * Return the list of the waiters
 	 * @return a set of waiters
 	 */
-	public Set<Waiter> getWaiters() {
+	public Map<Integer,Waiter> getWaiters() {
 		return this.waiters;
 	}
 	
@@ -128,8 +129,8 @@ public class Service implements Serializable {
 	 * Return the list of the cleaner waiters
 	 * @return a set of waiters
 	 */
-	public Set<Waiter> getCleanerWaiters() {
-		return this.cleanerWaiter;
+	public Map<Integer,Waiter> getCleanerWaiters() {
+		return this.cleanerWaiters;
 	}
 	
 	/**
@@ -139,16 +140,14 @@ public class Service implements Serializable {
 		String theString = "";
 		theString += this.getServiceType() + "\n";
 		theString += "Waiters: ";
-		Iterator<Waiter> theIterator = this.waiters.iterator();
-		while(theIterator.hasNext())
+		for(Entry<Integer, Waiter> waiter : this.waiters.entrySet())
 		{
-			theString += theIterator.next() + ", ";
+			theString += waiter.getValue() + ", ";
 		}
 		theString += "\nCleaner waiters: ";
-		theIterator = this.cleanerWaiter.iterator();
-		while(theIterator.hasNext())
+		for(Entry<Integer, Waiter> cleanerWaiter : this.cleanerWaiters.entrySet())
 		{
-			theString += theIterator.next() + ", ";
+			theString += cleanerWaiter.getValue() + ", ";
 		}
 		return theString;	
 	}
@@ -160,10 +159,9 @@ public class Service implements Serializable {
 	public String waitersToString(){
 		String theString = "";
 		theString += "Waiters: ";
-		Iterator<Waiter> theIterator = this.waiters.iterator();
-		while(theIterator.hasNext())
+		for(Entry<Integer, Waiter> waiter : this.waiters.entrySet())
 		{
-			theString += theIterator.next() + ", ";
+			theString += waiter.getValue() + ", ";
 		}
 		return theString;
 	}
@@ -175,10 +173,9 @@ public class Service implements Serializable {
 	 public String cleanerWaitersToString(){
 		 String theString = "";
 		 theString += "Cleaner waiters: ";
-		 Iterator<Waiter> theIterator = this.cleanerWaiter.iterator();
-		 while(theIterator.hasNext())
+		 for(Entry<Integer, Waiter> cleanerWaiter : this.cleanerWaiters.entrySet())
 		 {
-		 	theString += theIterator.next() + ", ";
+		 	theString += cleanerWaiter.getValue() + ", ";
 		 }
 		 return theString;	
 	 }
