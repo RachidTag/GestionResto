@@ -159,27 +159,23 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 			this.rmModEditScheduleWindow.R_Area.add(line4);
 			line4.add(new JLabel("Num  waiter"));
 			/*
+			 * Take all the waiter in the staff
+			 */
+			Set<Integer> numWaitersAvailable = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiters().keySet();
+			/*
 			 * Take all the waiter in the service
 			 */
-			Set<Waiter> waitersInService = null;
- 			try {
- 			  	waitersInService = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).getAllWaiters();
- 			} catch (DayNotExistsException | WeekNotExistsException e) {
- 				// TODO Auto-generated catch block
- 				e.printStackTrace();
- 			}
- 			/*
- 			 * Take all the waiter in the staff that are not already in the service
- 			 */
- 			Collection<Waiter> waitersAvailable = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiters().values();
- 			waitersAvailable.removeAll(waitersInService);
-			Set<Integer> numWaitersAvailable = new HashSet<Integer>();
-			/*
-			 * Take the number of those waiters
-			 */
-			for(Waiter waiter : waitersAvailable){
-				numWaitersAvailable.add(waiter.getNumWaiter());
+			Set<Integer> numWaitersInService = null;
+			try {
+				numWaitersInService = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).getAllWaiters().keySet();
+			} catch (DayNotExistsException | WeekNotExistsException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
+			/*
+			 * Remove the waiter of the service from all the waiter
+			 */
+			numWaitersAvailable.removeAll(numWaitersInService);
 			/*
 			 * Create the combo box
 			 */

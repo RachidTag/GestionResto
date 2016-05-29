@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 import java.util.Set;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -178,7 +179,7 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 			
 			Service theService = theDay.getService((ServiceType)this.comboServices.getSelectedItem());
 
-			Set<Waiter> waiters = theService.getAllWaiters();
+			Collection<Waiter> waiters = theService.getAllWaiters().values();
 			if(!theDay.isClosed())
 			{
 				if (waiters != null)

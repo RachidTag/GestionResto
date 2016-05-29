@@ -102,16 +102,16 @@ public class Service implements Serializable {
 	 * Get the Set of all the waiters
 	 * @return the set
 	 */
-	public Set<Waiter> getAllWaiters() {
-		Set<Waiter> allWaiters = new HashSet<Waiter>();
+	public Map<Integer, Waiter> getAllWaiters() {
+		Map<Integer,Waiter> allWaiters = new HashMap<Integer,Waiter>();
 
 		for(Entry<Integer, Waiter> waiter : this.waiters.entrySet())
 		{
-			allWaiters.add(waiter.getValue());
+			allWaiters.put(waiter.getKey(),waiter.getValue());
 		}
 		for(Entry<Integer, Waiter> cleanerWaiter : this.cleanerWaiters.entrySet())
 		{
-			allWaiters.add(cleanerWaiter.getValue());
+			allWaiters.put(cleanerWaiter.getKey(),cleanerWaiter.getValue());
 		}
 		
 		return allWaiters;
