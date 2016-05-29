@@ -159,23 +159,9 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 			this.rmModEditScheduleWindow.R_Area.add(line4);
 			line4.add(new JLabel("Num  waiter"));
 			/*
-			 * Take all the waiter in the staff
+			 * Take all the available waiter
 			 */
-			Set<Integer> numWaitersAvailable = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiters().keySet();
-			/*
-			 * Take all the waiter in the service
-			 */
-			Set<Integer> numWaitersInService = null;
-			try {
-				numWaitersInService = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).getAllWaiters().keySet();
-			} catch (DayNotExistsException | WeekNotExistsException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			/*
-			 * Remove the waiter of the service from all the waiter
-			 */
-			numWaitersAvailable.removeAll(numWaitersInService);
+			Set<Integer> numWaitersAvailable = this.waitersAvailable();
 			/*
 			 * Create the combo box
 			 */
@@ -213,8 +199,36 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 			this.processEditWaiterAsNormalWaiter.addActionListener(this);
 			this.processEditWaiterAsCleanerWaiter.addActionListener(this);
 
+	}
+		
+	/**
+	 * Return the number of the waiters available
+	 * @return the set of number of all available waiter
+	 */
+	public Set<Integer> waitersAvailable(){
+		/*
+		 * Take all the waiter in the staff
+		 */
+		Set<Integer> numWaitersAvailable = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiters().keySet();
+		/*
+		 * Take all the waiter in the service
+		 */
+		Set<Integer> numWaitersInService = null;
+		try {
+			numWaitersInService = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).getAllWaiters().keySet();
+		} catch (DayNotExistsException | WeekNotExistsException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		/*
+		 * Remove the waiter of the service from all the waiter
+		 */
+		numWaitersAvailable.removeAll(numWaitersInService);
+		return numWaitersAvailable;
+	}
 
+	
+	@SuppressWarnings({ "rawtypes", "unchecked"})
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JComponent source = (JComponent) arg0.getSource();
@@ -227,6 +241,8 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			DefaultComboBoxModel model = new DefaultComboBoxModel(this.waitersAvailable().toArray());
+			this.comboNumWaiter.setModel(model);
 			
 		}
 		else if (source == this.comboNumWaiter){
