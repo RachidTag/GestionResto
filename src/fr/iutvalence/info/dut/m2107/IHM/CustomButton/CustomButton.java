@@ -6,27 +6,39 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
-import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
+/**
+ * Represents the customized buttons
+ * @author Projet Resto
+ */
+@SuppressWarnings("serial")
 public class CustomButton extends JButton implements MouseListener {
+	/**
+	 * The button's background
+	 */
 	private ImageIcon buttonBg;
-	
 		 
+	/**
+	 * Generates the custom button with the given dimension
+	 * @param name
+	 * @param dimension
+	 */
 	public CustomButton(String name, Dimension dimension){
+		
+		/*
+		 * Load the font
+		 */
 		Font customFont = null;
 		try {
 		    //create the font to use. Specify the size!
@@ -40,67 +52,46 @@ public class CustomButton extends JButton implements MouseListener {
 		    e.printStackTrace();
 		}
 		
-		buttonBg = new ImageIcon(getClass().getResource("ButtonBackground.png"));
-		this.setIcon(buttonBg);
+		/*
+		 * Set the button's background
+		 */
+		this.buttonBg = new ImageIcon("/img/ButtonBackground.png");
+		this.setIcon(this.buttonBg);
 		
+		/*
+		 * Set the label with the good font
+		 */
 		JLabel jLabelName = new JLabel(name, JLabel.CENTER);
 		jLabelName.setFont(customFont);
 		jLabelName.setForeground(Color.BLACK);
-		
 		this.add(jLabelName);
-
 		
+		/*
+		 * Customize the button
+		 */
 		this.setBorderPainted(false);
 		this.setFocusPainted(false);
 		this.addMouseListener(this);
 		this.setPreferredSize(dimension);
 	}
 	
-	
-	
-	public static void main(String[] args) {
-		JFrame window = new JFrame();
-		window.setTitle("Test des boutons");
-		window.setSize(1200, 720);
-		window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
-		window.setLocationRelativeTo(null);
-		window.setResizable(false);
-		window.setSize(1200, 720);
-		
-		JPanel pan = new JPanel();
-		pan.setBackground(Color.WHITE);
-		
-		/*
-		 * Création du bouton, application d'une taille par défault pour ce bouton
-		 */
-		
-		CustomButton bouton = new CustomButton("Edit Table", new Dimension(90,150));
-		CustomButton bouton2 = new CustomButton("Edit TRUC", new Dimension(200,70));
-		CustomButton bouton3 = new CustomButton("GOD MOD", new Dimension(20,80));
-		
-		pan.add(bouton);
-		pan.add(bouton2);
-		pan.add(bouton3);
-		
-		
-		window.setContentPane(pan);
-		window.setVisible(true);
-		
-
-	}
-	/*
+	/**
+	 * Resizes the image
+	 * @param path
+	 * @param reqWidth
+	 * @param reqHeight
+	 * @return scaledImage (BufferedImage)
+	 */
 	public static BufferedImage load9Patch(String path, int reqWidth, int reqHeight)
     {
         int x1=0,x2,y1=0,y2,w,h;
         BufferedImage sourceImage=null;
         BufferedImage img[][];
         img = new BufferedImage[3][3];
-         
+
         try {
-            sourceImage = ImageIO.read(new File(path));
+            sourceImage = ImageIO.read(new File("img/"+path));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
             return null;
         } 
          
@@ -177,40 +168,52 @@ public class CustomButton extends JButton implements MouseListener {
         return scaledImage;
     }
 	
-    @Override
+    /**
+     * @see javax.swing.JComponent#setPreferredSize(java.awt.Dimension)
+     */
 	public void setPreferredSize(Dimension dimension) {
 		super.setPreferredSize(dimension);
 		this.buttonBg = new ImageIcon(load9Patch("ButtonBackground.png", (int)dimension.getWidth(), (int)dimension.getHeight()));
 		this.setIcon(this.buttonBg);
 	}
-*/
-	@Override
+
+    /**
+	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+	 */
 	public void mouseClicked(MouseEvent arg0) {
 			
 	}
 
-	@Override
+    /**
+	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
+	 */
 	public void mouseEntered(MouseEvent arg0) {
 		ImageIcon bgImage = new ImageIcon(getClass().getResource("ButtonBackgroundReleased.png"));
 		this.setIcon(bgImage);
 		
 	}
 
-	@Override
+    /**
+	 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
+	 */
 	public void mouseExited(MouseEvent arg0) {
 		ImageIcon bgImage = new ImageIcon(getClass().getResource("ButtonBackground.png"));
 		this.setIcon(bgImage);
 		
 	}
 
-	@Override
+    /**
+	 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
+	 */
 	public void mousePressed(MouseEvent arg0) {
 		ImageIcon bgImage = new ImageIcon(getClass().getResource("ButtonBackgroundPressed.png"));
 		this.setIcon(bgImage);
 		
 	}
 
-	@Override
+    /**
+	 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
+	 */
 	public void mouseReleased(MouseEvent arg0) {
 		ImageIcon bgImage = new ImageIcon(getClass().getResource("ButtonBackgroundReleased.png"));
 		this.setIcon(bgImage);
