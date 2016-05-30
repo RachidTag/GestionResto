@@ -86,7 +86,7 @@ public class Sector implements Serializable
 	 * @return the padder
 	 */
 	public Waiter getPadder() {
-		return padder;
+		return this.padder;
 	}
 
 	/**
