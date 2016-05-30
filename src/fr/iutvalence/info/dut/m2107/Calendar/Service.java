@@ -2,12 +2,8 @@ package fr.iutvalence.info.dut.m2107.Calendar;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
-
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 
 /**

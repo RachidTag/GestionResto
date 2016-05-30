@@ -217,10 +217,18 @@ public class TableJPanel extends JPanel implements MouseListener
 	@SuppressWarnings("deprecation")
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		
+		/*
+		 * Set the icon
+		 */
+		ImageIcon logoIcon = new ImageIcon("img/logoIcon.png");
+		Image logo = logoIcon.getImage();
+		
 		/*
 		 * Opens edit table frame
 		 */
 		this.mainWindowRightArea.mainWindow.editTableWindow = new EditTableWindow(this.mainWindowRightArea.mainWindow);
+		this.mainWindowRightArea.mainWindow.editTableWindow.setIconImage(logo);	
 		/*
 		 * Cleans the right area of the frame
 		 */
