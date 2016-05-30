@@ -134,7 +134,7 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 		/*
 		 * Split the page
 		 */
-		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, topArea, bottomArea);
+		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, this.topArea, this.bottomArea);
 		splitPane.setOneTouchExpandable(true);
 		
 		/*
