@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import fr.iutvalence.info.dut.m2107.Calendar.Day;
 import fr.iutvalence.info.dut.m2107.Calendar.DayNotExistsException;
 import fr.iutvalence.info.dut.m2107.Calendar.Service;
 import fr.iutvalence.info.dut.m2107.Calendar.ServiceType;
@@ -233,17 +234,15 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 	public void actionPerformed(ActionEvent arg0) {
 		JComponent source = (JComponent) arg0.getSource();
 		
-		if(source == this.comboNumWeek){
-			Week theWeek = null;
-			try {
-				theWeek = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem());
-			} catch (WeekNotExistsException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		if(source == this.comboNumWeek || source == this.comboNumDay || source == this.comboServices ){
+			if(this.waitersAvailable().size() != 0){
+				DefaultComboBoxModel model = new DefaultComboBoxModel(this.waitersAvailable().toArray());
+				this.comboNumWaiter.setModel(model); 
 			}
-			DefaultComboBoxModel model = new DefaultComboBoxModel(this.waitersAvailable().toArray());
-			this.comboNumWaiter.setModel(model);
-			
+			else {
+				this.comboNumWaiter.removeAllItems();
+				System.out.println(this.waitersAvailable().size());
+			}
 		}
 		else if (source == this.comboNumWaiter){
 			try {
@@ -257,6 +256,7 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 			}
 			this.name.setText(this.lastName + " " + this.firstName);
 		}
-		
+
+					
 	}
 }
