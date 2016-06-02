@@ -83,7 +83,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Make the layout of the panel
 		 */
-		GridLayout leftPanelControlGrid = new GridLayout(8,1);
+		GridLayout leftPanelControlGrid = new GridLayout(7,1);
 
 		/*
 		 * Create an horizontal and vertical gap of 5 pixels between panel and gridlayout
