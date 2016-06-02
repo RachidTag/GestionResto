@@ -9,6 +9,7 @@ import java.util.TreeSet;
 
 import javax.swing.*;
 
+import fr.iutvalence.info.dut.m2107.Calendar.InvalidWeekException;
 import fr.iutvalence.info.dut.m2107.Calendar.WeekAlreadyExistsException;
 import fr.iutvalence.info.dut.m2107.Room.Sector;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
@@ -109,6 +110,9 @@ public class RMModEditScheduleWindowAddArea extends JFrame implements ActionList
 			}
 			catch (WeekAlreadyExistsException e)
 			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidWeekException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

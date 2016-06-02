@@ -30,7 +30,13 @@ public class Main {
 		MainWindow window = null;
 		
 		Calendar cal = new Calendar();
-		Week week1 = new Week(1);
+		Week week1 = null;
+		try {
+			week1 = new Week(1);
+		} catch (InvalidWeekException e4) {
+			// TODO Auto-generated catch block
+			e4.printStackTrace();
+		}
 		try {
 			cal.addWeekCalendar(week1);
 		} catch (WeekAlreadyExistsException e3) {
