@@ -207,10 +207,12 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 	 * @return the set of number of all available waiter
 	 */
 	public Set<Integer> waitersAvailable(){
+		
+		Set<Integer> numWaitersAvailable = null;
 		/*
 		 * Take all the waiter in the staff
 		 */
-		Set<Integer> numWaitersAvailable = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiters().keySet();
+		numWaitersAvailable = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiters().keySet();
 		/*
 		 * Take all the waiter in the service
 		 */
