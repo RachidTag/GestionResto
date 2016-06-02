@@ -61,7 +61,7 @@ public class Staff implements Serializable {
 	 * @param waiter Waiter
 	 * @throws WaiterAlreadyExistsException 
 	 */
-	public void addWaiter(Waiter waiter) throws WaiterAlreadyExistsException{
+	public void addWaiter(Waiter waiter) throws WaiterAlreadyExistsException, NullPointerException{
 		if(this.waiters.containsValue(waiter)) throw new WaiterAlreadyExistsException();
 		if(this.waiters.containsKey(waiter.getNumWaiter())) throw new WaiterAlreadyExistsException();
 		this.waiters.put(waiter.getNumWaiter(), waiter);

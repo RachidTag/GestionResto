@@ -75,7 +75,7 @@ public class Calendar implements Serializable {
 	
 	/**
 	 * Get all the weeks of the calendar
-	 * @return weeks Map<Integer, Week>
+	 * @return weeks Map(Integer, Week)
 	 */
 	public Map<Integer, Week> getAllWeeks(){
 		return this.weeks;
