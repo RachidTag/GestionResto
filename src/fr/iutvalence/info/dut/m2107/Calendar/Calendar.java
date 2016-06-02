@@ -43,10 +43,12 @@ public class Calendar implements Serializable {
 	 * Add an empty week to the calendar 
 	 * @param weekNum the number of the week from the year
 	 * @throws WeekAlreadyExistsException 
+	 * @throws InvalidWeekException 
 	 */
-	public void addWeekCalendar(int weekNum) throws WeekAlreadyExistsException
+	public void addWeekCalendar(int weekNum) throws WeekAlreadyExistsException, InvalidWeekException
 	{
 		if(this.weeks.containsKey(weekNum)) throw new WeekAlreadyExistsException();
+		if(weekNum < 1) throw new InvalidWeekException();
 		this.weeks.put(weekNum, new Week(weekNum));
 	}
 	

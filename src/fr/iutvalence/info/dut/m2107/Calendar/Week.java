@@ -26,8 +26,10 @@ public class Week implements Serializable {
 	/**
 	 * Generates a week with 7 days 
 	 * @param weekNum in the year
+	 * @throws InvalidWeekException 
 	 */
-	public Week(int weekNum) {
+	public Week(int weekNum) throws InvalidWeekException {
+		if(weekNum < 1) throw new InvalidWeekException();
 		this.weekNum = weekNum;
 		this.days = new Day[7];
 		for(int i = 0; i < 7; i++)
