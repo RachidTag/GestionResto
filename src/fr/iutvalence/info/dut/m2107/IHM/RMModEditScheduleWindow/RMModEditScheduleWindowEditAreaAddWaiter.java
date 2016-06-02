@@ -210,7 +210,6 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 		for(Integer numWaiter : this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiters().keySet())
 		{
 			numWaitersAvailable.add(numWaiter);
-			System.out.println("YEY"+numWaitersAvailable);
 		}
 		
 		/*
@@ -219,7 +218,6 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 		Set<Integer> numWaitersInService = null;
 		try {
 			numWaitersInService = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).getAllWaiters().keySet();
-			System.out.println("PIKA"+numWaitersInService);
 		} catch (DayNotExistsException | WeekNotExistsException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -228,7 +226,6 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 		 * Remove the waiter of the service from all the waiter
 		 */
 		numWaitersAvailable.removeAll(numWaitersInService);
-		System.out.println("NICE"+numWaitersAvailable);
 		return numWaitersAvailable;
 	}
 
@@ -285,6 +282,7 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 
 			try {
 				this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).addWaiter(theWaiter);
+				System.out.println(theWaiter);
 				action++;
 			} catch (WaiterAllreadyInServiceException | DayNotExistsException | WeekNotExistsException e) {
 				// TODO Auto-generated catch block

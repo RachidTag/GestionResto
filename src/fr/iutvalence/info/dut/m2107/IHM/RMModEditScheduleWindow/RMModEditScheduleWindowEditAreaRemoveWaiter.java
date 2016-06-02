@@ -207,14 +207,6 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		/*try{
-			numWaitersInService = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).getAllWaiters().keySet();
-			System.out.println(numWaitersInService);
-		} catch (DayNotExistsException | WeekNotExistsException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
 
 		return numWaitersInService;
 		}
@@ -270,6 +262,7 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 
 				try {
 					this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).removeWaiter(theWaiter);
+					System.out.println(theWaiter);
 					action++;
 				} catch (DayNotExistsException | WeekNotExistsException e) {
 					// TODO Auto-generated catch block
