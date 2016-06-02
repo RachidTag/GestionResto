@@ -164,7 +164,6 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		}
 		catch (TableNotExistsException | SectorNotExistsException | NullPointerException e)
 		{
-			System.out.println("ok");
 			try
 			{
 				defaultTable = new Table(0, 2, new Position(0, 0, 1), Progress.NO_PROGRESS, State.FREE);
