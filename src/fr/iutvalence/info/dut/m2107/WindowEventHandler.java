@@ -34,9 +34,9 @@ public class WindowEventHandler extends WindowAdapter {
 		this.mainWindow.enable();
 		
 		// TODO add all windows
-		if(this.mainWindow.editSectorWindow != null && this.mainWindow.editSectorWindow.isVisible())
+		if(this.mainWindow.editWaiterWindow != null && this.mainWindow.editWaiterWindow.isVisible())
 		{
-			this.mainWindow.editSectorWindow.R_Area.removeAll();
+			this.mainWindow.editWaiterWindow.R_Area.removeAll();
 		}
 		if(this.mainWindow.editTableWindow != null && this.mainWindow.editTableWindow.isVisible())
 		{
