@@ -1,5 +1,6 @@
 package fr.iutvalence.info.dut.m2107.IHM.RMModWindow;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 
 /**
  * Represents the right area of the room manager window
@@ -38,7 +41,7 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 	/**
 -	 * Process login
 	 */
-	public JButton processLogin;	
+	public CustomButton processLogin;	
 	
 	/**
 	 * Edit the schedule button
@@ -102,9 +105,12 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 		line3.setLayout(lineLayout);
 		this.add(line3);
 		line3.add(new JLabel());
-		this.processLogin = new JButton("Send");
+		this.processLogin = new CustomButton("Send", new Dimension(150,45));
 		this.processLogin.addActionListener(this);
+		JPanel buttonJPanel = new JPanel();
+		buttonJPanel.add(this.processLogin);
 		line3.add(this.processLogin);
+		line3.add(buttonJPanel);
 	}
 
 	/**
