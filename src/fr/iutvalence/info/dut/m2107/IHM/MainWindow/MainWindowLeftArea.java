@@ -61,6 +61,11 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 	public CustomButton close;
 	
 	/**
+	 * Disconnetion button (left panel)
+	 */
+	public CustomButton disconnection;
+	
+	/**
 	 * Logo Icon
 	 */
 	public ImageIcon logoIcon;
@@ -83,7 +88,7 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Make the layout of the panel
 		 */
-		GridLayout leftPanelControlGrid = new GridLayout(7,1);
+		GridLayout leftPanelControlGrid = new GridLayout(8,1);
 
 		/*
 		 * Create an horizontal and vertical gap of 5 pixels between panel and gridlayout
@@ -166,6 +171,16 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 		this.editSchedule.setVisible(false);
 		
 		/*
+		 * Add "Disconnection" button
+		 */
+		this.disconnection = new CustomButton("Disconnection",buttonsDimension);
+		this.disconnection.addActionListener(this);
+		JPanel disconnectionPanel = new JPanel();
+		disconnectionPanel.add(this.disconnection);
+		this.add(disconnectionPanel);
+		this.disconnection.setVisible(false);
+		
+		/*
 		 * Add "quit" button
 		 */
 		this.close = new CustomButton("Close", buttonsDimension);
@@ -188,6 +203,18 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 			if (response == JOptionPane.YES_OPTION) {
 				this.mainWindow.restaurant.saveRestaurant();
 		    	System.exit(0);
+		    }
+		}
+		else if(source == this.disconnection)
+		{
+			int response = JOptionPane.showConfirmDialog(null, "You will be disconnected. Are you sure?", "Confirm",
+			        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			if (response == JOptionPane.YES_OPTION) {
+				this.editSchedule.setVisible(false);
+				this.editWaiter.setVisible(false);
+				this.disconnection.setVisible(false);
+				this.roomManager.setVisible(true);
+				this.validate();
 		    }
 		}
 		else
@@ -221,5 +248,6 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 			// Put the buttons disabled
 			this.mainWindow.disable();
 		}
+
 	}
 }

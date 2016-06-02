@@ -125,6 +125,7 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 		{
 			this.rMModWindow.mainWindow.leftArea.editSchedule.setVisible(true);
 			this.rMModWindow.mainWindow.leftArea.editWaiter.setVisible(true);
+			this.rMModWindow.mainWindow.leftArea.disconnection.setVisible(true);
 			this.rMModWindow.mainWindow.leftArea.roomManager.setVisible(false);
 			this.rMModWindow.mainWindow.leftArea.validate();
 			JOptionPane.showMessageDialog(null, "You've been correctly logged on Room Manager mode");
