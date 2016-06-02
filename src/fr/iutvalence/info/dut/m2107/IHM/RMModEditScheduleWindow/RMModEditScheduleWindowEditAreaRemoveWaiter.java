@@ -17,7 +17,6 @@ import javax.swing.SwingConstants;
 
 import fr.iutvalence.info.dut.m2107.Calendar.DayNotExistsException;
 import fr.iutvalence.info.dut.m2107.Calendar.ServiceType;
-import fr.iutvalence.info.dut.m2107.Calendar.WaiterAllreadyInServiceException;
 import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
@@ -220,11 +219,13 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 		return numWaitersInService;
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			JComponent source = (JComponent) arg0.getSource();
 			if(source == this.comboNumWeek || source == this.comboNumDay || source == this.comboServices ){
 				if(this.waitersInService().size() != 0){
+					@SuppressWarnings({ "rawtypes" })
 					DefaultComboBoxModel model = new DefaultComboBoxModel(this.waitersInService().toArray());
 					this.comboNumWaiter.setModel(model); 
 				}
@@ -261,6 +262,7 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 					e1.printStackTrace();
 				}
 
+				@SuppressWarnings("unused")
 				int action = 0;
 				
 				Waiter theWaiter = new Waiter(numWaiter, lastName, firstName, rank);

@@ -5,8 +5,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -15,25 +13,16 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import fr.iutvalence.info.dut.m2107.Calendar.Day;
 import fr.iutvalence.info.dut.m2107.Calendar.DayNotExistsException;
-import fr.iutvalence.info.dut.m2107.Calendar.Service;
 import fr.iutvalence.info.dut.m2107.Calendar.ServiceType;
 import fr.iutvalence.info.dut.m2107.Calendar.WaiterAllreadyInServiceException;
-import fr.iutvalence.info.dut.m2107.Calendar.Week;
 import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
-import fr.iutvalence.info.dut.m2107.Room.Sector;
-import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
-import fr.iutvalence.info.dut.m2107.Room.State;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
-import fr.iutvalence.info.dut.m2107.Staff.WaiterAlreadyExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
-import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotAPadderException;
 	/**
 	 * Represent the area where we can edit a week
 	 * @author Projet Resto
@@ -273,6 +262,8 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 		}
 		else if (source == this.processEditWaiterAsNormalWaiter){
 			
+			@SuppressWarnings("unused")
+			int action = 0;
 			int numWaiter = 0;
 			String lastName = "";
 			String firstName = "";
@@ -286,8 +277,8 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			int action = 0;
+			
+			
 			
 			Waiter theWaiter = new Waiter(numWaiter, lastName, firstName, rank);
 			

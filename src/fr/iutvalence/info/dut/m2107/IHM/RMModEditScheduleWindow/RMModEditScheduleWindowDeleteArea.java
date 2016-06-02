@@ -19,9 +19,8 @@ import javax.swing.SwingUtilities;
 
 import fr.iutvalence.info.dut.m2107.Calendar.Week;
 import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
-import fr.iutvalence.info.dut.m2107.Staff.Waiter;
-import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
 
+@SuppressWarnings("serial")
 public class RMModEditScheduleWindowDeleteArea extends JPanel implements ActionListener{
 
 	/**
@@ -98,6 +97,7 @@ public class RMModEditScheduleWindowDeleteArea extends JPanel implements ActionL
 		else if (source == this.processDeleteWeek){
 			int numWeek = (int) this.comboWeek.getSelectedItem();
 			int action =0;
+			@SuppressWarnings("unused")
 			Week theWeek = null;
 
 			try

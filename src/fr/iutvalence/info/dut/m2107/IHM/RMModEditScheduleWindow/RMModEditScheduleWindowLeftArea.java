@@ -15,6 +15,7 @@ import javax.swing.SwingUtilities;
  * @author projet Resto'
  *
  */
+@SuppressWarnings("serial")
 public class RMModEditScheduleWindowLeftArea extends JPanel implements ActionListener {
 
 		/**

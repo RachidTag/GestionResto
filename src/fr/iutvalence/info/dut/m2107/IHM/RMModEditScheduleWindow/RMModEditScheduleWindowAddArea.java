@@ -4,25 +4,17 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
-import java.util.TreeSet;
-
 import javax.swing.*;
 
 import fr.iutvalence.info.dut.m2107.Calendar.InvalidWeekException;
 import fr.iutvalence.info.dut.m2107.Calendar.WeekAlreadyExistsException;
-import fr.iutvalence.info.dut.m2107.Room.Sector;
-import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
-import fr.iutvalence.info.dut.m2107.Staff.Rank;
-import fr.iutvalence.info.dut.m2107.Staff.Waiter;
-import fr.iutvalence.info.dut.m2107.Staff.WaiterAlreadyExistsException;
-import fr.iutvalence.info.dut.m2107.Staff.WaiterIsNotAPadderException;
 
 /**
  * represent the add week area
  * @author projet Resto'
  *
  */
+@SuppressWarnings("serial")
 public class RMModEditScheduleWindowAddArea extends JFrame implements ActionListener{
 
 	/**
@@ -43,7 +35,6 @@ public class RMModEditScheduleWindowAddArea extends JFrame implements ActionList
 	 * TODO
 	 * @param editWaiterWindow
 	 */
-	@SuppressWarnings("deprecation")
 	public RMModEditScheduleWindowAddArea(RMModEditScheduleWindow rmModEditScheduleWindow) {
 
 		this.rmModEditScheduleWindow = rmModEditScheduleWindow;
@@ -94,7 +85,6 @@ public class RMModEditScheduleWindowAddArea extends JFrame implements ActionList
 		
 	}
 	
-	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent arg0){
 		JComponent source = (JComponent) arg0.getSource();
 	
