@@ -5,8 +5,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,7 +22,7 @@ import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
  * @author Projet Resto
  */
 @SuppressWarnings("serial")
-public class RMModWindowRightArea extends JPanel implements ActionListener
+public class RMModWindowRightArea extends JPanel implements ActionListener, KeyListener
 {
 	/**
 	 * Reference to the main window
@@ -41,12 +42,7 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 	/**
 -	 * Process login
 	 */
-	public CustomButton processLogin;	
-	
-	/**
-	 * Edit the schedule button
-	 */
-	public JButton editSch;
+	public CustomButton processLogin;
 
 	/**
 	 * Generates the right area of the room manager mod window
@@ -114,12 +110,9 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 		line3.add(this.processLogin);
 
 	}
-
-	/**
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
+	
 	@SuppressWarnings("deprecation")
-	public void actionPerformed(ActionEvent arg0) {
+	private void actionLogin(){
 		if(this.username.getText().equals("admin")
 				&& this.password.getText().equals("admin"))
 		{
@@ -135,5 +128,30 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 		}	
 		else
 			JOptionPane.showMessageDialog(null, "Wrong username / password");
+	}
+	
+
+	/**
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	public void actionPerformed(ActionEvent arg0) {
+		this.actionLogin();
+	}
+		
+	@Override
+	public void keyReleased(KeyEvent arg0){
+		System.out.println("key : ");
+		if (arg0.getKeyCode() == KeyEvent.VK_ENTER)
+			this.actionLogin();
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// Nothing to do...
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// Nothing to do...
 	}
 }
