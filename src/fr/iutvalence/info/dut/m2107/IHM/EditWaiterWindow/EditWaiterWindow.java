@@ -28,7 +28,7 @@ public class EditWaiterWindow extends JFrame {
 	public MainWindow mainWindow;
 	
 	/**
-	 * Generates an EditSectorWindow
+	 * Generates an EditWaiterWindow
 	 * @param theMainWindow reference
 	 */
 	public EditWaiterWindow(MainWindow theMainWindow)

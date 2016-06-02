@@ -36,9 +36,9 @@ public class MainWindow extends JFrame {
 	public EditTableWindow editTableWindow;
 	
 	/**
-	 * The edit sector window
+	 * The edit waiter window
 	 */
-	public EditWaiterWindow editSectorWindow;
+	public EditWaiterWindow editWaiterWindow;
 	
 	/**
 	 * The Schedule window

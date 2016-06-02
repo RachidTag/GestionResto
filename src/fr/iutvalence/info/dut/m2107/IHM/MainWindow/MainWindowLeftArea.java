@@ -199,8 +199,8 @@ public class MainWindowLeftArea extends JPanel implements ActionListener{
 			}
 			else if(source == this.editWaiter)
 			{
-				this.mainWindow.editSectorWindow = new EditWaiterWindow(this.mainWindow);
-				this.mainWindow.editSectorWindow.setIconImage(this.logo);		
+				this.mainWindow.editWaiterWindow = new EditWaiterWindow(this.mainWindow);
+				this.mainWindow.editWaiterWindow.setIconImage(this.logo);		
 			}
 			else if(source == this.roomManager)
 			{
