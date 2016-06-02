@@ -77,6 +77,8 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 		 * Creates the line layout
 		 */
 		GridLayout lineLayout = new GridLayout(1, 2);
+		lineLayout.setVgap(5);
+		lineLayout.setHgap(5);
 		
 		/*
 		 * Set the 1st line (rm username)
@@ -105,12 +107,12 @@ public class RMModWindowRightArea extends JPanel implements ActionListener
 		line3.setLayout(lineLayout);
 		this.add(line3);
 		line3.add(new JLabel());
-		this.processLogin = new CustomButton("Send", new Dimension(150,45));
+		this.processLogin = new CustomButton("Connection", new Dimension(238,57));
 		this.processLogin.addActionListener(this);
-		JPanel buttonJPanel = new JPanel();
-		buttonJPanel.add(this.processLogin);
+
+
 		line3.add(this.processLogin);
-		line3.add(buttonJPanel);
+
 	}
 
 	/**

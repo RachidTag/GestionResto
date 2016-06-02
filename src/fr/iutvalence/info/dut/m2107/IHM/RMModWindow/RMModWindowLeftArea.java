@@ -46,7 +46,7 @@ public class RMModWindowLeftArea extends JPanel implements ActionListener {
 		/*
 		 * Set the close button
 		 */
-		this.close = new CustomButton("Close", new Dimension(150,45));
+		this.close = new CustomButton("Close", new Dimension(120,50));
 		this.close.addActionListener(this);
 		JPanel buttonJPanel = new JPanel();
 		buttonJPanel.add(this.close);
