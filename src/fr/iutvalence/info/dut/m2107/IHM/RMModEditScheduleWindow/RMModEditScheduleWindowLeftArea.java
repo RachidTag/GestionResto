@@ -27,9 +27,13 @@ public class RMModEditScheduleWindowLeftArea extends JPanel implements ActionLis
 		 */
 		public JButton add;
 		/**
-		 * The edit button
+		 * The add waiter button
 		 */
-		public JButton edit;
+		public JButton addWaiter;
+		/**
+		 * The remove waiter button
+		 */
+		public JButton removeWaiter;
 		/**
 		 * The remove button
 		 */
@@ -60,28 +64,35 @@ public class RMModEditScheduleWindowLeftArea extends JPanel implements ActionLis
 			 */
 			this.add = new JButton("Add week");
 			this.add.addActionListener(this);
-			this.add(add);
+			this.add(this.add);
 			
 			/*
-			 * Set the edit waiter button
+			 * Set the add waiter button
 			 */
-			this.edit = new JButton("Edit schedule");
-			this.edit.addActionListener(this);
-			this.add(edit);
+			this.addWaiter = new JButton("Add Waiter");
+			this.addWaiter.addActionListener(this);
+			this.add(this.addWaiter);
+			
+			/*
+			 * Set the remove waiter button
+			 */
+			this.removeWaiter = new JButton("Remove Waiter");
+			this.removeWaiter.addActionListener(this);
+			this.add(this.removeWaiter);
 
 			/*
 			 * Set the remove waiter button
 			 */
 			this.remove = new JButton("Remove week");
 			this.remove.addActionListener(this);
-			this.add(remove);
+			this.add(this.remove);
 			
 			/*
 			 * Set the close button
 			 */
 			this.close = new JButton("close");
 			this.close.addActionListener(this);
-			this.add(close);
+			this.add(this.close);
 			
 		}
 
@@ -103,11 +114,14 @@ public class RMModEditScheduleWindowLeftArea extends JPanel implements ActionLis
 			new RMModEditScheduleWindowAddArea(this.rmModEditScheduleWindow);
 			SwingUtilities.updateComponentTreeUI(this.rmModEditScheduleWindow);
 		}
-		else if (source == this.edit)
+		else if (source == this.addWaiter)
 		{
 			this.rmModEditScheduleWindow.R_Area.removeAll();
 			new RMModEditScheduleWindowEditAreaAddWaiter(this.rmModEditScheduleWindow);
 			SwingUtilities.updateComponentTreeUI(this.rmModEditScheduleWindow);
+		}
+		else if (source == this.removeWaiter){
+			//TODO RACHID!!!
 		}
 		else if (source == this.remove){
 			this.rmModEditScheduleWindow.R_Area.removeAll();
