@@ -69,11 +69,11 @@ public class Service implements Serializable {
 	}
 	
 	/**
-	 * Remove a waiter from the list of waiter
+	 * Remove a waiter from the list of normal waiter 
 	 * @param waiter the waiter we want to remove from the list of waiter
 	 */
-	public void removeWaiter(Waiter waiter) {
-		this.waiters.remove(waiter);
+	public void removeNormalWaiter(Waiter waiter) {
+		this.waiters.remove(waiter.getNumWaiter());
 	}
 	
 	/**
@@ -91,7 +91,16 @@ public class Service implements Serializable {
 	 * @param waiter the waiter we want to remove from the list of waiter
 	 */
 	public void removeCleanerWaiter(Waiter waiter) {
-		this.cleanerWaiters.remove(waiter);
+		this.cleanerWaiters.remove(waiter.getNumWaiter());
+	}
+	
+	/**
+	 * Remove a waiter from the list of cleaner waiter or normal waiter
+	 * @param waiter the waiter we want to remove from the list
+	 */
+	public void removeWaiter(Waiter waiter){
+		this.removeNormalWaiter(waiter);
+		this.removeCleanerWaiter(waiter);
 	}
 	
 	/**
