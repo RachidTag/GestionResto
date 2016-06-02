@@ -1,5 +1,6 @@
 package fr.iutvalence.info.dut.m2107.IHM.EditTableWindow;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,7 +9,6 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
+import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 import fr.iutvalence.info.dut.m2107.Room.ATableIsAlreadyInThisPositionException;
 import fr.iutvalence.info.dut.m2107.Room.ClientNameRequiredException;
 import fr.iutvalence.info.dut.m2107.Room.Position;
@@ -90,7 +91,7 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 	/**
 	 * Process edit table button
 	 */
-	private JButton processEditTable;	
+	private CustomButton processEditTable;	
 
 	/**
 	 * Generates the edit area of the edit table window
@@ -260,9 +261,10 @@ public class EditTableWindowEditArea extends JPanel implements ActionListener{
 		line10.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line10);
 		line10.add(new JLabel());
-		this.processEditTable = new JButton("Send");
+		this.processEditTable = new CustomButton("Send", new Dimension(240, 33));
 		this.processEditTable.addActionListener(this);
 		line10.add(this.processEditTable);
+
 	}
 	
 	/**

@@ -1,12 +1,15 @@
 package fr.iutvalence.info.dut.m2107.IHM.RMModWindow;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 
 /**
  * Represents the left area of the room manager window
@@ -22,7 +25,7 @@ public class RMModWindowLeftArea extends JPanel implements ActionListener {
 	/**
 	 * The close button
 	 */
-	public JButton close;
+	public CustomButton close;
 	
 	/**
 	 * Generates the left area of the RM mod window
@@ -38,15 +41,18 @@ public class RMModWindowLeftArea extends JPanel implements ActionListener {
 		 * Set the layout
 		 */
 		GridLayout controlPanel = new GridLayout(8,1);
+		controlPanel.setVgap(5);
 		this.setLayout(controlPanel);
 		
 		/*
 		 * Set the close button
 		 */
-		this.close = new JButton("close");
+		this.close = new CustomButton("Close", new Dimension(150,45));
 		this.close.addActionListener(this);
+		JPanel buttonJPanel = new JPanel();
+		buttonJPanel.add(this.close);
 		this.add(this.close);
-		
+		this.add(buttonJPanel);
 	}
 	
 	/**
