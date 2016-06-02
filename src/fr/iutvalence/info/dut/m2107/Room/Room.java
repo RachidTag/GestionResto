@@ -30,7 +30,7 @@ public class Room implements Serializable {
 	
 	/**
 	 * Get all the sectors
-	 * @return sectors Map<Integer, Sector>
+	 * @return sectors Map of sectors (integer, sector)
 	 */
 	public Map<Integer, Sector> getSectors()
 	{
@@ -41,7 +41,7 @@ public class Room implements Serializable {
 	 * Get an unique sector
 	 * @param numSector int
 	 * @return a Sector
-	 * @throws SectorNotExistsException 
+	 * @throws SectorNotExistsException exception
 	 */
 	public Sector getSector(int numSector) throws SectorNotExistsException{
 		if(!this.sectors.containsKey(numSector)) throw new SectorNotExistsException();
@@ -50,7 +50,7 @@ public class Room implements Serializable {
 	
 	/**
 	 * Edit list of sectors 
-	 * @param sectors
+	 * @param sectors Sectors hashmap (integer, sector)
 	 */
 	public void setSectors(HashMap<Integer, Sector> sectors)
 	{
@@ -60,7 +60,7 @@ public class Room implements Serializable {
 	/**
 	 * add an unique sector
 	 * @param sector Sector
-	 * @throws SectorAlreadyExistsException 
+	 * @throws SectorAlreadyExistsException exception
 	 */
 	public void addSector(Sector sector) throws SectorAlreadyExistsException{
 		if(this.sectors.containsValue(sector)) throw new SectorAlreadyExistsException();
@@ -71,7 +71,7 @@ public class Room implements Serializable {
 	 * edit an unique sector
 	 * @param numSector a num of Sector
 	 * @param sector Sector
-	 * @throws SectorNotExistsException 
+	 * @throws SectorNotExistsException exception
 	 */
 	public void editSector(int numSector, Sector sector) throws SectorNotExistsException{
 		if(!this.sectors.containsKey(numSector)) throw new SectorNotExistsException();
@@ -80,8 +80,8 @@ public class Room implements Serializable {
 
 	/**
 	 * delete a sector
-	 * @param numSector int
-	 * @throws SectorNotExistsException 
+	 * @param numSector int num of sector
+	 * @throws SectorNotExistsException exception
 	 */
 	public void deleteSector(int numSector) throws SectorNotExistsException{
 		if(!this.sectors.containsKey(numSector)) throw new SectorNotExistsException();

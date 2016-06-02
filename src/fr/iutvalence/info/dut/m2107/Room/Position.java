@@ -89,8 +89,8 @@ public class Position implements Serializable{
 	
 	/**
 	 * Check if the given coordinates are the same as the object
-	 * @param x
-	 * @param y
+	 * @param x X coordinate
+	 * @param y Y coordinate
 	 * @return boolean if position is equals 
 	 */
 	public boolean hasSamePosition(int x, int y)

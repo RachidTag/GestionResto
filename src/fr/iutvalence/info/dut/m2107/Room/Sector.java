@@ -48,8 +48,8 @@ public class Sector implements Serializable
 	/**
 	 * Add a table to a sector
 	 * @param table Table
-	 * @throws TableAlreadyExistsException 
-	 * @throws ATableIsAlreadyInThisPositionException 
+	 * @throws TableAlreadyExistsException exception
+	 * @throws ATableIsAlreadyInThisPositionException exception
 	 */
 	public void addTable(Table table) throws TableAlreadyExistsException, ATableIsAlreadyInThisPositionException{
 		if(this.tables.containsValue(table)) throw new TableAlreadyExistsException();
@@ -63,7 +63,7 @@ public class Sector implements Serializable
 	/**
 	 * Remove a table from the sector
 	 * @param numTable int
-	 * @throws TableNotExistsException 
+	 * @throws TableNotExistsException exception
 	 */
 	public void removeTable(int numTable) throws TableNotExistsException{
 		if(!this.tables.containsKey(numTable)) throw new TableNotExistsException();
@@ -73,7 +73,7 @@ public class Sector implements Serializable
 	/**
 	 * Edit the current padder
 	 * @param padder Waiter
-	 * @throws WaiterIsNotAPadderException 
+	 * @throws WaiterIsNotAPadderException exception
 	 */
 	public void setPadder(Waiter padder) throws WaiterIsNotAPadderException{
 		if (padder != null && padder.getRank() != Rank.PADDER) throw new WaiterIsNotAPadderException();
@@ -93,7 +93,7 @@ public class Sector implements Serializable
 	 * Get a table from the list
 	 * @param numTable int
 	 * @return Table
-	 * @throws TableNotExistsException 
+	 * @throws TableNotExistsException exception
 	 */
 	public Table getTable(int numTable) throws TableNotExistsException{
 		if(!this.tables.containsKey(numTable)) throw new TableNotExistsException();
@@ -102,7 +102,7 @@ public class Sector implements Serializable
 	
 	/**
 	 * Get the tables list
-	 * @return Tables Map<Integer, Table>
+	 * @return Tables Map of tables (num of table, table)
 	 */
 	public Map<Integer, Table> getTables(){
 		return this.tables;

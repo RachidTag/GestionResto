@@ -31,7 +31,7 @@ public class Staff implements Serializable {
 	
 	/**
 	 * Get all the waiters
-	 * @return waiters Map<Integer, Waiter>
+	 * @return waiters map of waiters (num, waiter)
 	 */
 	public Map<Integer, Waiter> getWaiters(){
 		return this.waiters;

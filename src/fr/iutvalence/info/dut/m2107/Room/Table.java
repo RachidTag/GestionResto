@@ -45,12 +45,12 @@ public class Table implements Serializable
 	
 	/**
 	 * Create an instance of table
-	 * @param numTable
-	 * @param numberPlaces
-	 * @param position
-	 * @param state
-	 * @param progress
-	 * @throws ClientNameRequiredException 
+	 * @param numTable table's num
+	 * @param numberPlaces num of places
+	 * @param position (Position)
+	 * @param state (State)
+	 * @param progress (Progress)
+	 * @throws ClientNameRequiredException exception
 	 */
 	public Table(int numTable, int numberPlaces, Position position,
 			Progress progress, State state) throws ClientNameRequiredException {
@@ -65,10 +65,10 @@ public class Table implements Serializable
 	
 	/**
 	 * Create an instance of table reserved
-	 * @param numTable
-	 * @param numberPlaces
-	 * @param position
-	 * @param clientName 
+	 * @param numTable table's num
+	 * @param numberPlaces num of places
+	 * @param position (Position)
+	 * @param clientName client's name
 	 */
 	public Table(int numTable, int numberPlaces, Position position, String clientName){
 		this.numTable = numTable;
@@ -97,7 +97,7 @@ public class Table implements Serializable
 
 	/**
 	 * Set the number of places
-	 * @param numberPlaces
+	 * @param numberPlaces number of places
 	 */
 	public void setNumberPlaces(int numberPlaces) {
 		this.numberPlaces = numberPlaces;
@@ -113,7 +113,7 @@ public class Table implements Serializable
 
 	/**
 	 * Set the position
-	 * @param position
+	 * @param position a Position (X, Y, rot)
 	 */
 	public void setPosition(Position position) {
 		this.position = position;
@@ -129,8 +129,8 @@ public class Table implements Serializable
 
 	/**
 	 * Set the state of the table
-	 * @param state
-	 * @throws ClientNameRequiredException 
+	 * @param state State of the table
+	 * @throws ClientNameRequiredException exception
 	 */
 	public void setState(State state) throws ClientNameRequiredException {
 		if(state == State.RESERVED) throw new ClientNameRequiredException();
@@ -140,7 +140,7 @@ public class Table implements Serializable
 
 	/**
 	 * Set the reserved state to the table
-	 * @param clientName 
+	 * @param clientName (string)
 	 */
 	public void setState(String clientName) {
 		this.state = State.RESERVED;
@@ -157,7 +157,7 @@ public class Table implements Serializable
 
 	/**
 	 * Set the progress of the dinner
-	 * @param progress
+	 * @param progress (Progress)
 	 */
 	public void setProgress(Progress progress) {
 		this.progress = progress;
