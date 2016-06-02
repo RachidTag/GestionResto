@@ -1,13 +1,16 @@
 package fr.iutvalence.info.dut.m2107.IHM.EditTableWindow;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 
 /**
  * Represents the left area of the edit table window
@@ -23,22 +26,22 @@ public class EditTableWindowLeftArea extends JPanel implements ActionListener{
 	/**
 	 * Edit button
 	 */
-	public JButton edit;
+	public CustomButton edit;
 	
 	/**
 	 * Delete button
 	 */
-	public JButton delete;
+	public CustomButton delete;
 	
 	/**
 	 * Add button
 	 */
-	public JButton add;
+	public CustomButton add;
 	
 	/**
 	 * Close button
 	 */
-	public JButton close;
+	public CustomButton close;
 
 	/**
 	 * Generates the left area of the edit table window
@@ -54,15 +57,17 @@ public class EditTableWindowLeftArea extends JPanel implements ActionListener{
 		 * Set the layout
 		 */
 		GridLayout controlPanel = new GridLayout(4,1);
+		controlPanel.setHgap(5);
+		controlPanel.setVgap(5);
 		this.setLayout(controlPanel);
 
 		/*
 		 * Set the buttons
 		 */
-		this.edit = new JButton("Edit");
-		this.delete = new JButton("Delete");
-		this.add = new JButton("Add");
-		this.close = new JButton("Close");
+		this.edit = new CustomButton("Edit", new Dimension(150, 45));
+		this.delete = new CustomButton("Delete", new Dimension(150, 45));
+		this.add = new CustomButton("Add", new Dimension(150, 45));
+		this.close = new CustomButton("Close", new Dimension(150, 45));
 		
 		/*
 		 * Set the buttons' listeners
@@ -80,6 +85,22 @@ public class EditTableWindowLeftArea extends JPanel implements ActionListener{
 		this.add(this.edit);
 		this.add(this.delete);
 		this.add(this.close);
+	
+
+		JPanel buttonJPanel1 = new JPanel();
+		JPanel buttonJPanel2 = new JPanel();
+		JPanel buttonJPanel3 = new JPanel();
+		JPanel buttonJPanel4 = new JPanel();
+		
+		buttonJPanel1.add(this.add);
+		buttonJPanel1.add(this.edit);
+		buttonJPanel2.add(this.delete);
+		buttonJPanel4.add(this.close);
+		
+		this.add(buttonJPanel1);
+		this.add(buttonJPanel2);
+		this.add(buttonJPanel3);
+		this.add(buttonJPanel4);
 		
 	}
 

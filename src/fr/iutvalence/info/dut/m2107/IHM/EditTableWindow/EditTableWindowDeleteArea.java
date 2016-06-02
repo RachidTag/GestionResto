@@ -1,5 +1,6 @@
 package fr.iutvalence.info.dut.m2107.IHM.EditTableWindow;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -7,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.util.TreeSet;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -16,10 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 import fr.iutvalence.info.dut.m2107.Room.Sector;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Room.Table;
 import fr.iutvalence.info.dut.m2107.Room.TableNotExistsException;
+import javafx.scene.shape.Line;
 
 /**
  * Represents the delete area of the edit table window
@@ -45,7 +47,7 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener 
 	/**
 	 * Process button
 	 */
-	private JButton processDeleteTable;
+	private CustomButton processDeleteTable;
 	
 	/**
 	 * Generates the delete area of the edit table window
@@ -112,9 +114,10 @@ public class EditTableWindowDeleteArea extends JPanel implements ActionListener 
 		line3.setLayout(lineLayout);
 		this.editTableWindow.R_Area.add(line3);
 		line3.add(new JLabel());
-		this.processDeleteTable = new JButton("Delete");
+		this.processDeleteTable = new CustomButton("Delete", new Dimension(240, 100));
 		this.processDeleteTable.addActionListener(this);
 		line3.add(this.processDeleteTable);
+
 	}
 
 	/**
