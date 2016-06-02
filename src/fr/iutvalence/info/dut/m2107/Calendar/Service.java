@@ -83,8 +83,8 @@ public class Service implements Serializable {
 	 * @param waiter the waiter we want to remove from the list
 	 */
 	public void removeWaiter(Waiter waiter){
-		this.waiters.remove(waiter);
-		this.cleanerWaiters.remove(waiter);
+		this.waiters.remove(waiter.getNumWaiter());
+		this.cleanerWaiters.remove(waiter.getNumWaiter());
 	}
 	
 	/**
