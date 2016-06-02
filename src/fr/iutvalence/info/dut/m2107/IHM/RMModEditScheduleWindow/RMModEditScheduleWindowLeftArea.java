@@ -121,7 +121,9 @@ public class RMModEditScheduleWindowLeftArea extends JPanel implements ActionLis
 			SwingUtilities.updateComponentTreeUI(this.rmModEditScheduleWindow);
 		}
 		else if (source == this.removeWaiter){
-			//TODO RACHID!!!
+			this.rmModEditScheduleWindow.R_Area.removeAll();
+			new RMModEditScheduleWindowEditAreaRemoveWaiter(this.rmModEditScheduleWindow);
+			SwingUtilities.updateComponentTreeUI(this.rmModEditScheduleWindow);
 		}
 		else if (source == this.remove){
 			this.rmModEditScheduleWindow.R_Area.removeAll();
