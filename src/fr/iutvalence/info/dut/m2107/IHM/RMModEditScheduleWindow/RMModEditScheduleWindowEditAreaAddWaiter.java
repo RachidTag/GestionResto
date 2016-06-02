@@ -1,6 +1,7 @@
 package fr.iutvalence.info.dut.m2107.IHM.RMModEditScheduleWindow;
 
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -9,7 +10,6 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -20,6 +20,7 @@ import fr.iutvalence.info.dut.m2107.Calendar.DayNotExistsException;
 import fr.iutvalence.info.dut.m2107.Calendar.ServiceType;
 import fr.iutvalence.info.dut.m2107.Calendar.WaiterAllreadyInServiceException;
 import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
+import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
@@ -53,11 +54,11 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 		/**
 		 * The send button for a normal waiter
 		 */
-		public JButton processEditWaiterAsNormalWaiter;
+		public CustomButton processEditWaiterAsNormalWaiter;
 		/**
 		 * The send button for a cleaner waiter
 		 */
-		public JButton processEditWaiterAsCleanerWaiter;
+		public CustomButton processEditWaiterAsCleanerWaiter;
 		/**
 		 * the last name of the waiter
 		 */
@@ -109,6 +110,8 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 			 * Set the layout
 			 */
 			GridLayout lineLayout = new GridLayout(1,2);
+			lineLayout.setVgap(2);
+			lineLayout.setHgap(2);
 			 
 			/*
 			 * Set first line (weeks)
@@ -185,8 +188,8 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 			JPanel line6 = new JPanel();
 			line6.setLayout(lineLayout);
 			this.rmModEditScheduleWindow.R_Area.add(line6);
-			this.processEditWaiterAsNormalWaiter = new JButton("Add Waiter");
-			this.processEditWaiterAsCleanerWaiter = new JButton("Add Cleaner Waiter");
+			this.processEditWaiterAsNormalWaiter = new CustomButton("Add Waiter", new Dimension(240,50));
+			this.processEditWaiterAsCleanerWaiter = new CustomButton("Add Cleaner Waiter", new Dimension(240,50));
 			line6.add(this.processEditWaiterAsNormalWaiter);
 			line6.add(this.processEditWaiterAsCleanerWaiter);
 			this.processEditWaiterAsNormalWaiter.addActionListener(this);

@@ -1,5 +1,6 @@
 package fr.iutvalence.info.dut.m2107.IHM.RMModEditScheduleWindow;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,7 @@ import javax.swing.*;
 
 import fr.iutvalence.info.dut.m2107.Calendar.InvalidWeekException;
 import fr.iutvalence.info.dut.m2107.Calendar.WeekAlreadyExistsException;
+import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 
 /**
  * represent the add week area
@@ -29,7 +31,7 @@ public class RMModEditScheduleWindowAddArea extends JFrame implements ActionList
 	/**
 	 * The send button
 	 */
-	public JButton processAddWeek;
+	public CustomButton processAddWeek;
 	
 	/**
 	 * TODO
@@ -77,7 +79,7 @@ public class RMModEditScheduleWindowAddArea extends JFrame implements ActionList
 		line2.setLayout(lineLayout);
 		this.rmModEditScheduleWindow.R_Area.add(line2);
 		line2.add(new JLabel());
-		this.processAddWeek = new JButton("send");
+		this.processAddWeek = new CustomButton("Send", new Dimension(240,50));
 		this.processAddWeek.addActionListener(this);
 		line2.add(this.processAddWeek);
 

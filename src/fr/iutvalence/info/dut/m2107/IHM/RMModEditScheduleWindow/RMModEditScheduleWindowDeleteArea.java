@@ -2,13 +2,13 @@ package fr.iutvalence.info.dut.m2107.IHM.RMModEditScheduleWindow;
 
 
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -19,6 +19,7 @@ import javax.swing.SwingUtilities;
 
 import fr.iutvalence.info.dut.m2107.Calendar.Week;
 import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
+import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 
 @SuppressWarnings("serial")
 public class RMModEditScheduleWindowDeleteArea extends JPanel implements ActionListener{
@@ -35,7 +36,7 @@ public class RMModEditScheduleWindowDeleteArea extends JPanel implements ActionL
 	/**
 	 * the button process delete week
 	 */
-	public JButton processDeleteWeek;
+	public CustomButton processDeleteWeek;
 
 	
 	public RMModEditScheduleWindowDeleteArea(RMModEditScheduleWindow rmModEditScheduleWindow){
@@ -80,7 +81,7 @@ public class RMModEditScheduleWindowDeleteArea extends JPanel implements ActionL
 		 line4.setLayout(lineLayout);
 		 this.rmModEditScheduleWindow.R_Area.add(line4);
 		 line4.add(new JLabel());
-		 this.processDeleteWeek = new JButton("Delete");
+		 this.processDeleteWeek = new CustomButton("Delete", new Dimension(240,80));
 		 line4.add(this.processDeleteWeek);
 		 this.processDeleteWeek.addActionListener(this);
 		 
