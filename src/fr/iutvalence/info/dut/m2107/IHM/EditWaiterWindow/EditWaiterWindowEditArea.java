@@ -1,12 +1,12 @@
 package fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 import fr.iutvalence.info.dut.m2107.Room.Sector;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
@@ -60,7 +61,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 	/**
 	 * The send button
 	 */
-	public JButton processEditWaiter;
+	public CustomButton processEditWaiter;
 	
 	/**
 	 * JLabel for the last name
@@ -184,7 +185,7 @@ public class EditWaiterWindowEditArea extends JPanel implements ActionListener{
 		line6.setLayout(lineLayout);
 		this.editWaiterWindow.R_Area.add(line6);
 		line6.add(new JLabel());
-		this.processEditWaiter = new JButton("Send");
+		this.processEditWaiter = new CustomButton("Send", new Dimension(250, 50));
 		line6.add(this.processEditWaiter);
 		this.processEditWaiter.addActionListener(this);
 	}

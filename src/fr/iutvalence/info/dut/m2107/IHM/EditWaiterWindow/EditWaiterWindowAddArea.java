@@ -1,5 +1,6 @@
 package fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,7 @@ import java.util.Set;
 
 import javax.swing.*;
 
+import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
@@ -54,7 +56,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 	/**
 	 * The send button
 	 */
-	public JButton processAddWaiter;
+	public CustomButton processAddWaiter;
 	
 	/**
 	 * Generates a add area of the edit waiter window
@@ -148,7 +150,7 @@ public class EditWaiterWindowAddArea extends JPanel implements ActionListener {
 		line6.setLayout(lineLayout);
 		this.editWaiterWindow.R_Area.add(line6);
 		line6.add(new JLabel());
-		this.processAddWaiter = new JButton("Send");
+		this.processAddWaiter = new CustomButton("Send", new Dimension(240, 50));
 		line6.add(this.processAddWaiter);
 		this.processAddWaiter.addActionListener(this); 
 		

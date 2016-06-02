@@ -1,12 +1,12 @@
 package fr.iutvalence.info.dut.m2107.IHM.EditWaiterWindow;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 import fr.iutvalence.info.dut.m2107.Room.Sector;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
@@ -50,7 +51,7 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 	/**
 	 * The remove button
 	 */
-	public JButton processRemoveWaiter;
+	public CustomButton processRemoveWaiter;
 	
 	/**
 	 * The label for the first name
@@ -143,7 +144,7 @@ public class EditWaiterWindowRemoveArea extends JPanel implements ActionListener
 		 line4.setLayout(lineLayout);
 		 this.editWaiterWindow.R_Area.add(line4);
 		 line4.add(new JLabel());
-		 this.processRemoveWaiter = new JButton("Remove");
+		 this.processRemoveWaiter = new CustomButton("Remove", new Dimension(240,80));
 		 line4.add(this.processRemoveWaiter);
 		 this.processRemoveWaiter.addActionListener(this);
 	}

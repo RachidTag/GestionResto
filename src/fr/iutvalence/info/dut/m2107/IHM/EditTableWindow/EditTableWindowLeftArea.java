@@ -55,7 +55,7 @@ public class EditTableWindowLeftArea extends JPanel implements ActionListener{
 		/*
 		 * Set the layout
 		 */
-		GridLayout controlPanel = new GridLayout(4,1);
+		GridLayout controlPanel = new GridLayout(7,1);
 		controlPanel.setHgap(5);
 		controlPanel.setVgap(5);
 		this.setLayout(controlPanel);
@@ -90,16 +90,22 @@ public class EditTableWindowLeftArea extends JPanel implements ActionListener{
 		JPanel buttonJPanel2 = new JPanel();
 		JPanel buttonJPanel3 = new JPanel();
 		JPanel buttonJPanel4 = new JPanel();
+		JPanel buttonJPanel5 = new JPanel();
+		JPanel buttonJPanel6 = new JPanel();
+		JPanel buttonJPanel7 = new JPanel();
 		
 		buttonJPanel1.add(this.add);
-		buttonJPanel1.add(this.edit);
-		buttonJPanel2.add(this.delete);
-		buttonJPanel4.add(this.close);
+		buttonJPanel2.add(this.edit);
+		buttonJPanel3.add(this.delete);
+		buttonJPanel7.add(this.close);
 		
 		this.add(buttonJPanel1);
 		this.add(buttonJPanel2);
 		this.add(buttonJPanel3);
 		this.add(buttonJPanel4);
+		this.add(buttonJPanel5);
+		this.add(buttonJPanel6);
+		this.add(buttonJPanel7);
 		
 	}
 
