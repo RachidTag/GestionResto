@@ -21,7 +21,6 @@ import fr.iutvalence.info.dut.m2107.Room.Sector;
 import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
 import fr.iutvalence.info.dut.m2107.Room.Table;
 import fr.iutvalence.info.dut.m2107.Room.TableNotExistsException;
-import javafx.scene.shape.Line;
 
 /**
  * Represents the delete area of the edit table window
