@@ -1,6 +1,5 @@
 package fr.iutvalence.info.dut.m2107.IHM.RMModEditScheduleWindow;
 
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -9,6 +8,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -18,7 +18,6 @@ import javax.swing.SwingConstants;
 import fr.iutvalence.info.dut.m2107.Calendar.DayNotExistsException;
 import fr.iutvalence.info.dut.m2107.Calendar.ServiceType;
 import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
-import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
@@ -48,11 +47,11 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 	/**
 	 * The send button for a normal waiter
 	 */
-	public CustomButton processRemoveNormalWaiter;
+	public JButton processRemoveNormalWaiter;
 	/**
 	 * The send button for a cleaner waiter
 	 */
-	public CustomButton processRemoveCleanerWaiter;
+	public JButton processRemoveCleanerWaiter;
 	/**
 	 * the last name of the waiter
 	 */
@@ -104,8 +103,6 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 		 * Set the layout
 		 */
 		GridLayout lineLayout = new GridLayout(1,2);
-		lineLayout.setVgap(2);
-		lineLayout.setHgap(2);
 		 
 		/*
 		 * Set first line (weeks)
@@ -182,8 +179,8 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 		JPanel line6 = new JPanel();
 		line6.setLayout(lineLayout);
 		this.rmModEditScheduleWindow.R_Area.add(line6);
-		this.processRemoveNormalWaiter = new CustomButton("Remove Waiter", new Dimension(240,50));
-		this.processRemoveCleanerWaiter = new CustomButton("Remove Cleaner Waiter", new Dimension(240,50));
+		this.processRemoveNormalWaiter = new JButton("Remove Waiter");
+		this.processRemoveCleanerWaiter = new JButton("Remove Cleaner Waiter");
 		line6.add(this.processRemoveNormalWaiter);
 		line6.add(this.processRemoveCleanerWaiter);
 		this.processRemoveNormalWaiter.addActionListener(this);
@@ -272,6 +269,38 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 					e.printStackTrace();
 				};
 
+			}
+			else if (source == processRemoveCleanerWaiter){
+				
+				int numWaiter = 0;
+				String lastName = "";
+				String firstName = "";
+				Rank rank = null;
+				try {
+					numWaiter = (int) this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getNumWaiter();
+					lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
+					firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
+					rank = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getRank();
+				} catch (WaiterDoesNotExistException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				@SuppressWarnings("unused")
+				int action = 0;
+				
+				Waiter theWaiter = new Waiter(numWaiter, lastName, firstName, rank);
+				
+
+				try {
+					this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).removeWaiter(theWaiter);
+					System.out.println(theWaiter);
+					action++;
+				} catch (DayNotExistsException | WeekNotExistsException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				};
+				
 			}
 			
 		}

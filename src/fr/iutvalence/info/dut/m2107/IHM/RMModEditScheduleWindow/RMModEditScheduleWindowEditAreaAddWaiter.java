@@ -293,6 +293,39 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 			};
 
 		}
+		else if (source == this.processEditWaiterAsCleanerWaiter){
+			
+			@SuppressWarnings("unused")
+			int action = 0;
+			int numWaiter = 0;
+			String lastName = "";
+			String firstName = "";
+			Rank rank = null;
+			try {
+				numWaiter = (int) this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getNumWaiter();
+				lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
+				firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
+				rank = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getRank();
+			} catch (WaiterDoesNotExistException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
+			
+			Waiter theWaiter = new Waiter(numWaiter, lastName, firstName, rank);
+			
+
+			try {
+				this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).addCleanerWaiter(theWaiter);
+				System.out.println(theWaiter);
+				action++;
+			} catch (WaiterAllreadyInServiceException | DayNotExistsException | WeekNotExistsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			};
+			
+		}
 
 					
 	}
