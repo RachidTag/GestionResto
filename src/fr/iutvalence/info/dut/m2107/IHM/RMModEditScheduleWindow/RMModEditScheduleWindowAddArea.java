@@ -35,7 +35,7 @@ public class RMModEditScheduleWindowAddArea extends JFrame implements ActionList
 	
 	/**
 	 * generate the add area for the room manager
-	 * @param editWaiterWindow
+	 * @param rmModEditScheduleWindow 
 	 */
 	public RMModEditScheduleWindowAddArea(RMModEditScheduleWindow rmModEditScheduleWindow) {
 

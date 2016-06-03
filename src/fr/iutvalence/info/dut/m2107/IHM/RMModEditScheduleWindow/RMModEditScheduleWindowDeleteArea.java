@@ -21,12 +21,12 @@ import fr.iutvalence.info.dut.m2107.Calendar.Week;
 import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
 import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 
-@SuppressWarnings("serial")
 /**
  * Represent the area where we can delete a week from the schedule
  * @author Projet Resto
  *
  */
+@SuppressWarnings("serial")
 public class RMModEditScheduleWindowDeleteArea extends JPanel implements ActionListener{
 
 	/**
@@ -44,6 +44,10 @@ public class RMModEditScheduleWindowDeleteArea extends JPanel implements ActionL
 	public CustomButton processDeleteWeek;
 
 	
+	/**
+	 * Generates the delete area of the rmmod edit schedule window
+	 * @param rmModEditScheduleWindow
+	 */
 	public RMModEditScheduleWindowDeleteArea(RMModEditScheduleWindow rmModEditScheduleWindow){
 		this.rmModEditScheduleWindow = rmModEditScheduleWindow;
 		

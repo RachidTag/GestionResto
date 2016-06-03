@@ -48,8 +48,8 @@ public class RMModEditScheduleWindowLeftArea extends JPanel implements ActionLis
 		public CustomButton close;
 
 		/**
-		 * TODO
-		 * @param sectorEditionWindow
+		 * Generates the left area of the rmmod edit schedule window
+		 * @param rmModEditScheduleWindow
 		 */
 		public RMModEditScheduleWindowLeftArea(RMModEditScheduleWindow rmModEditScheduleWindow){
 			/*

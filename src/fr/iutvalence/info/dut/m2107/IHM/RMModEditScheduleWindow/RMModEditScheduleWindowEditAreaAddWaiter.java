@@ -77,7 +77,7 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 		
 		/**
 		 * create the edit waiter right area
-		 * @param editWaiterWindow
+		 * @param rmModEditScheduleWindow
 		 */
 		public RMModEditScheduleWindowEditAreaAddWaiter(RMModEditScheduleWindow rmModEditScheduleWindow) {
 			

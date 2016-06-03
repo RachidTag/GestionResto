@@ -25,12 +25,12 @@ import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
 
-@SuppressWarnings("serial")
 /**
  * Represent the area where we can remove a waiter from the schedule
  * @author Projet Resto
  *
  */
+@SuppressWarnings("serial")
 public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implements ActionListener {
 	/**
 	 * The main window
@@ -72,7 +72,7 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 	
 	/**
 	 * create the edit waiter right area
-	 * @param editWaiterWindow
+	 * @param rmModEditScheduleWindow
 	 */
 	public RMModEditScheduleWindowEditAreaRemoveWaiter(RMModEditScheduleWindow rmModEditScheduleWindow) {
 		

@@ -20,8 +20,8 @@ import javax.swing.JPanel;
 		private RMModEditScheduleWindow rmModEditScheduleWindow;
 
 		/**
-		 * TODO
-		 * @param sectorEditionWindow
+		 * Generates the right area of the edit schedule window
+		 * @param rmModEditScheduleWindow
 		 */
 		public RMModEditScheduleWindowRightArea(RMModEditScheduleWindow rmModEditScheduleWindow){
 			/*
