@@ -135,6 +135,7 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 			line2.add(new JLabel("Num day :"));
 			Integer[] days = {1, 2, 3, 4, 5, 6, 7};
 			this.comboNumDay =  new JComboBox<Object>(days);
+			this.comboNumDay.addActionListener(this);
 			line2.add(this.comboNumDay);
 			
 			/*
@@ -239,29 +240,8 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 	public void actionPerformed(ActionEvent arg0) {
 		JComponent source = (JComponent) arg0.getSource();
 		
-		if(source == this.comboNumWeek || source == this.comboNumDay || source == this.comboServices ){
-			if(this.waitersAvailable().size() != 0){
-				DefaultComboBoxModel model = new DefaultComboBoxModel(this.waitersAvailable().toArray());
-				this.comboNumWaiter.setModel(model); 
-			}
-			else {
-				this.comboNumWaiter.removeAllItems();
-				System.out.println(this.waitersAvailable().size());
-			}
-		}
-		else if (source == this.comboNumWaiter){
-			try {
-				this.lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
-				this.firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
-			} catch (WaiterDoesNotExistException e) {
-				// TODO Auto-generated catch block
-				this.lastName = "";
-				this.firstName = "";
-				e.printStackTrace();
-			}
-			this.name.setText(this.lastName + " " + this.firstName);
-		}
-		else if (source == this.processEditWaiterAsNormalWaiter){
+
+		if (source == this.processEditWaiterAsNormalWaiter){
 			
 			@SuppressWarnings("unused")
 			int action = 0;
@@ -322,10 +302,28 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 			} catch (WaiterAllreadyInServiceException | DayNotExistsException | WeekNotExistsException e) {
 				JOptionPane.showMessageDialog(null, "The cleaner waiter can't be added");
 				e.printStackTrace();
-			};
-			
+			}
 		}
-
-					
+		
+		/*
+		 * Refresh the combo boxes
+		 */
+		if(this.waitersAvailable().size() != 0){
+			DefaultComboBoxModel model = new DefaultComboBoxModel(this.waitersAvailable().toArray());
+			this.comboNumWaiter.setModel(model); 
+		}
+		else {
+			this.comboNumWaiter.removeAllItems();
+		}
+		try {
+			this.lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
+			this.firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
+		} catch (WaiterDoesNotExistException e) {
+			// TODO Auto-generated catch block
+			this.lastName = "";
+			this.firstName = "";
+			e.printStackTrace();
+		}
+		this.name.setText(this.lastName + " " + this.firstName);
 	}
 }

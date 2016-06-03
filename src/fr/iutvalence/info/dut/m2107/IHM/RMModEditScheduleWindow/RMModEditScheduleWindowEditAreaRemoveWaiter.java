@@ -1,5 +1,6 @@
 package fr.iutvalence.info.dut.m2107.IHM.RMModEditScheduleWindow;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,7 @@ import javax.swing.SwingConstants;
 import fr.iutvalence.info.dut.m2107.Calendar.DayNotExistsException;
 import fr.iutvalence.info.dut.m2107.Calendar.ServiceType;
 import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
+import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
@@ -126,6 +128,7 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 		line2.add(new JLabel("Num day :"));
 		Integer[] days = {1, 2, 3, 4, 5, 6, 7};
 		this.comboNumDay =  new JComboBox<Object>(days);
+		this.comboNumDay.addActionListener(this);
 		line2.add(this.comboNumDay);
 		
 		/*
@@ -180,15 +183,16 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 		JPanel line6 = new JPanel();
 		line6.setLayout(lineLayout);
 		this.rmModEditScheduleWindow.R_Area.add(line6);
-		this.processRemoveWaiter = new JButton("Remove Waiter");
+		line6.add(new JLabel());
+		this.processRemoveWaiter = new CustomButton("Remove waiter", new Dimension(240,50));
 		line6.add(this.processRemoveWaiter);
 		this.processRemoveWaiter.addActionListener(this);
 
 	}
 	
 		/**
-		 * Return the number of the waiters available
-		 * @return the set of number of all available waiter
+		 * Return the number of the waiters in service
+		 * @return the set of number of all waiter in service
 		 */
 		public Set<Integer> waitersInService(){
 		/*
@@ -212,30 +216,8 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			JComponent source = (JComponent) arg0.getSource();
-			if(source == this.comboNumWeek || source == this.comboNumDay || source == this.comboServices ){
-				if(this.waitersInService().size() != 0){
-					@SuppressWarnings({ "rawtypes" })
-					DefaultComboBoxModel model = new DefaultComboBoxModel(this.waitersInService().toArray());
-					this.comboNumWaiter.setModel(model); 
-				}
-				else {
-					this.comboNumWaiter.removeAllItems();
-					System.out.println(this.waitersInService().size());
-				}
-			}
-			else if (source == this.comboNumWaiter){
-				try {
-					this.lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
-					this.firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
-				} catch (WaiterDoesNotExistException e) {
-					// TODO Auto-generated catch block
-					this.lastName = "";
-					this.firstName = "";
-					e.printStackTrace();
-				}
-				this.name.setText(this.lastName + " " + this.firstName);
-			}
-			else if (source == this.processRemoveWaiter){
+			
+			if (source == this.processRemoveWaiter){
 				
 				int numWaiter = 0;
 				String lastName = "";
@@ -261,10 +243,31 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 				} catch (DayNotExistsException | WeekNotExistsException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				};
+				}
 
 			}
 			
+			/*
+			 * Refresh the combo boxes
+			 */
+			if(this.waitersInService().size() != 0){
+				@SuppressWarnings({ "rawtypes" })
+				DefaultComboBoxModel model = new DefaultComboBoxModel(this.waitersInService().toArray());
+				this.comboNumWaiter.setModel(model);
+			}
+			else {
+				this.comboNumWaiter.removeAllItems();
+			}
+			try {
+				this.lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
+				this.firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
+			} catch (WaiterDoesNotExistException e) {
+				// TODO Auto-generated catch block
+				this.lastName = "";
+				this.firstName = "";
+				e.printStackTrace();
+			}
+			this.name.setText(this.lastName + " " + this.firstName);
 		}
 
 }
