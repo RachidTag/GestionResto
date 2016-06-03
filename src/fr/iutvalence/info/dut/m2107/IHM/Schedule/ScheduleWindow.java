@@ -170,7 +170,7 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 			
 			Day theDay = null;
 			try {
-				theDay = this.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboWeeks.getSelectedItem()).getDay((int)this.comboDays.getSelectedItem());
+				theDay = this.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboWeeks.getSelectedItem()).getDay((int)this.comboDays.getSelectedItem()-1);
 			} catch (DayNotExistsException | WeekNotExistsException e) {
 				// impossible
 			}			
