@@ -22,7 +22,7 @@ import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
  * @author Projet Resto
  */
 @SuppressWarnings("serial")
-public class RMModWindowRightArea extends JPanel implements ActionListener, KeyListener
+public class RMModWindowRightArea extends JPanel implements ActionListener
 {
 	/**
 	 * Reference to the main window
@@ -140,20 +140,4 @@ public class RMModWindowRightArea extends JPanel implements ActionListener, KeyL
 		this.actionLogin();
 	}
 
-	@Override
-	public void keyReleased(KeyEvent arg0){
-		System.out.println("key : ");
-		if (arg0.getKeyCode() == KeyEvent.VK_ENTER)
-			this.actionLogin();
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// Nothing to do...
-	}
-
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-		// Nothing to do...
-	}
 }
