@@ -7,7 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 	/**
-	 * @author TODO
+	 * Represents the default right area of the edit waiter window
+	 * @author Projet Resto
 	 *
 	 */
 	@SuppressWarnings("serial")

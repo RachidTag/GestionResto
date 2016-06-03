@@ -25,7 +25,7 @@ import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
 	/**
-	 * Represent the area where we can edit a week
+	 * Represent the area where we can add a waiter from the schedule
 	 * @author Projet Resto
 	 */
 @SuppressWarnings("serial")

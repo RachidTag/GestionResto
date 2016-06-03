@@ -34,7 +34,7 @@ public class RMModEditScheduleWindowAddArea extends JFrame implements ActionList
 	public CustomButton processAddWeek;
 	
 	/**
-	 * TODO
+	 * generate the add area for the room manager
 	 * @param editWaiterWindow
 	 */
 	public RMModEditScheduleWindowAddArea(RMModEditScheduleWindow rmModEditScheduleWindow) {

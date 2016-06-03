@@ -5,6 +5,11 @@ import javax.swing.JSplitPane;
 import fr.iutvalence.info.dut.m2107.WindowEventHandler;
 import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
 @SuppressWarnings("serial")
+/**
+ * The class represent the edition window of room manager
+ * @author Projet Resto
+ *
+ */
 public class RMModEditScheduleWindow extends JFrame {
 		/**
 		 * The left area

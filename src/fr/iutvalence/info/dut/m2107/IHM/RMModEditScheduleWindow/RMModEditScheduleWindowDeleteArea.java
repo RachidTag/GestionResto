@@ -22,6 +22,11 @@ import fr.iutvalence.info.dut.m2107.Calendar.WeekNotExistsException;
 import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 
 @SuppressWarnings("serial")
+/**
+ * Represent the area where we can delete a week from the schedule
+ * @author Projet Resto
+ *
+ */
 public class RMModEditScheduleWindowDeleteArea extends JPanel implements ActionListener{
 
 	/**

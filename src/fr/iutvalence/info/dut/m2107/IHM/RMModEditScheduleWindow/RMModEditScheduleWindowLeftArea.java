@@ -14,6 +14,7 @@ import fr.iutvalence.info.dut.m2107.IHM.CustomButton.CustomButton;
 
 
 /**
+ * Represents the default left area of the edit schedule window
  * @author projet Resto'
  *
  */
