@@ -13,6 +13,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -285,18 +286,15 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 
 			try {
 				this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).addWaiter(theWaiter);
-				System.out.println(theWaiter);
-				action++;
+				JOptionPane.showMessageDialog(null, "The waiter has been correctly added");
 			} catch (WaiterAllreadyInServiceException | DayNotExistsException | WeekNotExistsException e) {
-				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "The cleaner waiter can't be added");
 				e.printStackTrace();
 			};
 
 		}
 		else if (source == this.processEditWaiterAsCleanerWaiter){
 			
-			@SuppressWarnings("unused")
-			int action = 0;
 			int numWaiter = 0;
 			String lastName = "";
 			String firstName = "";
@@ -315,13 +313,14 @@ public class RMModEditScheduleWindowEditAreaAddWaiter extends JPanel implements 
 			
 			Waiter theWaiter = new Waiter(numWaiter, lastName, firstName, rank);
 			
-
+			/*
+			 * Add the waiter
+			 */
 			try {
 				this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).addCleanerWaiter(theWaiter);
-				System.out.println(theWaiter);
-				action++;
+				JOptionPane.showMessageDialog(null, "The cleaner waiter has been correctly added");
 			} catch (WaiterAllreadyInServiceException | DayNotExistsException | WeekNotExistsException e) {
-				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "The cleaner waiter can't be added");
 				e.printStackTrace();
 			};
 			

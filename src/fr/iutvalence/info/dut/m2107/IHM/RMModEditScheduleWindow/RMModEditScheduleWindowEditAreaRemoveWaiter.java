@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -52,12 +53,11 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 	/**
 	 * The send button for a normal waiter
 	 */
-	public JButton processRemoveNormalWaiter;
+	public JButton processRemoveWaiter;
 	/**
 	 * the last name of the waiter
 	 */
 	public String lastName;
-	
 	/**
 	 * the first name of the waiter
 	 */
@@ -180,9 +180,9 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 		JPanel line6 = new JPanel();
 		line6.setLayout(lineLayout);
 		this.rmModEditScheduleWindow.R_Area.add(line6);
-		this.processRemoveNormalWaiter = new JButton("Remove Waiter");
-		line6.add(this.processRemoveNormalWaiter);
-		this.processRemoveNormalWaiter.addActionListener(this);
+		this.processRemoveWaiter = new JButton("Remove Waiter");
+		line6.add(this.processRemoveWaiter);
+		this.processRemoveWaiter.addActionListener(this);
 
 	}
 	
@@ -235,7 +235,7 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 				}
 				this.name.setText(this.lastName + " " + this.firstName);
 			}
-			else if (source == this.processRemoveNormalWaiter){
+			else if (source == this.processRemoveWaiter){
 				
 				int numWaiter = 0;
 				String lastName = "";
@@ -250,16 +250,14 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-
-				@SuppressWarnings("unused")
-				int action = 0;
-				
 				Waiter theWaiter = new Waiter(numWaiter, lastName, firstName, rank);
 				
-
+				/*
+				 * Remove the waiter
+				 */
 				try {
 					this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).removeWaiter(theWaiter);
-					action++;
+					JOptionPane.showMessageDialog(null, "The waiter has been correctly removed");
 				} catch (DayNotExistsException | WeekNotExistsException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
