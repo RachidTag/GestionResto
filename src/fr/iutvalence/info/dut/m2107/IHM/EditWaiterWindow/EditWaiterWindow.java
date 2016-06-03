@@ -59,7 +59,7 @@ public class EditWaiterWindow extends JFrame {
 		this.R_Area = new EditWaiterWindowRightArea(this);
 		
 		/*
-		 * Split the SectorEditionWindow in two parts
+		 * Split the EditWaiterWindow in two parts
 		 */
 		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, this.L_Area, this.R_Area);
 		split.setOneTouchExpandable(true);

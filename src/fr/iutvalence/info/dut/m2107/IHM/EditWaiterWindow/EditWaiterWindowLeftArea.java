@@ -53,7 +53,7 @@ public class EditWaiterWindowLeftArea extends JPanel implements ActionListener{
 	 */
 	public EditWaiterWindowLeftArea(EditWaiterWindow editWaiterWindow){
 		/*
-		 * Save the reference to the sectorEditionWindo
+		 * Save the reference to the editWaiterWindow
 		 */
 		this.editWaiterWindow = editWaiterWindow;
 		

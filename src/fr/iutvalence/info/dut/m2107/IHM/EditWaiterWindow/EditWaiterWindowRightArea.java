@@ -16,17 +16,17 @@ public class EditWaiterWindowRightArea extends JPanel{
 	 * The main window
 	 */
 	@SuppressWarnings("unused")
-	private EditWaiterWindow sectorEditionWindow;
+	private EditWaiterWindow waiterEditionWindow;
 
 	/**
 	 * Generates the default right area of the edit waiter window
-	 * @param sectorEditionWindow
+	 * @param waiterEditionWindow
 	 */
-	public EditWaiterWindowRightArea(EditWaiterWindow sectorEditionWindow){
+	public EditWaiterWindowRightArea(EditWaiterWindow waiterEditionWindow){
 		/*
-		 * Save the reference to the sector edition window
+		 * Save the reference to the waiter edition window
 		 */
-		this.sectorEditionWindow = sectorEditionWindow;
+		this.waiterEditionWindow = waiterEditionWindow;
 		
 		/*
 		 * Set the default text
