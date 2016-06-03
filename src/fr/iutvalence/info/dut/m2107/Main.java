@@ -1,12 +1,20 @@
 package fr.iutvalence.info.dut.m2107;
 import java.awt.Image;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import javax.swing.ImageIcon;
 
 import fr.iutvalence.info.dut.m2107.Calendar.*;
 import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
+import fr.iutvalence.info.dut.m2107.Room.ATableIsAlreadyInThisPositionException;
+import fr.iutvalence.info.dut.m2107.Room.ClientNameRequiredException;
+import fr.iutvalence.info.dut.m2107.Room.Position;
+import fr.iutvalence.info.dut.m2107.Room.Progress;
+import fr.iutvalence.info.dut.m2107.Room.Room;
+import fr.iutvalence.info.dut.m2107.Room.Sector;
+import fr.iutvalence.info.dut.m2107.Room.SectorAlreadyExistsException;
+import fr.iutvalence.info.dut.m2107.Room.SectorNotExistsException;
+import fr.iutvalence.info.dut.m2107.Room.State;
+import fr.iutvalence.info.dut.m2107.Room.Table;
+import fr.iutvalence.info.dut.m2107.Room.TableAlreadyExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.Rank;
 import fr.iutvalence.info.dut.m2107.Staff.Staff;
 import fr.iutvalence.info.dut.m2107.Staff.Waiter;
@@ -159,24 +167,44 @@ public class Main {
 			e1.printStackTrace();
 		}
 		
+		Room theRoom = new Room();
 		
 		try {
-			window = new MainWindow(new Restaurant(staf, cal, Restaurant.loadRestaurant().getTheRoom()));
-			if (window != null)
-				window.setIconImage(logo);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ObjectReadedIsNotARestaurantException e) {
+			theRoom.addSector(new Sector(1,staf.getWaiter(2)));
+			theRoom.addSector(new Sector(2,staf.getWaiter(4)));
+			theRoom.addSector(new Sector(3,staf.getWaiter(8)));
+			theRoom.addSector(new Sector(4,staf.getWaiter(9)));
+		} catch (SectorAlreadyExistsException | WaiterDoesNotExistException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			theRoom.getSector(1).addTable(new Table(1, 4, new Position(0,0,1), "Dupond"));
+			theRoom.getSector(1).addTable(new Table(2, 2, new Position(1,1,2),Progress.APERITIF, State.BUSY));
+			theRoom.getSector(1).addTable(new Table(3, 6, new Position(2,1,1),Progress.NO_PROGRESS,State.GRIMY));
+			theRoom.getSector(1).addTable(new Table(4, 2, new Position(2,3,2), "Jean"));
+			theRoom.getSector(2).addTable(new Table(1, 4, new Position(0,0,1), Progress.NO_PROGRESS, State.FREE));
+			theRoom.getSector(2).addTable(new Table(2, 4, new Position(1,2,2),Progress.APERITIF, State.BUSY));
+			theRoom.getSector(2).addTable(new Table(3, 6, new Position(2,1,1),Progress.NO_PROGRESS,State.GRIMY));
+			theRoom.getSector(2).addTable(new Table(4, 6, new Position(3,3,2), "Jean"));
+			theRoom.getSector(3).addTable(new Table(1, 4, new Position(0,0,1), "Dupond"));
+			theRoom.getSector(3).addTable(new Table(2, 2, new Position(1,0,2),Progress.NO_PROGRESS, State.FREE));
+			theRoom.getSector(3).addTable(new Table(3, 6, new Position(2,3,1),Progress.NO_PROGRESS,State.GRIMY));
+			theRoom.getSector(3).addTable(new Table(4, 2, new Position(3,3,2), "Jean"));
+			theRoom.getSector(4).addTable(new Table(1, 2, new Position(1,1,1), "Dupond"));
+			theRoom.getSector(4).addTable(new Table(2, 6, new Position(1,3,2),Progress.APERITIF, State.BUSY));
+			theRoom.getSector(4).addTable(new Table(3, 2, new Position(2,1,1),Progress.NO_PROGRESS,State.GRIMY));
+			theRoom.getSector(4).addTable(new Table(4, 2, new Position(2,2,2), "Jean"));
+		} catch (TableAlreadyExistsException | ATableIsAlreadyInThisPositionException | SectorNotExistsException | ClientNameRequiredException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		window = new MainWindow(new Restaurant(staf, cal, theRoom));
+		if (window != null)
+			window.setIconImage(logo);
 	}
 
 }
