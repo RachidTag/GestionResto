@@ -54,10 +54,6 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 	 */
 	public JButton processRemoveNormalWaiter;
 	/**
-	 * The send button for a cleaner waiter
-	 */
-	public JButton processRemoveCleanerWaiter;
-	/**
 	 * the last name of the waiter
 	 */
 	public String lastName;
@@ -185,11 +181,8 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 		line6.setLayout(lineLayout);
 		this.rmModEditScheduleWindow.R_Area.add(line6);
 		this.processRemoveNormalWaiter = new JButton("Remove Waiter");
-		this.processRemoveCleanerWaiter = new JButton("Remove Cleaner Waiter");
 		line6.add(this.processRemoveNormalWaiter);
-		line6.add(this.processRemoveCleanerWaiter);
 		this.processRemoveNormalWaiter.addActionListener(this);
-		this.processRemoveCleanerWaiter.addActionListener(this);
 
 	}
 	
@@ -206,7 +199,6 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 		try {
 			for(Integer numWaiters : this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).getAllWaiters().keySet()){
 				numWaitersInService.add(numWaiters);
-				System.out.println(numWaitersInService);
 			}
 		} catch (DayNotExistsException | WeekNotExistsException e) {
 			// TODO Auto-generated catch block
@@ -267,45 +259,12 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 
 				try {
 					this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).removeWaiter(theWaiter);
-					System.out.println(theWaiter);
 					action++;
 				} catch (DayNotExistsException | WeekNotExistsException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				};
 
-			}
-			else if (source == processRemoveCleanerWaiter){
-				
-				int numWaiter = 0;
-				String lastName = "";
-				String firstName = "";
-				Rank rank = null;
-				try {
-					numWaiter = (int) this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getNumWaiter();
-					lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
-					firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
-					rank = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getRank();
-				} catch (WaiterDoesNotExistException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-				@SuppressWarnings("unused")
-				int action = 0;
-				
-				Waiter theWaiter = new Waiter(numWaiter, lastName, firstName, rank);
-				
-
-				try {
-					this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).removeWaiter(theWaiter);
-					System.out.println(theWaiter);
-					action++;
-				} catch (DayNotExistsException | WeekNotExistsException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				};
-				
 			}
 			
 		}
