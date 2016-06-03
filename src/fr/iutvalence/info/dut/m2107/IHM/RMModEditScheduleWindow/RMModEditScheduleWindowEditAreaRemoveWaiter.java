@@ -254,19 +254,22 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 				@SuppressWarnings({ "rawtypes" })
 				DefaultComboBoxModel model = new DefaultComboBoxModel(this.waitersInService().toArray());
 				this.comboNumWaiter.setModel(model);
+				try {
+					this.lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
+					this.firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
+				} catch (WaiterDoesNotExistException e) {
+					// TODO Auto-generated catch block
+					this.lastName = "";
+					this.firstName = "";
+					e.printStackTrace();
+				}
 			}
 			else {
 				this.comboNumWaiter.removeAllItems();
-			}
-			try {
-				this.lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
-				this.firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
-			} catch (WaiterDoesNotExistException e) {
-				// TODO Auto-generated catch block
 				this.lastName = "";
 				this.firstName = "";
-				e.printStackTrace();
 			}
+			
 			this.name.setText(this.lastName + " " + this.firstName);
 		}
 
