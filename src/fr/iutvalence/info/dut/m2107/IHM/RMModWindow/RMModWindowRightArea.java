@@ -84,6 +84,7 @@ public class RMModWindowRightArea extends JPanel implements ActionListener, KeyL
 		this.add(line1);
 		line1.add(new JLabel("Username"));
 		this.username = new JTextField();
+		this.username.addActionListener(this);
 		line1.add(this.username);
 		
 		/*
@@ -94,6 +95,7 @@ public class RMModWindowRightArea extends JPanel implements ActionListener, KeyL
 		this.add(line2);
 		line2.add(new JLabel("Password"));
 		this.password = new JPasswordField();
+		this.password.addActionListener(this);
 		line2.add(this.password);
 		
 		/*
@@ -137,7 +139,7 @@ public class RMModWindowRightArea extends JPanel implements ActionListener, KeyL
 	public void actionPerformed(ActionEvent arg0) {
 		this.actionLogin();
 	}
-		
+
 	@Override
 	public void keyReleased(KeyEvent arg0){
 		System.out.println("key : ");
