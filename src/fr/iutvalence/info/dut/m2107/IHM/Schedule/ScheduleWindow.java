@@ -246,15 +246,14 @@ public class ScheduleWindow extends JFrame implements ActionListener{
 				/*
 				 * Set the layout
 				 */
-				this.bottomArea.setLayout(new GridBagLayout());
+				this.bottomArea.setLayout(new GridLayout(1,1));
 				
 				/*
 				 * Add the default text
 				 */
-				JLabel defaultText = new JLabel("The restaurant is closed today !");
-				GridBagConstraints gbc = new GridBagConstraints();
+				JLabel defaultText = new JLabel("                   The restaurant is closed today !");
 				defaultText.setFont(defaultText.getFont().deriveFont(Font.ITALIC, 24.f));
-				this.bottomArea.add(defaultText, gbc);
+				this.bottomArea.add(defaultText);
 				
 				/*
 				 * Refresh
