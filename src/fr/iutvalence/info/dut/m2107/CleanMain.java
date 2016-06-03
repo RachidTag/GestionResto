@@ -6,9 +6,9 @@ import javax.swing.ImageIcon;
 
 import fr.iutvalence.info.dut.m2107.IHM.MainWindow.MainWindow;
 /**
- * Application that launches an IHM, a Calendar and a Room 
+ * Application that launches an IHM and load the restaurant
+ * When you launch this for the first time, the restaurant is totally empty
  * @author Projet Resto
- *
  */
 public class CleanMain {
 	

@@ -21,7 +21,7 @@ import fr.iutvalence.info.dut.m2107.Staff.Waiter;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterAlreadyExistsException;
 import fr.iutvalence.info.dut.m2107.Staff.WaiterDoesNotExistException;
 /**
- * Application that launches an IHM, a Calendar and a Room 
+ * Application that launches an IHM and generate a preset restaurant
  * @author Projet Resto
  *
  */
