@@ -98,7 +98,7 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 		/*
 		 * Set the title of the panel 
 		 */
-		JLabel title = new JLabel("Edit waiter", SwingConstants.CENTER);
+		JLabel title = new JLabel("Remove waiter", SwingConstants.CENTER);
 		title.setFont(title.getFont().deriveFont(Font.BOLD,20.f));
 		this.rmModEditScheduleWindow.R_Area.add(title);
 		
@@ -166,12 +166,14 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 		JPanel line5 = new JPanel();
 		line5.setLayout(lineLayout);
 		this.rmModEditScheduleWindow.R_Area.add(line5);
-		try {
-			this.lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
-			this.firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
-		} catch (WaiterDoesNotExistException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(this.waitersInService().size() != 0){
+			try {
+				this.lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
+				this.firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
+			} catch (WaiterDoesNotExistException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		this.name = new JLabel(this.lastName + " " + this.firstName);
 		line5.add(new JLabel("Name :"));
@@ -201,7 +203,7 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 		Set<Integer> numWaitersInService = new TreeSet<Integer>();
 		
 		try {
-			for(Integer numWaiters : this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).getAllWaiters().keySet()){
+			for(Integer numWaiters : this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()-1).getService((ServiceType)this.comboServices.getSelectedItem()).getAllWaiters().keySet()){
 				numWaitersInService.add(numWaiters);
 			}
 		} catch (DayNotExistsException | WeekNotExistsException e) {
@@ -238,7 +240,7 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 				 * Remove the waiter
 				 */
 				try {
-					this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()).getService((ServiceType)this.comboServices.getSelectedItem()).removeWaiter(theWaiter);
+					this.rmModEditScheduleWindow.mainWindow.restaurant.getTheCalendar().getWeekCalendar((int)this.comboNumWeek.getSelectedItem()).getDay((int)this.comboNumDay.getSelectedItem()-1).getService((ServiceType)this.comboServices.getSelectedItem()).removeWaiter(theWaiter);
 					JOptionPane.showMessageDialog(null, "The waiter has been correctly removed");
 				} catch (DayNotExistsException | WeekNotExistsException e) {
 					// TODO Auto-generated catch block
@@ -247,13 +249,7 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 
 			}
 			
-			/*
-			 * Refresh the combo boxes
-			 */
-			if(this.waitersInService().size() != 0){
-				@SuppressWarnings({ "rawtypes" })
-				DefaultComboBoxModel model = new DefaultComboBoxModel(this.waitersInService().toArray());
-				this.comboNumWaiter.setModel(model);
+			if (source == this.comboNumWaiter){
 				try {
 					this.lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
 					this.firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
@@ -264,13 +260,32 @@ public class RMModEditScheduleWindowEditAreaRemoveWaiter extends JPanel implemen
 					e.printStackTrace();
 				}
 			}
-			else {
-				this.comboNumWaiter.removeAllItems();
-				this.lastName = "";
-				this.firstName = "";
+			/*
+			 * Refresh the combo boxes
+			 */
+			if(source != this.comboNumWaiter){
+				if(this.waitersInService().size() != 0){
+					@SuppressWarnings({ "rawtypes" })
+					DefaultComboBoxModel model = new DefaultComboBoxModel(this.waitersInService().toArray());
+					this.comboNumWaiter.setModel(model);
+					try {
+						this.lastName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getLastName();
+						this.firstName = this.rmModEditScheduleWindow.mainWindow.restaurant.getTheStaff().getWaiter((int)this.comboNumWaiter.getSelectedItem()).getFirstName();
+					} catch (WaiterDoesNotExistException e) {
+						// TODO Auto-generated catch block
+						this.lastName = "";
+						this.firstName = "";
+						e.printStackTrace();
+					}
+				}
+				else {
+					this.comboNumWaiter.removeAllItems();
+					this.lastName = "";
+					this.firstName = "";
+				}
+				
+				this.name.setText(this.lastName + " " + this.firstName);
 			}
-			
-			this.name.setText(this.lastName + " " + this.firstName);
 		}
 
 }
